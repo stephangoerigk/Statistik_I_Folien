@@ -1494,7 +1494,7 @@ class: top, left
 
 * Deskriptivstatistik: Stichprobendaten **zusammenfassen** (z.B. Mittelwert)
 
-* Inferenzstatistik_ nutzen wir, um Ergebnisse unter Wahrscheinlichkeitsannahmen auf Population zu **verallgemeinern** (z.B. Konfidenzintervall)
+* Inferenzstatistik nutzen wir, um Ergebnisse unter Wahrscheinlichkeitsannahmen auf Population zu **verallgemeinern** (z.B. Konfidenzintervall)
 
 * Quantitative Methoden: Erkenntnisgewinn durch **Hypothesentesten**
 
