@@ -20,7 +20,7 @@ output:
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 
-setwd("/Users/stephangoerigk/Desktop/Universität/CFH/Lehre/Bachelor/Quantitative Methoden I/VO_Statistik I/Folien/")
+setwd("/Users/stephangoerigk/Desktop/Universität/CFH/Lehre/Bachelor/Quantitative Methoden I/VO_Statistik I/Statistik_I_Folien/")
 
 library(tidyverse)
 library(kableExtra)
@@ -57,7 +57,7 @@ class: middle, left
 <br><br><br><br><br><br><br>
 # Statistik I
 
-### Einheit 1
+### Einheit 1: Grundlagen der Datenanalyse
 ##### 12.10.2022 | Dr. Stephan Goerigk
 
 ---
@@ -71,7 +71,7 @@ Dr. Stephan Goerigk
 
 Psychologische Methodenlehre
 
-Infanteriestraße 11a · 80797 München · Raum: xxx
+Infanteriestraße 11a · 80797 München · 
 
 [stephan.goerigk@charlotte-fresenius.de](mailto:stephan.goerigk@charlotte-fresenius.de)
 
@@ -1482,7 +1482,7 @@ class: top, left
 
 * Vorliebe Psychotherapie Leitlinienverfahren $[1=Psychoanalyse, 2=Verhaltentherapie, 3=Tiefenpsychologisch, 4= Systemisch]$
 
-* Erstellen Sie aus der Urlieste eine Häufigkeitstabelle für die Ausprägungen der Variable in der Schreibweise $N (\%)$.
+* Erstellen Sie aus der Urliste eine Häufigkeitstabelle für die Ausprägungen der Variable in der Schreibweise $N (\%)$.
 
 ---
 class: top, left
