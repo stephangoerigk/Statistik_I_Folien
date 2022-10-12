@@ -517,7 +517,7 @@ knitr::include_graphics("bilder/boss1.png")
 Der Chef ist zufrieden. Er kann sich zu 95% sicher sein, dass die Verbessung nicht 0 oder schlechter ist. 
 
 ```{r eval = TRUE, echo = F, out.width = "180px"}
-knitr::include_graphics("bilder/Thumbs.jpg")
+knitr::include_graphics("bilder/thumbs.jpg")
 ```
 ]
 ]
