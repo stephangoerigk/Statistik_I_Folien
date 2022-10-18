@@ -57,7 +57,7 @@ class: middle, left
 <br><br><br><br><br><br><br>
 # Statistik I
 
-### Einheit 1: Skalenniveaus und statistische Kennwerte
+### Einheit 2: Skalenniveaus und statistische Kennwerte
 ##### 12.10.2022 | Dr. phil. Stephan Goerigk
 
 ---
