@@ -58,7 +58,7 @@ class: middle, left
 # Statistik I
 
 ### Einheit 2: Skalenniveaus und statistische Kennwerte
-##### 12.10.2022 | Dr. phil. Stephan Goerigk
+##### 19.10.2022 | Dr. phil. Stephan Goerigk
 
 ---
 class: top, left
