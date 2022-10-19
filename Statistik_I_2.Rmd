@@ -70,7 +70,7 @@ class: top, left
   * AV vs. UV
   * Drittvariablen: Stör- und Kontrollvaribable, Moderator, Mediator
 
-* Erkennen wissenschaftliche Hypothesen (ungerichtet vs. gerichtet)
+* Wir kennen Kriterien wissenschaftlicher Hypothesen (ungerichtet vs. gerichtet)
 
 **Kompetenzen:**
 
@@ -78,9 +78,9 @@ class: top, left
 
 * Kombination **mehrer** Variablen in einer **Datenmatrix**
 
-* Berechnen von absoluten/relativen Häufigkeiten und Darstelltung in Häufigkeitstabelle
+* Berechnen von **absoluten/relativen Häufigkeiten** und Darstelltung in **Häufigkeitstabelle**
 
-* Berechnen von Summen und Notation mit Summenzeichen.
+* Berechnen von Summen und Notation mit **Summenzeichen**.
 
 ---
 class: top, left
@@ -339,7 +339,7 @@ class: top, left
 
 * Dieser Vorgang heißt in der Wissenschaft **"Messen"**
 
-* Messen = homomorphe Abbildung eines empirischen Relativs in ein numerisches Relativ
+* **Definition:** Messen = homomorphe Abbildung eines empirischen Relativs in ein numerisches Relativ
 
 **Wie funktioniert Messen?**
 
@@ -556,7 +556,7 @@ class: top, left
 
 * von grob nach fein, also nominal $\rightarrow$ ordinal $\rightarrow$ intervall ist jedoch **nicht möglich**
 
-* Beispiel Körpergröße $(N=10)$:
+* Beispiel Körpergröße in cm $(N=10)$:
 
 .center[
 ```{r echo = F}
@@ -581,17 +581,17 @@ class: top, left
 
 #### Festlegung des Skalenniveaus:
 
-* Praxis: es kommt vor, dass eingesetzte Messinstrumente Daten auf niedrigerem Skalleniveau erfassen, als theoretisch möglich (z.B. aus Sparsamkeit)
+* **Praxis:** es kommt vor, dass eingesetzte Messinstrumente Daten auf niedrigerem Skalleniveau erfassen, als theoretisch möglich (z.B. aus Sparsamkeit)
 
-* Statistisches Nachweis des Messniveaus (z.B. eines Intelligenztests) oft sehr aufwändig (eigene Disziplin: **Messtheorie**)
+* **Statistischer Nachweis** des Messniveaus (z.B. eines Intelligenztests) oft sehr aufwändig (eigene Disziplin: **Messtheorie**)
 
-* Psychologie: Likertskala wird häufig für Fragebogenitems (Einzelfragen) eingesetzt (z.B. 1 = stimmt nicht zu, 2 = stimme etwas zu...)
+* Psychologie: **Likertskala** wird häufig für Fragebogenitems (Einzelfragen) eingesetzt (z.B. 1 = stimmt nicht zu, 2 = stimme etwas zu...)
 
-* Einzelwert des Items auf der Likerskala i.d.R. ordinalskaliert
+* **Einzelwert** des Items auf der Likerskala i.d.R. ordinalskaliert
 
-* Gesamtfragebogenwert (Summe der Einzelitems) wird als metrisch behandelt
+* **Gesamtfragebogenwert** (Summe der der Einzelitems) wird als metrisch behandelt
 
-* Scores gut konstruierter psychologischer Tests: Intervallskalenniveau wird angenommen (Steier & Eid, 1999)
+* Scores gut konstruierter **psychologischer Tests**: Intervallskalenniveau wird angenommen (Steier & Eid, 1999)
 
 ---
 class: top, left
@@ -779,7 +779,7 @@ class: top, left
 
 * Berechnung erfordert lediglich **Nominalskalenniveau**
 
-* Wert mit höchster absoluter Häufigkeit ((f<sub>j</sub>))
+* Wert mit höchster absoluter Häufigkeit (f<sub>j</sub>)
 
 * Graphen mit nur einem Modus heißen **unimodal** (aka eingipfelig)
 
@@ -1001,9 +1001,8 @@ class: top, left
 
 #### Statistische Kennwerte - Maße der zentralen Tendenz:
 
-**Aufgabe Mittelwert:** 
+**Aufgabe Mittelwert:** Eine **Häufigkeitstabelle** für die Anzahl an unternommenen Reisen pro Jahr in einer Stichprobe liegt vor $(N=40)$. Berechnen Sie die durchschnittliche Zahl von Reisen pro Jahr:
 
-Eine **Häufigkeitstabelle** für die Anzahl an unternommenen Reisen pro Jahr in einer Stichprobe liegt vor $(N=40)$. Berechnen Sie die durchschnittliche Zahl von Reisen pro Jahr:
 ```{r echo = F}
 set.seed(123)
 N = 40
@@ -1026,9 +1025,8 @@ class: top, left
 
 #### Statistische Kennwerte - Maße der zentralen Tendenz:
 
-**Aufgabe Mittelwert:** 
+**Aufgabe Mittelwert:** Eine **Häufigkeitstabelle** für die Anzahl an unternommenen Reisen pro Jahr in einer Stichprobe liegt vor $(N=40)$. Berechnen Sie die durchschnittliche Zahl von Reisen pro Jahr:
 
-Eine **Häufigkeitstabelle** für die Anzahl an unternommenen Reisen pro Jahr in einer Stichprobe liegt vor $(N=40)$. Berechnen Sie die durchschnittliche Zahl von Reisen pro Jahr:
 ```{r echo = F}
 set.seed(123)
 N = 40
