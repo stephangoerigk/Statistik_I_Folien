@@ -857,7 +857,7 @@ class: top, left
 
 #### Statistische Kennwerte - Maße der zentralen Tendenz:
 
-**Mittelwert Rechenbeispiel:** Mittelwert aus Variable $X$ $(N=10)$
+**Rechenbeispiel Mittelwert:** Mittelwert aus Variable $X$ $(N=10)$
 
 .center[
 ```{r echo = F}
@@ -877,6 +877,195 @@ kable(df[,], col.names = NULL)
 Formel: $$\bar{x}=\frac{\sum\limits _{i=1}^{n}x_{i}}{n}$$
 
 Lösungsweg: $$\bar{x}=\frac{`r paste(x, collapse = " + ")`}{`r n`}=\frac{`r sum(x)`}{`r n`}=`r mean(x)`$$
+
+---
+class: top, left
+### Skalenniveaus und statistische Kennwerte
+
+#### Statistische Kennwerte - Maße der zentralen Tendenz:
+
+**Aufgabe Mittelwert:** Berechnen Sie das Durschnittsalter folgender Stichprobe (in Jahren) $(N=12)$
+
+.center[
+```{r echo = F}
+set.seed(123)
+N = 12
+df = data.frame(ID = paste0(rep(1:N)),
+                 Alter = c(21, 44, 52, 15, 27, 52, 63, 16, 99, 24, 56, 40)
+)
+x = df$Alter
+n = length(x)
+df = as.data.frame(t(df))
+#rownames(df) = NULL
+kable(df[,], col.names = NULL)
+```
+]
+
+Formel: $$\bar{x}=\frac{\sum\limits _{i=1}^{n}x_{i}}{n}$$
+
+---
+class: top, left
+### Skalenniveaus und statistische Kennwerte
+
+#### Statistische Kennwerte - Maße der zentralen Tendenz:
+
+**Aufgabe Mittelwert:** Berechnen Sie das Durschnittsalter folgender Stichprobe (in Jahren) $(N=12)$
+
+.center[
+```{r echo = F}
+set.seed(123)
+N = 12
+df = data.frame(ID = paste0(rep(1:N)),
+                 Alter = c(21, 44, 52, 15, 27, 52, 63, 16, 99, 24, 56, 40)
+)
+x = df$Alter
+n = length(x)
+df = as.data.frame(t(df))
+#rownames(df) = NULL
+kable(df[,], col.names = NULL)
+```
+]
+
+Formel: $$\bar{x}=\frac{\sum\limits _{i=1}^{n}x_{i}}{n}$$
+
+Lösungsweg: $$\bar{x}=\frac{`r paste(x, collapse = " + ")`}{`r n`}=\frac{`r sum(x)`}{`r n`}=`r round(mean(x), 2)`$$
+
+---
+class: top, left
+### Skalenniveaus und statistische Kennwerte
+
+#### Statistische Kennwerte - Maße der zentralen Tendenz:
+
+**Mathematische Eigenschaften des Mittelwerts:** 
+
+* Die Summe der Differenzen aller Werte vom Mittelwert ist 0
+
+$\rightarrow$ positive bzw. negative Abweichungen vom Mittelwert heben sich auf
+
+$$\sum\limits _{i=1}^{n}(x_{i}-\bar{x})=0$$
+
+* Die Summe der quadrierten Differenzen aller Werte zum Mittelwert ist ein Minimum 
+
+$\rightarrow$ Minimum = Wert ist kleiner als die Summe der quadrierten Differenzen aller Werte zu einem anderen Wert
+
+$$\sum\limits _{i=1}^{n}(x_{i}-\bar{x})^2=Min$$
+
+**Aufgabe:** Überprüfen Sie diese Eigenschaften für sich (z.B. mit dem leichten Beispiel der Werte: 1, 2, 3, 4)
+
+---
+class: top, left
+### Skalenniveaus und statistische Kennwerte
+
+#### Statistische Kennwerte - Maße der zentralen Tendenz:
+
+**Berechnung des Mittelwerts auf Grundlage der Häufigkeitstabelle:** 
+
+* Liegt bereits eine Häufigkeitstabelle vor, sparen wir uns Tipparbeit (nicht alle Messwerte müssen einzeln eingegeben werden)
+
+* jede Merkmalsausprägung mit ihrer absoluten Häufigkeit multiplizieren und die Summe über alle Merkmalsausprägungen bilden:
+
+Formel: $$\bar{x}=\frac{\sum\limits _{j=1}^{k}x'_{j} \cdot f_{j}}{n}$$
+
+* $x'_{j}$ = mögliche Merkmalsausprägungen; $f_{j}$ = absolute Häufigkeit der jeweiligen Merkmalsausprägung
+
+---
+class: top, left
+### Skalenniveaus und statistische Kennwerte
+
+#### Statistische Kennwerte - Maße der zentralen Tendenz:
+
+**Berechnung des Mittelwerts auf Grundlage der Häufigkeitstabelle** 
+
+Beispiel von vorher: **Häufigkeitstabelle:** korrekt gelöste Aufgaben in einem Intelligenztest (10 Fragen) $N=30$
+```{r echo = F}
+set.seed(123)
+N = 30
+df = data.frame(ID = paste0(rep(1:N)),
+                IQ = c(round(rnorm(N, 5.5, 2.5)))
+)
+x = df$IQ
+t = as.data.frame(prop.table(table(df$IQ))* 100)
+t$Freq = paste0(table(df$IQ), " (", round(prop.table(table(df$IQ))* 100, 2) ,")")
+t = as.data.frame(t(t))
+rownames(t) = NULL
+kable(t, col.names = NULL)
+```
+
+Formel: $$\bar{x}=\frac{\sum\limits _{j=1}^{k}x'_{j} \cdot f_{j}}{n}$$
+
+Lösungsweg: $$\bar{x}=\frac{1\cdot2+2\cdot1+3\cdot3+4\cdot7+4\cdot2+6\cdot5+7\cdot4+8\cdot1+9\cdot3+10\cdot2}{30}=\frac{`r  1*2+2*1+3*3+4*7+4*2+6*5+7*4+8*1+9*3+10*2`}{30} = `r round(mean(x), 2)`$$
+
+---
+class: top, left
+### Skalenniveaus und statistische Kennwerte
+
+#### Statistische Kennwerte - Maße der zentralen Tendenz:
+
+**Aufgabe Mittelwert:** 
+
+Eine **Häufigkeitstabelle** für die Anzahl an unternommenen Reisen pro Jahr in einer Stichprobe liegt vor $(N=40)$. Berechnen Sie die durchschnittliche Zahl von Reisen pro Jahr:
+```{r echo = F}
+set.seed(123)
+N = 40
+df = data.frame(ID = paste0(rep(1:N)),
+                Reisen = c(round(rnorm(N, 2, 0.5)))
+)
+x = df$Reisen
+t = as.data.frame(prop.table(table(df$Reisen))* 100)
+t$Freq = paste0(table(df$Reisen), " (", round(prop.table(table(df$Reisen))* 100, 2) ,")")
+t = as.data.frame(t(t))
+rownames(t) = NULL
+kable(t, col.names = NULL)
+```
+
+Formel: $$\bar{x}=\frac{\sum\limits _{j=1}^{k}x'_{j} \cdot f_{j}}{n}$$
+
+---
+class: top, left
+### Skalenniveaus und statistische Kennwerte
+
+#### Statistische Kennwerte - Maße der zentralen Tendenz:
+
+**Aufgabe Mittelwert:** 
+
+Eine **Häufigkeitstabelle** für die Anzahl an unternommenen Reisen pro Jahr in einer Stichprobe liegt vor $(N=40)$. Berechnen Sie die durchschnittliche Zahl von Reisen pro Jahr:
+```{r echo = F}
+set.seed(123)
+N = 40
+df = data.frame(ID = paste0(rep(1:N)),
+                Reisen = c(round(rnorm(N, 2, 0.5)))
+)
+x = df$Reisen
+t = as.data.frame(prop.table(table(df$Reisen))* 100)
+t$Freq = paste0(table(df$Reisen), " (", round(prop.table(table(df$Reisen))* 100, 2) ,")")
+t = as.data.frame(t(t))
+rownames(t) = NULL
+kable(t, col.names = NULL)
+```
+
+Formel: $$\bar{x}=\frac{\sum\limits _{j=1}^{k}x'_{j} \cdot f_{j}}{n}$$
+
+Lösungsweg: $$\bar{x}=\frac{1\cdot6+2\cdot29+3\cdot5}{40}=\frac{`r  1*6+2*29+3*5`}{40} = `r round(mean(x), 2)`$$
+
+---
+class: top, left
+### Skalenniveaus und statistische Kennwerte
+
+#### Statistische Kennwerte - Maße der zentralen Tendenz:
+
+**Berechnung des Mittelwerts für 2 oder mehr Datensätze (Gruppen):** 
+
+* **Voraussetzungen:** es liegen für die selbe Variable Daten aus 2 Gruppen/Stichproben vor
+
+* Die Mittelwerte der beiden Gruppen sind **bereits berechnet** worden
+
+Berechnung des gemeinsamen Mittelwerts $\bar{\bar{x}}$:
+
+* $\bar{x}_{1}$ und $\bar{x}_{2}$ addieren
+
+* Mittelwerte zusätzlich mit den Stichprobengrößen der beiden Gruppen gewichten
+
+$$\bar{\bar{x}}=\frac{n_{1} \cdot \bar{x}_{1} + n_{2} \cdot \bar{x}_{2}}{n_{1} + n_{2}}$$
 
 ---
 class: top, left
@@ -935,6 +1124,61 @@ $$x_{sortiert}= `r paste(x[order(x)], collapse = ";")`$$
 
 $$\textit{Md} = \frac{x_{(\frac{`r n`}{2})}+x_{(\frac{`r n`}{2}+1)}}{2}=`r median(x)`$$
 
+---
+class: top, left
+### Skalenniveaus und statistische Kennwerte
+
+#### Statistische Kennwerte - Maße der zentralen Tendenz:
+
+**Aufgabe Median:** Berechnen Sie den Median für die Variable Monatseinkommen $(N=8)$
+
+.center[
+```{r echo = F}
+set.seed(123)
+N = 8
+df = data.frame(ID = paste0(rep(1:N)),
+                 Einkommen = c(2300, 5332, 4272, 982, 1048, 8261, 2037, 3000)
+)
+x = df$Einkommen
+n = length(x)
+df = as.data.frame(t(df))
+#rownames(df) = NULL
+kable(df[,], col.names = NULL)
+```
+]
+
+Formel: $$\def\arraystretch{1.2} \textit{Md} = \Bigg\{\begin{array}{@{}c@{}}\frac{x_{(\frac{n}{2})}+x_{(\frac{n}{2}+1)}}{2} \quad \textrm{falls }n \textrm{ gerade}\\[6pt] x_{(\frac{n+1}{2})}\quad \textrm{falls }n \textrm{ ungerade}\end{array}$$
+
+---
+class: top, left
+### Skalenniveaus und statistische Kennwerte
+
+#### Statistische Kennwerte - Maße der zentralen Tendenz:
+
+**Aufgabe Median:** Berechnen Sie den Median für die Variable Monatseinkommen $(N=8)$
+
+.center[
+```{r echo = F}
+set.seed(123)
+N = 8
+df = data.frame(ID = paste0(rep(1:N)),
+                 Einkommen = c(2300, 5332, 4272, 982, 1048, 8261, 2037, 3000)
+)
+x = df$Einkommen
+n = length(x)
+df = as.data.frame(t(df))
+#rownames(df) = NULL
+kable(df[,], col.names = NULL)
+```
+]
+
+Formel: $$\def\arraystretch{1.2} \textit{Md} = \Bigg\{\begin{array}{@{}c@{}}\frac{x_{(\frac{n}{2})}+x_{(\frac{n}{2}+1)}}{2} \quad \textrm{falls }n \textrm{ gerade}\\[6pt] x_{(\frac{n+1}{2})}\quad \textrm{falls }n \textrm{ ungerade}\end{array}$$
+
+Lösungweg: 
+
+$$x_{sortiert}= `r paste(x[order(x)], collapse = ";")`$$
+
+$$\textit{Md} = \frac{x_{(\frac{`r n`}{2})}+x_{(\frac{`r n`}{2}+1)}}{2}=`r median(x)`$$
 ---
 class: top, left
 ### Skalenniveaus und statistische Kennwerte
@@ -1002,9 +1246,21 @@ class: top, left
 
 .full-width[.content-box-gray[
 
+* **Histogramm** und **Balkendiagramm** eigenen sich zur Darstellung der Verteilung einer Variablen.
+
+* Wir unterscheiden 4 Arten von **Skalenniveaus**: Nominal-, Ordinal., Intervall- und Verhältnisskalenniveau.
+
+* Die Skalenniveaus **entscheiden** welche Statistiken wir rechnen können.
+
+* Der **Modalwert** ist der häufigste Wert einer Verteilung und erfordert mind. Nominalskalenniveau.
+
+* Der **Mittelwert** ist der Durchschnitt einer Verteilung und erfordert mind. Intervallskalenniveau.
+
+* Der **Median** trennt die Verteilung in der Mitte und erfordert mind. Ordinalskalenniveau.
+
+* Der Median ist im Gegensatz zum Mittelwert **robust** gegenüber schiefen Verteilungen und Ausreißern.
+]
 ]
 
-]
-
-[**Link zur Wissensüberprüfung**](https://docs.google.com/forms/d/e/1FAIpQLSfAAWpZWqxU4Bw5LzVFRtYo7RvCIt4BRAEWCHx6XvlePfEQzw/viewform?usp=sf_link)
+[**Link zur Wissensüberprüfung**]()
 
