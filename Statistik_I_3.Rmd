@@ -179,7 +179,7 @@ class: top, left
 
 * Sehr unterschiedliche Verteilungen können das selbe Maß der zentralen Tendenz haben
 
-* Streuungsmaße beschreiben, wie start die einzelnen Werte einer Veteilung von der zentralen Tendenz abweichen
+* Streuungsmaße beschreiben, wie stark die einzelnen Werte einer Verteilung von der zentralen Tendenz abweichen
 
 * Sind unimodale Verteilungen mit gleichem Mittelwert in ihrer Form verschieden, dann muss dies an der unterschiedlich starken Streuung der Variablen liegen
 
