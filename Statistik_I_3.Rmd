@@ -526,7 +526,7 @@ geom_point() +
   scale_x_continuous(breaks = NULL) +
   scale_y_continuous(breaks = c(mean(df[df$verteilung == "Verteilung 2","x"]) - sd(df[df$verteilung == "Verteilung 2","x"]),
                                 mean(df[df$verteilung == "Verteilung 2","x"]),
-                                mean(df[df$verteilung == "Verteilung 2","x"]) + sd(df[df$verteilung == "Verteilung 2","x"])), labels = c("-s", "M", "s")) +
+                                mean(df[df$verteilung == "Verteilung 2","x"]) + sd(df[df$verteilung == "Verteilung 2","x"])), labels = c("-s", "M", "+s")) +
   coord_cartesian(ylim = c(-10, 10)) +
   theme_classic() +
   theme(text = element_text(size = 20))
