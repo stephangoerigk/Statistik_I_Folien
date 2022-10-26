@@ -477,7 +477,7 @@ class: top, left
 
 * (wie Varianz und Mittelwert) nur für **metrische** Variablen
 
-* A**usreißer** beeinflussen die Varianz stark, da Bezugsgröße der Mittelwert ist
+* **Ausreißer** beeinflussen die Varianz stark, da Bezugsgröße der Mittelwert ist
 
 * s = 0 bedeutet, dass es keinerlei Unterschiede zwischen Messwerten gibt
 ---
