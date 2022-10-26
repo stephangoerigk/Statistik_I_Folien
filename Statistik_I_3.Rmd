@@ -864,7 +864,7 @@ tab$B = c(
   meansd_function(df2$BDI[df2$Behandlungsgruppe == "B"])
 )
 
-names(tab) = c("Characteristic", "A (N=3)", "B (N=3)")
+names(tab) = c("Charakteristik", "A (N=3)", "B (N=3)")
 
 kable(tab)
 ```
