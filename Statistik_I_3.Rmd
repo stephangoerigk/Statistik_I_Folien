@@ -667,6 +667,84 @@ class: top, left
 
 #### Statistische Kennwerte
 
+##### Streuungsmaße:
+
+**Beispiel: Quartilabstand** Stunden Smartphonenutzung pro Woche $(N=15)$
+
+.center[
+```{r echo = F}
+set.seed(123)
+N = 15
+df = data.frame(ID = paste0(rep(1:N)),
+                 Stunden = round(rnorm(N, 11, 4))
+)
+x = df$Stunden
+n = length(x)
+df2 = df
+df = as.data.frame(t(df))
+#rownames(df) = NULL
+kable(df[,], col.names = NULL)
+```
+]
+ <font size="-1">
+Lösungweg: 
+
+$$x_{sortiert}= `r paste(x[order(x)], collapse = ";")`$$
+
+$$n \cdot \alpha = `r n` \cdot 0.25 = `r n * 0.25` \rightarrow I_{0.25} = 4$$
+$$n \cdot \alpha = `r n` \cdot 0.75 = `r n * 0.75` \rightarrow I_{0.75} = 12$$
+
+$$q_{0.25} = x_{(I_{0.25})} = `r quantile(x, 0.25)`$$
+$$q_{0.75} = x_{(I_{0.75})} = `r quantile(x, 0.75)`$$
+$$q_{A}= \widetilde{x}_{0.75} - \widetilde{x}_{0.25} = `r quantile(x, 0.75)` - `r quantile(x, 0.25)` = `r IQR(x)`$$
+
+</font>
+
+---
+class: top, left
+### Skalenniveaus und statistische Kennwerte
+
+#### Statistische Kennwerte
+
+##### Streuungsmaße:
+
+**Beispiel: Quartilabstand** Stunden Smartphonenutzung pro Woche $(N=20)$
+
+.center[
+```{r echo = F}
+set.seed(123)
+N = 20
+df = data.frame(ID = paste0(rep(1:N)),
+                 Stunden = round(rnorm(N, 11, 4))
+)
+x = df$Stunden
+n = length(x)
+df2 = df
+df = as.data.frame(t(df))
+#rownames(df) = NULL
+kable(df[,], col.names = NULL)
+```
+]
+ <font size="-1">
+
+Lösungweg: 
+
+$$x_{sortiert}= `r paste(x[order(x)], collapse = ";")`$$
+$$n \cdot \alpha = `r n` \cdot 0.25 = `r n * 0.25` \rightarrow I_{0.25} = 5$$
+$$n \cdot \alpha = `r n` \cdot 0.75 = `r n * 0.75` \rightarrow I_{0.75} = 15$$
+$$q_{0.25} = \frac{x_{(I_{0.25})} + x_{(I_{0.25}+1)}}{2} = `r quantile(x, 0.25)`$$
+$$q_{0.75} = \frac{x_{(I_{0.75})} + x_{(I_{0.75}+1)}}{2} = `r quantile(x, 0.75)`$$
+$$q_{A}= \widetilde{x}_{0.75} - \widetilde{x}_{0.25} = `r quantile(x, 0.75)` - `r quantile(x, 0.25)` = `r IQR(x)`$$
+
+</font>
+
+
+---
+class: top, left
+### Skalenniveaus und statistische Kennwerte
+
+#### Statistische Kennwerte
+
 ##### Wegweiser Maße der zentralen Tendenz:
 
 .center[
@@ -697,7 +775,7 @@ class: top, left
 
 ##### Schiefe (muss in Prüfung nicht berechnet werden):
 
-* Die Schiefe $g1$ ist eine Maßzahl, die uns angibt, in welche Richtung eine H ̈aufigkeitsverteilung schief ist
+* Die Schiefe $g1$ ist eine Maßzahl, die uns angibt, in welche Richtung eine Häufigkeitsverteilung schief ist
 
 * Ist $g1=0$, so ist die Verteilung symmetrisch
 
