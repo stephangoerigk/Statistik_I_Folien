@@ -875,9 +875,11 @@ Nach der Standardisierung jeden Werts anhand Mittelwert und Standardabweichung d
 set.seed(123)
 N = 5
 df = data.frame(ID = paste0(rep(1:N)),
-                 z_m = round(scale(rnorm(N, 9, 2)), 2),
-                z_w = round(scale(rnorm(N, 6, 2)), 2)
+                 z_m = round(rnorm(N, 9, 2)),
+                z_w = round(rnorm(N, 6, 2))
 )
+df$z_m = round(scale(df$z_m), 2)
+df$z_w = round(scale(df$z_w), 2)
 x = df$z_m
 n = length(x)
 df2 = df
