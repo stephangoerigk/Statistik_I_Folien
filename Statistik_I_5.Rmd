@@ -62,6 +62,52 @@ class: middle, left
 
 ---
 class: top, left
+### Visualisierung
+
+#### Graphen
+
+##### Wiederholung Boxplot:
+
+Fertige ein Boxplot für folgenden Gruppenunterschied an: 
+
+Ausmaß der Gewichtsabnahme ohne Diet (A) und mit Diet (B)
+
+```{r echo = F}
+set.seed(123)
+N = 16
+df = data.frame(ID = c(paste0(rep(1:N))),
+                Diet = c(rep("A", N/2), rep("B", N/2)),
+                Gewichtsabnahme = round(c(rnorm(N/2, 5, 4), rnorm(N/2, 10, 3)))
+)
+df2 = df
+df = as.data.frame(t(df))
+#rownames(df) = NULL
+kable(df[,], col.names = NULL)%>%
+  kable_styling(font_size = 18)
+```
+
+---
+class: top, left
+### Visualisierung
+
+#### Graphen (bivariat)
+
+##### Wiederholung Boxplot - Lösung:
+
+.center[
+```{r echo = F, out.width="350px", out.height="320px"}
+# ggplot(df2, aes(y = Tremor, x = Entzug)) +
+# geom_boxplot() +
+#   labs(y = "Tremor") +
+#   theme_classic() +
+#   theme(text = element_text(size = 25))
+
+boxplot(Gewichtsabnahme~Diet, data = df2)
+```
+]
+
+---
+class: top, left
 ### Wahrscheinlichkeitstheorie und Verteilungen
 
 #### Wahrscheinlichkeitsrechnung als Grundlage der Inferenzstatistik
@@ -604,6 +650,36 @@ class: top, left
 
 ##### Spezielle diskrete Verteilungen
 
+**Diskrete Gleichverteilung**
+
+.center[
+```{r echo = F, out.width="350px", out.height="350px"}
+require(ggplot2)
+require(grid)
+
+x1  <- 3:17
+df <- data.frame(x = x1, y = rdunif(x1, 1, 1))
+
+plot1 <- ggplot(df, aes(x = x, y = y)) + geom_bar(stat = "identity", col = "black", fill = "black") + 
+  scale_y_continuous(expand = c(0.01, 0)) +
+  coord_cartesian(ylim = c(0,2)) +
+  xlab("1 bis m") + ylab("1/m") + 
+  labs(title = "Gleichverteilung") + 
+  theme_classic() +
+  theme(plot.title = element_text(size = rel(1.2), vjust = 1.5), text = element_text(size = 25), axis.text.y = element_blank())
+
+print(plot1)
+```
+]
+
+---
+class: top, left
+### Wahrscheinlichkeitstheorie und Verteilungen
+
+#### Wahrscheinlichkeitsrechnung als Grundlage der Inferenzstatistik
+
+##### Spezielle diskrete Verteilungen
+
 **Binomialverteilung**
 
 * Wir betrachten ein Zufallsexperiment mit 2 Ausgängen, ’Erfolg (2)’ und ’Misserfolg (1)’
@@ -617,6 +693,34 @@ class: top, left
 .center[
 ```{r eval = TRUE, echo = F, out.width = "550px"}
 knitr::include_graphics("bilder/binomial1.png")
+```
+]
+
+---
+class: top, left
+### Wahrscheinlichkeitstheorie und Verteilungen
+
+#### Wahrscheinlichkeitsrechnung als Grundlage der Inferenzstatistik
+
+##### Spezielle diskrete Verteilungen
+
+**Binomialverteilung**
+
+.center[
+```{r echo = F, out.width="350px", out.height="350px"}
+require(ggplot2)
+require(grid)
+
+x1  <- 3:17
+df <- data.frame(x = x1, y = dbinom(x1, 20, 0.5))
+
+plot1 <- ggplot(df, aes(x = x, y = y)) + geom_bar(stat = "identity", col = "black", fill = "black") + 
+  scale_y_continuous(expand = c(0.01, 0)) + xlab("x") + ylab("Dichte") + 
+  labs(title = "P(X=2) = 0.5, n = 20") + 
+  theme_classic() +
+  theme(plot.title = element_text(size = rel(1.2), vjust = 1.5), text = element_text(size = 25))
+
+print(plot1)
 ```
 ]
 
@@ -783,6 +887,36 @@ class: top, left
 
 * Es existieren unendlich viele NV durch beliebige Auswahl von $μ$ und $σ$
 
+
+---
+class: top, left
+### Wahrscheinlichkeitstheorie und Verteilungen
+
+#### Wahrscheinlichkeitsrechnung als Grundlage der Inferenzstatistik
+
+##### Spezielle stetige Verteilungen
+
+**Normalverteilung (NV)**
+
+.center[
+```{r echo=FALSE, out.width="350px", out.height="350px"}
+x = rnorm(100, mean = 0, sd = 1)
+ggplot(data = data.frame(x = c(-6 * sd(x) + mean(x), 6 * sd(x) + mean(x))), aes(x)) +
+  stat_function(fun = dnorm, n = 101, args = list(mean = mean(x), sd = sd(x)+2)) + 
+  ylab("φ(x)") +
+  xlab("") +
+  ggtitle("N(1,3)") +
+  scale_x_continuous(breaks = c(mean(x) - (sd(x)+2), mean(x), mean(x) + (sd(x)+2)), labels = c("-σ","μ", "+σ")) +
+  scale_y_continuous(breaks = NULL) +
+  geom_vline(xintercept = mean(x), linetype = "dashed", colour = "red") +
+  geom_vline(xintercept = sd(x) + 2, linetype = "dashed", colour = "red") +
+    geom_vline(xintercept = mean(x) - (sd(x)+2), linetype = "dashed", colour = "red") +
+  theme_classic() +
+  theme(text = element_text(size = 25))
+```
+]
+
+
 ---
 class: top, left
 ### Wahrscheinlichkeitstheorie und Verteilungen
@@ -804,6 +938,35 @@ class: top, left
 * Ist X $N(μ,σ^2)$ verteilt dann führt die Transformation $\frac{X−μ}{σ}$ auf eine $N(0,1)$ Verteilung
 
 * Vorteil, da Quantile in Tabellen ablesbar (es müssen nicht jedes mal Integrale für Dichtefunktion berechnet werden)
+
+
+---
+class: top, left
+### Wahrscheinlichkeitstheorie und Verteilungen
+
+#### Wahrscheinlichkeitsrechnung als Grundlage der Inferenzstatistik
+
+##### Spezielle stetige Verteilungen
+
+**Standardnormalverteilung $N(0,1)$**
+
+.center[
+```{r echo=FALSE, out.width="350px", out.height="350px"}
+x = rnorm(100, mean = 0, sd = 1)
+ggplot(data = data.frame(x = c(-3 * sd(x) + mean(x), 3 * sd(x) + mean(x))), aes(x)) +
+  stat_function(fun = dnorm, n = 101, args = list(mean = mean(x), sd = sd(x))) + 
+  ylab("φ(x)") +
+  xlab("") +
+  ggtitle("N(0,1)") +
+  scale_x_continuous(breaks = c(mean(x) - (sd(x)), mean(x), mean(x) + (sd(x))), labels = c("-1","0", "1")) +
+  scale_y_continuous(breaks = NULL) +
+  geom_vline(xintercept = mean(x), linetype = "dashed", colour = "red") +
+  geom_vline(xintercept = sd(x) , linetype = "dashed", colour = "red") +
+    geom_vline(xintercept = mean(x) - (sd(x)), linetype = "dashed", colour = "red") +
+  theme_classic() +
+  theme(text = element_text(size = 25))
+```
+]
 
 ---
 class: top, left
