@@ -514,7 +514,7 @@ $\rightarrow$ Wir bräuchten sehr viele Balken/Boxen (so viele wie Ausprägungen
 
 Beispiel: 
 
-2 numerische Variablen Nachtschlaf (in Stunden) und Leistung in einem Konzentrationstest (0-100 Punkte)
+2 numerische Variablen Nachtschlaf (in Stunden) und Leistung in einem Konzentrationstest (0-150 Punkte)
 
 ```{r echo = F}
 set.seed(123)
@@ -610,7 +610,7 @@ kable(df[,], col.names = NULL)%>%
 ggplot(df2, aes(y = Konzentration, x = Schlaf)) +
 geom_point(size = 4) +
   geom_smooth(method = "lm", se = F) +
-  labs(y = "Schlaf") +
+  labs(y = "Konzentration") +
   theme_classic() +
   theme(text = element_text(size = 25))
 ```
