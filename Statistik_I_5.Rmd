@@ -90,7 +90,7 @@ kable(df[,], col.names = NULL)%>%
 class: top, left
 ### Visualisierung
 
-#### Graphen (bivariat)
+#### Graphen
 
 ##### Wiederholung Boxplot - Lösung:
 

@@ -12,6 +12,8 @@
     <link href="libs/xaringanExtra-scribble/scribble.css" rel="stylesheet" />
     <script src="libs/xaringanExtra-scribble/scribble.js"></script>
     <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#EE0071"],"pen_size":4,"eraser_size":40,"palette":[]}) })</script>
+    <script src="libs/kePrint/kePrint.js"></script>
+    <link href="libs/lightable/lightable.css" rel="stylesheet" />
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
   </head>
   <body>
@@ -27,6 +29,92 @@ class: middle, left
 
 ### Einheit 5: Wahrscheinlichkeitstheorie und Verteilungen
 ##### 09.11.2022 | Dr. phil. Stephan Goerigk
+
+---
+class: top, left
+### Visualisierung
+
+#### Graphen
+
+##### Wiederholung Boxplot:
+
+Fertige ein Boxplot für folgenden Gruppenunterschied an: 
+
+Ausmaß der Gewichtsabnahme ohne Diet (A) und mit Diet (B)
+
+&lt;table class="table" style="font-size: 18px; margin-left: auto; margin-right: auto;"&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; ID &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 11 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 12 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 13 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 14 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 15 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 16 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Diet &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; A &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; A &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; A &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; A &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; A &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; A &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; A &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; A &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; B &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; B &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; B &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; B &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; B &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; B &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; B &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; B &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Gewichtsabnahme &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 11 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 12 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 14 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 11 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 11 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 15 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+class: top, left
+### Visualisierung
+
+#### Graphen
+
+##### Wiederholung Boxplot - Lösung:
+
+.center[
+&lt;img src="Statistik_I_5_files/figure-html/unnamed-chunk-2-1.png" width="350px" height="320px" /&gt;
+]
 
 ---
 class: top, left
@@ -549,7 +637,7 @@ class: top, left
 **Diskrete Gleichverteilung**
 
 .center[
-&lt;img src="Statistik_I_5_files/figure-html/unnamed-chunk-14-1.png" width="350px" height="350px" /&gt;
+&lt;img src="Statistik_I_5_files/figure-html/unnamed-chunk-16-1.png" width="350px" height="350px" /&gt;
 ]
 
 ---
@@ -585,7 +673,7 @@ class: top, left
 **Binomialverteilung**
 
 .center[
-&lt;img src="Statistik_I_5_files/figure-html/unnamed-chunk-16-1.png" width="350px" height="350px" /&gt;
+&lt;img src="Statistik_I_5_files/figure-html/unnamed-chunk-18-1.png" width="350px" height="350px" /&gt;
 ]
 
 ---
@@ -755,7 +843,7 @@ class: top, left
 **Normalverteilung (NV)**
 
 .center[
-&lt;img src="Statistik_I_5_files/figure-html/unnamed-chunk-21-1.png" width="350px" height="350px" /&gt;
+&lt;img src="Statistik_I_5_files/figure-html/unnamed-chunk-23-1.png" width="350px" height="350px" /&gt;
 ]
 
 
@@ -793,7 +881,7 @@ class: top, left
 **Standardnormalverteilung `\(N(0,1)\)`**
 
 .center[
-&lt;img src="Statistik_I_5_files/figure-html/unnamed-chunk-22-1.png" width="350px" height="350px" /&gt;
+&lt;img src="Statistik_I_5_files/figure-html/unnamed-chunk-24-1.png" width="350px" height="350px" /&gt;
 ]
 
 ---
