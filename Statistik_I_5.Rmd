@@ -766,6 +766,8 @@ class: top, left
 
 * Je kleiner/größer p desto rechts/links-schiefer die Verteilung
 
+* Summe mehrerer Bernoulli-Variablen
+
 Erwartungswert und Varianz:
 
 $$E[X]=np$$ 
@@ -938,7 +940,6 @@ class: top, left
 * Ist X $N(μ,σ^2)$ verteilt dann führt die Transformation $\frac{X−μ}{σ}$ auf eine $N(0,1)$ Verteilung
 
 * Vorteil, da Quantile in Tabellen ablesbar (es müssen nicht jedes mal Integrale für Dichtefunktion berechnet werden)
-
 
 ---
 class: top, left

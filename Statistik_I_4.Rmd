@@ -435,7 +435,7 @@ class: top, left
 
 4. Berechne die **potentielle** maximale Länge der Whisker, indem du IQR mit 1.5 multiplizierst
 
-5. Zeichne die Whisker ein –Achtung: Whisker werden nur bis zum letzten Wert eingezeichnet, der noch innerhalb der potenziellen maximalen Länge der Whisker liegt!
+5. Zeichne die Whisker ein – Achtung: Whisker werden nur bis zum letzten Wert eingezeichnet, der noch innerhalb der potenziellen maximalen Länge der Whisker liegt!
 
 6. Zeichne eventuelle Ausreißer und Extremwerte ein – mit Punkten/Sternchen
 
@@ -489,11 +489,11 @@ ggplot(df2, aes(y = Tremor, x = Entzug)) +
 .pull-right[
 .center[
 ```{r echo = F, out.width="350px", out.height="320px"}
-# ggplot(df2, aes(y = Tremor, x = Entzug)) +
-# geom_boxplot() +
-#   labs(y = "Tremor") +
-#   theme_classic() +
-#   theme(text = element_text(size = 25))
+ggplot(df2, aes(y = Tremor, x = Entzug)) +
+geom_boxplot() +
+  labs(y = "Tremor") +
+  theme_classic() +
+  theme(text = element_text(size = 25))
 
 boxplot(Tremor~Entzug,data = df2)
 ```
