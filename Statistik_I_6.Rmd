@@ -1141,7 +1141,7 @@ können
 * mit deren Hilfe wir Parameter (gesuchter Parameter einer Verteilung entspricht interessierte Größe in der Population) aus Stichprobendaten schätzen
 
 **Konfidenzintervall**
-* gibt ein Intervall an, in welchem Parameter zur Schätzung des Populationswerts vorgegebenen Wahrscheinlichkeit liegen
+* gibt ein Intervall an, in welchem Parameter zur Schätzung des Populationswerts mit einer vorgegebenen Wahrscheinlichkeit (i.d.R. 95%) liegen
 ]
 ]
 
