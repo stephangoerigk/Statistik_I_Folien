@@ -102,6 +102,18 @@ class: top, left
 class: top, left
 ### Stichprobe, Grundgesamtheit und Stichprobenfehler
 
+#### Logik des Schließens von Stichprobe auf Population (Einzelschritte folgen)
+
+.center[
+```{r eval = TRUE, echo = F, out.width = "900px"}
+knitr::include_graphics("bilder/zfg.png")
+```
+]
+
+---
+class: top, left
+### Stichprobe, Grundgesamtheit und Stichprobenfehler
+
 #### Psychologische Fragestellungen:
 
 * Praktisch alle psychologischen Theorien enthalten Aussagen über Populationen (nicht nur über isolierte Stichproben)
