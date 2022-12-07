@@ -1,0 +1,883 @@
+---
+title: "Einheit 1"
+subtitle: "⚔<br/>with xaringan"
+author: "Dr. Stephan Goerigk"
+institute: "RStudio, PBC"
+date: "2016/12/12 (updated: `r Sys.Date()`)"
+output:
+  xaringan::moon_reader:
+    css: [xaringan-themer.css, "hygge"]
+    lib_dir: libs
+    nature:
+      slideNumberFormat: "%current%"
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9'
+    seal: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+
+setwd("/Users/stephangoerigk/Desktop/Universität/CFH/Lehre/Bachelor/Quantitative Methoden I/VO_Statistik I/Statistik_I_Folien/")
+
+library(tidyverse)
+library(kableExtra)
+library(ggplot2)
+library(plotly)
+library(htmlwidgets)
+library(MASS)
+library(ggpubr)
+library(xaringanthemer)
+library(xaringanExtra)
+library(gghighlight)
+
+style_duo_accent(
+  primary_color = "#621C37",
+  secondary_color = "#EE0071",
+  background_image = "blank.png"
+)
+
+xaringanExtra::use_xaringan_extra(c("tile_view"))
+
+use_scribble(
+  pen_color = "#EE0071",
+  pen_size = 4
+)
+
+knitr::opts_chunk$set(
+  fig.retina = TRUE,
+  warning = FALSE,
+  message = FALSE
+)
+```
+
+name: Title slide
+class: middle, left
+<br><br><br><br><br><br><br>
+# Statistik I
+
+### Einheit 7: Hypothesen und Hypothesentests
+##### 07.12.2022 | Dr. phil. Stephan Goerigk
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Lernziele:
+
+Sie lernen:
+
+* Was ein Signifikanztest ist
+
+* den Unterschied zwischen der Null- und der Alternativhypothese
+
+* das Signifikanzniveau $\alpha$
+
+* die Abgrenzung zwischen einem einseitigen und einem zweiseitigen Signifikanztest
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Wiederholung:
+
+**Inferenzstatistik: **
+
+* Umfasst alle statistischen Verfahren, die es erlauben, trotz der Informationsunvollständigkeit der Stichprobendaten Aussagen über eine Population zu treffen.
+
+* Wir wissen nun, dass wir einzelne Populationsparameter aus der Stichprobe schätzen können
+
+ABER: 
+
+* Das reine Schätzen eines Wertes ist noch keine wissenschaftliche Aussage
+
+* Was für "Aussagen", die wir über die Population sind gemeint?
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Hypothesen
+
+* Statistisch zu prüfende Aussagen: Hypothesen (kennen wir bereits)
+
+* Der Inhalt einer Hypothese muss quantifiziert werden, damit wir sie prüfen können
+
+* Hypothese wird in eine prüfbare Gleichung (oder Ungleichung $\rightarrow$ größer-kleiner Verhältnisse) umgewandelt
+  * inhaltlich: Männer sind im Durchschnitt größer als 173 cm
+  * statistisch: $𝜇> 173$
+  
+* Die Entscheidung über die Gültigkeit der Hypothese erfolgt auf Basis unserer Wahrscheinlichkeitsverteilungen ("wie wahrscheinlich ist es, dass...")
+  * "Wie wahrscheinlich ist es, dass unter Annahme, dass die Körpergröße normalverteilt ist, der erwartete Mittelwert der Männer größer ist als 173 cm."
+
+* Trifft eine Hypothese zu sprich man oft vom Vorliegen eines **Effekts**
+
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Hypothesentest - To-Do Liste
+
+Zur erfolgreichen Durchführung eines Hypothesentests müssen folgende wichtige Schritte geschehen
+
+1. Austellen von Nullhypothese und Alternativhypothese (Hypothesenpaar)
+
+2. Bestimmung einer zugrundeliegenden Verteilung
+
+3. Festlegung des Annahme- und Ablehnungsbereichs der Nullhypothese (kritischer Wert)
+
+4. Berechnung Teststatistik (Beobachtungswert in auf Wahrscheinlichkeitsverteilung abbilden)
+  * z-Wert
+  * t-Wert
+  * F-Wert
+  * $\chi^2$-Wert
+
+5. Vergleich kritischer Wert und Teststatistik
+
+6. Entscheidung: Test signifikant oder nicht signifikant
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Hypothesen
+
+Statistische Hypothese:
+
+* Entscheidung basiert darauf, ob sich ein beobachteter Wert überzufällig stark von einem vorgegebenen Wert unterscheidet
+
+* Das heißt einfach, dass man überprüft, ob die Abweichung des beobachteten Wertes vom hypothetisierten Wert zu groß ist, als dass sie noch zufällig sein kann.
+
+* Um alle Wahrscheinlichkeiten für einen Ausgang des Hypothesentests abzudecken formuliert man ein Hypothesenpaar
+  * $H_{0}$: Der hypothetisierte Effekt liegt nicht vor
+  * $H_{1}$: Der hypothetisierte Effekt liegt vor
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Nullhypothese und Alternativhypothese
+
+Nullhypothese $(H_{0})$:
+
+* Gegenstück zur eigentlichen Untersuchungshypothese, der Alternativhypothese
+
+* Die $H_{0}$ stellt meistens den aktuellen Zustand oder anders ausgedrückt den „Standard“ dar, gegen den getestet wird 
+
+Alternativhypothese $(H_{1})$: 
+
+* Die Alternativhypothese beinhaltet oft die neue Annahme, den "Effekt". 
+
+* Drückt eine "Unterschiedlichkeit" von einem Referenzwert aus
+
+$\rightarrow$ Nur über das komplementäre Hypothesenpaar lässt sich eine komplementäre Gesamtwahrscheinlichkeit abdecken:
+
+$$P_{H_{0}} + P_{H_{1}}=1$$
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Ein- und Zweiseitige Hypothesen
+
+**Einseitige Hypothese:**
+
+* Der beobachtete Wert ist größer oder kleiner als ein Referenzwert 
+* Man spricht von einer gerichteten Hypothese
+* Beispiel Hypothesenpaar (inhaltlich):
+  $H_{0}$: Männer sind durchschnittlich 173 cm groß oder kleiner
+  $H_{1}$: Männer sind durchschnittlich größer als 173 cm
+
+**Zweiseitige Hypothese:**
+
+* Der beobachtete Wert unterscheidet sich von dem Referenzwert 
+* Man spricht von einer ungerichteten Hypothese
+* Beispiel Hypothesenpaar (inhaltlich):
+  * $H_{0}$: Die Durchschnittsgröße von Männern liegt bei etwa 173 cm
+  * $H_{1}$: Die Durchschnittsgröße von Männern unterscheidet sich von 173 cm
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Ein- und Zweiseitige Hypothesen
+
+**Einseitige Hypothese:**
+
+* Der beobachtete Wert ist größer oder kleiner als ein Referenzwert 
+* Man spricht von einer gerichteten Hypothese
+* Beispiel Hypothesenpaar (statistisch):
+  * $H_{0}$: $𝜇\leq 173$ cm
+  * $H_{1}$: $𝜇> 173$ cm
+
+**Zweiseitige Hypothese:**
+
+* Der beobachtete Wert unterscheidet sich von dem Referenzwert 
+* Man spricht von einer ungerichteten Hypothese
+* Beispiel Hypothesenpaar (statistisch):
+  * $H_{0}$: $𝜇= 173$ cm
+  * $H_{1}$: $𝜇\neq 173$ cm
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Ein- und Zweiseitige Hypothesen - Graphisch
+
+.pull-left[
+.center[
+```{r echo = F, out.width="400px"}
+ggplot(data.frame(x = c(-4, 4)), aes(x)) +
+    stat_function(fun = dnorm, geom = "area", fill = "steelblue", alpha = .3) +
+    stat_function(fun = dnorm,geom = "area", fill = "steelblue", xlim = c(-4, qnorm(.05))) +
+  labs(x = "", y = "") +
+  annotate(geom = "text", x = -2.5, y = 0.05, label = "5%", size = 6) +
+  ggtitle("Linksseitiger Test") +
+   theme_classic() +
+  theme(text = element_text(size = 25), axis.text.y = element_blank(), axis.ticks.y = element_blank())   
+```
+]
+]
+.center[
+.pull-right[
+```{r echo = F, out.width="400px"}
+ggplot(data.frame(x = c(-4, 4)), aes(x)) +
+    stat_function(fun = dnorm, geom = "area", fill = "steelblue", alpha = .3) +
+      stat_function(fun = dnorm,geom = "area", fill = "steelblue", xlim = c(qnorm(.95), 4)) +
+  labs(x = "", y = "") +
+  annotate(geom = "text", x = 2.5, y = 0.05, label = "5%", size = 6) +
+  ggtitle("Rechtsseitiger Test") +
+   theme_classic() +
+  theme(text = element_text(size = 25), axis.text.y = element_blank(), axis.ticks.y = element_blank())   
+```
+]
+]
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Ein- und Zweiseitige Hypothesen - Graphisch
+
+.center[
+```{r echo = F, out.width="400px"}
+ggplot(data.frame(x = c(-4, 4)), aes(x)) +
+    stat_function(fun = dnorm, geom = "area", fill = "steelblue", alpha = .3) +
+    stat_function(fun = dnorm,geom = "area", fill = "steelblue", xlim = c(qnorm(.975), 4)) +
+  stat_function(fun = dnorm,geom = "area", fill = "steelblue", xlim = c(-4, qnorm(.025))) +
+  labs(x = "", y = "") +
+      annotate(geom = "text", x = -2.5, y = 0.05, label = "2.5%", size = 6) +
+    annotate(geom = "text", x = 2.5, y = 0.05, label = "2.5%", size = 6) +
+  ggtitle("Zweiseitiger Test") +
+   theme_classic() +
+  theme(text = element_text(size = 25), axis.text.y = element_blank(), axis.ticks.y = element_blank()) 
+```
+]
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Ein- und Zweiseitige Hypothesen - Graphisch
+
+.pull-left[
+.center[
+```{r echo = F, out.width="400px"}
+ggplot(data.frame(x = c(-4, 4)), aes(x)) +
+    stat_function(fun = dnorm, geom = "area", fill = "steelblue", alpha = .3) +
+    stat_function(fun = dnorm,geom = "area", fill = "steelblue", xlim = c(qnorm(.975), 4)) +
+  stat_function(fun = dnorm,geom = "area", fill = "steelblue", xlim = c(-4, qnorm(.025))) +
+  labs(x = "", y = "") +
+      annotate(geom = "text", x = -2.5, y = 0.05, label = "2.5%", size = 6) +
+    annotate(geom = "text", x = 2.5, y = 0.05, label = "2.5%", size = 6) +
+  ggtitle("Zweiseitiger Test") +
+    geom_vline(xintercept = qnorm(.025), linetype = "dotted", colour = "red") +
+  geom_vline(xintercept = qnorm(.975), linetype = "dotted", colour = "red") +
+   theme_classic() +
+  theme(text = element_text(size = 25), axis.text.y = element_blank(), axis.ticks.y = element_blank())
+```
+]
+]
+
+.pull-right[
+* Erwartungswert: wahrscheinlichster Wert unter Annahme der $H_{0}$ 
+
+Beispiel: 
+* $H_{0}$: $𝜇= 173$
+* wenn $𝜇= 173$ dann $𝜇-173=0$
+* Erwartungswert unter Annahme der $H_{0}$ = 0
+
+* dunkelblaue Fläche: Verwerfungsbereich $H_{0}$
+* hellblaue Fläche: Annahmebereich $H_{0}$
+]
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Ein- und Zweiseitige Hypothesen - Graphisch
+
+.pull-left[
+.center[
+```{r echo = F, out.width="400px"}
+ggplot(data.frame(x = c(-4, 4)), aes(x)) +
+    stat_function(fun = dnorm, geom = "area", fill = "steelblue", alpha = .3) +
+    stat_function(fun = dnorm,geom = "area", fill = "steelblue", xlim = c(qnorm(.975), 4)) +
+  stat_function(fun = dnorm,geom = "area", fill = "steelblue", xlim = c(-4, qnorm(.025))) +
+  labs(x = "", y = "") +
+      annotate(geom = "text", x = -2.5, y = 0.05, label = "2.5%", size = 6) +
+    annotate(geom = "text", x = 2.5, y = 0.05, label = "2.5%", size = 6) +
+  ggtitle("Zweiseitiger Test") +
+    geom_vline(xintercept = qnorm(.025), linetype = "dotted", colour = "red") +
+  geom_vline(xintercept = qnorm(.975), linetype = "dotted", colour = "red") +
+   theme_classic() +
+  theme(text = element_text(size = 25), axis.text.y = element_blank(), axis.ticks.y = element_blank())   
+```
+]
+]
+
+.pull-right[
+* rote Linie: Kritischer Wert
+
+* Um zu glauben, dass $𝜇\neq 173$ $(H_{1})$ muss der beobachtete Wert ausreichend weit vom Erwartungswert der $H_{0}=0$ wegliegen
+
+* Als Schwelle/Entscheidungsgrundlage definiert man einen kritischen Wert
+
+* Dieser liegt oft bei dem Wert, der unter Annahme der Wahrscheinlichkeitsverteilung 5% Auftretenswahrscheinlichkeit hat
+
+In Worten: Der beobachtete Wert ist unter Annahme der $H_{0}$ nur 5% wahrscheinlich, somit ist es auf Basis der Beobachtung unwahrscheinlich, dass die $H_{0}$ zutrifft.
+]
+
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Ein- und Zweiseitige Hypothesen
+
+Festlegung auf eine Formulierung
+
+* Wahl des Hypothesenpaars sollte a priori erfolgen
+
+  * vor der eigenen Untersuchung
+  * ohne Berücksichtigung der aktuellen Daten
+  * aufgrund inhaltlicher Kriterien
+  
+* Spezialfall einseitige $H_{1}$:
+
+  * Richtung basiert auf einer von den aktuellen Daten unabhängigen Vorinformation 
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Beispiel 1: Binomialtest (einseitiges Testen)
+
+Ein Therapieverfahren zur Behandlung von Angststörungen soll nach 6 Montaten eine Rückfallquote von maximal 30% haben.
+
+* Das Verfahren soll an einer Zufallsstichprobe von $N=100$ Patient:innnen geprüft werden
+
+Aufstellen des Hypothesenpaares:
+  * $H_{0}$: $p \geq .3$ (mindestens 30%)
+  * $H_{1}$: $p < .3$ (unter 30%)
+
+Fragen:
+* Wie viele Patienten in der Stichprobe erleiden einen Rückfall
+* Ist dieses Ergebnis **überzufällig** und somit auf die Population (aller Angstpatient:innen) verallgemeinerbar
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Beispiel 1: Binomialtest (einseitiges Testen)
+
+**Beobachtung in der Stichprobe (Schätzer):**
+
+* In der Stichprobe erleiden $n=28$ Patienten einen Rückfall
+
+* In absoluten Zahlen spricht das erst einmal für das Verfahren $(\frac{28}{100}=28\%<30\%)$
+
+**Frage, die der Hypothesentest stellt:**
+
+* Ist $n=28$ (28%) ausreichend weit weg von 30%, sodass wir das Ergebnis verallgemeinern können?
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Beispiel 1: Binomialtest (einseitiges Testen)
+
+**Bestimmung einer passenden Wahrscheinlichkeitsverteilung:**
+
+* Art (und i.d.R.) Name des Tests basiert auf zugrunde liegender Verteilung
+
+* Unsere Zufallsvariable $X$ (s.h. Hypothese) ist in Wahrscheinlichkeiten angegeben $(p=.3)$
+
+* Wahrscheinlichkeitsverteilung zur Wahrscheinlichkeit von Wahrscheinlichkeiten: Binomialverteilung (BV)
+
+**Auswahl Hypothesentest:**
+* Wir wählen als Hypothesentest des **Binomialtest**
+* Zur Entscheidung über unsere Hypothesen werden wir eine **Binomialverteilungstabelle** nutzen
+* Merke: 
+  * Bei rerichteten Formulierungen wie "mindestens" oder "höchstens" nutzen wir die **kumulierte Binomialverteilungstabelle**
+  * Bei unrerichteten Formulierungen wie "genau" nutzen wir die **einfache Binomialverteilungstabelle**
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Beispiel 1: Binomialtest (einseitiges Testen)
+
+**Parameter für den Binomialtest:**
+
+* $p=30\%=.3$
+
+* $N = 100$
+
+* Signifikanzniveau $\alpha=5\%=.05$
+
+* $k=28$
+
+Ist die Rückfallquote niedrig genug, um die Nulllhypothese zu verwerfen?
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Beispiel 1: Binomialtest (einseitiges Testen)
+
+**Festlegung kritischer Wert (Annahme und Ablehnungsbereich der Nullhypothese):**
+
+.pull-left[
+.center[
+```{r echo = F, out.width="400px"}
+ggplot(data.frame(x = c(-4, 4)), aes(x)) +
+    stat_function(fun = dnorm, geom = "area", fill = "steelblue", alpha = .3) +
+    stat_function(fun = dnorm,geom = "area", fill = "steelblue", xlim = c(-4, qnorm(.05))) +
+  labs(x = "", y = "") +
+  annotate(geom = "text", x = -2.5, y = 0.05, label = "5%", size = 6) +
+  ggtitle("Linksseitiger Test") +
+   theme_classic() +
+  theme(text = element_text(size = 25), axis.text.y = element_blank(), axis.ticks.y = element_blank())   
+```
+]
+]
+
+.pull-right[
+Fällt das Stichprobenergebnis in den Ablehnungsbereich: 
+
+* $H_{0}$: $p \geq .3$ (verwerfen)
+* $H_{1}$: $p < .3$ (annehmen)
+
+Kritischer Wert kann in der kumulierte Binomialverteilungstabelle nachgesehen werden ([**Link zur Tabelle**](https://www.hs-merseburg.de/fileadmin/Hochschule_Merseburg/Extra/Hagenloch/Lehre/Tabelle_Binomialverteilung.PDF))
+
+Wir wollen für $n=100$ und die Wahrscheinlichkeit $p=.3$ den letzten Wert $k$ finden, der unter Annahme der BV eine Auftretenswahrscheinlichkeit kleiner als unser Signifikanzniveau $(\alpha=.05)$ hat
+]
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Beispiel 1: Binomialtest (einseitiges Testen)
+
+**Festlegung kritischer Wert (Annahme und Ablehnungsbereich der Nullhypothese):**
+
+* Kritischer Wert kann in der kumulierte Binomialverteilungstabelle nachgesehen werden ([**Link zur Tabelle, S.6)**](https://www.hs-merseburg.de/fileadmin/Hochschule_Merseburg/Extra/Hagenloch/Lehre/Tabelle_Binomialverteilung.PDF))
+
+* Wir wollen für $n=100$ und die Wahrscheinlichkeit $p=.3$ den letzten Wert $k$ finden, für den der dazugehörige Wert in der Tabelle unterhalb des Signifikanznveaus $\alpha=.05$ gilt
+
+$\rightarrow$ Dieser Wert ist unser kritischer Wert
+
+* In unserem Beispiel ist der kritische Wert $k=22$ bei einer Wahrscheinlichkeit von $p=.0479$
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Beispiel 1: Binomialtest (einseitiges Testen)
+
+**Festlegung kritischer Wert (Annahme und Ablehnungsbereich der Nullhypothese):**
+
+.pull-left[
+.center[
+```{r echo = F, out.width="400px"}
+ggplot(data.frame(x = c(-4, 4)), aes(x)) +
+    stat_function(fun = dnorm, geom = "area", fill = "steelblue", alpha = .3) +
+    stat_function(fun = dnorm,geom = "area", fill = "steelblue", xlim = c(-4, qnorm(.1))) +
+  labs(x = "", y = "") +
+  scale_x_continuous(breaks = c(-2.2, .75), labels = c("V: 1-22", "A: 23-100")) +
+  ggtitle("Linksseitiger Test") +
+   theme_classic() +
+  theme(text = element_text(size = 25), axis.text.y = element_blank(), axis.ticks.y = element_blank())   
+```
+]
+]
+
+.pull-right[
+Es ergibt sich:
+
+* Verwerfungsbereich der $H_{0}$ von 1-22
+* Annahmebereich der $H_{0}$ von 23-100
+* Unsere Stichprobe ergab 28 Rückfälle
+* Dieser Wert liegt im Annahmebereich der $H_{0}$
+* Test ist nicht signifikant $\rightarrow$ $H_{0}$ beibehalten
+
+Interpretation:
+
+* Numerisch weniger Rückfälle als 30%
+* ABER: Wir können nicht mit 95% Wahrscheinlichkeit sagen, dass $p<.3$
+
+]
+
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Beispiel 2: Binomialtest (einseitiges Testen) mit NV-Approximation
+
+* Binomialverteilung approximiert bei großem N die Normalverteilung
+
+* Wenn Voraussetzungen für NV-Approximation der Binomialverteilung gegeben $μ=np$, $σ^2 =np(1−p)$
+
+* Wir können also Wahrscheinlichkeiten in z-Wert umrechenen und diese in der Standardnormalverteilungstabelle ablesen
+
+Standardnormalverteilte Teststatistik:
+
+$$z=\frac{K-μ}{σ}=\frac{K-np_{0}}{\sqrt{np_{0}(1-np_{0})}}$$
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Beispiel 2: Binomialtest (einseitiges Testen) mit NV-Approximation
+
+* Eine Psychologin vermutet, dass weniger als 50% der Frauen, die eine Diät machen übergewichtig sind
+
+Hypothesenpaar aufstellen:
+
+* $H_{0}$: $p \geq .5$
+* $H_{1}$: $p < .5$ 
+
+In einer von ihr erhobenen Stichprobe von $N=200$ Frauen, die derzeit Diät halten, sind 87 übergewichtig.
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Beispiel 2: Binomialtest (einseitiges Testen) mit NV-Approximation
+
+Berechnung Teststatistik z:
+
+* $μ=np=100$, $k= 87$
+
+$$z=\frac{K-np_{0}}{\sqrt{np_{0}(1-np_{0})}}=\frac{87-100}{\sqrt{200 \cdot 0.5 \cdot 0.5}}=-1.77$$
+
+Nachschlagen in der Standardnormalverteilungstabelle:
+
+$$P(Z \leq -1.77) = 0.0384$$
+$$0.0384< \alpha= 0.05$$
+Verwerfung der $H_{0}$ zugunsten der $H_{1}$ mit einem Risiko für einen Fehler erster Art von 0.0384
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Beispiel 2: Binomialtest (einseitiges Testen) mit NV-Approximation
+
+.pull-left[
+.center[
+```{r echo = F, out.width="400px"}
+ggplot(data.frame(x = c(-4, 4)), aes(x)) +
+    stat_function(fun = dnorm, geom = "area", fill = "steelblue", alpha = .3) +
+    stat_function(fun = dnorm,geom = "area", fill = "steelblue", xlim = c(-4, qnorm(.05))) +
+  labs(x = "", y = "") +
+  annotate(geom = "text", x = -2.5, y = 0.05, label = "5%", size = 6) +
+  scale_x_continuous(breaks = c(-4,-1.77,0,2,4)) +
+  geom_vline(xintercept = -1.77, linetype = "dotted", colour = "red") +
+  ggtitle("Linksseitiger Test") +
+   theme_classic() +
+  theme(text = element_text(size = 25), axis.text.y = element_blank(), axis.ticks.y = element_blank())   
+```
+]
+]
+
+.pull-right[
+* Die Auftretenswahrscheinlichkeit von $z = -1.77$ liegt im Verwerfungsbereich
+
+* Zum Vergleich: kritischer Wert für $p=.05$ unter der Standardnormalverteilung $z_{krit}=-1.96$
+
+Interpretation:
+* 87 ist aureichend weit von $np=100$ weg
+* Die $H_{0}$ wird verworfen
+* Inhaltlich: Signifikant weniger als 50% der Frauen, die diäten, sind übergewichtig.
+]
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Beispiel 3: Binomialtest (zweiseitiges Testen) mit NV-Approximation
+
+* Angenommen, die Psychologin hätte keine Vermutung in eine bestimmte Richtung gehabt und die $H_{1}$ ungerichtet formuliert:
+
+* Hypothesenpaar aufstellen:
+
+  * $H_{0}$: $p = .5$
+  * $H_{1}$: $p \neq .5$ 
+
+* Kontrolle des $α$-Fehlers in beide Richtungen notwendig
+
+$$P(Z \leq -1.77)+P(Z \geq 1.77)=0.0384+0.0384=0.0768> α = 0.05$$
+* Ergebnis liegt noch im Annahmebereich der $H_{0}$
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Beispiel 3: Binomialtest (zweiseitiges Testen) mit NV-Approximation
+
+.pull-left[
+.center[
+```{r echo = F, out.width="400px"}
+ggplot(data.frame(x = c(-4, 4)), aes(x)) +
+    stat_function(fun = dnorm, geom = "area", fill = "steelblue", alpha = .3) +
+    stat_function(fun = dnorm,geom = "area", fill = "steelblue", xlim = c(qnorm(.975), 4)) +
+  stat_function(fun = dnorm,geom = "area", fill = "steelblue", xlim = c(-4, qnorm(.025))) +
+  labs(x = "", y = "") +
+      annotate(geom = "text", x = -2.5, y = 0.05, label = "2.5%", size = 6) +
+    annotate(geom = "text", x = 2.5, y = 0.05, label = "2.5%", size = 6) +
+  ggtitle("Zweiseitiger Test") +
+  geom_vline(xintercept = -1.77, linetype = "dotted", colour = "red") +
+  geom_vline(xintercept = 1.77, linetype = "dotted", colour = "red") +
+   theme_classic() +
+  theme(text = element_text(size = 25), axis.text.y = element_blank(), axis.ticks.y = element_blank())  
+```
+]
+]
+
+.pull-right[
+* Bei beidseitigem Test auf $\alpha=.05$ liegen Auftretenswahrscheinlichkeiten von $z = -1.77$ und $z = 1.77$ nicht im Verwerfungsbereich
+
+Interpretation:
+* Die $H_{0}$ wird beibehalaten
+* Inhaltlich: Signifikant weniger als 50% der Frauen, die diäten, sind übergewichtig.
+
+* Es können bei denselben Daten unterschiedliche Entscheidungen resultieren. 
+* Beim einseitigen Testen kommt man eher zu einer Verwerfung der Nullhypothese
+]
+
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### p-Wert
+
+* In Statistik-Softwareprodukten wird zusammen mit der Teststatistik eines statistischen Tests ein sogenannter **p-Wert** ausgegeben
+
+* Der p-Wert gibt die **Wahrscheinlichkeit für den Fehler erster Art** an, also die Wahrscheinlichkeit, eine gültige $H_{0}$ zu verwerfen aufgrund der beobachteten Daten
+
+* **Vorteil** des p-Wertes liegt darin, dass bei der Entscheidung keine Tabelle der Verteilung der Teststatistik benötigt wird
+
+* Wird der zweiseitige p-Wert angegeben und die $H_{1}$ ist gerichtet, muss man den p-Wert **durch 2 dividieren** und mit $α$ vergleichen.
+
+* Bei einseitigen Hypothesen ist die zusätzliche überprüfung notwendig, ob die Teststatistik tatsächlich im Verwerfungsbereich der $H_{0}$ liegt
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Fehler beim Hypothesentest
+
+* Beim Treffen von Entscheidungen können Menschen nicht nur in ganz alltäglichen Situationen Fehler unterlaufen
+
+* Konkret gibt es bei Hypothesentests **vier Möglichkeiten**, wie die Entscheidung ausfallen kann
+
+  * Fehler 1. Art bzw. $\alpha$-Fehler: Wenn die Nullhypothese fälschlicherweise verworfen wird und die Alternativhypothese angenommen wird
+  * Fehler 2. Art bzw. $\beta$-Fehler: Wenn die Nullhypothese fälschlicherweise beibehalten wird, obwohl die Alternativhypothese wahr ist 
+.center[
+```{r eval = TRUE, echo = F, out.width = "550px"}
+knitr::include_graphics("bilder/fehler.jpg")
+```
+]
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Fehler beim Hypothesentest
+
+* Die Wahrscheinlichkeit, einen Fehler 1. Art zu begehen, entspricht immer maximal dem Signifikanzniveau
+
+* Je kleiner $α$, umso kleiner der Fehler 1. Art $(H_{0}$ irrtümlich zu verwerfen)
+
+* → $α$ möglichst klein wählen, z.B. $α = 0.001$?
+
+* Entscheiden für Signifikanzniveau ist vergleichbar mit dem Abschluss einer Versicherung. Umso besser der Versicherungsschutz gegen einen $α$-Fehler, umso höher die Kosten.
+
+Kosten eines kleinen (strengen) Signifikanzniveaus:
+* Größerer Fehler 2. Art $(β$-Fehler = $H_{0}$ irrtümlich beizubehalten)  
+* geringere Teststärke $1 − β$ (Macht oder Power = Wahrscheinlichkeit, $H_{0}$ zugunsten einer $H_{1}$ zu verwerfen, wenn tatsächlich $H_{1}$ gilt)
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Beziehungen zwischen Statistischen Fehlern
+
+**Dilemma**
+
+* Versicherung gegen $α$-Fehler hat die Kosten eines höheren $β$-Fehlers und geringerer Macht des Tests
+
+* Versicherung gegen $β$-Fehler hat die Kosten eines höheren $α$-Fehlers
+
+* Kompromiss in der Praxis: $α =.05$ oder  $α = .01$ je nachdem, welchen Fehler man eher riskieren möchte
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Signifikanzniveau
+
+* Um den kritischen Wert zu finden, musst zunächst das sogenannte Signifikanzniveau  $\alpha$ festgelegt werden
+
+* Meistens wird $\alpha=.05$ gewählt (häufige Konvention aus der Wissenschaft)
+
+* Das bedeutet, dass wir eine 5% Wahrscheinlichkeit erlauben unsere Hypothese fälschlicherweise anzunehmen
+
+* Die 5% legen einen bestimmten Bereich auf der Wahrscheinlichkeitsverteilung fest (Verwerfungsbereich)
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Macht eines Tests (teststärke, aka Power)
+
+* $1 − β$ = Power
+
+* Wahrscheinlichkeit dafür, dass ein statistischer Test zugunsten einer $H_{1}$ entscheidet, wenn diese gilt (d.h. die $H_{0}$ richtigerweise zu verwerfen)
+
+* Die Teststärke hängt von verschiedenen Faktoren ab:
+  * Signifikanzniveau $α$ (je kleiner des weniger Power)
+  * Ein- oder zweiseitige Alternativhypothese (bei einseitiger $H_{1}$ höhere Power)
+  * Größe des Effekts (des Unterschiedes zwischen Beobachtungs- und Referenzwerts)
+  * Streuung der Variable $X$ in der Population  (je größer desto weniger Power)
+  * Stichprobenumfang $n$ (je größer desto mehr Power)
+  * Verwendeter statistischer Test: je höher der verwendete Informationsgehalt der Daten, umso höher seine Macht
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Teststärke und Stichprobenumfang
+
+* Ergebnise eines Signifikanztests ist unmittelbar von der Stichprobengröße abhängig!
+
+* Beispiel: Binomialtest mit NV-Approximation, Anteil der übergewichtigen Frauen
+
+* Stichprobengröße $n = 2000$ Frauen (statt $n = 200$), gleicher Anteil wie vorher: 43.5% übergewichtig = 870.
+
+* $μ=np=1000,k=870$
+
+$$z=\frac{870.5-1000}{\sqrt{2000 \cdot0.50\cdot0.50}}=-5.79$$
+$\rightarrow$ Vergleich zuvor $(n=200)$: $z=-1.77$ 
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+####  Statistische Signifikanz und praktische Relevanz
+
+* Mit genügend großem Stichprobenumfang kann man praktisch jede $H_{0}$ verwerfen
+
+* Festlegung einer Effektgröße $ε$ (z.B. praktisch relevanter Unterschied) und einer spezifischen $H_{1}$
+
+* Muss aufgrund inhaltlicher Überlegungen vor Datenerhebung festgelegt werden (Poweranalyse)
+
+* Vorteil: notwendiger Stichprobenumfang, der bei gegebenem $α$, gewünschtem $1 − β$ und bestimmter Effektgröße eine eindeutige Entscheidung ermöglicht, bestimmbar
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+####  Kumulierung des $α$-Fehlers
+
+Führt man mehrere statistische Tests durch, hat man bei jedem dieser Tests das Risiko eines $α$-Fehlers
+
+Beispiel:
+* Jemand führt drei statistische Tests durch um eine Hypothese zu prüfen
+
+* Annahme: Unabhängigkeit der einzelnen Tests 
+
+* Wahrscheinlichkeit, dass mindestens 1 Test signifikant wird $= 1−(1−0.05)^3 = 0.14$
+
+* 14% Fehlerwahrscheinlichkeit statt 5%
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+####  Kumulierung des $α$-Fehlers
+
+Führt man $k$ unabhängige statistische Tests zur überprüfung einer $H_{0}$ durch, kommt es zu einer Kumulierung des $α$-Fehler Risikos 
+
+$$α′ = 1−(1−α)^k$$
+Lösung:
+
+* Lässt es sich nicht vermeiden, mehrere statistische Tests zur Prüfung einer Hypothese durchzuführen, muss eine $α$-Fehler Korrektur vorgenommen werden
+* Der Test wir somit strenger (Grenze für Signifikanz niedriger)
+* $α$-Fehler Adjustierung nach Boferroni: 
+
+$$α_{adj} = 1 − (1 − α)^{1/k}$$
+
+Beispiel: 3 Tests 
+
+$$α_{adj} =1−(1−0.05)^{1/3} =0.017$$
+
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+####  Darstellung des Ergebnisses eines Hypothesentests
+
+* Voraussetzung: Formulierung der $H_{0}$ und $H_{1}$
+* Angabe von $α$
+* Angabe von $N$
+* Angabe des p-Wertes
+* Angabe der Teststatistik (+ df wo nötig)
+* Teststärke und Effektgröße
+* Korrekte Formulierung bei nicht-signifikantem Ergebnis: 
+  * $H_{0}$ wird beibehalten (korrekt)
+  * $H_{0}$ wurde bewiesen (falsch)
+* Falsche Interpretationen:
+* "Je kleiner der p-Wert, umso größer der Effekt."
+  * Der p-Wert ist keine Effektgröße.
+ * Der p-Wert gibt die Wahrscheinlichkeit für das Zutreffen der $H_{0}$ an.
+  * Der p-Wert ist die $P(beobachtetes Ergebnis|H_{0})$
+
+---
+class: top, left
+### Take-aways
+
+.full-width[.content-box-gray[
+* Zur Prüfung der Geltung einer Hypothese (ja/nein) rechnen wir **Signifikanztests**
+
+* **Auswahl des Tests** richtet sich nach der Wahrscheinlichkeitsverteiltung der Testgrößen (Wahrscheinlichkeit, Mittelwerte, Häufigkeiten...)
+
+* Zur Prüfung muss ein Hypothesenpaar aus Nullhypothese und Alternativhypothese aufgestellt werden.
+
+* Je nach Vorwissen können wir Nullhypothese und Alternativhypothese **gerichtet und ungerichtet** formulieren.
+
+* Als Entscheidungskriterium definieren wir einen **kritischen Wert** (oft Wert mit Auftretenswahrscheinlichkeit 5% unter Annahme der Nullhypothese)
+
+* Ist der Test signifikant wird die Nullhypothese **verworfen** und die Alternativhypothese vorläufig angenommen (s.h. Popper)
+]
+]
+
+[**Link zur Wissensüberprüfung**](https://docs.google.com/forms/d/e/1FAIpQLSfyoeahyWszszxLO6xipdtIsI7VREOVBFK6flgeAUw2FAn8Yg/viewform?usp=sf_link)
+
