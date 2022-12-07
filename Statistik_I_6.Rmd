@@ -566,7 +566,7 @@ class: top, left
 .pull-left[
 * Die relative Häufigkeit der Angsststörung in dieser Population wäre $h_A=\frac{7}{50}=0.14$
 
-* Angenommen, wir würden uns für h! in dieser Population interessieren, könnten die Population aber nicht direkt untersuchen, sondern nur einfache Zufallsstichproben der Größe n = 10 ziehen.
+* Angenommen, wir würden uns für $h_A$ in dieser Population interessieren, könnten die Population aber nicht direkt untersuchen, sondern nur einfache Zufallsstichproben der Größe n = 10 ziehen.
 
 * Zur Erinnerung: In diesem Fall ist $h_A=𝜋$
 ]
