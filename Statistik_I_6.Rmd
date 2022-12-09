@@ -905,18 +905,17 @@ class: top, left
 
 Beispiel 1:
 
-* gegeben sei eine normalverteilte Variable X mit Mittelwert von 11 und Standardabweichung von 5.53
+* gegeben sei eine normalverteilte Variable X mit Mittelwert von 11 und Varianz von 5.53
 
 * Wie hoch ist die Wahrscheinlichkeit das X nicht mehr als 14.5 Punkte aufweist?
 
 * Zunächst berechnen wir den z-Wert für $X=14.5$ (siehe Standardisierung)
 
-$$z=\frac{14.5-11}{5.53}=1.49$$
+$$z=\frac{14.5-11}{\sqrt{5.53}}=1.49$$
 * In der z-Tabelle schlagen wir nach, wie wahrscheinlich ein z-Wert von mindestens 1.49 ist
 
 $$P(Z \leq 1.49) = 0.9319$$
 * Mit einer 93%-igen Wahrscheinlichkeit ist ein zufällig aus der Verteilung gezogener Wert nicht größer als 14.5
-
 
 ---
 class: top, left
