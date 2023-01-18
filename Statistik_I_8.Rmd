@@ -244,9 +244,9 @@ class: top, left
 
 Teststatistik:
 
-$$T = \frac{\bar{X}-μ}{\frac{\hat{\sigma}}{\sqrt{n}}} \sim t_{n-1}$$
+$$t = \frac{\bar{X}-μ}{\frac{\hat{\sigma}}{\sqrt{n}}} \sim t_{n-1}$$
 
-$$T = \frac{99.32 − 100}{\frac{4.03}{\sqrt{108}}} = −1.75$$
+$$t = \frac{99.32 − 100}{\frac{4.03}{\sqrt{108}}} = −1.75$$
 
 * $df = 107$; $t_{100;0.975} = 1.98$ (kritischer Wert)
 
@@ -274,7 +274,7 @@ class: top, left
 
 * $H_{0}$: $μ_{Geo} \leq μ$; $H_{1}$: $μ_{Geo} > μ$; $α=0.05$
 
-$$T = \frac{101.32 − 100}{\frac{4.15}{\sqrt{36}}} = 1.91$$
+$$t = \frac{101.32 − 100}{\frac{4.15}{\sqrt{36}}} = 1.91$$
 
 * $df = 35$; $t_{30;0.95} = 1.70$, $t_{40;0.95} = 1.68$
 
