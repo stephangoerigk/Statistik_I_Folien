@@ -59,7 +59,7 @@ class: middle, left
 # Statistik I
 
 ### Einheit 9: $t$-Test (2)
-##### 17.01.2023 | Dr. phil. Stephan Goerigk
+##### 18.01.2023 | Dr. phil. Stephan Goerigk
 
 ---
 class: top, left
