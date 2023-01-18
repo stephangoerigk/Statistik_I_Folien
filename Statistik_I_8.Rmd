@@ -702,9 +702,9 @@ Homogenität der Varianzen: $H_0$: $σ_1^2 = σ^2$, $H_1$:$ σ_1^2 \neq  σ^2$
 
 $$F=\frac{6.54}{6.12}=1.07; df_1=50, df_2=52$$
 
-* Prüfung in F-Tabelle: $F_{50,50;0.975} = 1.75 > 1.07 \rightarrow$ $H_0$ wird beibehalten, Varianzen sind homogen
+* Prüfung in F-Tabelle: $F_{50,50;0.975} = 1.75 > 1.07 \rightarrow$ $H_0$ wird beibehalten, Varianzen sind homogen.
 
-$$t = \frac{7.22- 4.91}{\sqrt{\frac{52 \cdot 6.12 + 50 \cdot 6.54}{52+50} (\frac{1}{52}+\frac{1}{50})}}=4.64; df=n_{1}+n_{2} - 2=102$$
+$$t = \frac{7.22- 4.91}{\sqrt{\frac{52 \cdot 6.12 + 50 \cdot 6.54}{52+50} (\frac{1}{53}+\frac{1}{51})}}=4.64; df=53+51 - 2=102$$
 
 * Prüfung in t-Tabelle: $t_{102;0.95} = 1.66 < 4.64 \rightarrow$ $H_0$ verwerfen
 
