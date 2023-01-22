@@ -58,839 +58,740 @@ class: middle, left
 <br><br><br><br><br><br><br>
 # Statistik I
 
-### Einheit 8: $t$-Test
-##### 03.01.2023 | Dr. phil. Stephan Goerigk
+### Einheit 10: Korrelation
+##### 23.01.2023 | Dr. phil. Stephan Goerigk
 
 ---
 class: top, left
-### $t$-Test
+### Korrelation
 
-#### Lernziele:
+#### Der Begriff des (bivariaten) Zusammenhangs
 
-Sie lernen:
+Was bedeutet es, wenn zwei Variablen miteinander zusammenhängen?
 
-* Den $t$-Test - ein Signifikanztest zum Vergleich von 2 Mittelwerten in 3 Varianten
-  * Ein-Stichproben $t$-Test
-  * Unabhängiger $t$-Test (Zwei-Stichproben $t$-Test)
-  * Abhängiger $t$-Test 
-  
-* Die Voraussetzungen, die für die Durchführung eines $t$-Tests gegeben sein müssen
+* Die Ausprägung, die eine Person auf der einen Variable aufweist, gibt zu gewissen Teilen auch Auskunft darüber, welche Ausprägung diese Person auf der anderen Variable erreicht.
 
-* Die Entscheidungsregel, basierend auf dem kritischen t-Wert (unter Annahme Signifikanzniveau $\alpha= .05$)
+* Beide Variablen variieren dann systematisch miteinander.
 
-* Die Abgrenzung zwischen einem einseitigen und einem zweiseitigen $t$-Test
+**Beispiel: Müdigkeit und Konzentrationsfähigkeit**
 
----
-class: top, left
-### $t$-Test
+* Müdigkeit und Konzentrationsfähigkeit stehen in Beziehung zueinander
 
-#### Ein-Stichproben $t$-Test
+* Überdurchschnittlich müde Menschen weisen in der Regel eine niedrigere Konzentrationsfähigkeit auf als weniger müde Menschen
 
-* Hypothesen über $μ$ einer normalverteilten Variable, wobei $σ^2$ unbekannt
+Mit anderen Worten: Je höher die Müdigkeit, umso niedriger die Konzentrationsfähigkeit
 
-* Mögliche Hypothesen:
-  * $H_0$: $μ=μ_{0}$; $H_1$: $μ\neqμ_0$
-  * $H_0$: $μ≤μ_{0}$; $H_1$: $μ>μ_{0}$ 
-  * $H_0$: $μ≥μ_{0}$; $H_1$: $μ<μ_{0}$
-
-* Prüft anhand des Mittelwerts einer Stichprobe ob der Erwartungswert in der entsprechenden Population gleich einem vorgegebenen Wert ist (dem unter $H_{0}$ erwarteten $μ_{0}$).
-
-* Vergleich eines Stichprobenmittelwertes mit einem hypothetischen Populationsparameter $μ_{0}$.
+$\rightarrow$ Aussagen wie diese postulieren einen Zusammenhang
 
 ---
 class: top, left
-### $t$-Test
+### Korrelation
 
-#### Entwicklung eines Entscheidungskriteriums
+#### Der Begriff des (bivariaten) Zusammenhangs
 
-* Zur Erinnerung: Warhscheinlichkeit, die $H_0$ abzulehnen, obwohl sie in Wirklichkeit gilt, heißt $\alpha$-Fehler oder Fehler 1. Art
-
-* t-Wert ist signifikant, wenn seine Auftretenswahrscheinlichkeit kleiner ist als das gewählte $\alpha$
-
-* Für die Signifikanzprüfung kann der t-Wert $(t_{emp})$ auch mit dem kritischen t-Wert $(t_{krit})$ verglichen werden (in t-Tabelle nachsehen)
-
-* Die Wahl des Signikanzniveaus ist von inhaltlichen Überlegungen abhängig und wird oft als $\alpha=.05$ gewählt.
-
----
-class: top, left
-### $t$-Test
-
-#### Vergleich von ein- und zweiseitigen Fragestellungen
+##### Stärke des Zusammenhangs
 
 .pull-left[
 
-.center[
-```{r echo = F, out.width="400px"}
-ggplot(data.frame(x = c(-4, 4)), aes(x)) +
-    stat_function(fun = dnorm, geom = "area", fill = "steelblue", alpha = .3) +
-    stat_function(fun = dnorm,geom = "area", fill = "steelblue", xlim = c(qnorm(.975), 4)) +
-  stat_function(fun = dnorm,geom = "area", fill = "steelblue", xlim = c(-4, qnorm(.025))) +
-  labs(x = "", y = "") +
-      annotate(geom = "text", x = -2.5, y = 0.05, label = "2.5%", size = 6) +
-    annotate(geom = "text", x = 2.5, y = 0.05, label = "2.5%", size = 6) +
-  scale_x_continuous(breaks = c(qnorm(.025), 0, qnorm(.975)), labels = c(expression(-t[krit]), "0", expression(t[krit]))) +
-  ggtitle("Zweiseitige Fragestellung") +
-   theme_classic() +
-  theme(text = element_text(size = 25), axis.text.y = element_blank(), axis.ticks.y = element_blank())  
-```
-]
-]
+* Die Stärke des Zusammenhangs ist davon abhängig, wie zwingend von der einen Variable auf die andere geschlossen werden kann.
 
-.pull-right[
-* Signifikanzniveau $\alpha=.05$ muss auf beide Seiten aufgeteilt werden
+**Beispiel: Müdigkeit und Konzentrationsfähigkeit**
 
-* Damit $\alpha=.05$ erreicht wird, darf $t_{krit}$ nur 2.5% der Fläche abschneiden
+* wenn alle überdurchschnittlich müden Personen eine niedrige Konzentrationsfähigkeit aufweisen $\rightarrow$ starker Zusammenhang
 
-* Auftretenswahrscheinlichkeit von $t_{emp}$ muss kleiner als 2.5% 
-
-* Ist Betrag von $t_{emp}$ größer als $t_{krit}$ so ist Test signifikant
-]
-
----
-class: top, left
-### $t$-Test
-
-#### Vergleich von ein- und zweiseitigen Fragestellungen
-
-.pull-left[
-
-* Mittelwertsdifferenz muss in vorhergesagte Richtung auftreten
-
-* Gesamte 5% liegen auf vorhergesagter Seite der Verteilung
-
-* Folge: Gleiche empirische Mittelwertsdifferenz wird bei einseitigen Hypothesen leichter signifikant (Betrag von $t_{krit}$ ist kleiner, bzw. Ablehnungsbereich ist größer).
-
-]
-
-.pull-right[
-
-.center[
-```{r echo = F, out.width="400px"}
-ggplot(data.frame(x = c(-4, 4)), aes(x)) +
-    stat_function(fun = dnorm, geom = "area", fill = "steelblue", alpha = .3) +
-    stat_function(fun = dnorm,geom = "area", fill = "steelblue", xlim = c(qnorm(.95), 4)) +
-    scale_x_continuous(breaks = c( 0, qnorm(.95)), labels = c("0", expression(t[krit]))) +
-  labs(x = "", y = "") +
-    annotate(geom = "text", x = 2.5, y = 0.05, label = "5%", size = 6) +
-  ggtitle("Einseitige Fragestellung") +
-   theme_classic() +
-  theme(text = element_text(size = 25), axis.text.y = element_blank(), axis.ticks.y = element_blank())  
-```
-]
-]
-
----
-class: top, left
-### $t$-Test
-
-#### Ein-Stichproben $t$-Test
-
-.center[
-```{r eval = TRUE, echo = F, out.width = "850px"}
-knitr::include_graphics("bilder/one_sample_t.png")
-```
-]
-
----
-class: top, left
-### $t$-Test
-
-#### Ein-Stichproben $t$-Test
-
-.pull-left[
-* Weicht der Mittelwert einer Zufallsstichprobe aus dem Irak, $\bar{x}_{I}$, in einem in Deutschland entwickelten sprachfreien Intelligenztest signifikant vom Populationsparameter in Deutschland, $μ_{D} = 100$, ab?
-
-* WICHTIG: Nur die iranische Stichprobe wurde in der Studie rekrutiert und gemessen. Der deutsche Referenzwert wird vorgegeben.
-
-* $n = 108$, Testpunkte normalverteilt, $\bar{x}_{I} = 99.32$ , $s_{I} = 4.03$
-
-* $H_{0}$: $μ_{I} = 100$
-* $H_{1}$: $μ_{I} \neq 100$; $α=0.05$
+* wenn es unter den überdurchschnittlich müden Personen auch welche mit hoher Konzentrationsfähigkeit gibt $\rightarrow$ weniger starker Zusammenhang
 ]
 
 .pull-right[
 .center[
-```{r echo=FALSE, out.width="450px", out.height="450px"}
-df <- data.frame(PF = rnorm(100000, mean = 99.32, sd = 4.03))
-ggplot(df, aes(x = PF)) + 
-    geom_histogram(aes(y =..density..),
-                   breaks = seq(70, 130, by = 2), 
-                   colour = "black", 
-                   fill = "white", bins = 100) +
-  scale_x_continuous(breaks = c(70,90,99.32,110,130)) +
-  geom_vline(xintercept = 100, linetype = "dashed", colour = "red") +
-  geom_vline(xintercept = 99.32, linetype = "dashed", colour = "blue") +
-  stat_function(fun = dnorm, args = list(mean = mean(df$PF), sd = sd(df$PF))) +
-  labs(x = "IQ", y = "relative Häufigkeit") +
-   theme_classic() +
-  theme(text = element_text(size = 25))
+```{r eval = TRUE, echo = F, out.width = "350px"}
+knitr::include_graphics("bilder/tiredness.jpg")
 ```
 ]
 ]
 
 ---
 class: top, left
-### $t$-Test
+### Korrelation
 
-#### Ein-Stichproben $t$-Test
+#### Der Begriff des (bivariaten) Zusammenhangs
 
-**Beispiel 1:**
+##### Richtung des Zusammenhangs
 
-<small>
+* Zusammenhänge können in zwei "Richtungen" vorliegen: positiv oder negativ.
 
-* $n = 108$, Testpunkte normalverteilt, $\bar{x}_{I} = 99.32$ , $s_{I} = 4.03$
+**Positiver Zusammenhang:**
 
-* $H_{0}$: $μ_{I} = 100$; $H_{1}$: $μ_{I} \neq 100$; $α=0.05$
+* Hohe Werte auf der einen Variable entsprechen hohen Werten auf der anderen Variable
 
-Teststatistik:
+**Negativer Zusammenhang:**
 
-$$t = \frac{\bar{X}-μ}{\frac{\hat{\sigma}}{\sqrt{n}}} \sim t_{n-1}$$
+* Hohe Werte auf der einen Variable entsprechen niedrigen Werten auf der anderen Variable
 
-$$t = \frac{99.32 − 100}{\frac{4.03}{\sqrt{108}}} = −1.75$$
+**Kein Zusammenhang:**
 
-* $df = 107$; $t_{100;0.975} = 1.98$ (kritischer Wert)
+* Werte auf der einen Variable gehen mal mit hohen und mal mit niedrigen Werten auf der anderen Variable einher
 
-* $1.75 < 1.98 \rightarrow$ $H_{0}$ beibehalten
-
-* Interpretation: Der Mittelwert der Zufallsstichprobe aus dem Irak unterscheidet sich nicht signifikant vom deutschen Referenzwert.
-
-</small>
+* Beide Merkmale sind stochastisch unabhängig voneinander
 
 ---
 class: top, left
-### $t$-Test
-
-#### Ein-Stichproben $t$-Test
-
-<small>
-
-**Beispiel 2:**
-
-* Stichprobe von $n = 36$ Schülern mit Unterricht in Geometrie absolvieren Raumvorstellungstest normiert in Population auf $μ = 100$
-
-* Es soll die Hypothese geprüft werden, dass Schülern mit Geometrieunterricht im Schnitt besser sind.
-
-* $n = 36$, Testpunkte normalverteilt, $\bar{x}_{Geo} = 101.32$ , $s_{Geo} = 4.15$
-
-* $H_{0}$: $μ_{Geo} \leq μ$; $H_{1}$: $μ_{Geo} > μ$; $α=0.05$
-
-$$t = \frac{101.32 − 100}{\frac{4.15}{\sqrt{36}}} = 1.91$$
-
-* $df = 35$; $t_{30;0.95} = 1.70$, $t_{40;0.95} = 1.68$
-
-* Richtung stimmt: unter $H_{1}$ positiver t-Wert erwartet
-
-* $1.91 > 1.69 \rightarrow$ $H_{0}$ verwerfen
-
-* Interpretation: Schüler mit Geometrieunterricht zeigen überdurchschnittliche Testleistungen.
-
-</small>
-
----
-class: top, left
-### $t$-Test
-
-#### Unabhängige vs. abhängige Stichproben
-
-<small>
-
+### Korrelation
 .pull-left[
-**Abhängige Stichproben:**
+#### Der Begriff des Zusammenhangs
 
-* Elemente der zwei Stichproben können einander paarweise zugeordnet werden
+##### Richtung des Zusammenhangs
 
-**Beispiele:**
-
-* die gleichen Personen wurden 2 Mal befragt (Messwiederholungen)
-
-* es handelt sich um Paare (Geschwisterpaare, Ehepaare,..) 
-
-* Personen aufgrund eines oder mehrerer Variablen parallelisiert wurden (z.B. aufgrund eines Vortests werden je zwei Personen mit gleicher Punktezahl zu Paaren zusammengefasst).
-
-]
-
-.pull-right[
-**Unabhängige Stichproben:**
-
-* Es besteht keine Beziehung zwischen den Elementen der Stichproben. 
-
-* Werte in der einen Stichprobe erlauben keine Vorhersage über Werte in der anderen Stichprobe (unkorreliert). 
-
-**Beispiele:**
-
-* Zufällige Zuteilung von Personen in Versuchsgruppe (VG) und Kontrollgruppe (KG) in einem Experiment
-
-* Zufallsstichproben aus zwei unterschiedlichen Populationen
-
-* Frauen und Männer (wobei es sich nicht um Paare handeln darf).
-]
-
-</small>
-
----
-class: top, left
-### $t$-Test
-
-#### $t$-Test für unabhängige Stichproben mit gleichen Varianzen
-
-* Unterscheiden sich die Mittelwerte zweier unabhängiger Stichproben aus normalverteilten Grundgesamtheiten signifikant voneinander?
-
-* Wichtigster Wert für $t$-Test (Effekt von Interesse): **Mittelwertsdifferenz** $\bar{x}_{1} - \bar{x}_{2}$
-
-* Die dichotome Gruppenvariable ist beim $t$-Test die UV, die numerische Variable, deren Mittelwerte berechnet werden, die AV
-
-**Ungerichtete Hypothese:**
-
-* $H_0$: $μ_1=μ_2$ bzw. $μ_1−μ_2=0$ und $σ_1=σ_2=σ$
-* $H_1$: $μ_1\neqμ_2$ bzw. $μ_1−μ_2\neq0$ und $σ_1=σ_2=σ$ 
-
-**Gerichtete Hypothese z.B.:**
-
-* $H_0$: $μ_1\leqμ_2$ bzw. $μ_1−μ_2\leq0$ und $σ_1=σ_2=σ$
-* $H_1$: $μ_1>μ_2$ bzw. $μ_1−μ_2>0$ und $σ_1=σ_2=σ$
-
----
-class: top, left
-### $t$-Test
-
-#### $t$-Test für unabhängige Stichproben mit gleichen Varianzen
-
-.center[
-```{r eval = TRUE, echo = F, out.width = "750px"}
-knitr::include_graphics("bilder/two_sample_t.png")
+```{r include=FALSE}
+# library(faux)
+# dat1 <- rnorm_multi(n = 100, 
+#                   mu = c(20, 20),
+#                   sd = c(5, 5),
+#                   r = c(-0.9), 
+#                   varnames = c("A", "B"),
+#                   empirical = FALSE)
+# dat2 <- rnorm_multi(n = 100, 
+#                   mu = c(20, 20),
+#                   sd = c(5, 5),
+#                   r = c(0), 
+#                   varnames = c("A", "B"),
+#                   empirical = FALSE)
+# dat3 <- rnorm_multi(n = 100, 
+#                   mu = c(20, 20),
+#                   sd = c(5, 5),
+#                   r = c(0.9), 
+#                   varnames = c("A", "B"),
+#                   empirical = FALSE)
 ```
-]
 
----
-class: top, left
-### $t$-Test
 
-#### $t$-Test für unabhängige Stichproben mit gleichen Varianzen
+**Stärke des Zusammenhangs**
 
-**Voraussetzungen:**
+* Je enger die elliptische Form eines Punkteschwarms ist, umso stärker ist der Zusammenhang
 
-  * Unabhängige Stichproben
+* Ist die Punktewolke kreisförmig, besteht kein Zusammenhang
 
-  * Metrische AV
-
-  * Normalverteilung in beiden Populationen
-
-  * Homogene Varianzen 
-
-**Folgen verletzter Voraussetzungen:**
-
-* Sind Voraussetzungen für $t$-Test erfüllt, ist er der mächtigste Test zum Vergleich zweier unabhängiger Stichproben.
-
-* Ist eine (oder mehrere) der Voraussetzungen nicht erfüllt, liegt keine $t$-Verteilung vor, das reale $α$ entspricht nicht dem vorgegebenen $α$ und es kommt zu Fehlentscheidungen.
-
----
-class: top, left
-### $t$-Test
-
-#### $t$-Test für unabhängige Stichproben mit gleichen Varianzen
-
-Prüfung der Voraussetzungen:
-
-<small>
-
-**Unabhängige Stichproben**
-
-* Kein formeller Test $\rightarrow$ Beurteilung anhand der Kenntnis Studiendesigns (z.B. Liegt eine Messwiederholung vor?)
-
-**Metrische AV**
-
-* Kein formeller Test $\rightarrow$ Beurteilung anhand der Kenntnis des Messinstruments
-
-**Normalverteilung in beiden Populationen**
-
-* Prüfung der NV anhand der Verteilung in der Stichprobe (Rückschluss auf Population)
-* Graphische Prüfung: Histogramm oder QQ-Plot
-* Prüfung mit Signifikanztest (Wenn signifikant $\rightarrow$ NV-Annahme verletzt):
-  * Shapiro-Wilk Test (empfohlen für $3 \leq n \leq 5.000)$
-  * Kolgomorow-Smirnov Test
-  * berechnen wir nicht händisch $\rightarrow$ in Klausur wird angegeben, ob NV in Population angenommen werden kann
-* Viele Statistiker nehmen mittlerweile an, dass Tests ab balancierten Gruppengrößen von $n_1=n_2 \geq 30$ robust sind
-
-**Homogene Varianzen**
-
-* Prüfung mittels Levene-Test (F-Test) $\rightarrow$ siehe nächste Folie
-
-</small>
-
----
-class: top, left
-### $t$-Test
-
-#### $t$-Test für unabhängige Stichproben mit gleichen Varianzen
-
-##### Vergleich zweier unabhängiger Varianzen: F-Test
-
-<small>
-
-* Unterscheiden sich die Varianzen zweier unabhängiger Stichproben aus normalverteilten Grundgesamtheiten?
-
-* $H_0$: $σ_1^2 = σ_2^2$
-* $H_1$: $σ_1^2 \neq σ_2^2$
-
-Teststatistik:
-
-$$F=\frac{\hat{\sigma}^2_1}{\hat{\sigma}^2_2}; df_1 = n_1 − 1, df_2 = n_2 − 1$$
-
-* Voraussetzungen: NV in jeder Population
-
-* ACHTUNG: Größere Varianz muss im Zähler stehen!
-
-* $H_0$: $σ_1^2 = σ_2^2$ wird verworfen, wenn $F > F(df_1,df_2,1−α/2)$ (kritischer Wert)
-
-</small>
-
----
-class: top, left
-### $t$-Test
-
-#### $t$-Test für unabhängige Stichproben mit gleichen Varianzen
-
-##### Vergleich zweier unabhängiger Varianzen: F-Test
-
-<small>
-
-.pull-left[
-Beispiel: Gruppenvergleich mit homogenen Varianzen
-
-.center[
-```{r echo=FALSE, out.width="350px", out.height="350px"}
-df <- data.frame(PF = rnorm(100000, mean = 10, sd = sqrt(6.12)))
-df2 <- data.frame(PF = rnorm(100000, mean = 7, sd = sqrt(6.54)))
-
-df$Gruppe = "VG"
-df2$Gruppe = "KG"
-
-#df = rbind(df, df2)
-
-ggplot(df, aes(x = PF, colour = Gruppe)) + 
-    # geom_histogram(aes(y =..density..),
-    #                breaks = seq(0, 15, by = 1),
-    #                fill = "transparent", bins = 100) +
- # scale_x_continuous(breaks = c(0,4.91,7.22, 10, 15)) +
-  # geom_vline(xintercept = 7.22, linetype = "dashed", colour = "blue") +
-  # geom_vline(xintercept = 4.91, linetype = "dashed", colour = "red") +
-  stat_function(fun = dnorm, args = list(mean = mean(df$PF), sd = sd(df$PF)), colour = "blue") +
-  stat_function(fun = dnorm, args = list(mean = mean(df2$PF), sd = sd(df2$PF)), colour = "red") +
-  labs(x = "X", y = "relative Häufigkeit") +
-   theme_classic() +
-  theme(text = element_text(size = 25))
-```
-]
-]
-
-.pull-right[
-Beispiel: Gruppenvergleich mit inhomogenen Varianzen
-
-.center[
-```{r echo=FALSE, out.width="350px", out.height="350px"}
-df <- data.frame(PF = rnorm(100000, mean = 10, sd = sqrt(6.12)))
-df2 <- data.frame(PF = rnorm(100000, mean = 7, sd = sqrt(6.54)))
-
-df$Gruppe = "VG"
-df2$Gruppe = "KG"
-
-#df = rbind(df, df2)
-
-ggplot(df, aes(x = PF, colour = Gruppe)) + 
-    # geom_histogram(aes(y =..density..),
-    #                breaks = seq(0, 15, by = 1),
-    #                fill = "transparent", bins = 100) +
- # scale_x_continuous(breaks = c(0,4.91,7.22, 10, 15)) +
-  # geom_vline(xintercept = 7.22, linetype = "dashed", colour = "blue") +
-  # geom_vline(xintercept = 4.91, linetype = "dashed", colour = "red") +
-  stat_function(fun = dnorm, args = list(mean = mean(df$PF), sd = sd(df$PF)), colour = "blue") +
-  stat_function(fun = dnorm, args = list(mean = mean(df2$PF), sd = sd(df2$PF)*1.5), colour = "red") +
-  labs(x = "X", y = "relative Häufigkeit") +
-   theme_classic() +
-  theme(text = element_text(size = 25))
-```
-]
-]
-
-</small>
-
----
-class: top, left
-### $t$-Test
-
-#### $t$-Test für unabhängige Stichproben mit gleichen Varianzen
-
-##### Vergleich zweier unabhängiger Varianzen: F-Test
-
-F-Test - Beispiel 1
-
-* Im Rahmen eines Experimentes hört die Versuchsgruppe während der Bearbeitung eines Gedächtnistests Hintergrundmusik, die Kontrollgruppe bearbeitet den Test ohne Hintergrundmusik. 
-
-* Frage, die Levene-Test beantwortet: Streuen die Testleistungen der beiden Bedingungen unterschiedlich stark?
-
-Hypothesen des F-Tests:
-
-* $H_0$: $σ_{VG}^2 = σ_{KG}^2$ 
-* $H_1$: $σ_{VG}^2 \neq σ_{KG}^2$
- 
-
----
-class: top, left
-### $t$-Test
-
-#### $t$-Test für unabhängige Stichproben mit gleichen Varianzen
-
-##### Vergleich zweier unabhängiger Varianzen: F-Test
-
-F-Test - Beispiel 1
-
-Gegeben: 
-
-* $s_{VG}^2 =8.5$
-* $s_{KG}^2 =4.7$
-* $n_{VG} =n_{KG} =50$
-* NV der Daten in VG und KG kann angenommen werden.
-
-$$F=\frac{8.5}{4.7}=1.81; df_1 = 49, df_2 = 49$$
-
-* Nachprüfen in F-Tabelle: $F_{50,50;0.975} = 1.75 < 1.81 \rightarrow$ $H_0$ wird verworfen
-
-* Levene-Test ist signifikant $\rightarrow$ Die Varianzen sind unterschiedlich (nicht homogen).
-
----
-class: top, left
-### $t$-Test
-
-#### Prüfgröße t, unabhängige Stichproben, homogene Varianzen
-
-<small>
-
-* $t$ ist der Wert, welcher auf der t-Verteilung liegt und uns eine Wahrscheinlichkeitseinschätzung für die Mittelwertsdifferenz erlaubt:
-
-$$t = \frac{\bar{x}_{1}- \bar{x}_{2}}{\sqrt{\frac{(n_{1} - 1) \cdot \hat{\sigma^2_{1}}+ (n_{2} - 1) \cdot \hat{\sigma^2_{2}}}{(n_{1} - 1) + (n_{2} - 1)} (\frac{1}{n_{1}}+\frac{1}{n_{2}})}}; df=n_{1}+n_{2} - 2$$
-
-Verbal:
-
-$$t=\frac{\text{Mittelwert Gruppe 1 - Mittelwert Gruppe 2}}{\text{geschätzter Standardfehler der Mittelwertsdifferenz}}$$
-
-* Der Effekt (Mittelwertsdifferenz) wird gewichtet mit der Stichprobengröße und der Streuung innerhalb der Gruppen
-
-* Zweiseitige $H_{0}$ wird verworfen, wenn $|t| > t(df; 1−α/2)$ (kritischer Wert) 
-
-* Einseitige $H_{0}$ wird verworfen, wenn Abweichung in die erwartete Richtung und $|t| > t(df; 1−α)$
-
-</small>
-
----
-class: top, left
-### $t$-Test
-
-#### $t$-Test für unabhängige Stichproben mit gleichen Varianzen
-
-##### Standardfehler der Mittelwertsdifferenz
-
-<small>
-
-* Standardfehler der Mittelwertsdifferenz bei $σ_{1}^2 = σ_{2}^2 = σ^2$
-
-$$\sigma_{\bar{x}_{1}- \bar{x}_{2}}= \sqrt{\sigma^2 \cdot (\frac{1}{n_{1}}+\frac{1}{n_{2}})}$$
-
-* Varianzschätzung innerhalb (der Stichproben)
-
-$$\hat{\sigma}^2 = \frac{(n_{1} - 1) \cdot \hat{\sigma^2_{1}}+ (n_{2} - 1) \cdot \hat{\sigma^2_{2}}}{(n_{1} - 1) + (n_{2} - 1)}$$
-Schätzung des Standardfehlers der Mittelwertsdifferenz
-
-$$\hat{\sigma}_{\bar{x}_{1}- \bar{x}_{2}} = \sqrt{\frac{(n_{1} - 1) \cdot \hat{\sigma^2_{1}}+ (n_{2} - 1) \cdot \hat{\sigma^2_{2}}}{(n_{1} - 1) + (n_{2} - 1)} \cdot (\frac{1}{n_{1}}+\frac{1}{n_{2}})}$$
-
-</small>
-
----
-class: top, left
-### $t$-Test
-
-#### $t$-Test für unabhängige Stichproben mit gleichen Varianzen
-
-##### Standardfehler der Mittelwertsdifferenz
-
-**Warum Varianzschätzung innerhalb?**
-
-* Unter $H_1$ beide Stichproben normalverteilt mit gleichem $σ$, aber unterschiedlichen Mittelwerten
-
-* Würde man die Stichproben zu einer einzigen zusammenfassen und die Varianz berechnen, entstünde eine zweigipfelige Verteilung und man erhielte eine größere Varianz
-
-* Man spricht bei Varianzschätzung innerhalb auch von gepoolten Varianzen
-
----
-class: top, left
-### $t$-Test
-
-#### $t$-Test für unabhängige Stichproben mit gleichen Varianzen
-
-Beispiel 1:
-
-<small>
-
-* Es soll überprüft werden, ob zusätzliches autogenes Training einen positiven Effekt bei der Behandlung von Depressionen hat.
-* Klassischer Zwei-Gruppen-Versuchsplan: eine Gruppe von Patientinnen erhält nur die konventionelle Therapie (KG), eine zweite Gruppe erhält zusätzlich autogenes Training (VG).
-* Operationalisierung des Effekts der Therapien: Scoredifferenz (vorher minus nachher) in einem Depressionsfragebogen.
-
-* $H_0$: $μ_{VG} \leq μ_{KG}, σ^2_{VG} =σ^2_{KG}$ 
-* $H_1$: $μ_{VG} > μ_{KG}, σ^2_{VG} =σ^2_{KG}$ 
-
-Gegeben:
-
-* VG: $\bar{x}_{VG} =7.22,s^2_{VG} =6.12;n_{VG}=53$ 
-* KG: $\bar{x}_{VG} =4.91,s^2_{VG} =6.54;n_{VG}=51$ 
-* NV gegeben, $α=.05$
-
-</small>
-
----
-class: top, left
-### $t$-Test
-
-#### $t$-Test für unabhängige Stichproben mit gleichen Varianzen
-
-.pull-left[
-Beispiel 1:
-
-Gegeben:
-
-* VG: $\bar{x}_{VG} =7.22,s^2_{VG} =6.12;n_{VG}=53$ 
-* KG: $\bar{x}_{VG} =4.91,s^2_{VG} =6.54;n_{VG}=51$ 
-* NV gegeben, $α=.05$
+* Grafische Interpretation erlaubt grobe Orientierung über die Grad des Zusammenhangs. Diesen zu quantifizieren ist Aufgabe der Kovarianz und Korrelation.
 
 ]
-
 .pull-right[
 .center[
-```{r echo=FALSE, out.width="450px", out.height="450px"}
-df <- data.frame(PF = rnorm(100000, mean = 7.22, sd = sqrt(6.12)))
-df2 <- data.frame(PF = rnorm(100000, mean = 4.91, sd = sqrt(6.54)))
+```{r eval = TRUE, echo = F, out.width = "300px"}
+knitr::include_graphics("bilder/ellipse.png")
+```
 
-df$Gruppe = "VG"
-df2$Gruppe = "KG"
-
-#df = rbind(df, df2)
-
-ggplot(df, aes(x = PF, colour = Gruppe)) + 
-    # geom_histogram(aes(y =..density..),
-    #                breaks = seq(0, 15, by = 1),
-    #                fill = "transparent", bins = 100) +
-  scale_x_continuous(breaks = c(0,4.91,7.22, 10, 15)) +
-  geom_vline(xintercept = 7.22, linetype = "dashed", colour = "blue") +
-  geom_vline(xintercept = 4.91, linetype = "dashed", colour = "red") +
-  stat_function(fun = dnorm, args = list(mean = mean(df$PF), sd = sd(df$PF)), colour = "blue") +
-  stat_function(fun = dnorm, args = list(mean = mean(df2$PF), sd = sd(df2$PF)), colour = "red") +
-  labs(x = "IQ", y = "relative Häufigkeit") +
-   theme_classic() +
-  theme(text = element_text(size = 25))
+```{r echo=F, message=FALSE, warning=FALSE}
+png(file="/Users/stephangoerigk/Desktop/Universität/CFH/Lehre/Bachelor/Quantitative Methoden I/VO_Statistik I/Statistik_I_Folien/bilder/ellipse.png", width =3, height = 5, units = "in", res = 300)
+ggpubr::ggarrange(ggplot(dat1, aes(A, B)) + geom_point() + stat_ellipse() + ggtitle("Negativer Zusammenhang") + theme_classic() + theme(axis.title = element_blank()),
+                  ggplot(dat2, aes(A, B)) + geom_point() + stat_ellipse() + ggtitle("Kein Zusammenhang") + theme_classic() + theme(axis.title = element_blank()),
+                  ggplot(dat3, aes(A, B)) + geom_point() + stat_ellipse() + ggtitle("Positiver Zusammenhang") + theme_classic() + theme(axis.title = element_blank()),
+                  nrow = 3)
+dev.off()
 ```
 ]
 ]
+---
+class: top, left
+### Korrelation
 
+#### Kovarianz $(cov_{(x,y)})$
+
+$$cov_{x,y}=\frac{\displaystyle \sum_{i=1}^{n}(x_{i}-\bar{x})\cdot(y_{i}-\bar{y})}{n-1}$$
+
+* Unstandardisiertes Maß, dass den Zusammenhang zweier Variablen erfasst (bivariat)
+
+* Ist in ihrer Berechnung der Varianz nicht unähnlich
+
+* Varianz: Erfasst die Abweichungen einer Variable um ihren Mittelwert
+  * Liefert aufgrund der Quadrierung nur positive Ergebnisse
+
+* Kovarianz: Gleichgerichtete Abweichungen zweier Variablen von deren Mittelwerten
+  * Kann auch negative Werte annehmen
 
 ---
 class: top, left
-### $t$-Test
+### Korrelation
 
-#### $t$-Test für unabhängige Stichproben mit gleichen Varianzen
+#### Kovarianz $(cov_{(x,y)})$
 
-Beispiel 1:
+##### Wertespektrum:
 
-Homogenität der Varianzen: $H_0$: $σ_1^2 = σ^2$, $H_1$:$ σ_1^2 \neq  σ^2$
+* Betrag der Kovarianz zwischen 2 Variablen kann beliebige Werte zwischen 0 und einer maximalen Kovarianz $|cov_{max}|$ annehmen.
 
-$$F=\frac{6.54}{6.12}=1.07; df_1=50, df_2=52$$
+* $|cov_{max}|$ ist für positiver und negative ZUsammenhänge identisch
 
-* Prüfung in F-Tabelle: $F_{50,50;0.975} = 1.75 > 1.07 \rightarrow$ $H_0$ wird beibehalten, Varianzen sind homogen.
+Definition von $|cov_{max}|$:
 
-$$t = \frac{7.22- 4.91}{\sqrt{\frac{52 \cdot 6.12 + 50 \cdot 6.54}{52+50} (\frac{1}{53}+\frac{1}{51})}}=4.64; df=53+51 - 2=102$$
+* Definiert als das Prdukt der beiden Merkmalsstreuungen:
 
-* Prüfung in t-Tabelle: $t_{102;0.95} = 1.66 < 4.64 \rightarrow$ $H_0$ verwerfen
-
-* Interpretation: Ergebnis spricht dafür, dass autogenes Training zusätzlichen Effekt hat.
+$$|cov_{max}|=\hat{\sigma}_x \cdot \hat{\sigma}_y$$
 
 ---
 class: top, left
-### $t$-Test
+### Korrelation
 
-#### $t$-Test für unabhängige Stichproben mit gleichen Varianzen
+#### Kovarianz $(cov_{(x,y)})$
 
-**Bewertung des t-Werts:**
+##### Wertespektrum:
 
-* t-Wert schneidet geiwssen Prozentsatz der Fläche einer t-Verteilung ab
+$(cov_{(x,y)}) < 0$:
 
-* Wahrscheinlichkeit des t-Werts gibt Wahrscheinlichkeit an, ob Nullhypothese zutrifft
+* Kovarianz ist positiv, wenn positive Abweichungen vom Mittelwert in $X$ mit positiven in $Y$ und negativen Abweichungen in $X$ mit negativen in $Y$ einhergehen.
 
-* Ergibt t-Test (Nullhypothesentest) eine geringe Wahrscheinlichkeit, ist Ablehnung der Nullhypothese mögllich
+$(cov_{(x,y)}) < 0$:
 
-* die zugrundeliegenden Populationen haben nicht den gleichen, sondern verschiedene Mittelwerte
+* Kovarianz ist negativ, wenn positive Abweichungen vom Mittelwert in $X$ mit negativen in $Y$ einhergehen und umgekehrt.
 
-* Entscheidungen eines t-Tests sind nie zu 100% sicher
+$(cov_{(x,y)}) = 0$:
 
+* Kovarianz von 0 besagt, dass beide Variablen in keinem Zusammenhang zueinander stehen.
 
 ---
 class: top, left
-### $t$-Test
+### Korrelation
 
-#### Welch’s $t$-Test
+#### Kovarianz $(cov_{(x,y)})$
+
+##### Wertespektrum:
+
+* Abweichungen, die in Formel zur Berechnung der Kovarianz eingehen, sind abhängig von der Skalierung (Maßstab) der Merkmale.
+
+**Beispiel:**
+
+Für dieselbe Länge ergibt sich eine höhere Kovarianz, wenn in cm anstatt in m gemessern wird
+
+$\rightarrow$ Höhe der Kovarianz ist ein unstandardisiertes Maß für den Zusammenhang
+
+* Es lässt sich nur Richtung erkennen
+
+* Höhen unterschiedlicher Zusammenhänge lassen sich nicht vergleichen (hierfür nutzen wir Korrelation)
+
+---
+class: top, left
+### Korrelation
+
+#### Kovarianz $(cov_{(x,y)})$ - Beispiel
+
+Ein Psychologe misst die Schlafdauer (X) von $(N=16)$ Proband:innen in Stunden (h). Nach dem Aufstehen müssen Sie einen Konzentrationstest (Y) durchführen (0-15 Punkte). Hohe Punktzahl entspricht guter Konzentrationsleistung.
+
+```{r echo = F}
+set.seed(123)
+N = 16
+df = data.frame(ID = c(paste0(rep(1:N))),
+                Schlaf = round(c(rnorm(N, 8, 3)))
+)
+
+df$Konzentration = faux::rnorm_pre(df$Schlaf, mu = 7, sd = 3, r = .7)
+df$Konzentration = round(df$Konzentration)
+names(df) = c("ID", "Schlaf (X)", "Konzentration (Y)")
+df2 = df
+df = as.data.frame(t(df))
+#rownames(df) = NULL
+kable(df[,], col.names = NULL)%>%
+  kable_styling(font_size = 18)
+```
+
+Die Kovarianz von Schlaf und Konzentration in dieser Stichprobe berechnet sich wie folgt:
+
+$$cov_{x,y}=\frac{`r paste0(paste0("(", df2[1:4,2], "-", df2[1:4,3], ")", collapse = "\\cdot"), "+...")`}{`r N-1`}=`r round(cov(df2[,2], df2[,3]), 2)`$$
+* Der Zusammenhang zwischen Schlaf und Konzentrationsfähigkeit ist also positiv.
+
+* Über die relative Höhe des Zusammenhangs sagt dieser Wert nichts aus. Dafür brauchen wir ein standardisiertes Maß.
+
+---
+class: top, left
+### Korrelation
+
+#### Produkt-Moment-Korrelation $(r)$
+
+* Standardisiertes Maß für den Zusammenhang zweier intervallskalierter Variablen
+
+* Gebräuchlichstes Maß für die Stärke des Zusammenhangs
+
+* Stärke des Zusammenhangs wird mit dem Korrelationskoeffizient $r$ angegeben.
+
+* Anderer Name für die Korrelation: Pearson-Korrelation
+
+---
+class: top, left
+### Korrelation
+
+#### Produkt-Moment-Korrelation $(r)$
+
+##### Berechnung
+
+* Standardisierung der im vorherigen Abschnitt besprochenen Kovarianz
+
+* Die berechnete Kovarianz wird anhand der maximalen Kovarianz $(|cov_{max}|)$ relativiert
+
+$$r_{xy}=\frac{cov_{emp}}{cov_{max}}=\frac{cov_{x,y}}{\hat{\sigma}_x \cdot \hat{\sigma}_y}=\frac{\displaystyle \sum_{i=1}^{n}(x_{i}-\bar{x})\cdot(y_{i}-\bar{y})}{(n-1) \cdot \hat{\sigma}_x \cdot \hat{\sigma}_y}$$
+
+* Dadurch wird die Kovarianz von der Streuung der Merkmale bereinigt.
+
+* Das resultierende $r$ (Korrelationskoeffizient) ist somit maßstabsunabhängig (kann direkt interpretiert werden)
+
+---
+class: top, left
+### Korrelation
+
+#### Produkt-Moment-Korrelation $(r)$
+
+##### Wertespektrum:
+
+Der Korrelationskoeffizient kann nur Werte zwischen -1 und +1 annehmen:
+
+* $r=1$ perfekter positiver Zusammenhang 
+
+* $r=-1$ perfekter negativer Zusammenhang 
+
+* $r=0$  kein Zusammenhang (Nullkorrelation)
+
+* $r>0$  positiver Zusammenhang 
+
+* $r<0$  negativer Zusammenhang
+
+---
+class: top, left
+### Korrelation
+
+#### Produkt-Moment-Korrelation $(r)$ - Beispiel
+
+```{r echo = F}
+set.seed(123)
+N = 16
+df = data.frame(ID = c(paste0(rep(1:N))),
+                Schlaf = round(c(rnorm(N, 8, 3)))
+)
+
+df$Konzentration = faux::rnorm_pre(df$Schlaf, mu = 7, sd = 3, r = .7)
+df$Konzentration = round(df$Konzentration)
+names(df) = c("ID", "Schlaf (X)", "Konzentration (Y)")
+df2 = df
+df = as.data.frame(t(df))
+#rownames(df) = NULL
+kable(df[,], col.names = NULL)%>%
+  kable_styling(font_size = 18)
+```
+
+Um den Korrelationskoeffizienten $(r)$ für unser Beispiel zu bestimmen, müssen wir zunächst die Standardabweichungen von X und Y als Schätzer der Merkmalsstreuung berechnen:
+
+* $\hat{\sigma}_x = `r round(sd(df2[,2]), 2)`$
+* $\hat{\sigma}_y = `r round(sd(df2[,3]), 2)`$
+
+$$cov_{x,y}=\frac{`r paste0(paste0("(", df2[1:4,2], "-", df2[1:4,3], ")", collapse = "\\cdot"), "+...")`}{`r N-1`}=`r round(cov(df2[,2], df2[,3]), 2)`$$
+
+$$r_{xy}=\frac{cov_{x,y}}{\hat{\sigma}_x \cdot \hat{\sigma}_y}=\frac{`r round(cov(df2[,2], df2[,3]), 2)`}{`r round(sd(df2[,2]), 2)` \cdot `r round(sd(df2[,3]), 2)`}= `r round(round(cov(df2[,2], df2[,3]), 2) / (round(sd(df2[,2]), 2) * round(sd(df2[,3]), 2)),2)`$$
+
+---
+class: top, left
+### Korrelation
+
+####  Produkt-Moment-Korrelation $(r)$
+
+##### Interpretation
+
+* Ab welcher Höhe eine Korrelation zwischen 2 Variablen als inhaltlich bedeutsam angesehen werden kann, hängt stark vom Forschungsgegenstand ab.
+
+Beispiel: Labor- vs. Feld
+
+* Labor: Aufgrund der Kontrollierbarkeit von Störeinflüssen werden höhere Zusammenhänge erwartet.
+* Feld: Anspruch an die Höhe der Korrelation ist in der Regel niedriger.
+* Unterschied des berechneten $r$ vs. 0 muss mittels Signifikanztest geprüft werden.
+
+Einteilung der Größe des Effekts (Cohen, 1992):
+
+```{r echo = F}
+d = data.frame("r" = c("|>0.1|",
+                       "|>0.3|",
+                       "|>0.5|"),
+               Interpretation = c("kleiner Effekt",
+                                  "mittlerer Effekt",
+                                  "großer Effekt"))
+kable(d)%>%
+  kable_styling(font_size = 18)
+```
+
+---
+class: top, left
+### Korrelation
+
+####  Produkt-Moment-Korrelation $(r)$
+
+##### Skalierung des Korrelationskoeffizienten
+
+* Der Korrelationskoeffizient ist nicht intervallskaliert.
+
+* Er kann demnach nicht als Prozentmaß des Zusammenhangs interpretiert werden.
+
+* z.B. 0.4 ist nicht doppelt so hoch wie 0.8 (Äquidistanz ist nicht gegeben)
+
+* Relationen ist kein perfektes Maß, wenn Zusammenhänge aus mehreren Studien miteinander verglichen und zusammen gefasst werden sollen (ein $r$ vs. ein zweites $r)$
+
+* Um direkte Vergleiche zwischen Korrelationskoeffizienten zu ermöglichen benötigt man einen Zwischenschritt (Fishers Z-Transformation)
+
+---
+class: top, left
+### Korrelation
+
+####  Produkt-Moment-Korrelation $(r)$
+
+##### Pearson-Korrelation als Signifikanztest
 
 <small>
 
-* Was wenn Varianzen nicht homogen sind? $\rightarrow$ Annahme des unabhängigen $t$-Tests verletzt
+* Die Korrelation kann als Signifikanztest genutzt werden
+* Signifikanztest der Korrelation verläuft analog zum t-Test
+* Einziger Unterschied: Interessierender Wert ist eine Korrelation anstelle einer Mittelwertdifferenz
+* Schreibweise:
+  * Empirisch ermittelte Korrelation: $r$
+  * Zusammenhang in der Population (Grundgesamtheit): $\rho$ (Rho)
 
-* Prüfgröße $t$ mit gepoolten Varianzen nicht anwendbar
+**Ungerichtete Hypothese: (*"Es besteht ein Zusammenhang zwischen X und Y."*)**
+* $H_0$: $\rho = 0$
+* $H_1$: $\rho \neq 0$
 
-* Näherungslösung: Prüfgröße $t$ nach Welch
-
-$$t_{Welch}= \frac{\bar{x}_1 - \bar{x}_2}{\sqrt{\frac{s^2_1}{n_1} + \frac{s^2_2}{n_2}}}$$
-
-* Es wird eine Korrektur der Freiheitsgrade $(df)$ vorgenommen:
-
-$$df=\frac{(\frac{s^2_1}{n_1} + \frac{s^2_2}{n_2})^2}{\frac{(\frac{s^2_1}{n_1})^2}{n_{1}-1}+\frac{(\frac{s^2_2}{n_2})^2}{n_{2}-1}}$$
-
-* korrigierte $df$ abrunden auf die nächste ganze Zahl
-
-* kritischen Wert aus $t$-Tabelle ablesen
+**Ungerichtete Hypothese: (*"Es besteht ein positiver/negativer Zusammenhang zwischen X und Y."*)**
+* $H_0$: $\rho \leq 0$, bzw. $\rho \geq 0$
+* $H_1$: $\rho > 0$, bzw. $\rho < 0$
 
 </small>
 
 ---
 class: top, left
-### $t$-Test
+### Korrelation
 
-#### Freiheitsgerade einer $t$-Verteilung
+####  Produkt-Moment-Korrelation $(r)$
 
-* Exakte Form der $t$-Verteilung ist abhängig vom Stichprobenumfang $\rightarrow$ deckt sich nicht exakt mit $z$-Verteilung
+##### Pearson-Korrelation als Signifikanztest
 
-* Unterschied zwischen $t$-Verteilung und $z$-Verteilung $\rightarrow$ in $t$-Verteilung müssen 2 Schätzer eingehen 
+* Die zugehörige Prüfstatistik (t-Verteilung) ist uns bereits bekannt
 
-  * empirische Mittelwertsdifferenz
-  * Standardfehler der Mittelwertsdifferenz
+* Der empirische t-Wert $(t_{emp})$ berechnet sich aus der empirisch ermittelte Korrelation $(r)$ und dem Stichprobenumfang $(N)$
 
-Strebt $N$ gegen unendlich nähert sich $t$-Verteilung der $z$-Verteilung an.
+$$t=\frac{r \cdot \sqrt{N-2}}{\sqrt{1-r^2}}; df=N-2$$
+
+Vorgehen:
+
+* Empirischer t-Wert $(t_{emp})$ wird gegen kritischen t-Wert $(t_{krit})$ getestet (aus t-Tabelle ablesen)
+
+* Zweiseitige $H_{0}$ wird verworfen, wenn $|t_{emp}| > t(df; 1−α/2)$ (kritischer t-Wert) 
+
+* Einseitige $H_{0}$ wird verworfen, wenn Abweichung in die erwartete Richtung und $|t_{emp}| > t(df; 1−α)$ (kritischer t-Wert) 
 
 ---
 class: top, left
-### $t$-Test
+### Korrelation
 
-<small>
+####  Produkt-Moment-Korrelation $(r)$
 
-#### Abhängiger $t$-Test
+##### Pearson-Korrelation als Signifikanztest - Beispiel
 
-* wird z.B. bei Messwiederholungen eingesetzt $(t_0-t_1)$
-
-* Ähnliches Prinzip wie unabhängiger $t$-Test
-
-* Betrachtet nicht die Mittelwerte beider Zeitpunkte sondern die Differenz der Werte jeder einzelnen Versuchsperson
-
-$\rightarrow$ es geht nur der Unterschied der Messwerte zwischen 1. und 2. Messung in die Auswertung mit ein
-
-* allgemeine Unterschiede, die zwischen den Personen zu beiden Messzeitpunkten wirken gehen nicht mit ein
-
-* Der relevante Effekt für den abhängigen $t$-Test ist also:
-
-$$\bar{x}_d = \frac{\sum\limits _{i=1}^{N}d_{i}}{N}$$
+Der Psychologe aus unserem Beispiel möchte wissen, ob ein signifikanter positiver Zusammenhang zwischen Schlaf und Aufmerksamkeits Leistung besteht.
 
 Hypothesen:
 
-* $H_0$: $μ_d \leq 0$ bzw. $μ_d = 0$
-* $H_1$: $μ_d > 0$ bzw. $μ_d \neq 0$
-
-</small>
+* $H_0$: $\rho \leq 0$
+* $H_1$: $\rho > 0$
 
 ---
 class: top, left
-### $t$-Test
+### Korrelation
+
+####  Produkt-Moment-Korrelation $(r)$
+
+##### Pearson-Korrelation als Signifikanztest - Beispiel
+
+Der Psychologe aus unserem Beispiel möchte wissen, ob ein positiver Zusammenhang zwischen Schlaf und Aufmerksamkeitsleistung besteht.
+
+* $r_{xy}= `r round(round(cov(df2[,2], df2[,3]), 2) / (round(sd(df2[,2]), 2) * round(sd(df2[,3]), 2)),2)`$
+* $N=16$
+
+$$t=\frac{0.76 \cdot \sqrt{16-2}}{\sqrt{1-0.76^2}}; df=16-2$$
+
+$$t=\frac{2.84}{0.65}=4.37; df=14$$
+Bestimmung von $(t_{krit})$ aus Tabelle (s.h. nächste Folie):
+
+---
+class: top, left
+### Korrelation
 
 <small>
 
-#### Abhängiger $t$-Test
+####  Produkt-Moment-Korrelation $(r)$
 
-**Berechnung der Teststatistik:**
+##### Pearson-Korrelation als Signifikanztest - Beispiel
 
-Da dieser Test die Verteilung der Mittelwerte von Differenzen betrachtet, ergibt sich eine andere Schätzung der Streuung:
+Kritischen t-Wert $(t_{krit})$ für $a=.05$ nachschlagen:
 
-$$t_{abhängig}=\frac{\bar{x}_d}{\hat{\sigma}_{\bar{x}_d}}$$
+.center[
+```{r eval = TRUE, echo = F, out.width = "700px"}
+knitr::include_graphics("bilder/ttab4.png")
+```
+]
+</small>
 
-**Berechnung des Standardfehlers der Differenzen:**
+---
+class: top, left
+### Korrelation
 
-$$\hat{\sigma}_{\bar{x}_d} = \frac{\hat{\sigma}_d}{\sqrt{N}}$$
+####  Produkt-Moment-Korrelation $(r)$
 
-**Schätzung der Streuung der Differenzen:**
+##### Pearson-Korrelation als Signifikanztest - Beispiel
 
-$$\hat{\sigma}_d = \sqrt{\frac{\sum\limits _{i=1}^{N}(d_{i}-\bar{x}_d)^2}{N-1}}$$
+<small>
 
-**Berechnung der Freiheitsgrade:**
+Der Psychologe aus unserem Beispiel möchte wissen, ob ein positiver Zusammenhang zwischen Schlaf und Aufmerksamkeitsleistung besteht.
 
-* $df=N-1$ (Anzahl der Messwertpaare - 1)
+* $r_{xy}= `r round(round(cov(df2[,2], df2[,3]), 2) / (round(sd(df2[,2]), 2) * round(sd(df2[,3]), 2)),2)`$
+* $N=16$
+
+$$t=\frac{0.76 \cdot \sqrt{16-2}}{\sqrt{1-0.76^2}}; df=16-2$$
+
+$$t=\frac{2.84}{0.65}=4.37; df=14$$
+
+* $t_{krit(df=14)}=1.761$ $\rightarrow$ Spalte für 0.95 in der t-Tabelle, da gerichtete Hypothese
+* Der empirische t-Wert ist größer als der kritische t-Wert, der Korrelationskoeffizient ist signifikant größer als  0 (positiver Zusammenhang).
+* Die $H_{0}$ kann verworfen werden. Es besteht ein positiver Zusammenhang zwischen Schlaf und Aufmerksamkeitsleistung.
 
 </small>
 
 ---
 class: top, left
-### $t$-Test
+### Korrelation
 
-#### Abhängiger $t$-Test
+#### Rangkorrelation $(r_s)$
 
-Beispiel 1:
+* Standardisiertes Maß für den Zusammenhang zweier ordinalskalierter Variablen
 
-* Übungseffekt bei Wiederholung einer motorischen Aufgabe (Tippen einer kurzen Sequenz). 
+* Stellt eine Analogie zur Produkt-Momentkorrelation dar.
 
-* AV = Anzahl richtiger Sequenzen; UV = Zeitpunkt (dichotom): $t_0$ vs. $t_1$
+* Unterschied: Anstelle intervallskalierter Messwerte werden Rangplätze von ordinalskalierten Rangreihen verwendet.
 
-* Ungerichtete Hypothese $μ_d = 0$: Übung könnte Leistung verbessern vs. Ermüdung könnte Leistung verschlechtern.
+* Erfasst, inwieweit zwei Rangreihen systematisch miteinander variieren.
 
-Gegeben:
+* Stärke des Zusammenhangs wird mit dem Korrelationskoeffizient $r_s$ angegeben.
 
-* $N=36$ Teilnehmer:innen
-* $\bar{x}_d=0.722$ und $\hat{\sigma}_d=4.186$
-* $\alpha=.05$
+* Anderer Name für die selbe Korrelation: Spearman-Korrelation
 
 ---
 class: top, left
-### $t$-Test
+### Korrelation
 
-#### Abhängiger $t$-Test
+#### Rangkorrelation $(r_s)$ - Beispiel
 
+.pull-left[
 
-* $N=36$ Teilnehmer:innen
-* $\bar{x}_d=0.722$ und $\hat{\sigma}_d=4.186$
-* $\alpha=.05$
+* Eine Gruppe aus Frauen und Männern sollen $N=10$ Filme danach bewerten, wie lustig sie sind. 
 
-$$t_{abhängig}=\frac{\bar{x}_d}{\hat{\sigma}_{\bar{x}_d}}= \frac{\bar{x}_d}{\frac{\hat{\sigma}_d}{\sqrt{N}}}=\frac{0.722}{\frac{4.186}{\sqrt{36}}}=\frac{0.722}{0.698}=1.035$$
-* kritischer Wert (nächster df Wert in Tabelle ist 30) von $t_{30,0.975}=2.042$
+* Dafür sollen die Filme in eine Rangreihe (Platz 1-10) gebracht werden.
 
-* t-Wert ist nicht größer als kritischer Wert.
+* Es sollt untersucht werden, ob ein Zusammenhang zwischen der Rangliste der Frauen und der Rangliste der Männer besteht.
+]
 
-* Interpretation: Es besteht kein signifikanter Unterschied zwischen den beiden Messzeitpunkten.
+.pull-right[
+```{r echo = F}
+set.seed(123)
+N = 10
+df = data.frame(ID = c(paste0(rep(1:N))),
+                Schlaf = c(8,10,3,1,6,7,2,5,9,4)
+)
+
+df$Konzentration = c(6,10,1,4,7,9,3,2,8,5)
+df$Konzentration = round(df$Konzentration)
+names(df) = c("Film", "Rangplatz Frauen", "Rangplatz Männer")
+df$`Rangplatz Männer`[df$`Rangplatz Männer` > 10] = 10
+df$`Rangplatz Männer`[df$`Rangplatz Männer` < 1] = 1
+df$`Rangplatz Frauen`[df$`Rangplatz Frauen` > 10] = 10
+df$`Rangplatz Frauen`[df$`Rangplatz Frauen` < 1] = 1
+
+df2 = df
+df = as.data.frame(df)
+#rownames(df) = NULL
+kable(df[,])%>%
+  kable_styling(font_size = 16)
+```
+]
 
 ---
 class: top, left
-### $t$-Test
+### Korrelation
 
-$$P(A|B)=\frac{P(B|A) \cdot P(A)}{P(B)}$$
-$$P(A|B)=\frac{P(B|A) \cdot P(A)}{P(B)}$$
+#### Rangkorrelation $(r_s)$ - Beispiel
 
+.pull-left[
+
+* Eine Gruppe aus Frauen und Männern sollen $N=10$ Filmedanach bewerten, wie lustig sie sind. 
+
+* Dafür sollen die Filme in eine Rangreihe (Platz 1-10) gebracht werden.
+
+* Es sollt untersucht werden, ob ein Zusammenhang zwischen der Rangliste der Frauen und der Rangliste der Männer besteht.
+
+$$r_s={}1-\frac{\displaystyle \sum_{i=1}^{n}d^2_i}{N \cdot (N^2 - 1)}$$
+]
+
+.pull-right[
+```{r echo = F}
+set.seed(123)
+N = 10
+df = data.frame(ID = c(paste0(rep(1:N))),
+                Schlaf = c(8,10,3,1,6,7,2,5,9,4)
+)
+
+df$Konzentration = c(6,10,1,4,7,9,3,2,8,5)
+df$Konzentration = round(df$Konzentration)
+names(df) = c("Film", "Rangplatz Frauen", "Rangplatz Männer")
+df$`Rangplatz Männer`[df$`Rangplatz Männer` > 10] = 10
+df$`Rangplatz Männer`[df$`Rangplatz Männer` < 1] = 1
+df$`Rangplatz Frauen`[df$`Rangplatz Frauen` > 10] = 10
+df$`Rangplatz Frauen`[df$`Rangplatz Frauen` < 1] = 1
+
+df[, "Differenz (d)"] = df$`Rangplatz Frauen` - df$`Rangplatz Männer` 
+names(df) = c("Film", "Rangplatz Frauen (X)", "Rangplatz Männer (Y)", "Differenz (d)")
+
+df2 = df
+df = as.data.frame(df)
+#rownames(df) = NULL
+kable(df[,])%>%
+  kable_styling(font_size = 16)
+```
+]
+
+---
+class: top, left
+### Korrelation
+
+#### Rangkorrelation $(r_s)$ - Beispiel
+
+* $d_i$ ist die Differenz der Ranglistenplätze einer Untersuchungseinheit i bezüglich der Variablen X und Y.
+
+$$r_s={}1-\frac{\displaystyle \sum_{i=1}^{n}d^2_i}{N \cdot (N^2 - 1)}$$
+
+$$r_s={}1-\frac{6 \cdot [2^2 + 0 + 2^2 +... + (-1)^2]}{10 \cdot (10^2 - 1)}=1-\frac{6 \cdot 204}{990}= 0.79$$
+
+* Die Ranglisten der Frauen und Männer korrelieren also relativ stark miteinander.
+
+* Frage: Ist dieser Zusammenhang auch statistisch signifikant?
+
+---
+class: top, left
+### Korrelation
+
+#### Rangkorrelation $(r_s)$ - Signifikanztest
+
+Für $n \geq 30$ kann der Korrelationskoeffizient der Rangkorrelation mit dem t-verteilten Test näherungsweise auf Signifikanz geprüft werden $(r_{s}= 0.79; N=10)$.
+
+Hypothesen:
+
+* $H_0$: $\rho = 0$
+* $H_1$: $\rho \neq 0$
+
+$$t=\frac{r \cdot \sqrt{N-2}}{\sqrt{1-r^2}}; df=N-2$$
+
+$$t=\frac{0.79 \cdot \sqrt{10-2}}{\sqrt{1-0.79^2}}=\frac{2.23}{0.61}=3.66$$
+Bestimmung von $(t_{krit})$ aus Tabelle (s.h. nächste Folie):
+
+---
+class: top, left
+### Korrelation
+
+<small>
+
+#### Rangkorrelation $(r_s)$ - Signifikanztest
+
+Kritischen t-Wert $(t_{krit})$ für $a=.05$ nachschlagen (ungerichtete Hypothese):
+
+.center[
+```{r eval = TRUE, echo = F, out.width = "700px"}
+knitr::include_graphics("bilder/ttab6.png")
+```
+]
+</small>
+
+---
+class: top, left
+### Korrelation
+
+<small>
+
+#### Rangkorrelation $(r_s)$ - Signifikanztest
+
+Für $n \geq 30$ kann der Korrelationskoeffizient der Rangkorrelation mit dem t-verteilten Test näherungsweise auf Signifikanz geprüft werden $(r_{s}= 0.79; N=10)$.
+
+Hypothesen:
+
+* $H_0$: $\rho = 0$
+* $H_1$: $\rho \neq 0$
+
+$$t=\frac{r \cdot \sqrt{N-2}}{\sqrt{1-r^2}}; df=N-2$$
+
+$$t=\frac{0.79 \cdot \sqrt{10-2}}{\sqrt{1-0.79^2}}=\frac{2.23}{0.61}=3.66$$
+
+
+* $t_{krit(df=8)}=2.306$ $\rightarrow$ Spalte für 0.975 in der t-Tabelle, da ungerichtete Hypothese
+* Der empirische t-Wert ist größer als der kritische t-Wert, der Korrelationskoeffizient ist signifikant größer als 0 (positiver Zusammenhang).
+* Die $H_{0}$ kann verworfen werden. Es besteht ein positiver Zusammenhang zwischen den Ratings der Männer und Frauen.
+
+</small>
+
+---
+class: top, left
+### Korrelation
+
+#### Rangkorrelation $(r_s)$ - Weitere Verwendung
+
+**Ausreißer:**
+
+* Die Rangkorrelation wird der Produkt-Moment-Korrelation auch vorgezogen wenn Ausreißer in den Daten sind.
+
+* Grund: Formel der Produkt-Moment-Korrelation nutzt Standardabweichungen (stark von Außreißern beeinflusst).
+
+**Korrelation einer intervallskalierten Variable mit einer ordinalen Variable:**
+
+* Es wird ebenfalls die Rangkorrelation verwendet.
+
+* Hierfür wird die intervallskalierte variable auf Rangskalenniveau transformiert (z.B. kleinster Wert erhält niedrigsten Rang)
+
+* Die Variable erfährt also eine Herabstufung des Skalenniveaus
+
+---
+class: top, left
+### Korrelation
+
+#### Exkurs: Korrelation und Kausalität
+
+* Korrelation darf nicht vorschnell als Beweis für Kausalitätsbeziehungen betrachtet werden
+
+* Ursache-Wirkungs-Beziehungen sind durch das ledigliche gemeinsame Auftreten zweier Variablen nicht bewiesen
+
+**Kausalmöglichkeiten:**
+
+* X verursacht Y
+* Y verursacht X
+* Gemeinsames Auftreten durch drittes Merkmal bedingt (Scheinkorrelation)
+
+**Beispiel Scheinkorrelation:**
+
+Nach dem 1. Weltkrieg nahmen in Deutschland die Anzahl der Störche und die Geburtenrate gleichermaßen ab.
+
+$\rightarrow$ Der Storch bringt die Kinder.
 
 ---
 class: top, left
 ### Take-aways
 
 .full-width[.content-box-gray[
-* t-Test ist eine Auswertungsverfahren für den Vergleich von Mittelwerten
+* Ein (bivariater) Zusammenhang zeigt sich darin, dass zwei Variablen **systematisch miteinander variieren**.
 
-* Vergleich von Mittelwerten 2er Gruppen erfolgt mittels unabhängigem t-Test, von Mittelwerten 2er Zeitpunkte mit abhängigem t-Test und Vergleich von Mittelwert mit vorgegebenem Referenzwert mit Ein-Stichproben t-Test
+* Die **Kovarianz**, ein unstandardisiertes Zusammenhangsmaß, kann puns die richtung des Zusammenhangs anzeigen, aber nicht direkt hinsichtlich seiner Stärke interpretiert werden.
 
-* Voraussetzungen für unabhängige t-Test umfassen unabhängige Daten, Intervallskalenniveau, Normalverteilung und Varianzhomogenität
+* Der **Korrelationskoeffizient** $(r)$ ist ein standardisiertes Maß für den Zusammenhang zweier Variablen und kann Werte im Bereich von -1 bis +1 annehmen.
 
-* Vorgehen: Berechnung von $t_{emp}$ und Vergleich mit $t_{krit}$, welcher aus t-Tabelle abgelesen wird
+* Zusammenhänge zwischen zwei intervallskalierten Variablen werden mit der **Produkt-Moment-Korrelation** (Pearson), ordinalskalierte mit der **Rangkorrelation** (Spearman) berechnet.
 
-* Vorsicht: t-Test kann zu Fehlentscheidungen führen (s.h. $\alpha$-Fehler und $\beta$-Fehler)
+* Die **Einteilung nach Cohen** erlaubt für $|r\geq.1|$, $|r\geq.3|$, $|r\geq.5|$ eine Unterteilung in kleine, mittlere und starke/große Zusammenhänge.
 
-* Prüfung, ob Effekt (Mittelwertunterschiede/Mittelwertsdifferenzen), die in Stichprobe gemessen wurden auf Population generalisierbar sind.
+* Ein bestehender Zusammenhang gibt **keine Auskunft über Kausalbeziehungen** zwischen den untersuchten Variablen
 ]
 ]
 
-[**Link zur Wissensüberprüfung**](https://docs.google.com/forms/d/e/1FAIpQLSfyoeahyWszszxLO6xipdtIsI7VREOVBFK6flgeAUw2FAn8Yg/viewform?usp=sf_link)
 
