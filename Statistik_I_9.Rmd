@@ -590,7 +590,7 @@ Ein-Stichproben t-Test:
 
 $$t = \frac{\bar{x}-μ}{\frac{\hat{\sigma}}{\sqrt{n}}}; df = n-1$$
 
-$$t = \frac{44.9-40}{\frac{8.9}{\sqrt{40}}}; df = 15-1$$
+$$t = \frac{44.9-40}{\frac{8.9}{\sqrt{15}}}; df = 15-1$$
 
 $$t = \frac{4.9}{2.298}=2.13; df = 14$$
 </small>
