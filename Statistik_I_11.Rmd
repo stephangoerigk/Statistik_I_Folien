@@ -378,7 +378,7 @@ Um den Korrelationskoeffizienten $(r)$ für unser Beispiel zu bestimmen, müssen
 * $\hat{\sigma}_x = `r round(sd(df2[,2]), 2)`$
 * $\hat{\sigma}_y = `r round(sd(df2[,3]), 2)`$
 
-$$cov_{x,y}=\frac{(6-8.5)\cdot(2-5.56)+(7-8.5)\cdot(2-5.56)+...}{`r N-1`}=`r round(cov(df2[,2], df2[,3]), 2)`$$
+$$cov_{x,y}=\frac{`r paste0(paste0("(", df2[1:4,2], "-", df2[1:4,3], ")", collapse = "\\cdot"), "+...")`}{`r N-1`}=`r round(cov(df2[,2], df2[,3]), 2)`$$
 
 $$r_{xy}=\frac{cov_{x,y}}{\hat{\sigma}_x \cdot \hat{\sigma}_y}=\frac{`r round(cov(df2[,2], df2[,3]), 2)`}{`r round(sd(df2[,2]), 2)` \cdot `r round(sd(df2[,3]), 2)`}= `r round(round(cov(df2[,2], df2[,3]), 2) / (round(sd(df2[,2]), 2) * round(sd(df2[,3]), 2)),2)`$$
 

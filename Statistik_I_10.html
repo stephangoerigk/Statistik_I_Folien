@@ -126,10 +126,6 @@ class: top, left
 &lt;img src="bilder/ellipse.png" width="300px" /&gt;
 
 
-```
-## quartz_off_screen 
-##                 2
-```
 ]
 ]
 ---
@@ -278,9 +274,9 @@ Ein Psychologe misst die Schlafdauer (X) von `\((N=16)\)` Proband:innen in Stund
 &lt;/tbody&gt;
 &lt;/table&gt;
 
-Die Kovarianz von Schlaf und Konzentration in dieser Stichprobe berechnet sich wie folgt:
+Die Kovarianz von Schlaf und Konzentration in dieser Stichprobe berechnet sich wie folgt `\((\bar{x}=8.62, \bar{y}=5.56)\)`:
 
-`$$cov_{x,y}=\frac{(6-2)\cdot(7-2)\cdot(13-9)\cdot(8-3)+...}{15}=7.16$$`
+`$$cov_{x,y}=\frac{(6-8.5)\cdot(2-5.56)+(7-8.5)\cdot(2-5.56)+...}{15}=7.16$$`
 * Der Zusammenhang zwischen Schlaf und Konzentrationsfähigkeit ist also positiv.
 
 * Über die relative Höhe des Zusammenhangs sagt dieser Wert nichts aus. Dafür brauchen wir ein standardisiertes Maß.
@@ -410,7 +406,7 @@ Um den Korrelationskoeffizienten `\((r)\)` für unser Beispiel zu bestimmen, mü
 * `\(\hat{\sigma}_x = 2.8\)`
 * `\(\hat{\sigma}_y = 3.37\)`
 
-`$$cov_{x,y}=\frac{(6-2)\cdot(7-2)\cdot(13-9)\cdot(8-3)+...}{15}=7.16$$`
+`$$cov_{x,y}=\frac{(6-8.5)\cdot(2-5.56)+(7-8.5)\cdot(2-5.56)+...}{15}=7.16$$`
 
 `$$r_{xy}=\frac{cov_{x,y}}{\hat{\sigma}_x \cdot \hat{\sigma}_y}=\frac{7.16}{2.8 \cdot 3.37}= 0.76$$`
 
@@ -494,7 +490,7 @@ class: top, left
 * `\(H_0\)`: `\(\rho = 0\)`
 * `\(H_1\)`: `\(\rho \neq 0\)`
 
-**Ungerichtete Hypothese: (*"Es besteht ein positiver/negativer Zusammenhang zwischen X und Y."*)**
+**Gerichtete Hypothese: (*"Es besteht ein positiver/negativer Zusammenhang zwischen X und Y."*)**
 * `\(H_0\)`: `\(\rho \leq 0\)`, bzw. `\(\rho \geq 0\)`
 * `\(H_1\)`: `\(\rho &gt; 0\)`, bzw. `\(\rho &lt; 0\)`
 
