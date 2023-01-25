@@ -626,7 +626,7 @@ class: top, left
 
 * Es sollt untersucht werden, ob ein Zusammenhang zwischen der Rangliste der Frauen und der Rangliste der Männer besteht.
 
-$$r_s={}1-\frac{\displaystyle \sum_{i=1}^{n}d^2_i}{N \cdot (N^2 - 1)}$$
+$$r_s={}1-\frac{6 \cdot \displaystyle \sum_{i=1}^{n}d^2_i}{N \cdot (N^2 - 1)}$$
 ]
 
 .pull-right[
@@ -664,7 +664,7 @@ class: top, left
 
 * $d_i$ ist die Differenz der Ranglistenplätze einer Untersuchungseinheit i bezüglich der Variablen X und Y.
 
-$$r_s={}1-\frac{\displaystyle \sum_{i=1}^{n}d^2_i}{N \cdot (N^2 - 1)}$$
+$$r_s={}1-\frac{6 \cdot \displaystyle \sum_{i=1}^{n}d^2_i}{N \cdot (N^2 - 1)}$$
 
 $$r_s={}1-\frac{6 \cdot [2^2 + 0 + 2^2 +... + (-1)^2]}{10 \cdot (10^2 - 1)}=1-\frac{6 \cdot 204}{990}= 0.79$$
 
