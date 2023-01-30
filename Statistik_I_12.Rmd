@@ -90,7 +90,7 @@ class: top, left
 
 * Eine größere Teilnehmerzahl in einem Experiment führt zu einer höheren Wahrscheinlichkeit, dass die Null-Hypothese abgelehnt wird und das Ergebnis statistisch signifikant ist. 
 
-* Je schneller dies geschieht, desto größer ist die Power des statistischen Verfahrens.
+* Je eher dies geschieht, desto größer ist die Power des statistischen Verfahrens.
 
 * Ein Testverfahren mit einer hohen Power hat eine geringe Wahrscheinlichkeit, einen Effekt zu übersehen, auch wenn dieser klein ist. 
 
@@ -106,7 +106,7 @@ class: top, left
 
 #### Cohen’s d
 
-* Cohen's d ist die meist bekannte und gängigste Methode zur Bestimmung der Effektstärke. 
+* Cohen's d ist die bekannteste und gängigste Methode zur Bestimmung der Effektstärke. 
 
 * Es wird verwendet, um den Effekt von Studien zu vergleichen, auch wenn die abhängige Variable unterschiedlich gemessen wird. 
 
@@ -211,11 +211,14 @@ df %>%
   kable_classic(full_width = F)
 ```
 
-* $\bar{x}_{G1}= `r round(mean(df[,1]),2)`$
-* $\bar{x}_{G2}= `r round(mean(df[,2]),2)`$
-* $s^2_{G1}= `r round(var(df[,1]),2)`$
-* $s^2_{G2}= `r round(var(df[,2]),2)`$
 ]
+* $\bar{x}_{G1}= `r round(mean(df[,1]),2)`$
+
+* $\bar{x}_{G2}= `r round(mean(df[,2]),2)`$
+
+* $s^2_{G1}= `r round(var(df[,1]),2)`$
+
+* $s^2_{G2}= `r round(var(df[,2]),2)`$
 ]
 
 ---
@@ -232,7 +235,7 @@ class: top, left
 $$d=\frac{\bar{x}_1 - \bar{x}_2}{\sqrt{\frac{s^2_1 + s^2_2}{2}}}$$
 
 $$d=\frac{3.6 - 6.6}{\sqrt{\frac{1.3 + 2.8}{2}}}=\frac{3}{1.43}=2.10$$
-
+Nach Cohen liegt ein großer Effekt vor (s.u.).
 ---
 class: top, left
 
@@ -476,6 +479,8 @@ class: top, left
 
 #### Statistische Power (Teststärke)
 
+<small>
+
 * Statistische Power ist die Wahrscheinlichkeit, dass ein Effekt entdeckt wird, wenn der Effekt auch tatsächlich existiert. 
 
 * (Statistische) Power wird definiert als die Wahrscheinlichkeit, korrekterweise eine falsche Nullhypothese zurückzuweisen. 
@@ -489,6 +494,8 @@ class: top, left
 * Statistische Power ist eine Funktion der Effektstärke, der Stichprobengröße (N), des verwendeten statistischen Verfahrens und des Signifikanzniveaus (Wahrscheinlichkeit einen Fehler 1. Art zu begehen).
 
 * In den letzten 20 Jahren hat die statistische Power und ihre Bedeutung für wissenschaftliche Studien mehr Aufmerksamkeit erhalten, und mehr Journals, Stakeholder und Reviewer verlangen von Forschern Power-Analysen.
+
+</small>
 
 ---
 class: top, left
@@ -560,23 +567,5 @@ knitr::include_graphics("bilder/gpower.png")
 ```
 ]
 
----
-class: top, left
-### Take-aways
-
-.full-width[.content-box-gray[
-* Ein (bivariater) Zusammenhang zeigt sich darin, dass zwei Variablen **systematisch miteinander variieren**.
-
-* Die **Kovarianz**, ein unstandardisiertes Zusammenhangsmaß, kann puns die richtung des Zusammenhangs anzeigen, aber nicht direkt hinsichtlich seiner Stärke interpretiert werden.
-
-* Der **Korrelationskoeffizient** $(r)$ ist ein standardisiertes Maß für den Zusammenhang zweier Variablen und kann Werte im Bereich von -1 bis +1 annehmen.
-
-* Zusammenhänge zwischen zwei intervallskalierten Variablen werden mit der **Produkt-Moment-Korrelation** (Pearson), ordinalskalierte mit der **Rangkorrelation** (Spearman) berechnet.
-
-* Die **Einteilung nach Cohen** erlaubt für $|r\geq.1|$, $|r\geq.3|$, $|r\geq.5|$ eine Unterteilung in kleine, mittlere und starke/große Zusammenhänge.
-
-* Ein bestehender Zusammenhang gibt **keine Auskunft über Kausalbeziehungen** zwischen den untersuchten Variablen
-]
-]
 
 
