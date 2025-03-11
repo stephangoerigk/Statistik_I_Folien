@@ -1,0 +1,1098 @@
+---
+title: "Einheit 12"
+subtitle: "⚔<br/>with xaringan"
+author: "Prof. Dr. Stephan Goerigk"
+institute: "RStudio, PBC"
+date: "2016/12/12 (updated: `r Sys.Date()`)"
+output:
+  xaringan::moon_reader:
+    css: [xaringan-themer.css, "hygge"]
+    lib_dir: libs
+    nature:
+      slideNumberFormat: "%current%"
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9'
+    seal: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+
+library(tidyverse)
+library(kableExtra)
+library(ggplot2)
+library(plotly)
+library(htmlwidgets)
+library(MASS)
+library(ggpubr)
+library(xaringanthemer)
+library(xaringanExtra)
+library(gghighlight)
+
+style_duo_accent(
+  primary_color = "#621C37",
+  secondary_color = "#EE0071",
+  background_image = "blank.png"
+)
+
+xaringanExtra::use_xaringan_extra(c("tile_view"))
+
+use_scribble(
+  pen_color = "#EE0071",
+  pen_size = 4
+)
+
+knitr::opts_chunk$set(
+  fig.retina = TRUE,
+  warning = FALSE,
+  message = FALSE
+)
+```
+
+name: Title slide
+class: middle, left
+<br><br><br><br><br><br><br>
+# Statistik I
+***
+### Einheit 12: Übungsaufgaben Schritt-für-Schritt
+##### `r format(as.Date(data.frame(readxl::read_excel("Modul Quantitative Methoden I_Termine.xlsx"))$Datum), "%d.%m.%Y")[12]` | Prof. Dr. Stephan Goerigk
+
+---
+class: top, left
+### Wiederholung: $t$-Test händisch rechnen
+
+**Anleitung - Schritt für Schritt:**
+
+<small>
+
+1. Hypothesenpaar aus $H_{0}$ und $H_{1}$ aufstellen
+  * VORSICHT: gerichtet oder ungerichtet $\rightarrow$ Unterschied bei Signifikanzgrenze
+
+2. Mittelwerte und Streuungen berechnen (es sei denn bereits angegeben). 
+  * VORSICHT: Es kann in der Aufgabenstellung Varianz ODER Standardabweichung gegeben sein
+  * VORSICHT: Beim abhängigen t-Test Mittelwert und Streuung der Differenzen (Post-Prä) berechnen
+  
+3. Stichprobengrößen berücksichtigen
+  * VORSICHT: Es können gleich große $(n_1=n_2)$ oder unterschiedliche große Gruppen $(n_1 \neq n_2)$ vorliegen
+
+4. t-Wert $(t_{emp})$ unter der Nullhypothese bestimmen
+
+5. kritischen t-Wert $(t_{krit})$ aus Tabelle ablesen
+  * VORSICHT: gerichtet/einseitig $\rightarrow$ $1-\alpha =.95$; ungerichtet/zweiseitig $\rightarrow$ $\frac{1-\alpha}{2}=.975$
+
+6. Vergleich von $t_{emp}$ mit $t_{krit}$. Wenn $t_{emp} > t_{krit}$ $\rightarrow$ Test signifikant $\rightarrow$ $H_{0}$ verwerfen
+
+</small>
+
+---
+class: top, left
+### $t$-Test
+
+#### Übungsaufgabe 1: Remuneration
+
+* Eine Psychologiestudentin möchte Versuchspersonen nach Teilnahme an ihrem Experiment mit einem kleinen Geldbetrag vergüten.
+
+* Sie möchte wissen, ob in Abhängigkeit der Höhe des Betrags Unterschiede in der Zufriedenheit der Teilnehmer:innen bestehen.
+
+* Höhere Werte zeigen höhere Zufriedenheit an.
+
+* Ihre Ergebnisse stehen in der nachfolgenden Tabelle:
+
+.pull-left[
+```{r echo = F}
+df = data.frame(G1 = c(4,2,3,5,4),
+                G2 = c(6,4,7,8,8))
+
+names(df) = c("Gruppe 1: erhält 10€", "Gruppe 2: erhält 50€")
+
+df %>%
+  kbl() %>%
+  kable_styling(font_size = 18) %>%
+  kable_classic(full_width = F)
+```
+]
+
+.pull-right[
+Es ergeben sich folgende Kennwerte:
+* $\bar{x}_1 = 3.6$
+* $\bar{x}_2 = 6.6$
+* $\hat{\sigma}_1 = 1.14$
+* $\hat{\sigma}_2 = 1.67$
+]
+
+---
+class: top, left
+### $t$-Test
+
+#### Übungsaufgabe 1: Remuneration
+
+.pull-left[
+```{r echo = F}
+df = data.frame(G1 = c(4,2,3,5,4),
+                G2 = c(6,4,7,8,8))
+
+names(df) = c("Gruppe 1: erhält 10€", "Gruppe 2: erhält 50€")
+
+df %>%
+  kbl() %>%
+  kable_styling(font_size = 18) %>%
+  kable_classic(full_width = F)
+```
+]
+
+.pull-right[
+Es ergeben sich folgende Kennwerte:
+* $\bar{x}_1 = 3.6$
+* $\bar{x}_2 = 6.6$
+* $\hat{\sigma}_1 = 1.14$
+* $\hat{\sigma}_2 = 1.67$
+]
+
+<br>
+
+**Aufgaben:**
+
+a) Stellen Sie das Hypothesenpaar aus $H_{0}$ und $H_{1}$ auf.
+
+b) Prüfen Sie, ob es einen statistischen Unterschied zwischen den Gruppen gibt $(\alpha=.05)$. Varianzhomogenität und Normalverteilung in den Gruppen kann angenommen werden.
+
+---
+class: top, left
+### $t$-Test
+
+#### Übungsaufgabe 1: Remuneration
+
+a) Stellen Sie $H_{0}$ und $H_{1}$ auf.
+
+* $H_{0}$: $μ_2 - μ_1 =0$
+* $H_{1}$: $μ_2 - μ_1 \neq0$
+
+**Interpretation:**
+
+* $H_{0}$:
+  * Die $H_{0}$ besagt, dass kein signifikanter Unterschied zwischen den Gruppen besteht.
+  * Laut der $H_{0}$ macht es keinen Unterschied, wie viel Geld die Teilnehmer:innen bekommen.
+* $H_{1}$:
+  * Die $H_{1}$ besagt, dass ein signifikanter Unterschied zwischen den Gruppen besteht.
+  * Laut der $H_{1}$ hat der Unterschied im gezahlten Geldbetrag einen Effekt auf die Zufriedenheit der Teilnehmer:innen.
+
+---
+class: top, left
+### $t$-Test
+
+#### Übungsaufgabe 1: Remuneration
+<small>
+
+b) Prüfen Sie, ob es einen statistischen Unterschied zwischen den Gruppen gibt $(\alpha=.05)$. Varianzhomogenität und Normalverteilung in den Gruppen kann angenommen werden.
+
+t-Test für unabhängige Stichproben:
+
+$$t = \frac{\bar{x}_{1}- \bar{x}_{2}}{\sqrt{\frac{(n_{1} - 1) \cdot \hat{\sigma^2_{1}}+ (n_{2} - 1) \cdot \hat{\sigma^2_{2}}}{(n_{1} - 1) + (n_{2} - 1)} (\frac{1}{n_{1}}+\frac{1}{n_{2}})}}; df=n_{1}+n_{2} - 2$$
+
+$$t = \frac{6.6 - 3.6}{\sqrt{\frac{(5 - 1) \cdot 1.14^2+ (5 - 1) \cdot 1.67^2}{(5 - 1) + (5 - 1)} (\frac{1}{5}+\frac{1}{5})}}; df=5+5 - 2$$
+$$t = \frac{3}{\sqrt{0.8177}} = \frac{3}{0.9} = 3.33; df=8$$
+</small>
+
+---
+class: top, left
+### $t$-Test
+
+#### Übungsaufgabe 1: Remuneration
+
+Kritischen t-Wert $(t_{krit})$ für $a=.05$ nachschlagen:
+
+.center[
+```{r eval = TRUE, echo = F, out.width = "750px"}
+knitr::include_graphics("bilder/ttab1.png")
+```
+]
+
+---
+class: top, left
+### $t$-Test
+
+#### Übungsaufgabe 1: Remuneration
+<small>
+
+b) Prüfen Sie, ob es einen statistischen Unterschied zwischen den Gruppen gibt $(\alpha=.05)$. Varianzhomogenität und Normalverteilung in den Gruppen kann angenommen werden.
+
+t-Test für unabhängige Stichproben:
+
+$$t = \frac{\bar{x}_{1}- \bar{x}_{2}}{\sqrt{\frac{(n_{1} - 1) \cdot \hat{\sigma^2_{1}}+ (n_{2} - 1) \cdot \hat{\sigma^2_{2}}}{(n_{1} - 1) + (n_{2} - 1)} (\frac{1}{n_{1}}+\frac{1}{n_{2}})}}; df=n_{1}+n_{2} - 2$$
+
+$$t = \frac{6.6 - 3.6}{\sqrt{\frac{(5 - 1) \cdot 1.14^2+ (5 - 1) \cdot 1.67^2}{(5 - 1) + (5 - 1)} (\frac{1}{5}+\frac{1}{5})}}; df=5+5 - 2$$
+$$t = \frac{3}{\sqrt{0.8177}} = \frac{3}{0.9} = 3.33; df=8$$
+* $t_{krit(df=8)}=2.306$ $\rightarrow$ Spalte für 0.975 in der t-Tabelle, da ungerichtete Hypothese
+* Der empirische t-Wert ist größer als der kritische t-Wert, die Mittelwerte unterscheiden sich signifikant voneinander.
+* Die $H_{0}$ kann verworfen werden. Es macht einen Unterschied, wie viel Geld die Proband:innen bekommen.
+
+</small>
+
+---
+class: top, left
+### $t$-Test
+
+#### Übungsaufgabe 2: Emotionsinduktion
+
+* Ein Forscher möchte den Effekt von Gruselpodcasts auf die Angst von Versuchspersonen untersuchen.
+
+* Er lässt die Personen jeweils entweder einen Gruselpodcast (Gruppe 1) oder einen Wissenspodcast (Gruppe 2) anhören.
+
+* Seine Annahme lautet, dass die Personen ihre Angst auf einer Skala von 1-10 Punkten im Durchschnitt höher berichten, wenn sie zuvor einen Gruselpodcast gehört haben.
+
+Ergebnisse aus der Stichprobe:
+
+* $\bar{x}_1 = 6.8$
+* $\bar{x}_2 = 5.9$
+* $\hat{\sigma}^2_1 = 3.2$
+* $\hat{\sigma}^2_2 = 3.8$
+* $n_1 = 25$
+* $n_2 = 28$
+
+---
+class: top, left
+### $t$-Test
+
+#### Übungsaufgabe 2: Emotionsinduktion
+
+Ergebnisse aus der Stichprobe:
+
+* $\bar{x}_1 = 6.8$
+* $\bar{x}_2 = 5.9$
+* $\hat{\sigma}^2_1 = 3.2$
+* $\hat{\sigma}^2_2 = 3.8$
+* $n_1 = 25$
+* $n_2 = 28$
+
+**Aufgaben:**
+
+a) Stellen Sie $H_{0}$ und $H_{1}$ auf.
+
+b)  Prüfen Sie, ob sich die Annahme des Forschers statistisch signifikant nachweisen lässt $(\alpha=.05)$. Varianzhomogenität und Normalverteilung in den Gruppen kann angenommen werden.
+
+---
+class: top, left
+### $t$-Test
+
+#### Übungsaufgabe 2: Emotionsinduktion
+
+a) Stellen Sie $H_{0}$ und $H_{1}$ auf.
+
+* $H_{0}$: $μ_1 - μ_2 \leq 0$
+* $H_{1}$: $μ_1 - μ_2 > 0$
+
+**Interpretation:**
+
+* $H_{0}$:
+  * Die $H_{0}$ besagt, dass kein signifikanter Unterschied zwischen den Gruppen besteht, bzw. dieser nicht in die von der $H_{1}$ postulierte Richtung geht.
+  * Laut der $H_{0}$ führt das Hören gruseliger Podcasts nicht zu höherer Angst.
+* $H_{1}$:
+  * Die $H_{1}$ besagt, dass das Hören gruseliger Podcasts zu höherer Angst führt.
+
+---
+class: top, left
+### $t$-Test
+
+#### Übungsaufgabe 2: Emotionsinduktion
+
+<small>
+
+b)  Prüfen Sie, ob sich die Annahme des Forschers statistisch signifikant nachweisen lässt $(\alpha=.05)$. Varianzhomogenität und Normalverteilung in den Gruppen kann angenommen werden.
+
+t-Test für unabhängige Stichproben:
+
+$$t = \frac{\bar{x}_{1}- \bar{x}_{2}}{\sqrt{\frac{(n_{1} - 1) \cdot \hat{\sigma^2_{1}}+ (n_{2} - 1) \cdot \hat{\sigma^2_{2}}}{(n_{1} - 1) + (n_{2} - 1)} (\frac{1}{n_{1}}+\frac{1}{n_{2}})}}; df=n_{1}+n_{2} - 2$$
+
+$$t = \frac{6.8- 5.9}{\sqrt{\frac{(25 - 1) \cdot 3.2+ (28 - 1) \cdot 3.8}{(25 - 1) + (28 - 1)} (\frac{1}{25}+\frac{1}{28})}}; df=25+28 - 2$$
+
+$$t = \frac{0.9}{0.52}= 1.73; df=51$$
+</small>
+
+---
+class: top, left
+### $t$-Test
+
+#### Übungsaufgabe 2: Emotionsinduktion
+
+Kritischen t-Wert $(t_{krit})$ für $a=.05$ nachschlagen:
+
+.center[
+```{r eval = TRUE, echo = F, out.width = "450px"}
+knitr::include_graphics("bilder/ttab2.png")
+```
+]
+
+---
+class: top, left
+### $t$-Test
+
+#### Übungsaufgabe 2: Emotionsinduktion
+
+<small>
+
+b)  Prüfen Sie, ob sich die Annahme des Forschers statistisch signifikant nachweisen lässt $(\alpha=.05)$. Varianzhomogenität und Normalverteilung in den Gruppen kann angenommen werden.
+
+t-Test für unabhängige Stichproben:
+
+$$t = \frac{\bar{x}_{1}- \bar{x}_{2}}{\sqrt{\frac{(n_{1} - 1) \cdot \hat{\sigma^2_{1}}+ (n_{2} - 1) \cdot \hat{\sigma^2_{2}}}{(n_{1} - 1) + (n_{2} - 1)} (\frac{1}{n_{1}}+\frac{1}{n_{2}})}}; df=n_{1}+n_{2} - 2$$
+
+$$t = \frac{6.8- 5.9}{\sqrt{\frac{(25 - 1) \cdot 3.2+ (28 - 1) \cdot 3.8}{(25 - 1) + (28 - 1)} (\frac{1}{25}+\frac{1}{28})}}; df=25+28 - 2$$
+
+$$t = \frac{0.9}{0.52}= 1.73; df=51$$
+* $t_{krit(df=40)}=1.684$ $\rightarrow$ Spalte für 0.95 in der t-Tabelle, da gerichtete Hypothese
+* Der empirische t-Wert ist größer als der kritische t-Wert, die Mittelwerte unterscheiden sich signifikant voneinander.
+* Die $H_{0}$ kann verworfen werden. Gruselpodcasts machen den Teilnehmer:innen signifikant mehr Angst.
+
+</small>
+
+---
+class: top, left
+### $t$-Test
+
+#### Übungsaufgabe 3: Therapieevaluation
+
+.pull-left[
+
+* Eine Therapeutin hat eine neue Unterform der kognitiven Verhaltenstherapie entwickelt, bei der besonders auf Patientenfeedback geachtet wird.
+
+* Sie möchte prüfen, ob diese neue Therapievariante die Lebensqualität von Patient:innen signifikant erhöhen kann.
+
+* Sie misst zunächst die Lebensqualität (Prä-Messung), führt dann die Therapie durch und misst dann erneut die Lebensqualität (Post-Messung).
+]
+
+.pull-right[
+
+```{r echo = F}
+df = data.frame(Prä = c(4,6,3,7,2,8,3,5,6,4),
+                Post = c(6,7,8,7,4,7,6,6,8,5))
+df %>%
+  kbl() %>%
+  kable_styling(font_size = 18) %>%
+  kable_classic(full_width = T)
+```
+]
+
+---
+class: top, left
+### $t$-Test
+
+#### Übungsaufgabe 3: Therapieevaluation
+
+.pull-left[
+
+**Aufgaben:**
+
+a) Stellen Sie $H_{0}$ und $H_{1}$ auf.
+
+b) Berechnen Sie den Kennwert des Tests und seine Streung.
+
+c) Prüfen Sie, ob sich die Therapie signifikant positiv auf die Lebensqualität auswirkt $(\alpha=.05)$. Normalverteilung der Differenzwerte kann angenommen werden.
+]
+
+.pull-right[
+
+```{r echo = F}
+df = data.frame(Prä = c(4,6,3,7,2,8,3,5,6,4),
+                Post = c(6,7,8,7,4,7,6,6,8,5))
+df %>%
+  kbl() %>%
+  kable_styling(font_size = 18) %>%
+  kable_classic(full_width = T)
+```
+]
+
+---
+class: top, left
+### $t$-Test
+
+#### Übungsaufgabe 3: Therapieevaluation
+
+a) Stellen Sie $H_{0}$ und $H_{1}$ auf.
+
+* $H_{0}$: $μ_{d} \leq 0$
+* $H_{1}$: $μ_{d} > 0$
+
+**Interpretation:**
+
+* $H_{0}$:
+  * Die $H_{0}$ besagt, dass kein signifikanter Unterschied zwischen den Messwerten  zu Prä und Post besteht, bzw. dieser nicht in die von der $H_{1}$ postulierte Richtung geht.
+  * Laut der $H_{0}$ führt die Therapie nicht zu einer erhöhten Lebensqualität.
+* $H_{1}$:
+  * Die $H_{1}$ besagt, dass die Therapie die Lebensqualität von Zeitpunkt Prä nach Post erhöhen kann.
+  
+---
+class: top, left
+### $t$-Test
+
+#### Übungsaufgabe 3: Therapieevaluation
+
+.pull-left[
+
+b) Kennwert und Streuung des Kennwerts:
+
+$$\bar{x}_d=\frac{\sum\limits _{i=1}^{n}d_{i}}{n} = 1.6$$
+
+$$\hat{\sigma}_d = \sqrt{\frac{\sum\limits _{i=1}^{N}(d_{i}-\bar{x}_d)^2}{N-1}}=1.65$$
+]
+
+.pull-right[
+```{r echo = F}
+df = data.frame(Prä = c(4,6,3,7,2,8,3,5,6,4),
+                Post = c(6,7,8,7,4,7,6,6,8,5))
+df$d = df$Post - df$Prä
+
+names(df) = c("Prä", "Post", "d (Post-Prä)")
+  
+df %>%
+  kbl() %>%
+  kable_styling(font_size = 18) %>%
+  kable_classic(full_width = T)
+```
+]
+
+---
+class: top, left
+### $t$-Test
+
+#### Übungsaufgabe 3: Therapieevaluation
+
+<small>
+
+c) Prüfen Sie, ob sich die Therapie signifikant positiv auf die Lebensqualität auswirkt.
+
+* $\bar{x}_d = 1.6$
+* $\hat{\sigma}_d = 1.65$
+* $df = n-1=9$
+
+Berechnung des Standardfehlers der Differenzen:
+
+$$\hat{\sigma}_{\bar{x}_d} = \frac{\hat{\sigma}_d}{\sqrt{N}}=\frac{1.65}{\sqrt{10}}=0.52$$
+t-Test für abhängige Stichproben:
+
+$$t_{abhängig}=\frac{\bar{x}_d}{\hat{\sigma}_{\bar{x}_d}}= \frac{1.6}{0.52}=3.07$$
+
+</small>
+
+---
+class: top, left
+### $t$-Test
+
+#### Übungsaufgabe 3: Therapieevaluation
+
+Kritischen t-Wert $(t_{krit})$ für $a=.05$ nachschlagen:
+
+.center[
+```{r eval = TRUE, echo = F, out.width = "750px"}
+knitr::include_graphics("bilder/ttab3.png")
+```
+]
+
+---
+class: top, left
+### $t$-Test
+
+#### Übungsaufgabe 3: Therapieevaluation
+
+<small>
+
+c) Prüfen Sie, ob sich die Therapie signifikant positiv auf die Lebensqualität auswirkt.
+
+* $\bar{x}_d = 1.6$
+* $\hat{\sigma}_d = 1.65$
+* $df = n-1=9$
+
+Berechnung des Standardfehlers der Differenzen:
+
+$$\hat{\sigma}_{\bar{x}_d} = \frac{\hat{\sigma}_d}{\sqrt{N}}=\frac{1.65}{\sqrt{10}}=0.52$$
+t-Test für abhängige Stichproben:
+
+$$t_{abhängig}=\frac{\bar{x}_d}{\hat{\sigma}_{\bar{x}_d}}= \frac{1.6}{0.52}=3.07$$
+* $t_{krit(df=9)}=1.833$ $\rightarrow$ Spalte für 0.95 in der t-Tabelle, da gerichtete Hypothese
+* Der empirische t-Wert ist größer als der kritische t-Wert, die Mittelwerte unterscheiden sich signifikant voneinander.
+* Die $H_{0}$ kann verworfen werden. Die neue Thearpievariante führt zu signifikanter Verbesserung in der Lebensqualität.
+
+</small>
+
+---
+class: top, left
+### $t$-Test
+
+#### Übungsaufgabe 4: Zeit bis Relapse
+
+* Eine neue tiefenpsychologische Therapieform zur Behandlung von chronischer Depression soll angeblich ein besonders stabiles Therapieansprechen bewirken
+
+* Stabil heißt in diesem Zusammenhang, dass Patient:innen die einmal remittieren auch gesund bleiben. Ansonsten spricht man von einem Rückfall (Relapse)
+
+* Ein Forscherteam behauptet, dass Patienten nach Therapieende im Schnitt länger als 40 Monate symptomfrei bleiben.
+
+* In einer Stichprobe von 15 Patient:innen zeigten sich folgende Ergebnisse:
+
+Ergebnisse:
+
+* $\bar{x}=44.9$
+* $s=8.9$
+* $n=15$
+
+---
+class: top, left
+### $t$-Test
+
+#### Übungsaufgabe 4: Zeit bis Relapse
+
+* $\bar{x}=44.9$
+* $s=8.9$
+* $n=15$
+
+**Aufgaben**
+
+a) Stellen Sie $H_{0}$ und $H_{1}$ auf.
+
+b) Prüfen Sie, ob die Zeit bis zum Relapse den Referenzwert von 40 Monaten signifikant überschreitet $(\alpha=.05)$.
+
+---
+class: top, left
+### $t$-Test
+
+#### Übungsaufgabe 4: Zeit bis Relapse
+
+a) Stellen Sie $H_{0}$ und $H_{1}$ auf.
+
+* $H_{0}$: $μ \leq μ_0$
+* $H_{1}$: $μ > μ_0$
+
+**Interpretation:**
+
+* $H_{0}$:
+  * Die $H_{0}$ besagt, dass die Zeit bis zum Relapse nicht höher als der Referenzwert ist.
+  * Laut der $H_{0}$ führt die Therapie nicht zu einem Therapieansprechen, dass länger als 40 Monate stabil ist.
+* $H_{1}$:
+  * Die $H_{1}$ besagt, dass die Therapie zu stabilen Ergebnissen, mit Zeiten bis Relapse von durchschnittlich länger als 40 Monate führt.
+
+---
+class: top, left
+### $t$-Test
+
+#### Übungsaufgabe 4: Zeit bis Relapse
+
+<small>
+
+b) Prüfen Sie, ob die Zeit bis zum Relapse den Referenzwert von 40 Monaten signifikant überschreitet $(\alpha=.05)$.
+
+* $\bar{x}=44.9$
+* $s=8.9$
+* $n=15$
+
+Ein-Stichproben t-Test:
+
+$$t = \frac{\bar{x}-μ}{\frac{\hat{\sigma}}{\sqrt{n}}}; df = n-1$$
+
+$$t = \frac{44.9-40}{\frac{8.9}{\sqrt{15}}}; df = 15-1$$
+
+$$t = \frac{4.9}{2.298}=2.13; df = 14$$
+</small>
+
+---
+class: top, left
+### $t$-Test
+
+#### Übungsaufgabe 4: Zeit bis Relapse
+
+Kritischen t-Wert $(t_{krit})$ für $a=.05$ nachschlagen:
+
+.center[
+```{r eval = TRUE, echo = F, out.width = "750px"}
+knitr::include_graphics("bilder/ttab4.png")
+```
+]
+
+---
+class: top, left
+### $t$-Test
+
+#### Übungsaufgabe 4: Zeit bis Relapse
+
+<small>
+
+b) Prüfen Sie, ob die Zeit bis zum Relapse den Referenzwert von 40 Monaten signifikant überschreitet $(\alpha=.05)$.
+
+* $\bar{x}=44.9$
+* $s=8.9$
+* $n=15$
+
+Ein-Stichproben t-Test:
+
+$$t = \frac{\bar{x}-μ}{\frac{\hat{\sigma}}{\sqrt{n}}}; df = n-1$$
+
+$$t = \frac{44.9-40}{\frac{8.9}{\sqrt{40}}}; df = 15-1$$
+
+$$t = \frac{4.9}{2.298}=2.13; df = 14$$
+* $t_{krit(df=14)}=1.761$ $\rightarrow$ Spalte für 0.95 in der t-Tabelle, da gerichtete Hypothese
+* Der empirische t-Wert ist größer als der kritische t-Wert, die Mittelwerte unterscheiden sich signifikant voneinander.
+* Die $H_{0}$ kann verworfen werden. Die durchschnittliche Zeit bis zu einem Rückfall ist signifikant länger als 40 Tage.
+
+</small>
+
+
+---
+class: top, left
+### Take-aways
+
+.full-width[.content-box-gray[
+* t-Test ist ein Auswertungsverfahren für den **Vergleich von Mittelwerten**
+
+* Vergleich von Mittelwerten 2er Gruppen erfolgt mittels **unabhängigem t-Test**, von Mittelwerten 2er Zeitpunkte mit **abhängigem t-Test** und Vergleich von Mittelwert mit vorgegebenem Referenzwert mit **Ein-Stichproben t-Test**
+
+* **Voraussetzungen** für unabhängige t-Test umfassen unabhängige Daten, Intervallskalenniveau, Normalverteilung und Varianzhomogenität
+
+* Vorgehen: Berechnung von $t_{emp}$ und Vergleich mit $t_{krit}$, welcher aus t-Tabelle abgelesen wird
+
+* Vorsicht: t-Test kann zu **Fehlentscheidungen** führen (s.h. $\alpha$-Fehler und $\beta$-Fehler)
+
+* Prüfung, ob Effekt (Mittelwertunterschiede/Mittelwertsdifferenzen), der in Stichprobe gemessen wurde, auf Population **generalisierbar** sind.
+]
+]
+
+
+---
+class: top, left
+<small>
+### Wiederholung: Korrelation händisch rechnen
+
+**Anleitung - Schritt für Schritt:**
+
+
+1. Hypothesenpaar aus $H_{0}$ und $H_{1}$ aufstellen
+  * VORSICHT: gerichtet oder ungerichtet $\rightarrow$ Unterschied bei Signifikanzgrenze
+
+2. Ggf. Mittelwerte und Streuungen berechnen (es sei denn bereits angegeben). 
+  * VORSICHT: Es kann in der Aufgabenstellung Varianz ODER Standardabweichung gegeben sein
+  * VORSICHT: Bei der Spearman Korrelation Differenzen zwischen Rängen berechnen
+  
+3. Korrelationskoeffizient berechnen
+  * Pearson: Zunächtst Kovarianz und maximale Kovarianz $|cov_{max}|$ berechnen
+  * Spearman: Kann direkt über Formel berechnet werden
+
+4. Richtung (positiv/negativ) und Stärke (Cohen: schwach/klein, mittel, groß/stark) bestimmen
+
+5. t-Wert $(t_{emp})$ unter der Nullhypothese bestimmen
+
+6. kritischen t-Wert $(t_{krit})$ aus Tabelle ablesen
+  * VORSICHT: gerichtet/einseitig $\rightarrow$ $1-\alpha =.95$; ungerichtet/zweiseitig $\rightarrow$ $\frac{1-\alpha}{2}=.975$
+
+7. Vergleich von $t_{emp}$ mit $t_{krit}$. Wenn $t_{emp} > t_{krit}$ $\rightarrow$ Test signifikant $\rightarrow$ $H_{0}$ verwerfen
+
+</small>
+
+
+---
+class: top, left
+### Korrelation
+
+#### Übungsaufgabe 1: Bystander Effekt
+
+* Ein Psychologe möchte prüfen, ob die Anzahl der Menschen, die einen Überfall beobachten, mit der Zeit zusammenhängt, die vergeht, bis der überfallenen Person geholfen wird.
+
+* Er engagiert 2 Schauspieler, die an 10 verschiedenen Orten in Berlin einen Überfall vorspielen und misst die Zeit (in Sekunden), bis geholfen wird.
+
+Das sind die Ergebnisse:
+
+```{r echo = F}
+set.seed(123)
+N = 10
+df = data.frame(ID = c(paste0(rep(1:N))),
+                Menschen = c(13,8,6,7,7,4,6,9,13,8)
+)
+
+df$Zeit = c(47,36,12,30,24,23,29,29,43,29)
+df$Zeit = round(df$Zeit)
+names(df) = c("ID", "Menschen (X)", "Zeit (Y)")
+df2 = df
+df = as.data.frame(t(df))
+#rownames(df) = NULL
+kable(df[,], col.names = NULL)%>%
+  kable_styling(font_size = 18)
+```
+
+**Aufgaben:**
+
+a) Stellen Sie das Hypothesenpaar aus $H_{0}$ und $H_{1}$ auf.
+
+b) Prüfen Sie, ob es einen signifikanten statistischen Zusammenhang zwischen den Variablen gibt $(\alpha=.05)$. 
+
+---
+class: top, left
+### Korrelation
+
+#### Übungsaufgabe 1: Bystander Effekt
+
+a) Stellen Sie $H_{0}$ und $H_{1}$ auf.
+
+* $H_{0}$: $\rho =0$
+* $H_{1}$: $\rho \neq 0$
+
+**Interpretation:**
+
+* $H_{0}$:
+  * Die $H_{0}$ besagt, dass kein signifikanter Zusammenhang zwischen Gruppengröße und Zeit bis zur Hilfeleistung besteht.
+  * Laut der $H_{0}$ variieren die beiden Variablen nicht systematisch miteinander
+* $H_{1}$:
+  * Die $H_{1}$ besagt, signifikanter Zusammenhang zwischen Gruppengröße und Zeit bis zur Hilfeleistung besteht.
+  * Laut der $H_{1}$ gehen hohe/niedrige Gruppengrößen mit langen/kurzen Zeit bis zur Hilfeleistung einher.
+
+---
+class: top, left
+### Korrelation
+
+#### Übungsaufgabe 1: Bystander Effekt
+
+b) Prüfen Sie, ob es einen signifikanten statistischen Zusammenhang zwischen den Variablen gibt $(\alpha=.05)$. 
+
+Berechnen der Stichprobencharakteristika:
+
+.pull-left[
+
+$$\bar{x}=\frac{\sum\limits _{i=1}^{n}x_{i}}{n} =`r round(mean(df2[,2]),2)`$$ 
+$$\bar{y}=\frac{\sum\limits _{i=1}^{n}y_{i}}{n} = `r round(mean(df2[,3]),2)`$$
+]
+.pull-right[
+$$s_x=\sqrt{\frac{\sum\limits _{i=1}^{n}(x_{i}-\bar{x})^2}{n-1}}= `r round(sd(df2[,2]),2)`$$ 
+
+$$s_y=\sqrt{\frac{\sum\limits _{i=1}^{n}(y_{i}-\bar{y})^2}{n-1}}= `r round(sd(df2[,3]),2)`$$ 
+]
+
+---
+class: top, left
+### Korrelation
+
+#### Übungsaufgabe 1: Bystander Effekt
+
+b) Prüfen Sie, ob es einen signifikanten statistischen Zusammenhang zwischen den Variablen gibt $(\alpha=.05)$. 
+
+Berechnen der Kovarianz:
+
+$$cov_{x,y}=\frac{(13-8.1)\cdot(47-30.2)+(8-8.1)\cdot(36-30.2)+...}{`r N-1`}=23.99$$
+Berechnen der maximale Kovarianz:
+
+$$|cov_{max}|=\hat{\sigma}_x \cdot \hat{\sigma}_y = `r round(sd(df2[,2]),2)` \cdot `r round(sd(df2[,3]),2)`= `r round(round(sd(df2[,3]),2) * round(sd(df2[,2]),2), 2)`$$
+Berechnen der Produkt-Moment-Korrelation:
+
+$$r_{xy}=\frac{cov_{emp}}{cov_{max}} = \frac{23.99}{`r round(round(sd(df2[,3]),2) * round(sd(df2[,2]),2), 2)`}=0.82$$
+
+---
+class: top, left
+### Korrelation
+
+#### Übungsaufgabe 1: Bystander Effekt
+
+b) Prüfen Sie, ob es einen signifikanten statistischen Zusammenhang zwischen den Variablen gibt $(\alpha=.05)$. 
+
+Berechnen von $t_{emp}$:
+
+$$df=N-2=`r nrow(df2)`-2= `r nrow(df2)-2` $$
+
+$$t=\frac{r \cdot \sqrt{N-2}}{\sqrt{1-r^2}}= \frac{0.82 \cdot \sqrt{10-2}}{\sqrt{1-(0.82)^2}}=4.05$$
+
+---
+class: top, left
+### Korrelation
+
+#### Übungsaufgabe 1: Bystander Effekt
+
+Kritischen t-Wert $(t_{krit})$ für $a=.05$ nachschlagen:
+
+.center[
+```{r eval = TRUE, echo = F, out.width = "750px"}
+knitr::include_graphics("bilder/ttab7.png")
+```
+]
+
+---
+class: top, left
+### Korrelation
+
+#### Übungsaufgabe 1: Bystander Effekt
+
+b) Prüfen Sie, ob es einen signifikanten statistischen Zusammenhang zwischen den Variablen gibt $(\alpha=.05)$. 
+
+Berechnen von $t_{emp}$:
+
+$$df=N-2=`r nrow(df2)`-2= `r nrow(df2)-2` $$
+
+$$t=\frac{r \cdot \sqrt{N-2}}{\sqrt{1-r^2}}= \frac{0.82 \cdot \sqrt{10-2}}{\sqrt{1-(0.82)^2}}=4.05$$
+
+
+* $t_{krit(df=8)}=2.306$ $\rightarrow$ Spalte für 0.975 in der t-Tabelle, da ungerichtete Hypothese
+* Der empirische t-Wert ist größer als der kritische t-Wert, es besteht ein signifikanter Zusammenhang.
+* Die $H_{0}$ kann verworfen werden. Die Anzahl der Menschen, die einen Überfall beobachten hängt systematisch mit der Zeit bis zur Hilfeleistung zusammen.
+
+---
+class: top, left
+### Korrelation
+
+#### Übungsaufgabe 2: Klassische Musik
+
+* In einer Studie soll geprüft werden, ob die Anzahl an Stunden, die Kinder pro Woche klassische Musik hören positiv mit deren Intelligenz zusasmmenhängt.
+
+* Es wurde eine Gruppe von 13 Kindern über ihren klassischen Musikkonsum (in Stunden pro Woche) befragt, danach wurde ein Intelligenztest absolviert und der Intelligenzquotient (IQ) berechnet.
+
+Das sind die Ergebnisse:
+
+```{r echo = F}
+set.seed(123)
+N = 13
+df = data.frame(ID = c(paste0(rep(1:N))),
+                Musik = round(c(rnorm(N, 8, 2)))
+)
+
+df$IQ = faux::rnorm_pre(df$Musik, mu = 100, sd = 15, r = 0.1, empirical = T)
+df$IQ = round(df$IQ)
+names(df) = c("ID", "Musik (X)", "IQ (Y)")
+df2 = df
+df = as.data.frame(t(df))
+#rownames(df) = NULL
+kable(df[,], col.names = NULL)%>%
+  kable_styling(font_size = 18)
+```
+
+**Aufgaben:**
+
+a) Stellen Sie das Hypothesenpaar aus $H_{0}$ und $H_{1}$ auf.
+
+b) Prüfen Sie, ob es einen signifikanten statistischen Zusammenhang zwischen den Variablen gibt $(\alpha=.05)$. 
+
+---
+class: top, left
+### Korrelation
+
+#### Übungsaufgabe 2: Klassische Musik
+
+a) Stellen Sie $H_{0}$ und $H_{1}$ auf.
+
+* $H_{0}$: $\rho \leq 0$
+* $H_{1}$: $\rho > 0$
+
+**Interpretation:**
+
+* $H_{0}$:
+  * Die $H_{0}$ besagt, dass kein Zusammenhang zwischen den Stunden, die ein Kind klassische Musik hört und dem IQ besteht, oder dieser negativ ist.
+  * Laut der $H_{0}$ variieren die beiden Variablen nicht oder negativ systematisch miteinander
+* $H_{1}$:
+  * Die $H_{1}$ besagt, dass ein positiver Zusammenhang zwischen den Stunden, die ein Kind klassische Musik hört und dem IQ besteht.
+  * Laut der $H_{1}$ geht ein hoher klassischer Musikkonsum mit einem hohen einher.
+
+---
+class: top, left
+### Korrelation
+
+#### Übungsaufgabe 2: Klassische Musik
+
+b) Prüfen Sie, ob es einen signifikanten statistischen Zusammenhang zwischen den Variablen gibt $(\alpha=.05)$. 
+
+Berechnen der Stichprobencharakteristika:
+
+.pull-left[
+
+$$\bar{x}=\frac{\sum\limits _{i=1}^{n}x_{i}}{n} =`r round(mean(df2[,2]),2)`$$ 
+$$\bar{y}=\frac{\sum\limits _{i=1}^{n}y_{i}}{n} = `r round(mean(df2[,3]),2)`$$
+]
+.pull-right[
+$$s_x=\sqrt{\frac{\sum\limits _{i=1}^{n}(x_{i}-\bar{x})^2}{n-1}}= `r round(sd(df2[,2]),2)`$$ 
+
+$$s_y=\sqrt{\frac{\sum\limits _{i=1}^{n}(y_{i}-\bar{y})^2}{n-1}}= `r round(sd(df2[,3]),2)`$$ 
+]
+
+---
+class: top, left
+### Korrelation
+
+#### Übungsaufgabe 2: Klassische Musik
+
+b) Prüfen Sie, ob es einen signifikanten statistischen Zusammenhang zwischen den Variablen gibt $(\alpha=.05)$. 
+
+Berechnen der Kovarianz:
+
+$$cov_{x,y}=\frac{(7-8.38)\cdot(114-100)+(8-8.38)\cdot(99-100)+...}{`r N-1`}=`r round(cov(df2[,2], df2[,3]), 2)`$$
+Berechnen der maximale Kovarianz:
+
+$$|cov_{max}|=\hat{\sigma}_x \cdot \hat{\sigma}_y = `r round(sd(df2[,2]),2)` \cdot `r round(sd(df2[,3]),2)`= `r round(round(sd(df2[,3]),2) * round(sd(df2[,2]),2), 2)`$$
+Berechnen der Produkt-Moment-Korrelation:
+
+$$r_{xy}=\frac{cov_{emp}}{cov_{max}} = \frac{`r round(cov(df2[,2], df2[,3]), 2)`}{`r round(round(sd(df2[,3]),2) * round(sd(df2[,2]),2), 2)`}=0.11$$
+
+---
+class: top, left
+### Korrelation
+
+#### Übungsaufgabe 2: Klassische Musik
+
+b) Prüfen Sie, ob es einen signifikanten statistischen Zusammenhang zwischen den Variablen gibt $(\alpha=.05)$. 
+
+Berechnen von $t_{emp}$:
+
+$$df=N-2=`r nrow(df2)`-2= `r nrow(df2)-2` $$
+
+$$t=\frac{r \cdot \sqrt{N-2}}{\sqrt{1-r^2}}= \frac{0.11 \cdot \sqrt{13-2}}{\sqrt{1-(0.11)^2}}=0.37$$
+
+---
+class: top, left
+### Korrelation
+
+#### Übungsaufgabe 2: Klassische Musik
+
+Kritischen t-Wert $(t_{krit})$ für $a=.05$ nachschlagen:
+
+.center[
+```{r eval = TRUE, echo = F, out.width = "750px"}
+knitr::include_graphics("bilder/ttab8.png")
+```
+]
+
+---
+class: top, left
+### Korrelation
+
+#### Übungsaufgabe 2: Klassische Musik
+
+b) Prüfen Sie, ob es einen signifikanten statistischen Zusammenhang zwischen den Variablen gibt $(\alpha=.05)$. 
+
+Berechnen von $t_{emp}$:
+
+$$df=N-2=`r nrow(df2)`-2= `r nrow(df2)-2` $$
+
+$$t=\frac{r \cdot \sqrt{N-2}}{\sqrt{1-r^2}}= \frac{0.11 \cdot \sqrt{13-2}}{\sqrt{1-(0.11)^2}}=0.37$$
+
+
+* $t_{krit(df=11)}=1.796$ $\rightarrow$ Spalte für 0.95 in der t-Tabelle, da gerichtete Hypothese
+* Der empirische t-Wert ist kleiner als der kritische t-Wert, es besteht kein signifikanter Zusammenhang.
+* Die $H_{0}$ wird beibehalten. Die Anzahl an Stunden, die Kinder pro Woche klassische Musik hören, hängt nicht systematisch mit ihrem IQ zusammen.
+
+
+---
+class: top, left
+### Korrelation
+
+#### Übungsaufgabe 3: Springen und Werfen
+
+.pull-left[
+<small>
+* Für die Auswertung der diesjährigen Bundesjugendspiele soll geprüft werden, ob die Leistung im Speerwurf mit der im Weitsprung zusammenhängt.
+
+* Es wurde eine Stichprobe von 12 Schüler:innen der 11. Klasse in beiden Disziplinen geprüft. Die Platzierung im Wettkampf wurde jeweils in einer Tabelle eingetragen:
+
+**Aufgaben:**
+
+a) Stellen Sie das Hypothesenpaar aus $H_{0}$ und $H_{1}$ auf.
+
+b) Prüfen Sie, ob es einen signifikanten statistischen Zusammenhang zwischen den Variablen gibt $(\alpha=.05)$. 
+
+</small>
+]
+
+.pull-right[
+```{r echo = F}
+set.seed(123)
+N = 12
+df = data.frame(ID = c(paste0(rep(1:N))),
+                Schlaf = c(3,7,8,4,12,2,6,5,11,10,1,9)
+)
+
+df$Konzentration = c(1,4,8,5,10,2,9,6,11,12,3,7)
+df$Konzentration = round(df$Konzentration)
+names(df) = c("Schüler:in", "Rangplatz Frauen", "Rangplatz Männer")
+df$`Rangplatz Männer`[df$`Rangplatz Männer` > 10] = 10
+df$`Rangplatz Männer`[df$`Rangplatz Männer` < 1] = 1
+df$`Rangplatz Frauen`[df$`Rangplatz Frauen` > 10] = 10
+df$`Rangplatz Frauen`[df$`Rangplatz Frauen` < 1] = 1
+
+df[, "Differenz (d)"] = df$`Rangplatz Frauen` - df$`Rangplatz Männer` 
+names(df) = c("Schüler:in", "Rang Speerwurf (X)", "Rang Weitsprung (Y)", "Differenz (d)")
+
+df2 = df
+df = as.data.frame(df)
+#rownames(df) = NULL
+kable(df[,])%>%
+  kable_styling(font_size = 16)
+```
+]
+
+---
+class: top, left
+### Korrelation
+
+#### Übungsaufgabe 3: Springen und Werfen
+
+$$r_s={}1-\frac{6 \cdot\displaystyle \sum_{i=1}^{n}d^2_i}{N \cdot (N^2 - 1)}=1-\frac{192}{1716}=0.89$$
+Berechnen von $t_{emp}$:
+
+$$df=N-2=`r nrow(df2)`-2= `r nrow(df2)-2` $$
+
+$$t=\frac{r \cdot \sqrt{N-2}}{\sqrt{1-r^2}}= \frac{0.89 \cdot \sqrt{12-2}}{\sqrt{1-(0.89)^2}}=6.12$$
+
+---
+class: top, left
+### Korrelation
+
+#### Übungsaufgabe 3: Springen und Werfen
+
+Kritischen t-Wert $(t_{krit})$ für $a=.05$ nachschlagen:
+
+.center[
+```{r eval = TRUE, echo = F, out.width = "750px"}
+knitr::include_graphics("bilder/ttab9.png")
+```
+]
+
+---
+class: top, left
+### Korrelation
+
+#### Übungsaufgabe 3: Springen und Werfen
+
+$$r_s={}1-\frac{6 \cdot\displaystyle \sum_{i=1}^{n}d^2_i}{N \cdot (N^2 - 1)}=1-\frac{192}{1716}=0.89$$
+Berechnen von $t_{emp}$:
+
+$$df=N-2=`r nrow(df2)`-2= `r nrow(df2)-2` $$
+
+$$t=\frac{r \cdot \sqrt{N-2}}{\sqrt{1-r^2}}= \frac{0.89 \cdot \sqrt{12-2}}{\sqrt{1-(0.89)^2}}=6.12$$
+
+* $t_{krit(df=10)}=2.228$ $\rightarrow$ Spalte für 0.975 in der t-Tabelle, da ungerichtete Hypothese
+* Der empirische t-Wert ist größer als der kritische t-Wert, es besteht ein signifikanter Zusammenhang.
+* Die $H_{0}$ wird verworfen. Der Rang den Schüler im Speerwerfen erreichen korreliert signifikant mit dem Rang, den sie im Weitsprung erreichen.
+
+
+---
+class: top, left
+### Korrelation
+
+#### Übungsaufgabe 3: Springen und Werfen
+
+$$r_s={}1-\frac{6 \cdot\displaystyle \sum_{i=1}^{n}d^2_i}{N \cdot (N^2 - 1)}=1-\frac{192}{1716}=0.89$$
+Berechnen von $t_{emp}$:
+
+$$df=N-2=`r nrow(df2)`-2= `r nrow(df2)-2` $$
+
+$$t=\frac{r \cdot \sqrt{N-2}}{\sqrt{1-r^2}}= \frac{0.89 \cdot \sqrt{12-2}}{\sqrt{1-(0.89)^2}}=6.12$$
+
+
+---
+class: top, left
+### Take-aways
+
+.full-width[.content-box-gray[
+* Ein (bivariater) Zusammenhang zeigt sich darin, dass zwei Variablen **systematisch miteinander variieren**.
+
+* Die **Kovarianz**, ein unstandardisiertes Zusammenhangsmaß, kann uns die Richtung des Zusammenhangs anzeigen, aber nicht direkt hinsichtlich seiner Stärke interpretiert werden.
+
+* Der **Korrelationskoeffizient** $(r)$ ist ein standardisiertes Maß für den Zusammenhang zweier Variablen und kann Werte im Bereich von -1 bis +1 annehmen.
+
+* Zusammenhänge zwischen zwei intervallskalierten Variablen werden mit der **Produkt-Moment-Korrelation** (Pearson), ordinalskalierte mit der **Rangkorrelation** (Spearman) berechnet.
+
+* Die **Einteilung nach Cohen** erlaubt für $|r\geq.1|$, $|r\geq.3|$, $|r\geq.5|$ eine Unterteilung in kleine, mittlere und starke/große Zusammenhänge.
+
+* Ein bestehender Zusammenhang gibt **keine Auskunft über Kausalbeziehungen** zwischen den untersuchten Variablen
+]
+]
+
+

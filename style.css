@@ -2,3 +2,31 @@
   margin-top: -85px;
   margin-left: -60px;
 }
+
+.code40 .remark-code{
+  font-size: 40%
+}
+
+.code50 .remark-code{
+  font-size: 50%
+}
+
+.code55 .remark-code{
+  font-size: 55%
+}
+
+.code60 .remark-code{
+  font-size: 60%
+}
+
+.code70 .remark-code{
+  font-size: 70%
+}
+
+.code80 .remark-code{
+  font-size: 80%
+}
+
+.code90 .remark-code{
+  font-size: 90%
+}

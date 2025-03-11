@@ -1,0 +1,1670 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Einheit 10</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Prof. Dr. Stephan Goerigk" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/hygge.css" rel="stylesheet" />
+    <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view/tile-view.js"></script>
+    <script src="libs/fabric/fabric.min.js"></script>
+    <link href="libs/xaringanExtra-scribble/scribble.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-scribble/scribble.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#EE0071"],"pen_size":4,"eraser_size":40,"palette":[]}) })</script>
+    <script src="libs/kePrint/kePrint.js"></script>
+    <link href="libs/lightable/lightable.css" rel="stylesheet" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="style.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+name: Title slide
+class: middle, left
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+# Statistik I
+***
+### Einheit 10: Verfahren für Nominaldaten - `\(\chi^2-\)`Test
+##### 16.01.2024 | Prof. Dr. Stephan Goerigk
+
+---
+class: top, left
+### Verfahren für Nominaldaten
+
+#### Kurzvorstellung
+
+**Voraussetzungen bisher gelernter Tests:**
+
+* Viele Hypothesentests nutzen Kombinationen aus numerischen vs. kategorialen UVs
+
+&lt;table class=" lightable-classic" style="font-size: 14px; font-family: Times New Roman; width: auto !important; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Hypothesentest &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; AV &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; UVs &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Fragestellung &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Teststatistik &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Ein-Stichproben t-Test &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Intervallskaliert &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Keine UV, nur Referenzwert &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Unterschied zwischen Stichprobenmittelwert und Referenzwert? &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; t-Wert &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Unabhängiger t-Test &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Intervallskaliert &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 kategoriale UV, 2 Stufen &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Unterschied zwischen 2 Gruppen? &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; t-Wert &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Abhängiger t-Test &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Intervallskaliert &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 UV Messwiederholung, 2 Messungen &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Unterschied zwischen 2 Messzeitpunkten? &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; t-Wert &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Einfaktorielle ANOVA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Intervallskaliert &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 kategoriale UV, ≥2 Stufen &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Unterschied zwischen ≥2 Gruppen? &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; F-Wert &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; ANOVA mit Messwiederholung &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Intervallskaliert &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 UV Messwiederholung, ≥2 Messungen &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Unterschied zwischen ≥2 Messzeitpunkten? &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; F-Wert &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Einfache Regression &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Intervallskaliert &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 kategoriale UV oder 1 stetige UV &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Kann UV die AV vorhersagen? &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; t-Wert (Steigung) oder F-Wert (Omnibus) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Mehrfaktorielle ANOVA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Intervallskaliert &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2 kategoriale UVs &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Unterschiede zwischen der Stufen der Faktoren? Besteht Interaktion? &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; F-Wert &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Multiple Regression &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Intervallskaliert &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2 kategoriale oder stetige UVs &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Können UVs die AV vorhersagen? Besteht Interaktion? &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; t-Wert (Steigung) oder F-Wert (Omnibus) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Mixed ANOVA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Intervallskaliert &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2 UVs, davon 1 kategoriale UV und eine Messwiederholung &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Unterschiede zwischen Stufen und Zeitpunkten? Besteht Interaktion? &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; F-Wert &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+class: top, left
+### Verfahren für Nominaldaten
+
+#### Kurzvorstellung
+
+**Voraussetzungen bisher gelernter Tests:**
+
+* ABER: Alle bislang kennengelernten statistischen Tests beinhalten **intervallskalierte AVs**
+
+* Was können wir tun, wenn wie eine **nominalskalierte AV** haben?
+
+Zunächst: nominalskalierte Variablen mit 2 Merkmalsausprägungen (dichotom aka. binär):
+
+* Klassische Beispiele:
+
+  * richtig vs. falsch
+  * krank vs. gesund
+  * rückfällig vs. nicht rückfällig
+  * tod vs. lebendig
+
+---
+class: top, left
+### Verfahren für Nominaldaten
+
+#### Kurzvorstellung - Zur Erinnerung:
+
+* Nominalskalierte Variablen sind eine Art von Variablen, bei denen die Werte Kategorien oder Namen repräsentieren
+
+* Die Kategorien oder Namen haben keine natürliche Ordnung oder Rangfolge (z.B. Geschlecht, Nationalität oder Augenfarbe).
+
+* Es können nur Aussagen über die Gleichheit oder Ungleichheit der Kategorien gemacht werden. 
+
+* Es ist nicht möglich, Aussagen über die Größe oder den Abstand zwischen den Kategorien zu treffen.
+
+* Die Umwandlung in andere Skalenniveaus wie ordinal oder metrisch ist nicht sinnvoll, da die Informationen über die Rangfolge oder die Abstände zwischen den Kategorien nicht vorhanden sind.
+
+* Bei der Darstellung nominalskalierter Variablen werden häufig Balkendiagramme verwendet, um die Häufigkeit oder Verteilung der einzelnen Kategorien zu veranschaulichen.
+
+
+---
+class: top, left
+### Verfahren für Nominaldaten
+
+
+
+.pull-left[
+#### Deskriptivstatistiken
+&lt;small&gt;
+
+* Lage- und Streuungsmaße lassen sich nicht berechnen
+* ABER: Kategorien können ausgezählt werden (Häufigkeiten)
+
+**Absolute Häufigkeiten (n):**
+.code80[
+
+```r
+table(data$Behandlungserfolg)
+```
+
+```
+## 
+##   ja nein 
+##    6    4
+```
+
+**Relative Häufigkeiten (%):**
+
+
+```r
+prop.table(table(data$Behandlungserfolg))
+```
+
+```
+## 
+##   ja nein 
+##  0.6  0.4
+```
+
+]
+]
+.pull-right[
+**Beispiel - nominalskalierte Variablen:**
+
+&lt;table class=" lightable-classic" style="font-size: 18px; font-family: Times New Roman; width: auto !important; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Behandlung &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Behandlungserfolg &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Psychotherapie &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ja &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Psychotherapie &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ja &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Psychotherapie &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; nein &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Psychotherapie &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ja &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Psychotherapie &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ja &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Warteliste &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; nein &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Warteliste &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; nein &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Warteliste &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; nein &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Warteliste &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ja &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Warteliste &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ja &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+---
+class: top, left
+### Verfahren für Nominaldaten
+
+.pull-left[
+#### Kreuztabelle (aka. Kontingenztafel)
+&lt;small&gt;
+
+* Tabelle zur Verteilung von zwei oder mehr nominalskalierten Variablen.
+* Werte beider Variablen in Zeilen und Spalten aufgeteilt 
+* Zellen enthalten Kombinationen beider Variablen.
+
+**Absolute Häufigkeiten (n):**
+.code80[
+
+```r
+table(data$Behandlungserfolg, data$Behandlung)
+```
+
+```
+##       
+##        Psychotherapie Warteliste
+##   ja                4          2
+##   nein              1          3
+```
+]
+
+**Relative Häufigkeiten (%):**
+
+.code80[
+
+```r
+prop.table(table(data$Behandlungserfolg, data$Behandlung))
+```
+
+```
+##       
+##        Psychotherapie Warteliste
+##   ja              0.4        0.2
+##   nein            0.1        0.3
+```
+]
+]
+.pull-right[
+**Beispiel - nominalskalierte Variablen:**
+
+&lt;table class=" lightable-classic" style="font-size: 18px; font-family: Times New Roman; width: auto !important; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Behandlung &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Behandlungserfolg &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Psychotherapie &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ja &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Psychotherapie &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ja &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Psychotherapie &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; nein &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Psychotherapie &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ja &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Psychotherapie &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ja &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Warteliste &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; nein &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Warteliste &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; nein &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Warteliste &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; nein &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Warteliste &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ja &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Warteliste &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ja &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+---
+class: top, left
+### Verfahren für Nominaldaten
+
+.pull-left[
+#### Visualisierung im Balkendiagramm (Wiederholung)
+
+&lt;img src="Statistik_I_10_WS24_files/figure-html/unnamed-chunk-9-1.png" width="430px" /&gt;
+]
+
+.pull-right[
+**Beispiel - nominalskalierte Variablen:**
+
+&lt;table class=" lightable-classic" style="font-size: 18px; font-family: Times New Roman; width: auto !important; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Behandlung &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Behandlungserfolg &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Psychotherapie &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ja &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Psychotherapie &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ja &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Psychotherapie &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; nein &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Psychotherapie &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ja &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Psychotherapie &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ja &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Warteliste &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; nein &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Warteliste &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; nein &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Warteliste &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; nein &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Warteliste &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ja &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Warteliste &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ja &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+---
+class: top, left
+### Verfahren für Nominaldaten
+
+#### `\(\chi^2\)`-Tests
+
+* Relative Häufigkeit in Stichprobe dient als Schätzer für Auftretenswahrscheinlichkeit in Population
+
+Logik ähnlich wie t-Test `\((H_0\)` des t-Tests: Mittelwerte sind gleich)
+
+* `\(H_0:\)` Beispiel: Kategorien sind **gleich verteilt** (Gleichverteilungshypothese). 
+
+* Die unter der `\(H_0\)` erwarteten Häufigkeiten werden mit beobachteten Häufigkeiten (Stichprobe) verglichen
+
+* Testverteilung: `\(\chi^2\)`-Verteilung `\(\rightarrow\)` hat eigene Tabelle
+
+* Entscheidungslogik: 
+
+  * Vergleich empirischer `\(\chi^2\)`-Wert (Berechnung aus Daten) vs. kritischer `\(\chi^2\)`-Wert (aus Tabelle)
+  
+  * Wenn `\(\chi^2_{emp} &gt; \chi^2_{krit}\)` ist der Test signifikant
+
+---
+class: top, left
+### Verfahren für Nominaldaten
+
+#### Eindimensionaler `\(\chi^2\)`-Test
+
+* Prüft Hypothesen über die Verteilung **einer** kategorialen Variablen
+
+* Versuchspersonen hinsichtlich Merkmal mit `\(k\)` Stufen kategorisiert
+
+* Stichprobe: Es liegt Verteilung mit absoluten Häufigkeiten vor (beobachtete Häufigkeiten)
+
+* Aufgabe `\(\chi^2\)`-Test: Ermitteln, ob Verteilung in Stichprobe Annahme über Population entspricht
+
+**Beispiel: Suizidraten bei Männern und Frauen**
+
+* Frage: Entsprechen in einer Stichprobe beobachtete Suizidraten von Männern und Frauen einer theoretisch erwarteten Verteilung?
+
+---
+class: top, left
+### Verfahren für Nominaldaten
+
+#### `\(\chi^2\)`-Tests
+
+**Nullhypothese:**
+&lt;small&gt;
+* Entscheidung für `\(H_1\)` über Ablehnung der `\(H_0\)` `\(\rightarrow\)` Wenn `\(H_0\)` ausreichend unwahrscheinlich, wird `\(H_1\)` angenommen.
+
+* `\(\chi^2\)`-Test prüft, ob beobachtete Häufigkeiten von erwarteten Häufigkeiten abweichen.
+
+* Erwartete Häufigkeiten entsprechen der `\(H_0\)` des Tests.
+
+* Besonderheit `\(\chi^2\)`-Test: Jede Annahme über Verteilung kann als `\(H_0\)` dienen.
+
+Gleichverteilungsannahme (häufig):
+
+  * `\(H_0:\)` "Verteilung der Geschlechter in Population ist 50% vs. 50%."
+  * `\(H_1:\)` "Geschlechter sind ungleich verteilt."
+
+Nicht gleich verteilte Annahmen (denkbar):
+
+  * `\(H_0:\)` "Verteilung der Geschlechter in Population ist 30% vs. 70%."
+  * `\(H_1:\)` "Verteilung der Geschlechter weicht signifikant von dieser Annahme ab."
+
+---
+class: top, left
+### Verfahren für Nominaldaten
+
+#### `\(\chi^2\)`-Tests
+
+**Nullhypothese:**
+&lt;small&gt;
+
+Gleichverteilungsannahme:
+
+* Häufigkeiten `\((f)\)` sind über alle Stufen des Merkmals hinweg gleich
+
+* erwartete Häufigkeit jeder Zelle:
+
+`$$f_{e1}=f_{e2}=...f_{ek}=\frac{N}{k}$$`
+
+Beispiel - Suizidrate nach Geschlecht:
+
+.pull-left[
+In Stichprobe: 
+
+&lt;table class=" lightable-classic" style='font-size: 18px; font-family: "Arial Narrow", "Source Sans Pro", sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; Frauen &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Männer &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Summe &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 101 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 223 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 324 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+.pull-right[
+Erwartete Werte unter Gleichverteilungsannahme: 
+
+&lt;table class=" lightable-classic" style='font-size: 18px; font-family: "Arial Narrow", "Source Sans Pro", sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; Frauen &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Männer &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Summe &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 162 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 162 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 324 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+
+---
+class: top, left
+### Verfahren für Nominaldaten
+
+#### `\(\chi^2\)`-Tests
+
+**Nullhypothese:**
+&lt;small&gt;
+
+Nicht gleich verteilte Annahmen:
+
+* Verteilung der Häufigkeiten `\((f)\)` entspricht theoretischen Vorüberlegungen (begründete Festlegung der Verteilung)
+
+* erwartete Häufigkeit jeder Zelle: Multiplikation mit angenommener Auftretenswahrscheinlichkeit `\((p_i)\)`
+
+`$$f_{ei}=N \cdot p_i$$`
+
+Beispiel - Suizidrate nach Geschlecht:
+
+.pull-left[
+In Stichprobe: 
+&lt;br&gt;
+&lt;table class=" lightable-classic" style='font-size: 18px; font-family: "Arial Narrow", "Source Sans Pro", sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; Frauen &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Männer &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Summe &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 101 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 223 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 324 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+.pull-right[
+Erwartete Werte nach theoretischer Vorüberlegung (Männer begehen 3x häufiger Suizid): 
+
+&lt;table class=" lightable-classic" style='font-size: 18px; font-family: "Arial Narrow", "Source Sans Pro", sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Frauen &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Männer &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Summe &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; `\(324 \cdot 0.25=81\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\(324 \cdot 0.75=243\)` &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 324 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+---
+class: top, left
+### Verfahren für Nominaldaten
+
+#### `\(\chi^2\)`-Wert
+&lt;small&gt;
+
+* Entscheidung über signifikante Unterschiede zwischen beobachteten und erwarteten Häufigkeiten erfolgt über ** `\(\chi^2\)`-Wert **
+
+* Folgt der `\(\chi^2\)`-Verteilung `\(\rightarrow\)` Wahrscheinlichkeit empirischer Werte unter Annahme der `\(H_0\)` bestimmbar
+
+**Berechnung**
+
+* Was wird benötigt: beobachtete und erwartete absolute Häufigkeiten für alle Merkmalstufen
+
+* `\(\chi^2\)`-Wert gibt Abweichung der beobachteten von den erwarteten Häufigkeit an
+
+`$$\chi^2 = \sum\limits _{i=1}^{k}\frac{(f_{bi} - f_{ei})^2}{f_{ei}}$$`
+mit:
+* `\(k:\)` Anzahl der Merkmalskategorien (Index `\(i\)`)
+* `\(f_{bi}\)` beobachtete absolute Häufigkeit von Kategorie `\(i\)`
+* `\(f_{ei}\)` unter `\(H_0\)` erwartete absolute Häufigkeit von Kategorie `\(i\)`
+
+---
+class: top, left
+### Verfahren für Nominaldaten
+
+#### `\(\chi^2\)`-Wert
+&lt;small&gt;
+
+
+** Eigenschaften des `\(\chi^2\)`-Werts**
+
+* `\(\chi^2=0\)`, wenn beobachtete und erwartete Häufigkeiten in allen Zellen genau übereinstimmen 
+
+* Je größer die Abweichung der beobachteten von erwarteten Häufigkeiten, desto größer wird `\(\chi^2\)`
+
+* `\(\chi^2\)` kann aufgrund der Quadrierung in der Formel nur positive Werte annehmen
+
+  * Informationen über Richtung der Abweichung geht verloren
+  
+  * unspezifischer Test `\(\rightarrow\)` es können keine gerichteten Hypothesen getestet werden
+  
+  * Ausnahme: eindimensionaler `\(\chi^2\)`-Test mit 2 Stufen
+
+---
+class: top, left
+### Verfahren für Nominaldaten
+
+.pull-left[
+
+#### `\(\chi^2\)`-Verteilung
+
+* `\(\chi^2\)` kann aufgrund der Quadrierung in der Formel nur positive Werte annehmen
+
+* Wertebereich von `\(0 \text{ bis }\infty\)`
+  
+* Form ist abhängig von Anzahl der Freiheitsgrade `\((df)\)`
+
+* Fläche unter der Kurve gibt an, wie wahrscheinlich ein `\(\chi^2\)`-Wert ist
+]
+
+.pull-right[
+&lt;img src="Statistik_I_10_WS24_files/figure-html/unnamed-chunk-15-1.png" width="430px" /&gt;
+]
+
+---
+class: top, left
+### Verfahren für Nominaldaten
+
+.pull-left[
+
+#### `\(\chi^2\)`-Wert
+
+**Berechnung im Beispiel:**
+
+&lt;small&gt;
+`$$\chi^2 = \sum\limits _{i=1}^{k}\frac{(f_{bi} - f_{ei})^2}{f_{ei}}= \frac{(101-81)^2}{81} + \frac{(223-243)^2}{243}=6.58$$`
+
+* Für die `\(H_0\)`, dass die Häufigkeiten den theoretischen Annahmen entsprechen erhalten wir `\(\chi^2=6.58\)`
+
+* Zur Interpretation dieses Werts benötigen wir noch die Freiheitsgrade `\((df)\)`
+]
+
+.pull-right[
+&lt;table class=" lightable-classic" style='font-size: 18px; font-family: "Arial Narrow", "Source Sans Pro", sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Notation &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Frauen &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Männer &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; `\(f_{bi}\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\(101\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\(223\)` &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; `\(f_{ei}\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\(324 \cdot 0.25= 81\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\(324 \cdot 0.75= 243\)` &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; `\(f_{bi} - f_{ei}\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\(101 - 81 = 20\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\(223 - 243 = -20\)` &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; `\((f_{bi} - f_{ei})^2\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\(20^2=400\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\(-20^2=400\)` &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; `\(\frac{(f_{bi} - f_{ei})^2}{f_{ei}}\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\(\frac{400}{81}=4.94\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\(\frac{400}{243}=1.65\)` &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+---
+class: top, left
+### Verfahren für Nominaldaten
+
+#### `\(\chi^2\)`-Wert
+
+**Bestimmung der Freiheitsgrade:**
+
+* Anzahl der Summanden in der Formel die unabhängig voneinander variieren können 
+
+* Für den eindimensionalen `\(\chi^2\)`-Test:
+
+`$$df=k-1$$`
+
+Berechnung im Beispiel:
+
+`$$df = k-1 = 2-1=1$$`
+---
+class: top, left
+### Verfahren für Nominaldaten
+
+.pull-left[
+
+#### `\(\chi^2\)`-Wert
+
+**Signifikanzprüfung:**
+
+* `\(\chi^2_{emp}=6.58\)`
+
+* `\(df=k-1\)`
+
+* `\(\alpha =.05\)`
+
+Ablesen von `\(\chi^2_{krit}\)` aus der Tabelle:
+
+* `\(\chi^2_{df=1}=3.84\)`
+
+Vergleich `\(\chi^2_{emp}\)` vs. `\(\chi^2_{krit}:\)`
+
+* `\(6.58 &gt; 3.84\)` `\(\rightarrow\)` Test ist signifikant
+
+]
+
+.pull-right[
+.center[
+&lt;img src="bilder/chitab1.png" width="470px" /&gt;
+]
+]
+
+---
+class: top, left
+### Verfahren für Nominaldaten
+
+#### Eindimensionaler `\(\chi^2\)`-Test in R
+
+
+```r
+# Stichprobendaten erstellen (1 Vektor und keine Tabelle, da eindimensional)
+
+x = c(rep("Männer", 223), rep("Frauen", 101))
+table(x)
+```
+
+```
+## x
+## Frauen Männer 
+##    101    223
+```
+
+
+```r
+chisq.test(table(x), p = c(0.25, 0.75))
+```
+
+```
+## 
+## 	Chi-squared test for given probabilities
+## 
+## data:  table(x)
+## X-squared = 6.5844, df = 1, p-value = 0.01029
+```
+
+---
+class: top, left
+### Verfahren für Nominaldaten
+
+#### Gerichteter eindimensionaler `\(\chi^2\)`-Test 
+
+* `\(\chi^2\)`-Test ist normalerweise ungerichtet (wegen Quadrierung der Abweichungen)
+
+* Spezialfall eindimensionaler `\(\chi^2\)`-Test bei Variable mit genau 2 Stufen
+
+* In diesem Fall ist die Richtung der Abweichung eindeutig
+
+* Interpretation: "Merkmalsstufe 1 tritt öfter auf als Merkmalsstufe 2."
+
+* VORSICHT: Signifikanzniveau `\((\alpha)\)` wird dann verdoppelt (z.B. wenn `\(\alpha=.05\)` wird in der Tabelle `\(\alpha=.10\)` angenommen)
+
+* Folge: `\(\chi^2_{krit}\)` verringert sich, Test wir eher signifkant (Teststärke nimmt zu)
+
+---
+class: top, left
+### Verfahren für Nominaldaten
+
+#### Eindimensionaler `\(\chi^2\)`-Test 
+
+**Effekstärke:**
+
+.pull-left[
+
+* Wie immer: Standardisiertes Maß für Größe des systematischen Unterschieds
+
+* Gängige Effektstärke beim `\(\chi^2\)`-Test: `\(w^2\)`
+
+* Schätzung von `\(w^2\)` aus Stichprobendaten:
+
+`$$\hat{w}^2 = \frac{\chi^2}{N}$$`
+* Im Beispiel: `\(\hat{w}^2 = \frac{\chi^2}{N}=\frac{6.58}{324}=0.02\)`
+
+* VORSICHT: G*Power nutzt unquadrierte Größe `\(w\)` (aka "Phi": `\(\varphi\)`)
+]
+
+.pull-right[
+Konventionen nach Cohen (1988):
+
+&lt;table class=" lightable-classic" style='font-size: 18px; font-family: "Arial Narrow", "Source Sans Pro", sans-serif; margin-left: auto; margin-right: auto;'&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; Effektstärke &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Interpretation &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 0.01 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; kleiner Effekt &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 0.09 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; mittlerer Effekt &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 0.25 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; großer Effekt &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+`\(\rightarrow\)` nach Cohen handelt es sich in unserem Beispiel um eine kleine Effektstärke.
+
+]
+
+
+---
+class: top, left
+### Verfahren für Nominaldaten
+
+#### Eindimensionaler `\(\chi^2\)`-Test 
+
+**Stichprobenumfangsplanung:**
+
+.center[
+&lt;img src="bilder/gpower_chi1.png" width="490px" /&gt;
+]
+
+---
+class: top, left
+### Verfahren für Nominaldaten
+
+#### Zweidimensionaler `\(\chi^2\)`-Test 
+
+* Erweiterung um eine weitere kategoriale Variable `\((\geq\)` 2 Stufen)
+
+* Darstellung in Kreuztabelle (auch `\(k \text{ x } l-\chi^2\)`-Test) 
+  * Zeilen: Merkmal 1 mit `\(k\)` Stufen
+  * Spalten: Merkmal 2 mit `\(l\)` Stufen)
+  
+* Wie zuvor: Vergleich theoretisch erwartete vs. beobachtete Häufigkeiten
+
+* Klassische Anwendung: **Kontingenzanalyse**
+
+  * Frage: Besteht ein stochastischer Zusammenhang zwischen den Merkmalen
+  * z.B. "Sind Behandlungserfolge [nein vs. ja] zwischen Therapiemodalitäten [Therapie vs. Warteliste] gleich verteilt?"
+
+---
+class: top, left
+### Verfahren für Nominaldaten
+
+#### Zweidimensionaler `\(\chi^2\)`-Test 
+
+**Hypothesenpaar `\(H_0\)` vs. `\(H_1:\)`**
+
+* Theoretisch unendlich viele `\(H_0\)` (alle denkbaren theoretischen Annahmen)
+
+* Bei Kontingenzanalyse:
+
+  * `\(H_0:\)` Merkmale sind stochastisch unabhängig.
+  
+  * `\(H_1:\)` Es besteht irgendeine Art von Zusammenhang zwischen den Steufen des einen Merkmals und den Stufen des anderen Merkmals
+
+---
+class: top, left
+### Verfahren für Nominaldaten
+
+#### Zweidimensionaler `\(\chi^2\)`-Test 
+
+**Berechnung erwarteter Häufigkeiten unter Annahme der `\(H_0:\)`**
+
+* Zur Berechnung müssen wir wissen, wie sich jedes Merkmal alleine verteilen würde (Ignorieren des anderen Merkmals)
+
+* Dies schätzen wir über die sogenannten **Randhäufigkeiten**
+
+* relative Randhäufigkeiten (in %) dienen als Schätzer für die Wahrscheinlichkeit einer Merkmalsstufe in der Population `\((p_i\)` bzw. `\(p_j)\)`
+
+`$$p_i = \frac{n_i}{N}, \text{ bzw. } p_j = \frac{n_j}{N}$$`
+---
+class: top, left
+### Verfahren für Nominaldaten
+
+#### Zweidimensionaler `\(\chi^2\)`-Test 
+
+.pull-left[
+**Berechnung erwarteter Häufigkeiten unter Annahme der `\(H_0:\)`**
+
+Berechnung der Randhäufigkeiten:
+.code60[
+
+```r
+addmargins(table(data$Behandlungserfolg, data$Behandlung), FUN = sum)
+```
+
+```
+## Margins computed over dimensions
+## in the following order:
+## 1: 
+## 2:
+```
+
+```
+##       
+##        Psychotherapie Warteliste sum
+##   ja                4          2   6
+##   nein              1          3   4
+##   sum               5          5  10
+```
+
+]
+]
+.pull-right[
+**Beispiel - Therapieerfolg `\((N=10):\)`**
+
+&lt;table class=" lightable-classic" style="font-size: 18px; font-family: Times New Roman; width: auto !important; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Behandlung &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Behandlungserfolg &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Psychotherapie &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ja &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Psychotherapie &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ja &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Psychotherapie &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; nein &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Psychotherapie &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ja &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Psychotherapie &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ja &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Warteliste &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; nein &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Warteliste &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; nein &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Warteliste &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; nein &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Warteliste &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ja &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Warteliste &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ja &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+---
+class: top, left
+### Verfahren für Nominaldaten
+
+#### Zweidimensionaler `\(\chi^2\)`-Test 
+
+
+
+.pull-left[
+**Berechnung erwarteter Häufigkeiten unter Annahme der `\(H_0:\)`**
+
+Berechnung der Randhäufigkeiten:
+.code60[
+
+```r
+addmargins(table(data$Behandlungserfolg, data$Behandlung), FUN = sum)
+```
+
+```
+## Margins computed over dimensions
+## in the following order:
+## 1: 
+## 2:
+```
+
+```
+##       
+##        Psychotherapie Warteliste sum
+##   ja               36         13  49
+##   nein             14         37  51
+##   sum              50         50 100
+```
+
+]
+]
+.pull-right[
+**Beispiel - Therapieerfolg in größerer Stichprobe `\((N=100):\)`**
+
+* 45 Patient:innen hatten einen Therapieerfolg: `\(p_{ja}=\frac{49}{100}=0.49\)`
+
+* Gegenwahrscheinlichkeit: `\(p_{nein}=1-0.49=0.51\)`
+
+* 50 Patient:innen hatten einen Wartelistentherapie: `\(p_{Warteliste}=\frac{50}{100}=0.50\)`
+
+* Gegenwahrscheinlichkeit: `\(p_{Psychotherapie}=1-0.50=0.50\)`
+
+]
+
+---
+class: top, left
+### Verfahren für Nominaldaten
+
+#### Zweidimensionaler `\(\chi^2\)`-Test 
+
+* Was bedeutet Stochastische Unabhängigkeit?
+  
+  * Merkmale beeinflussen einander nicht
+  * Ranghäufigkeiten müssen sich in jeder einzelnen Stufe des Merkmals widerspiegeln
+  * Ändert sich Verhältnis ist `\(H_0\)` verletzt
+
+**Berechnung erwarteter Häufigkeiten unter Annahme der `\(H_0:\)`**
+
+`$$f_{eij}=p_i \cdot n_j \text{  bzw.  } f_{eij}=p_j \cdot n_i$$`
+mit:
+* `\(f_{eij}:\)` erwartete Häufigkeit in Zelle `\(ij\)` der Kreuztabelle
+* `\(p_i\)` Randwahrscheinlichkeit der Merkmalsausprägung `\(i\)` von Merkmal 1
+* `\(p_j\)` Randwahrscheinlichkeit der Merkmalsausprägung `\(j\)` von Merkmal 2
+* `\(n_i\)` Randhäufigkeit `\(i\)` von Merkmal 1
+* `\(n_j\)` Randhäufigkeit `\(j\)` von Merkmal 2
+
+---
+class: top, left
+### Verfahren für Nominaldaten
+
+#### Zweidimensionaler `\(\chi^2\)`-Test 
+
+**Berechnung erwarteter Häufigkeiten unter Annahme der `\(H_0:\)`**
+
+`$$f_{eij}=p_i \cdot n_j \text{  bzw.  } f_{eij}=p_j \cdot n_i$$`
+
+Beide Formeln führen zum selben Ergebnis (lassen sich ineinander überführen):
+
+`$$f_{eij} = \frac{n_i \cdot n_j}{N} \rightarrow \frac{\text{Zeilensumme} \cdot \text{Spaltensumme}}{N}$$`
+.pull-left[
+.code60[
+
+```
+## Margins computed over dimensions
+## in the following order:
+## 1: 
+## 2:
+```
+
+```
+##       
+##        Psychotherapie Warteliste sum
+##   ja               36         13  49
+##   nein             14         37  51
+##   sum              50         50 100
+```
+]
+]
+.pull-right[
+* Verhältnis von Therapieerfolg ist 49% zu 51%
+
+* Falls Merkmale stochastisch unabhängig, muss dieses Verhältnis sich in beiden Behandlungen zeigen
+
+]
+
+---
+class: top, left
+### Verfahren für Nominaldaten
+
+#### Zweidimensionaler `\(\chi^2\)`-Test 
+
+**Berechnung erwarteter Häufigkeiten unter Annahme der `\(H_0:\)`**
+
+`$$f_{eij}=p_i \cdot n_j \text{  bzw.  } f_{eij}=p_j \cdot n_i$$`
+
+Beide Formeln führen zum selben Ergebnis (lassen sich ineinander überführen):
+
+`$$f_{eij} = \frac{n_i \cdot n_j}{N} \rightarrow \frac{\text{Zeilensumme} \cdot \text{Spaltensumme}}{N}$$`
+.pull-left[
+.code60[
+
+```
+## Margins computed over dimensions
+## in the following order:
+## 1: 
+## 2:
+```
+
+```
+##       
+##        Psychotherapie Warteliste sum
+##   ja               36         13  49
+##   nein             14         37  51
+##   sum              50         50 100
+```
+]
+]
+.pull-right[
+* `\(f_{eTh/ja} = 50 \cdot 0.49 = 24.5\)`
+* `\(f_{eTh/nein} = 50 \cdot 0.51 = 25.5\)`
+* `\(f_{eWa/ja} = 50 \cdot 0.49 = 24.5\)`
+* `\(f_{eWa/nein} = 50 \cdot 0.51 = 25.5\)`
+
+`\(\rightarrow\)` Beobachtete Werte weichen scheinbar von erwarteten ab. Ist diese Abweichung signifikant?
+]
+
+---
+class: top, left
+### Verfahren für Nominaldaten
+
+#### Zweidimensionaler `\(\chi^2\)`-Test
+
+**Berechnung von `\(\chi^2_{emp}:\)` **
+
+`$$\chi^2 = \sum\limits _{i=1}^{k}\sum\limits _{j=1}^{l}\frac{(f_{bij} - f_{eij})^2}{f_{eij}}$$`
+
+mit:
+* `\(k:\)` Anzahl der Kategorien von Merkmal 1 (Index `\(i\)`)
+* `\(l:\)` Anzahl der Kategorien von Merkmal 2 (Index `\(j\)`)
+* `\(f_{bij}\)` beobachtete absolute Häufigkeit von Merkmalskombination `\(ij\)`
+* `\(f_{eij}\)` unter `\(H_0\)` erwartete absolute Häufigkeit von Merkmalskombination `\(ij\)`
+
+und:
+
+`$$df = (k-1) \cdot (l-1)$$`
+
+---
+class: top, left
+### Verfahren für Nominaldaten
+
+#### Zweidimensionaler `\(\chi^2\)`-Test 
+
+**Signifikanzprüfung:**
+
+.pull-left[
+.code60[
+
+```
+## Margins computed over dimensions
+## in the following order:
+## 1: 
+## 2:
+```
+
+```
+##       
+##        Psychotherapie Warteliste sum
+##   ja               36         13  49
+##   nein             14         37  51
+##   sum              50         50 100
+```
+]
+]
+.pull-right[
+* `\(f_{eTh/ja} = 50 \cdot 0.49 = 24.5\)`
+* `\(f_{eTh/nein} = 50 \cdot 0.51 = 25.5\)`
+* `\(f_{eWa/ja} = 50 \cdot 0.49 = 24.5\)`
+* `\(f_{eWa/nein} = 50 \cdot 0.51 = 25.5\)`
+]
+
+&lt;small&gt;
+
+`$$\chi^2_{emp} = \sum\limits _{i=1}^{k}\sum\limits _{j=1}^{l}\frac{(f_{bij} - f_{eij})^2}{f_{eij}} = \frac{(36 - 24.5)^2}{24.5} + \frac{(13 - 25.5)^2}{25.5} +\frac{(14 - 24.5)^2}{24.5} + \frac{(37 - 25.5)^2}{25.5}=21.17$$`
+mit:
+
+`$$df = (2-1) \cdot (2-1)=1$$`
+
+
+---
+class: top, left
+### Verfahren für Nominaldaten
+
+.pull-left[
+#### Zweidimensionaler `\(\chi^2\)`-Test 
+
+**Signifikanzprüfung:**
+
+* `\(\chi^2_{emp}=21.17\)`
+
+* `\(df =1\)`
+
+Ablesen von `\(\chi^2_{krit}\)` aus der Tabelle:
+
+* `\(\chi^2_{df=1}=3.84\)`
+
+Vergleich `\(\chi^2_{emp}\)` vs. `\(\chi^2_{krit}:\)`
+
+* `\(21.17 &gt; 3.84\)` `\(\rightarrow\)` Test ist signifikant
+]
+.pull-right[
+.center[
+&lt;img src="bilder/chitab1.png" width="470px" /&gt;
+]
+]
+
+---
+class: top, left
+### Verfahren für Nominaldaten
+
+#### Zweidimensionaler `\(\chi^2\)`-Test - R
+
+&lt;small&gt;
+
+Unser Ergebnis (händisch):
+
+.code80[
+
+```r
+chisq.test(table(data$Behandlungserfolg, data$Behandlung), correct = FALSE)
+```
+
+```
+## 
+## 	Pearson's Chi-squared test
+## 
+## data:  table(data$Behandlungserfolg, data$Behandlung)
+## X-squared = 21.168, df = 1, p-value = 0.000004206
+```
+
+R führt standardmäßig für 2x2 Kreuztabellen die so genannte Yates-Kontinuitätskorrektur durch (Ergebnis etwas genauer):
+
+
+```r
+chisq.test(table(data$Behandlungserfolg, data$Behandlung))
+```
+
+```
+## 
+## 	Pearson's Chi-squared test with Yates' continuity correction
+## 
+## data:  table(data$Behandlungserfolg, data$Behandlung)
+## X-squared = 19.368, df = 1, p-value = 0.00001078
+```
+]
+
+---
+class: top, left
+### Verfahren für Nominaldaten
+
+#### Zweidimensionaler `\(\chi^2\)`-Test
+
+**Effekstärke `\(w^2:\)`**
+
+* Auch hier lässt sich `\(w^2\)` verwenden
+
+* Schätzung von `\(w^2\)` aus Stichprobendaten:
+
+`$$\hat{w}^2 = \frac{\chi^2}{N}$$`
+
+* Beispiel: `\(\hat{w}^2 = \frac{21.17}{100}=0.21 \rightarrow\)` nach Cohen ein mittlerer Effekt.
+
+---
+class: top, left
+### Verfahren für Nominaldaten
+
+#### Zweidimensionaler `\(\chi^2\)`-Test
+
+**Effekstärke Cramers Phi-Koeffizient (Cramers Index, CI)**
+
+* Empirisches Effektstärkemaß, baut auf `\(w^2\)` auf
+
+* Vorteil: Darf direkt wie Korrelationsmaß interpretiert werden
+  * Wertebereich zwischen 0 und 1
+  * 0 = stochastische Unabhängigkeit
+  * 1 = perfekter Zusammenhang
+  
+`$$CI = \sqrt\frac{\chi^2}{N \cdot (R - 1)}$$`
+mit:
+* `\(R=min(k;l)\)`
+
+---
+class: top, left
+### Verfahren für Nominaldaten
+
+#### Zweidimensionaler `\(\chi^2\)`-Test
+
+.pull-left[
+
+**Effekstärke Cramers Phi-Koeffizient (Cramers Index, CI)**
+
+`$$CI = \sqrt\frac{\chi^2}{N \cdot (R - 1)} = \sqrt\frac{21.17}{100 \cdot (2 - 1)}=0.46$$`
+]
+
+.pull-right[
+
+Konventionen nach Cohen (1988):
+
+&lt;table class=" lightable-classic" style='font-size: 18px; font-family: "Arial Narrow", "Source Sans Pro", sans-serif; margin-left: auto; margin-right: auto;'&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; Effektstärke &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Interpretation &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 0.1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; kleiner Effekt &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 0.3 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; mittlerer Effekt &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 0.5 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; großer Effekt &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+`\(\rightarrow\)` nach Cohen handelt es sich in unserem Beispiel um eine mittlere Effektstärke.
+
+]
+
+---
+class: top, left
+### Verfahren für Nominaldaten
+
+#### Der Vierfelder `\(\chi^2\)`-Test
+
+&lt;small&gt;
+
+* Spezialfall des zweidimensionalen `\(\chi^2\)`-Tests
+
+* Beide Merkmale haben genau 2 Merkmalsstufen (2x2 Kontingenztabelle)
+
+Dann kann Formel vereinfach werden (Vierfelder-Tafel):
+
+&lt;table class=" lightable-classic" style='font-size: 18px; font-family: "Arial Narrow", "Source Sans Pro", sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;  &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; B1 &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; B2 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; A1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; a &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; b &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; A2 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; c &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; d &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+`$$\chi^2 = \frac{N \cdot ( a \cdot d -  b \cdot c)^2}{(a + b) \cdot (c + d) \cdot ( a + c) \cdot (b + d)}$$`
+mit:
+`$$df = (k-1) \cdot (l-1)$$`
+
+* Vorteil: Keine Berechnung von Randhäufigkeiten etc. notwendig
+
+---
+class: top, left
+### Verfahren für Nominaldaten
+
+
+
+.pull-left[
+#### Der Vierfelder `\(\chi^2\)`-Test
+
+&lt;table class=" lightable-classic" style='font-size: 18px; font-family: "Arial Narrow", "Source Sans Pro", sans-serif; margin-left: auto; margin-right: auto;'&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;  &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; B1 &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; B2 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; A1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; a &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; b &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; A2 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; c &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; d &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+.pull-right[
+
+```r
+table(data$Behandlungserfolg, data$Behandlung)
+```
+
+```
+##       
+##        Psychotherapie Warteliste
+##   ja               36         13
+##   nein             14         37
+```
+
+]
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+`$$\chi^2_{emp} = \frac{N \cdot ( a \cdot d -  b \cdot c)^2}{(a + b) \cdot (c + d) \cdot ( a + c) \cdot (b + d)} =  \frac{100 \cdot ( 36 \cdot 37 -  13 \cdot 14)^2}{(36 + 13) \cdot (14 + 37) \cdot ( 36 + 14) \cdot (13 + 37)}=21.17$$`
+---
+class: top, left
+### Verfahren für Nominaldaten
+
+#### Der Vierfelder `\(\chi^2\)`-Test
+
+**Effekstärke Phi-Koeffizient**
+
+* Effektstärke `\(\phi\)` entspricht Korrelation von 2 dichotomen Variablen
+
+`$$\phi = \frac{ a \cdot d -  b \cdot c}{\sqrt{(a + b) \cdot (c + d) \cdot ( a + c) \cdot (b + d)}}$$`
+---
+class: top, left
+### Verfahren für Nominaldaten
+
+#### Voraussetzungen `\(\chi^2\)`-Tests 
+
+* `\(\chi^2\)`-Tests haben nur relativ wenige Voraussetzungen
+
+  1. Einzelbeobachtungen sind unabhängig voneinander
+  
+  2. Jede Person kann eindeutig einer Kategorie (oder Kombination von Kategorien) zugeordnet werden
+  
+  3. Erwartete Häufigkeiten in den Zellen größer als 5 (sonst analoger Alternativtest "Exakter Test nach Fisher")
+
+---
+class: top, left
+### Take-aways
+
+.full-width[.content-box-gray[
+* `\(\chi^2\)`-Tests  beinhalten die **Analyse von Häufigkeiten**.
+
+* Prinzip: Vergleich von **beobachteten vs. theoretisch erwarteten** Häufigkeiten.
+
+* Für `\(\chi^2\)`-Tests existieren theoreitsch **unendlich viele `\(H_0\)` ** Möglichkeiten (häufig: Gleichverteilungsannahme)
+
+* **Eindimensionaler `\(\chi^2\)`-Test** prüft, ob sich Verteilung der Kategorien einer nominalskalierten Variable unterscheiden.
+
+* **Zweidimensionaler `\(\chi^2\)`-Test** prüft Verteilung von 2 nominalskalierten Variablen (stochastische Unabhängigkeit).
+
+* Spezialfall: **Vierfelder `\(\chi^2\)`-Test ** wenn 2 dichotome Merkmale vorliegen.
+
+* **Effektstärkebestimmung** über `\(w^2\)` oder Phi-Koeffizient (wie Korrelation interpretierbar)
+]
+]
+
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"slideNumberFormat": "%current%",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

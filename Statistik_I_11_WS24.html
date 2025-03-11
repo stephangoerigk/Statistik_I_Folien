@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Einheit 11</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Prof. Dr. Stephan Goerigk" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/hygge.css" rel="stylesheet" />
+    <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view/tile-view.js"></script>
+    <script src="libs/fabric/fabric.min.js"></script>
+    <link href="libs/xaringanExtra-scribble/scribble.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-scribble/scribble.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#EE0071"],"pen_size":4,"eraser_size":40,"palette":[]}) })</script>
+    <script src="libs/kePrint/kePrint.js"></script>
+    <link href="libs/lightable/lightable.css" rel="stylesheet" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+name: Title slide
+class: middle, left
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+# Statistik I
+***
+### Einheit 11: Effektstärke und Power
+##### 23.01.2024 | Prof. Dr. Stephan Goerigk
+
+---
+class: top, left
+
+### Effektstärke und Powerberechnung
+
+#### Was ist eine Effektstärke
+
+* Indikator für die Stärke eines Treatments oder Phänomens, ähnlich wie der p-Wert ein Indikator für die Wahrscheinlichkeit eines beobachteten Wertes ist. 
+
+* Effektstärken sind ein wichtiger Faktor in empirischen Studien 
+
+* können verwendet werden, um die Stichprobengröße für künftige Studien zu bestimmen und die Stärke des Effekts über mehrere Studien hinweg zu vergleichen. 
+
+* Sind standardisierte Maße (unabhängig von der Einheit der Variablen)
+
+Effektstärken können in zwei Kategorien eingeteilt werden: 
+
+  * d-Familie, die Unterschiede zwischen Gruppen betrachtet
+  * r-Familie, die den Zusammenhang zwischen Daten misst.
+
+---
+class: top, left
+
+### Effektstärke und Powerberechnung
+
+#### Effektstärke und Power
+
+* Eine größere Teilnehmerzahl in einem Experiment führt zu einer höheren Wahrscheinlichkeit, dass die Null-Hypothese abgelehnt wird und das Ergebnis statistisch signifikant ist. 
+
+* Je eher dies geschieht, desto größer ist die Power des statistischen Verfahrens.
+
+* Ein Testverfahren mit einer hohen Power hat eine geringe Wahrscheinlichkeit, einen Effekt zu übersehen, auch wenn dieser klein ist. 
+
+* Andererseits wird bei einem Verfahren mit einer hohen Teststärke jeder relativ kleine Effekt schnell signifikant, auch wenn er keine praktische Bedeutung hat. 
+
+`\(\rightarrow\)` Unter Statistikern existiert daher auch die Meinung nicht mehr nur p-Werte, sondern verstärkt Effektstärken zu betrachten, um den Nutzen von Ergebnissen einzuordnen
+
+
+---
+class: top, left
+
+### Effektstärke und Powerberechnung
+
+#### Cohen’s d
+
+* Cohen's d ist die bekannteste und gängigste Methode zur Bestimmung der Effektstärke. 
+
+* Es wird verwendet, um den Effekt von Studien zu vergleichen, auch wenn die abhängige Variable unterschiedlich gemessen wird. 
+
+* Es ähnelt genau der Formel für die z-Standardisierung und wird daher von einigen Autoren auch als standardisierte Effektstärke bezeichnet. 
+
+* Kann  alle reelle Zahlen von `\(-∞\)` bis `\(+∞\)` annehmen
+
+* Das Vorzeichen gibt zwar die Richtung des Effekts an, spielt allerdings für die Interpretation der Stärke des Effekts keine Rolle
+
+`$$d=\frac{\mu_1- \mu_2}{\sigma}$$`
+
+---
+class: top, left
+
+### Effektstärke und Powerberechnung
+
+#### Cohen’s d
+
+
+
+.center[
+&lt;img src="bilder/es.png" width="950px" /&gt;
+]
+
+* Für Cohen’s d definiert sich die Effektstärke über die Mittelwertsdifferenz
+
+* diese wird relativ zur Streuung angegeben
+
+---
+class: top, left
+
+### Effektstärke und Powerberechnung
+
+#### Cohen’s d - Probleme der Standardabweichung
+
+* Es gibt ein Problem bezüglich der Definition der Standardabweichung in Cohen's Originalarbeit (Cohen, 1988). 
+
+* In der Publikation wird nicht angegeben, wie die Standardabweichung genau definiert werden soll. 
+
+* Cohen schreibt, dass man entweder eine der beiden Standardabweichungen für `\(σ\)` verwenden kann, da angenommen wird, dass beide gleich sind. 
+
+* Andere Forscher definieren Cohen's d expliziter und nutzen den Mittelwert beider Varianzen (gepoolte Standardabweichung) als Wurzel.
+
+* manche Autoren verwenden die Notation `\(d_s\)` für Cohen’s d mit gepoolter Standardabweichung
+
+`$$d=\frac{\bar{x}_1 - \bar{x}_2}{\sqrt{\frac{s^2_1 + s^2_2}{2}}}$$`
+
+---
+class: top, left
+### `\(t\)`-Test
+
+#### Cohen’s d - Beispiel (bekannt von t-Test Vorlesung)
+
+.pull-left[
+
+* Eine Psychologiestudentin möchte Versuchspersonen nach Teilnahme an ihrem Experiment mit einem kleinen Geldbetrag vergüten.
+
+* Sie möchte wissen, ob in Abhängigkeit der Höhe des Betrags Unterschiede in der Zufriedenheit der Teilnehmer:innen bestehen.
+
+* Höhere Werte zeigen höhere Zufriedenheit an.
+
+* Ihre Ergebnisse stehen in der nachfolgenden Tabelle:
+]
+.pull-right[
+.center[
+&lt;table class="table lightable-classic" style='font-size: 18px; margin-left: auto; margin-right: auto; font-family: "Arial Narrow", "Source Sans Pro", sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; Gruppe 1: erhält 10€ &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Gruppe 2: erhält 50€ &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+]
+* `\(\bar{x}_{G1}= 3.6\)`
+
+* `\(\bar{x}_{G2}= 6.6\)`
+
+* `\(s^2_{G1}= 1.3\)`
+
+* `\(s^2_{G2}= 2.8\)`
+]
+
+---
+class: top, left
+### `\(t\)`-Test
+
+#### Cohen’s d - Beispiel (bekannt von t-Test Vorlesung)
+
+* `\(\bar{x}_{G1}= 3.6\)`
+* `\(\bar{x}_{G2}= 6.6\)`
+* `\(s^2_{G1}= 1.3\)`
+* `\(s^2_{G2}= 2.8\)`
+
+`$$d=\frac{\bar{x}_1 - \bar{x}_2}{\sqrt{\frac{s^2_1 + s^2_2}{2}}}$$`
+
+`$$d=\frac{3.6 - 6.6}{\sqrt{\frac{1.3 + 2.8}{2}}}=\frac{3}{1.43}=2.10$$`
+Nach Cohen liegt ein großer Effekt vor (s.u.).
+---
+class: top, left
+
+### Effektstärke und Powerberechnung
+
+#### Hedge’s g (oft auch einfach nur d)
+
+* Eine Variation von Cohen's d ist Hedge's g, welche ähnlich berechnet wird. 
+
+* Der Unterschied besteht darin, dass bei der Berechnung von Hedge's g die Varianzen nicht nur miteinander verbunden, sondern auch durch die Bessel-Korrektur (n-1) korrigiert werden. 
+
+* Diese Korrektur reduziert insbesondere bei kleinen Stichproben (n &lt; 20) den Fehler der Schätzung.
+
+`$$g=\frac{\bar{x}_1 - \bar{x}_2}{\sqrt{\frac{(n_1-1)  \cdot s^2_1 + (n_2-1)  \cdot s^2_2}{n_1 + n_2 - 2}}}$$`
+---
+class: top, left
+
+### Effektstärke und Powerberechnung
+
+#### Glass’s `\(Δ\)`
+
+* Glass’s delta gehört zu der gleichen Familie, wie die bereits vorgestellten Formeln von Cohen und Hedge. 
+
+* Glass’s Δ wurde unsprünglich für experimentelle Studien entwickelt. Anstatt eine gepoolte oder Besselkorrigierte Standardabweichung zu verwenden, wird einfach die Standardabweichung der Kontrollgruppe verwendet. 
+
+* Die Idee dahinter ist, dass die Kontrollgruppe kein Treatment bekommen hat und daher die Standardabweichung der Grundgesamtheit eher wiedergibt.
+
+`$$Δ=\frac{\bar{x}_1 - \bar{x}_2}{\sigma_{control}}$$`
+
+---
+class: top, left
+
+### Effektstärke und Powerberechnung
+
+#### Cohen’s d berechnet aus der t-Statistik
+
+Zwischen dem t-Wert bei unabhängigen Stichproben und Cohen’s d besteht ein Zusammenhang
+
+Somit können wir einfache Art und Weise Cohen’s d aus dem t-Wert berechnen
+
+Dies ist insbesondere bei Meta-Analyse nützlich, wenn wir keine Originaldaten, sondern die Ergebnisse aus bereits gerechneten Hypothesentests vorliegen haben
+
+`$$d=\frac{2t}{\sqrt{df}}$$`
+
+---
+class: top, left
+
+### Effektstärke und Powerberechnung
+
+#### Unterschiedliche Bezeichnung für Maße der Effektstärke
+
+* Vorsicht: Unterschiedliche Bezeichnung für Maße der Effektstärke!
+
+* Es gibt eine hohe Verwirrung bei Autoren wissenschaftlicher Literatur bezüglich der Verwendung von Terminologie für bestimmte Formeln (Ellis, 2010). 
+
+* Die Verwendung der Bezeichnungen ist oft inkonsistent und widersprüchlich. 
+
+* Manche Autoren bezeichnen etwas als "g", was von Hedge und Olkin als "d" bezeichnet wurde und umgekehrt. 
+
+* Dies liegt daran, dass viele dieser Effektstärken-Maße ihren Ursprung in den 1980er Jahren haben, als "g" das Standardmaß der Effektstärke war, das von Cohen erfunden und von Glass verfeinert wurde (g steht für Glass). 
+
+* Allerdings wird seitdem "g" synonym mit der Formel von Hedge verwendet - nicht mit Glass’s "g". (Deswegen heißt es auch Hedge’s "g" und nicht Hedge’s "h", es wurde nach Glass benannt, obwohl es von Hedge entwickelt wurde.)
+
+---
+class: top, left
+
+### Effektstärke und Powerberechnung
+
+#### Interpretation von d
+
+* Die drei wichtigsten Indizes der d-Familie (Cohen’s, Glass’s Δ und Hedge’s g) vermitteln Informationen über die Größe des Effekts bezogen auf die Standardabweichung. 
+
+* Ein Wert von .50 entspricht einer halben Standardabweichung, während ein Wert von .75 dreiviertel einer Standardabweichung entspricht. 
+ 
+* Je höher der Effektstärkenwert, desto größer ist der Effekt. Effektstärken sind standardisiert, was bedeutet, dass sie über verschiedene Studien hinweg verglichen werden können. 
+ 
+* Wenn zwei Studien jeweils eine Effektstärke von .40 angeben, haben sie Effekte in gleicher Größe gefunden.
+
+---
+class: top, left
+
+### Effektstärke und Powerberechnung
+
+#### Interpretation von d - Faustregeln
+
+&lt;small&gt;
+
+* Cohen (1988) lieferte auch gleich eine Faustregel zur Interpretation der Ergebnisse aus seiner Formel. 
+
+* Demnach fängt ein kleiner Effekt ab 0.2 an, ein mittlerer ab 0.5 und ein großer ab 0.8. 
+
+* Hier ist zu beachten, dass Cohen’s d durchaus auch negativ werden kann.
+
+* Dies bedeutet lediglich, dass der Effekt in die umgekehrte Richtung geht. 
+
+* Die Faustregeln hierfür bleiben die gleichen. 
+
+* Die Formel nach Cohen ist allerdings anders zu interpretieren als der Korrelationskoeffizient: sie kann auch Werte größer 1 oder kleiner -1 einnehmen (Cohen’s d ist definiert von -∞ bis +∞). In diesem Fall handelt es sich einfach nur um einen ausgesprochen großen Effekt.
+
+&lt;/small&gt;
+
+&lt;table class="table" style="font-size: 18px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Effektstärke &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; d &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Kleiner Effekt &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &amp;amp;#124;0.2&amp;amp;#124; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Mittlerer Effekt &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &amp;amp;#124;0.5&amp;amp;#124; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Großer Effekt &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &amp;amp;#124;0.8&amp;amp;#124; &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+class: top, left
+
+### Effektstärke und Powerberechnung
+
+#### Interpretation von d - Vorsicht bei Faustregeln
+
+* Es ist bequem, die Cohen-Regeln zur Interpretation der Effektstärke zu verwenden, aber es gibt Situationen, in denen kleine Effektstärken dennoch große Auswirkungen haben können. 
+
+* Thompson (2007) empfiehlt, in diesen Fällen nicht die Regeln von Cohen zu nutzen, sondern stattdessen direkt und explizit die berechnete Effektstärke mit Effektstärken aus vergleichbaren Studien zu vergleichen. 
+
+* Als Beispiel nennt er folgende Interventionen 
+
+  * schwer zu behandelnde Krankheiten wie Essstörungen 
+
+  * Veränderungen, die sich nur allmählich über einen längeren Zeitraum auswirken, wie eine Intervention in einem Kindergarten, die zwar zum damaligen Zeitpunkt nur geringe Auswirkungen hatte, aber sich später positiv auf das gesamte Leben der Kinder auswirken wird. 
+
+---
+class: top, left
+
+### Effektstärke und Powerberechnung
+
+#### Korrelationskoeffizienten
+
+&lt;small&gt;
+
+* `\(r\)` quantifiziert die Stärke und Richtung des Zusammenhangs zwischen zwei Variablen. 
+
+* Im Gegensatz zu Cohen’s d, ist der Wertebereich von `\(r\)` beschränkt. 
+
+* `\(r\)` kann Werte zwischen -1 und 1 annehmen. 
+
+  * Ein Wert von 1 bedeutet eine perfekte positive Beziehung zwischen zwei Variablen
+  * Ein Wert von -1 bedeutet eine perfekte negative Beziehung zwischen zwei Variablen
+  * 0 hingegen bedeutet, dass gar keine Beziehung zwischen den Variablen besteht.
+
+.pull-left[
+
+WICHTIG: 
+* Der Korrelationskoeffizient `\(r\)` und darauf basierende Maße sind standardisiert. 
+* Das bedeutet, dass ein Effekt, der in `\(r\)` angegeben wurde, mit jedem anderen verglichen werden kann.
+* `\(r\)` kann demnach direkt als Effektstärke genutzt werden
+]
+
+.pull-right[
+&lt;br&gt;
+&lt;table class="table" style="font-size: 18px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; r &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Interpretation &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; &amp;amp;#124;&amp;gt;0.1&amp;amp;#124; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; kleiner Effekt &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; &amp;amp;#124;&amp;gt;0.3&amp;amp;#124; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; mittlerer Effekt &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; &amp;amp;#124;&amp;gt;0.5&amp;amp;#124; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; großer Effekt &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+&lt;/small&gt;
+
+---
+class: top, left
+
+### Effektstärke und Powerberechnung
+
+#### Cohen’s d in den Korrelationskoeffizienten `\(r\)` umrechnen
+
+* McGrath und Meyer (2006) publizierten eine Formel zum Umrechnen von d in den Korrelationskoeffizienten `\(r\)`, bei ungleicher Größe der Gruppen `\(n_1\)` und `\(n_2\)`:
+
+`$$r=\sqrt{\frac{d^2}{d^2 + \frac{(n_1 + n_2)^2 - 2 \cdot (n_1 + n_2)}{{n_1 \cdot n_2}}}}$$`
+
+---
+class: top, left
+
+### Effektstärke und Powerberechnung
+
+#### Aufgeklärte Varianz
+
+&lt;small&gt;
+
+* Der Beziehung zwischen zwei Variablen wird oft in Form der aufgeklärten Varianz, auch als gemeinsame Varianz bekannt, beschrieben. 
+
+* Maße für aufgeklärte Varianz weisen oft eine Potenz von 2 auf (²). 
+
+* Beispielsweise kann die aufgeklärte Varianz bei einer Korrelation aus dem Korrelationskoeffizienten berechnet werden, indem dieser quadriert wird: `\(R^2\)`. 
+
+  * Dies wird auch als Determinationskoeffizient bezeichnet. 
+  * Wenn zwei Variablen beispielsweise eine Korrelation von -.40 haben, beträgt der Determinationskoeffizient (-.40)² = .16.
+
+* Eine aufgeklärte Varianz von .16 bedeutet, dass 16% der Streuung durch die Beziehung zwischen den beiden Variablen erklärbar sind. 
+
+* Je mehr Varianz die Variablen gemeinsam haben, desto stärker kovariieren sie und desto stärker ist der Effekt sowie die aufgeklärte Varianz.
+
+* Maße für die aufgeklärte Varianz bewegen sich zwischen 0 und 1.
+
+[**Visualisierung Aufgeklärte Varianz**](https://daze02-stephan-goerigk.shinyapps.io/Regression/)
+
+&lt;/small&gt;
+
+---
+class: top, left
+
+### Effektstärke und Powerberechnung
+
+#### Referenzwerte verschiedener Maße der Effektstärke - Referenzwerte von Cohen, abgewandelt nach Ellis (2010).
+
+&lt;table class="table" style="font-size: 18px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Testart &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Maß der Effektstärke &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Klein &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Mittel &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Groß &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Vergleich zweier unabhängiger Stichproben &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; d, Δ, Hedge’s g &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &amp;amp;#124;0.20&amp;amp;#124; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &amp;amp;#124;0.50&amp;amp;#124; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &amp;amp;#124;0.80&amp;amp;#124; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Vergleich von zwei Korrelationen &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; q &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0.1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0.3 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0.5 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Korrelationskoeffizient &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; r &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &amp;amp;#124;0.10&amp;amp;#124; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &amp;amp;#124;0.30&amp;amp;#124; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &amp;amp;#124;0.50&amp;amp;#124; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Determinationskoeffizient &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; r² &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0.01 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0.09 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0.25 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Kreuztabelle &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Cohen’s w, φ, Cramer’s V, C &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &amp;amp;#124;0.10&amp;amp;#124; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &amp;amp;#124;0.30&amp;amp;#124; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &amp;amp;#124;0.50&amp;amp;#124; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; ANOVA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; f &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0.1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0.25 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0.4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; η²part &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; η²part &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0.01 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0.06 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0.14 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Multiple Regression &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; R² &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0.02 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0.13 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0.26 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Cohen’s f² &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0.02 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0.15 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0.35 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+class: top, left
+
+### Effektstärke und Powerberechnung
+
+#### Statistische Power (Teststärke)
+
+&lt;small&gt;
+
+* Statistische Power ist die Wahrscheinlichkeit, dass ein Effekt entdeckt wird, wenn der Effekt auch tatsächlich existiert. 
+
+* (Statistische) Power wird definiert als die Wahrscheinlichkeit, korrekterweise eine falsche Nullhypothese zurückzuweisen. 
+
+* Im Deutschen wird auch oft der Begriff Teststärke verwendet, der Synonym mit statistischer Power ist.
+
+* Wenn die statistische Power hoch ist, sinkt die Wahrscheinlichkeit, einen Typ-II-Fehler zu begehen oder festzustellen, dass es keinen Effekt gibt, wenn es tatsächlich einen gibt. 
+
+* Power = 1 − β (β = die Wahrscheinlichkeit ist, einen Fehler 2. Art zu begehen) 
+
+* Statistische Power ist eine Funktion der Effektstärke, der Stichprobengröße (N), des verwendeten statistischen Verfahrens und des Signifikanzniveaus (Wahrscheinlichkeit einen Fehler 1. Art zu begehen).
+
+* In den letzten 20 Jahren hat die statistische Power und ihre Bedeutung für wissenschaftliche Studien mehr Aufmerksamkeit erhalten, und mehr Journals, Stakeholder und Reviewer verlangen von Forschern Power-Analysen.
+
+&lt;/small&gt;
+
+---
+class: top, left
+
+### Effektstärke und Powerberechnung
+
+#### Poweranalyse
+
+&lt;small&gt;
+
+* Poweranalyse ist eine Methode zur Schätzung der Stichprobengröße in psychologischen Studien, um eine ausreichende statistische Power zu gewährleisten.
+
+* Sollte vor der Durchführung einer Studie durchgeführt werden, um eine angemessene Stichprobengröße zu bestimmen und die Güte der Studie zu verbessern.
+
+* Es bestimmt, wie groß die Stichprobe sein muss, um bei angenommenre Effektstärke signifikante Ergebnisse zu erzielen und das Risiko eines Type-II-Fehlers zu minimieren.
+
+* Folgende Faktoren werden bei einer Poweranalyse immer berücksichtigt:
+  * Signifikanzniveau (i.d.R. `\(\alpha=.05)\)`
+  * gewünschte Power `\(1-\beta\)` (i.d.R. mindestens 0.8)
+  * vermutete **Effektstärke**
+
+`\(\rightarrow\)` Zur Planung einer neuen Studie, sollte eine angenommene Effektstärke mit berücksichtigt werden
+
+`\(\rightarrow\)` Problem: Effektstärke aus Vorstudien (oder Pilotstudien) nicht immer verfügbar (manchmal muss einfach geschätzt werden)
+
+&lt;/small&gt;
+
+---
+class: top, left
+
+### Effektstärke und Powerberechnung
+
+#### Poweranalyse
+
+.center[
+&lt;img src="bilder/power1.png" width="550px" /&gt;
+]
+
+[**Visualisierung Poweranalyse**](https://rpsychologist.com/d3/nhst/)
+
+---
+class: top, left
+
+### Effektstärke und Powerberechnung
+
+#### Poweranalyse
+
+* Eine Poweranalyse wird in der Regel computersisiert berechnet
+
+* Für gängige statistische Tests wird of folgende Software eingesetzt
+  * Das Programm G*Power 
+    * frei verfügbar von der Universität Düsseldorf ([**Link**](https://www.psychologie.hhu.de/arbeitsgruppen/allgemeine-psychologie-und-arbeitspsychologie/gpower))
+  * Das R Paket "pwr"
+
+* Komplexere Verfahren wie Mehrebenenmodelle oder multivariate Verfahren (z.B. Strukturgleichungsmodelle) erfordern Simulation (z.B. Monte-Carlo Simulation)
+
+---
+class: top, left
+
+### Effektstärke und Powerberechnung
+
+#### Poweranalyse - Berechnung mit G*Power
+
+.center[
+&lt;img src="bilder/gpower.png" width="500px" /&gt;
+]
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"slideNumberFormat": "%current%",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
