@@ -97,6 +97,41 @@ Kenncode: 807174
 
 ---
 class: top, left
+### Überblick Forschungsgruppen
+
+<small>
+
+.pull-left[
+Psychotherapy and Social Neuroscience Research Unit (Ko-Leitung) - Klinik für Psychiatrie und Psychohtherapie der LMU
+
+.center[
+```{r eval = TRUE, echo = F, out.width = "300px"}
+knitr::include_graphics("bilder/psychatrie_aussen_1_1_format_l.png")
+```
+]
+
+https://www.lmu-klinikum.de/psychiatrie-und-psychotherapie/forschung-research/working-groups/psychotherapy-research/674c88499623df32
+
+]
+
+.pull-right[
+Hochschulambulanz der CFH 
+(Wissenschaftlich-methodische Leitung)
+
+.center[
+```{r eval = TRUE, echo = F, out.width = "250px"}
+knitr::include_graphics("bilder/Hochschulambulanz-MUC-1.jpg")
+```
+]
+
+https://www.charlotte-fresenius-uni.de/hochschulambulanz-psychotherapie-muenchen/
+
+]
+
+
+
+---
+class: top, left
 ### Methodenausbildung an der CFH
 
 Projektname: **PsyStat-Training** – souverän durch die Statistik im Psychologiestudium
