@@ -129,6 +129,17 @@ https://www.charlotte-fresenius-uni.de/hochschulambulanz-psychotherapie-muenchen
 ]
 
 
+---
+class: top, left
+### Lehrstuhl Psychologische Methodenlehre - Team
+
+<br>
+
+.center[
+```{r eval = TRUE, echo = F, out.width = "1000px"}
+knitr::include_graphics("bilder/team.png")
+```
+]
 
 ---
 class: top, left
@@ -148,17 +159,7 @@ knitr::include_graphics("bilder/concept.png")
 ```
 ]
 
----
-class: top, left
-### Lehrstuhl Psychologische Methodenlehre - Team
 
-<br>
-
-.center[
-```{r eval = TRUE, echo = F, out.width = "1000px"}
-knitr::include_graphics("bilder/team.png")
-```
-]
 ---
 class: top, left
 ### Übersicht Lehrveranstaltung 
