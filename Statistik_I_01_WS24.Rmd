@@ -257,7 +257,7 @@ Sie ist ambitionierte Forscherin und möchte etwas bahnbrechendes entdecken.
 
 Nur was?
 
-```{r eval = TRUE, echo = F, out.width = "200px"}
+```{r eval = TRUE, echo = F, out.width = "150px"}
 knitr::include_graphics("bilder/think.jpg")
 ```
 ]
