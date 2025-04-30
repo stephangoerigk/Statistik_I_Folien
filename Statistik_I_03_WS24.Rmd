@@ -361,9 +361,9 @@ kable(df[,], col.names = NULL)
 
 ]
 <small>
-$$s^2=\frac{\sum\limits _{i=1}^{n}(x_{i}-\bar{x})^2}{n}$$
+$$\sigma^2=\frac{\sum\limits _{i=1}^{n}(x_{i}-\bar{x})^2}{n}$$
 
-$$\sigma^2=\frac{\sum\limits _{i=1}^{n}(x_{i}-\bar{x})^2}{n-1}$$
+$$s^2=\frac{\sum\limits _{i=1}^{n}(x_{i}-\bar{x})^2}{n-1}$$
 ]
 ]
 .pull-right[
@@ -414,7 +414,7 @@ kable(df[,], col.names = NULL)
 .left[
 >Formel:
 
-] $$\sigma^2=\frac{\sum\limits _{i=1}^{n}(x_{i}-\bar{x})^2}{n-1}$$
+] $$s^2=\frac{\sum\limits _{i=1}^{n}(x_{i}-\bar{x})^2}{n-1}$$
 ]
 ]
 .pull-right[
@@ -467,7 +467,7 @@ kable(df[,], col.names = NULL)
 .left[Lösungsweg:] 
 
 $$\bar{x}=\frac{`r paste(x, collapse = " + ")`}{`r n`}=\frac{`r sum(x)`}{`r n`}=`r round(mean(x), 2)`$$
-$$\sigma^2=\frac{`r paste(paste0("(",x, "-", round(mean(x),2),")^2"), collapse = " + ")`}{`r n`-1}=\frac{`r sum((x - mean(x))^2)`}{`r n-1`}=`r round(var(x), 2)`$$
+$$s^2=\frac{`r paste(paste0("(",x, "-", round(mean(x),2),")^2"), collapse = " + ")`}{`r n`-1}=\frac{`r sum((x - mean(x))^2)`}{`r n-1`}=`r round(var(x), 2)`$$
 ]
 
 ---
@@ -602,8 +602,8 @@ kable(df[,], col.names = NULL)
 
 
 
-$$s=\sqrt{\frac{\sum\limits _{i=1}^{n}(x_{i}-\bar{x})^2}{n}}$$
-$$\sigma=\sqrt{\frac{\sum\limits _{i=1}^{n}(x_{i}-\bar{x})^2}{n-1}}$$
+$$\sigma=\sqrt{\frac{\sum\limits _{i=1}^{n}(x_{i}-\bar{x})^2}{n}}$$
+$$s=\sqrt{\frac{\sum\limits _{i=1}^{n}(x_{i}-\bar{x})^2}{n-1}}$$
 
 ---
 class: top, left
@@ -637,8 +637,8 @@ kable(df[,], col.names = NULL)
 .left[Lösungsweg:] 
 
 $$\bar{x}=\frac{`r paste(x, collapse = " + ")`}{`r n`}=\frac{`r sum(x)`}{`r n`}=`r round(mean(x), 2)`$$
-$$\sigma^2=\frac{`r paste(paste0("(",x, "-", round(mean(x),2),")^2"), collapse = " + ")`}{`r n`-1}=\frac{`r sum((x - mean(x))^2)`}{`r n-1`}=`r round(var(x), 2)`$$
-$$\sigma=\sqrt{`r round(var(x), 2)`} = `r round(sd(x), 2)`$$
+$$s^2=\frac{`r paste(paste0("(",x, "-", round(mean(x),2),")^2"), collapse = " + ")`}{`r n`-1}=\frac{`r sum((x - mean(x))^2)`}{`r n-1`}=`r round(var(x), 2)`$$
+$$s=\sqrt{`r round(var(x), 2)`} = `r round(sd(x), 2)`$$
 ]
 
 ---
