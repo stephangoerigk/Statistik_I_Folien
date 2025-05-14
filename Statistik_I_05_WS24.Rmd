@@ -345,27 +345,6 @@ class: top, left
 
 * Zufallsexperiment ist ein allgemeiner Begriff, der Grundlage für die Inferenzstatistik ist
 
----
-class: top, left
-### Stichprobe, Grundgesamtheit - Wahrscheinlichkeitstheorie und Verteilungen
-
-#### Wahrscheinlichkeitsrechnung als Grundlage der Inferenzstatistik
-
-**Zufallsexperiment**
-
-* Zufallsexperiment 1: 
-
-  Einmaliger Wurf mit einer Münze; $Ω =$ { Kopf, Zahl } endlich und abzählbar
-
-* Zufallsexperiment 2: 
-
-   Wurf mit einem Würfel so lange bis zum ersten Mal drei ’Einser’ hintereinander kommen; wir interessieren uns für die Anzahl der notwendigen Würfe; $Ω =$ 3,4,5,··· oder $Ω =$ {k : k natürliche Zahl ≥ 3}; $Ω$ ist diskret und abzählbar unendlich
-
-* Zufallsexperiment 3: 
-
-  Lebensdauer einer Glühbirne; $Ω =$ ${x : x ≥ 0}$; $Ω$ ist stetig und überabzählbar unendlich
-
-* Richtige Bestimmung von $Ω$ ist Voraussetzung für Richtigkeit jeder weiteren statistischen Analyse
 
 ---
 class: top, left
@@ -388,22 +367,6 @@ Beispiele für psychologische Fragestellungen:
   * Wir interessieren uns für den Mittelwert $\bar{x}_{IQ}$ und die empirische Varianz $s^2_{empIQ}$ des
 Intelligenzquotienten (IQ) von Personen in Europa.
 
-
----
-class: top, left
-### Stichprobe, Grundgesamtheit - Wahrscheinlichkeitstheorie und Verteilungen
-
-#### Wahrscheinlichkeitsrechnung als Grundlage der Inferenzstatistik
-
-**Zufallsvariable**
-
-* Es seien ein Wahrscheinlichkeitsraum $Ω$ und $p_{(ω)}$ für alle $ω$ gegeben.
-
-* Eine mathematische Funktion $X$, welche jedem Ereignis ω eine reelle Zahl $X_{(ω)}$ zuweist, heißt Zufallsvariable (ZV).
-
-* $X$ ist eine Zufallsvariable (ZV), wenn die Werte von $X$ reelle Zahlen sind, die durch ein Zufallsexperiment bestimmt werden, und wenn für die Ereignisse, die man damit beschreiben kann, Wahrscheinlichkeiten angebbar sind.
-
-* Der Wert, den die ZV bei der Durchführung des Zufallsexperimentes annimmt, heißt Realisation von $X$, und wird mit $x$ bezeichnet.
 
 ---
 class: top, left
