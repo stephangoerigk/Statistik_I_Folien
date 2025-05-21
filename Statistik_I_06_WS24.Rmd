@@ -76,27 +76,6 @@ class: top, left
 
 * Auswahl bestimmter Merkmalsträger:innen aus einer Population
 
----
-class: top, left
-### Schätzungen und Stichprobenfehler
-
-#### Wiederholung:
-
-**Problem:**
-
-* Wenn nur ein Teil der Grundgesamtheit erfasst wird, z.B. 100 Personen, ist die **Informationslage** in Bezug auf die Untersuchungsfrage **unvollständig**. Wir können nicht einfach deskriptiv-statistische Methoden verwenden.
-
-* Wie kann man trotzdem Aussagen treffen, die sich auf alle Personen der Grundgesamtheit beziehen, obwohl nur die Daten einer Stichprobe vorliegen?
-
-***
-
-**Idee:**
-
-* Wir ziehen die Personen zufällig aus der Population in die Stichprobe.
-
-* Wir greifen auf mathematische Methoden zur Formalisierung von Zufallsprozessen zurück $\rightarrow$ Wahrscheinlichkeitstheorie
-
-* Aus diesen ergeben sich Methoden, die Rückschlüsse von der Stichprobe auf die Population erlauben $\rightarrow$ Inferenzstatistik
 
 ---
 class: top, left
@@ -157,38 +136,6 @@ Parameter der jeweiligen Wahrscheinlichkeitsverteilung. Inferenzstatistische Ver
 
 </small>
 
----
-class: top, left
-### Schätzungen und Stichprobenfehler
-
-#### Zusammenfassung:
-
-* Wenn wir herausfinden wollen, was der mittlere IQ in der Population ist, müssen wir lediglich herausfinden, welchen Wert der Parameter $𝜇$ hat.
-
-* Wenn wir herausfinden wollen, was die empirische Varianz des IQs in der Population ist, müssen wir lediglich herausfinden, welchen Wert der Parameter $𝜎^2$ hat.
-
-* Auch in diesem Fall können wir also das Problem der Bestimmung von deskriptivstatistischen Maßzahlen in der Population $(\bar{x}_{IQ}$ und $s^2_{empIQ})$ komplett in die
-Wahrscheinlichkeitstheorie verlagern und somit alle Mittel verwenden, die uns diese zur Verfügung stellt.
-
-$\rightarrow$ Um (nicht in Gänze messbare) Populationen zu beschreiben, reicht es die zentralen Parameter einer Wahrscheinlichkeitsverteilung zu kennen (solange die Variablen sich ihren Annahmen entsprechend verteilen).
-
-**FRAGE:** Wie kommen wir an die Werte $𝜇$ und $𝜎^2$?
-
-**ANTWORT:** Wir schätzen sie auf Basis der Stichprobe (Inferenzstatistik)!
-
----
-class: top, left
-### Schätzungen und Stichprobenfehler
-
-#### Inferenzstatistik:
-
-* Wir haben gesehen, dass sich Aussagen über Populationen im Fall von einfachen Zufallsstichproben auf Aussagen über Parameter von Wahrscheinlichkeitsverteilungen reduzieren lassen.
-
-* **Aber:** Dies hat das Problem des Rückschlusses von Stichproben auf Populationen erst einmal nur in die Wahrscheinlichkeitstheorie verlagert.
-
-* Es ist immer noch unklar, wie man von Stichproben zu Aussagen über Parameter von Wahrscheinlichkeitsverteilungen gelangt.
-
-* Dies ist Gegenstand der Inferenzstatistik.
 
 ---
 class: top, left
@@ -363,7 +310,7 @@ class: top, left
 
 * Um zu bestimmen, wie weit ein einzelner Schätzwert vom wahren Parameterwert entfernt ist, müssten wir ja den wahren Parameterwert schon kennen.
 
-* Aber: Da die Ziehung der einfachen Zufallsstichprobe ein Zufallsexperiment ist, können wir uns anschauen, wie sich die Schätzwerte verhalten würden, falls wir wiederholt eine solche einfache Zufallsstichprobe ziehen und die Schätzwerte berechnen würden.
+* Aber: Da die Ziehung der einfachen Zufallsstichprobe ein Zufallsexperiment ist, können wir uns anschauen, wie sich die Schätzwerte verhalten würden, falls wir (theoretisch unendlich oft) wiederholt eine solche einfache Zufallsstichprobe ziehen und die Schätzwerte berechnen würden.
 
 * Wir können auf diese Art und Weise herausfinden, wie gut unsere Schätzungen „im Durchschnitt“ sind.
 
@@ -653,7 +600,7 @@ class: top, left
 
 * Formal: Eine erwartungstreue Schätzfunktion $\hat{𝜃}$ für einen Parameter $𝜃$ ist konsistent, falls gilt:
 
-$$\lim_{x \to \infty} SE(\hat{𝜃}) = 0]$$
+$$\lim_{x \to \infty} SE(\hat{𝜃}) = 0$$
 ---
 class: top, left
 ### Schätzungen und Stichprobenfehler
