@@ -1,7 +1,7 @@
 ---
 title: "Einheit 7"
 subtitle: "⚔<br/>with xaringan"
-author: "Dr. Stephan Goerigk"
+author: "Prof. Dr. Stephan Goerigk"
 institute: "RStudio, PBC"
 date: "2016/12/12 (updated: `r Sys.Date()`)"
 output:
@@ -502,170 +502,6 @@ Festlegung auf eine Formulierung
 class: top, left
 ### Hypothesen und Hypothesentests
 
-#### Beispiel 1: Binomialtest (einseitiges Testen)
-
-Ein Therapieverfahren zur Behandlung von Angststörungen soll nach 6 Montaten eine Rückfallquote von maximal 30% haben.
-
-* Das Verfahren soll an einer Zufallsstichprobe von $N=100$ Patient:innnen geprüft werden
-
-Aufstellen des Hypothesenpaares:
-  * $H_{0}$: $p \geq .3$ (mindestens 30%)
-  * $H_{1}$: $p < .3$ (unter 30%)
-
-Fragen:
-* Wie viele Patienten in der Stichprobe erleiden einen Rückfall
-* Ist dieses Ergebnis **überzufällig** und somit auf die Population (aller Angstpatient:innen) verallgemeinerbar
-
----
-class: top, left
-### Hypothesen und Hypothesentests
-
-#### Beispiel 1: Binomialtest (einseitiges Testen)
-
-**Beobachtung in der Stichprobe (Schätzer):**
-
-* In der Stichprobe erleiden $n=28$ Patienten einen Rückfall
-
-* In absoluten Zahlen spricht das erst einmal für das Verfahren $(\frac{28}{100}=28\%<30\%)$
-
-**Frage, die der Hypothesentest stellt:**
-
-* Ist $n=28$ (28%) ausreichend weit weg von 30%, sodass wir das Ergebnis verallgemeinern können?
-
----
-class: top, left
-### Hypothesen und Hypothesentests
-
-#### Beispiel 1: Binomialtest (einseitiges Testen)
-
-**Bestimmung einer passenden Wahrscheinlichkeitsverteilung:**
-
-* Art (und i.d.R.) Name des Tests basiert auf zugrunde liegender Verteilung
-
-* Unsere Zufallsvariable $X$ (s.h. Hypothese) ist in Wahrscheinlichkeiten angegeben $(p=.3)$
-
-* Wahrscheinlichkeitsverteilung zur Wahrscheinlichkeit von Wahrscheinlichkeiten $(p):$ Binomialverteilung 
-
-**Auswahl Hypothesentest:**
-* Wir wählen als Hypothesentest des **Binomialtest**
-* Zur Entscheidung über unsere Hypothesen werden wir eine **Binomialverteilungstabelle** nutzen
-* Merke: 
-  * Bei gerichteten (einseitigen) Formulierungen wie "mindestens" oder "höchstens" nutzen wir die **kumulierte Binomialverteilungstabelle**
-  * Bei ungerichteten Formulierungen wie "genau" nutzen wir die **einfache Binomialverteilungstabelle**
-
----
-class: top, left
-### Hypothesen und Hypothesentests
-
-#### Beispiel 1: Binomialtest (einseitiges Testen)
-
-**Parameter für den Binomialtest:**
-
-* $p=30\%=.3$
-
-* $N = 100$
-
-* Signifikanzniveau $\alpha=5\%=.05$
-
-* $k=28$
-
-Ist die Rückfallquote niedrig genug, um die Nulllhypothese zu verwerfen?
-
----
-class: top, left
-### Hypothesen und Hypothesentests
-
-#### Beispiel 1: Binomialtest (einseitiges Testen)
-
-**Festlegung kritischer Wert (Annahme und Ablehnungsbereich der Nullhypothese):**
-
-.pull-left[
-.center[
-```{r echo = F, out.width="400px"}
-ggplot(data.frame(x = c(-4, 4)), aes(x)) +
-    stat_function(fun = dnorm, geom = "area", fill = "steelblue", alpha = .3) +
-    stat_function(fun = dnorm,geom = "area", fill = "steelblue", xlim = c(-4, qnorm(.05))) +
-  labs(x = "", y = "") +
-  annotate(geom = "text", x = -2.5, y = 0.05, label = "5%", size = 6) +
-  ggtitle("Linksseitiger Test") +
-   theme_classic() +
-  theme(text = element_text(size = 25), axis.text.y = element_blank(), axis.ticks.y = element_blank())   
-```
-]
-]
-
-.pull-right[
-Fällt das Stichprobenergebnis in den Ablehnungsbereich: 
-
-* $H_{0}$: $p \geq .3$ (verwerfen)
-* $H_{1}$: $p < .3$ (annehmen)
-
-Kritischer Wert kann in der kumulierte Binomialverteilungstabelle nachgesehen werden ([**Link zur Tabelle**](https://www.hs-merseburg.de/fileadmin/Extra/Hagenloch/Lehre/Verteilungen_EmpVerf.pdf))
-
-Wir wollen für $n=100$ und die Wahrscheinlichkeit $p=.3$ den letzten Wert $k$ finden, der unter Annahme der BV eine Auftretenswahrscheinlichkeit kleiner als unser Signifikanzniveau $(\alpha=.05)$ hat
-]
-
----
-class: top, left
-### Hypothesen und Hypothesentests
-
-#### Beispiel 1: Binomialtest (einseitiges Testen)
-
-**Festlegung kritischer Wert (Annahme und Ablehnungsbereich der Nullhypothese):**
-
-* Kritischer Wert kann in der kumulierten Binomialverteilungstabelle nachgesehen werden ([**Link zur Tabelle, S.6**](https://www.hs-merseburg.de/fileadmin/Extra/Hagenloch/Lehre/Verteilungen_EmpVerf.pdf))
-
-* Wir wollen für $n=100$ und die Wahrscheinlichkeit $p=.3$ den letzten Wert $k$ finden, für den der dazugehörige Wert in der Tabelle unterhalb des Signifikanznveaus $\alpha=.05$ gilt
-
-$\rightarrow$ Dieser Wert ist unser kritischer Wert
-
-* In unserem Beispiel ist der kritische Wert $k=22$ bei einer Wahrscheinlichkeit von $p=.0479$
-
-* Hätten wir $k=22$ unterschritten, könnten wir mit 95% Sicherheit glauben, dass das Programm max. 30% Rückfallrate hat.
-
----
-class: top, left
-### Hypothesen und Hypothesentests
-
-#### Beispiel 1: Binomialtest (einseitiges Testen)
-
-**Festlegung kritischer Wert (Annahme und Ablehnungsbereich der Nullhypothese):**
-
-.pull-left[
-.center[
-```{r echo = F, out.width="400px"}
-ggplot(data.frame(x = c(-4, 4)), aes(x)) +
-    stat_function(fun = dnorm, geom = "area", fill = "steelblue", alpha = .3) +
-    stat_function(fun = dnorm,geom = "area", fill = "steelblue", xlim = c(-4, qnorm(.1))) +
-  labs(x = "", y = "") +
-  scale_x_continuous(breaks = c(-2.2, .75), labels = c("V: 1-22", "A: 23-100")) +
-  ggtitle("Linksseitiger Test") +
-   theme_classic() +
-  theme(text = element_text(size = 25), axis.text.y = element_blank(), axis.ticks.y = element_blank())   
-```
-]
-]
-
-.pull-right[
-Es ergibt sich:
-
-* Verwerfungsbereich der $H_{0}$ von 1-22
-* Annahmebereich der $H_{0}$ von 23-100
-* Unsere Stichprobe ergab 28 Rückfälle
-* Dieser Wert liegt im Annahmebereich der $H_{0}$
-* Test ist nicht signifikant $\rightarrow$ $H_{0}$ beibehalten
-
-Interpretation:
-
-* Numerisch weniger Rückfälle als 30%
-* ABER: Wir können nicht mit 95% Wahrscheinlichkeit sagen, dass $p<.3$
-
-]
-
----
-class: top, left
-### Hypothesen und Hypothesentests
-
 #### Ein-Stichproben $z$-Test (Gauß-Test)
 
 * Hypothesen über $μ$ einer normalverteilten Variable, wobei $σ^2$ (Populationsvarianz) bekannt ist
@@ -864,13 +700,11 @@ ggplot(data.frame(x = c(-4, 4)), aes(x)) +
 ]
 
 
-
 ---
 class: top, left
 ### Hypothesen und Hypothesentests
 
 #### Ein-Stichproben $z$-Test (Gauß-Test) - Beispiel
-
 
 
 .pull-left[
@@ -944,6 +778,169 @@ In z-Tabelle $z_{krit}$ bei $p = 1-\frac{\alpha=.05}{2}= 0.975$ (durch 2 teilen,
 </small>
 
 
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Beispiel 1: Binomialtest (einseitiges Testen)
+
+Ein Therapieverfahren zur Behandlung von Angststörungen soll nach 6 Montaten eine Rückfallquote von maximal 30% haben.
+
+* Das Verfahren soll an einer Zufallsstichprobe von $N=100$ Patient:innnen geprüft werden
+
+Aufstellen des Hypothesenpaares:
+  * $H_{0}$: $p \geq .3$ (mindestens 30%)
+  * $H_{1}$: $p < .3$ (unter 30%)
+
+Fragen:
+* Wie viele Patienten in der Stichprobe erleiden einen Rückfall
+* Ist dieses Ergebnis **überzufällig** und somit auf die Population (aller Angstpatient:innen) verallgemeinerbar
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Beispiel 1: Binomialtest (einseitiges Testen)
+
+**Beobachtung in der Stichprobe (Schätzer):**
+
+* In der Stichprobe erleiden $n=28$ Patienten einen Rückfall
+
+* In absoluten Zahlen spricht das erst einmal für das Verfahren $(\frac{28}{100}=28\%<30\%)$
+
+**Frage, die der Hypothesentest stellt:**
+
+* Ist $n=28$ (28%) ausreichend weit weg von 30%, sodass wir das Ergebnis verallgemeinern können?
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Beispiel 1: Binomialtest (einseitiges Testen)
+
+**Bestimmung einer passenden Wahrscheinlichkeitsverteilung:**
+
+* Art (und i.d.R.) Name des Tests basiert auf zugrunde liegender Verteilung
+
+* Unsere Zufallsvariable $X$ (s.h. Hypothese) ist in Wahrscheinlichkeiten angegeben $(p=.3)$
+
+* Wahrscheinlichkeitsverteilung zur Wahrscheinlichkeit von Wahrscheinlichkeiten $(p):$ Binomialverteilung 
+
+**Auswahl Hypothesentest:**
+* Wir wählen als Hypothesentest des **Binomialtest**
+* Zur Entscheidung über unsere Hypothesen werden wir eine **Binomialverteilungstabelle** nutzen
+* Merke: 
+  * Bei gerichteten (einseitigen) Formulierungen wie "mindestens" oder "höchstens" nutzen wir die **kumulierte Binomialverteilungstabelle**
+  * Bei ungerichteten Formulierungen wie "genau" nutzen wir die **einfache Binomialverteilungstabelle**
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Beispiel 1: Binomialtest (einseitiges Testen)
+
+**Parameter für den Binomialtest:**
+
+* $p=30\%=.3$
+
+* $N = 100$
+
+* Signifikanzniveau $\alpha=5\%=.05$
+
+* $k=28$
+
+Ist die Rückfallquote niedrig genug, um die Nulllhypothese zu verwerfen?
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Beispiel 1: Binomialtest (einseitiges Testen)
+
+**Festlegung kritischer Wert (Annahme und Ablehnungsbereich der Nullhypothese):**
+
+.pull-left[
+.center[
+```{r echo = F, out.width="400px"}
+ggplot(data.frame(x = c(-4, 4)), aes(x)) +
+    stat_function(fun = dnorm, geom = "area", fill = "steelblue", alpha = .3) +
+    stat_function(fun = dnorm,geom = "area", fill = "steelblue", xlim = c(-4, qnorm(.05))) +
+  labs(x = "", y = "") +
+  annotate(geom = "text", x = -2.5, y = 0.05, label = "5%", size = 6) +
+  ggtitle("Linksseitiger Test") +
+   theme_classic() +
+  theme(text = element_text(size = 25), axis.text.y = element_blank(), axis.ticks.y = element_blank())   
+```
+]
+]
+
+.pull-right[
+Fällt das Stichprobenergebnis in den Ablehnungsbereich: 
+
+* $H_{0}$: $p \geq .3$ (verwerfen)
+* $H_{1}$: $p < .3$ (annehmen)
+
+Kritischer Wert kann in der kumulierte Binomialverteilungstabelle nachgesehen werden ([**Link zur Tabelle**](https://www.hs-merseburg.de/fileadmin/Extra/Hagenloch/Lehre/Verteilungen_EmpVerf.pdf))
+
+Wir wollen für $n=100$ und die Wahrscheinlichkeit $p=.3$ den letzten Wert $k$ finden, der unter Annahme der BV eine Auftretenswahrscheinlichkeit kleiner als unser Signifikanzniveau $(\alpha=.05)$ hat
+]
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Beispiel 1: Binomialtest (einseitiges Testen)
+
+**Festlegung kritischer Wert (Annahme und Ablehnungsbereich der Nullhypothese):**
+
+* Kritischer Wert kann in der kumulierten Binomialverteilungstabelle nachgesehen werden ([**Link zur Tabelle, S.6**](https://www.hs-merseburg.de/fileadmin/Extra/Hagenloch/Lehre/Verteilungen_EmpVerf.pdf))
+
+* Wir wollen für $n=100$ und die Wahrscheinlichkeit $p=.3$ den letzten Wert $k$ finden, für den der dazugehörige Wert in der Tabelle unterhalb des Signifikanznveaus $\alpha=.05$ gilt
+
+$\rightarrow$ Dieser Wert ist unser kritischer Wert
+
+* In unserem Beispiel ist der kritische Wert $k=22$ bei einer Wahrscheinlichkeit von $p=.0479$
+
+* Hätten wir $k=22$ unterschritten, könnten wir mit 95% Sicherheit glauben, dass das Programm max. 30% Rückfallrate hat.
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Beispiel 1: Binomialtest (einseitiges Testen)
+
+**Festlegung kritischer Wert (Annahme und Ablehnungsbereich der Nullhypothese):**
+
+.pull-left[
+.center[
+```{r echo = F, out.width="400px"}
+ggplot(data.frame(x = c(-4, 4)), aes(x)) +
+    stat_function(fun = dnorm, geom = "area", fill = "steelblue", alpha = .3) +
+    stat_function(fun = dnorm,geom = "area", fill = "steelblue", xlim = c(-4, qnorm(.1))) +
+  labs(x = "", y = "") +
+  scale_x_continuous(breaks = c(-2.2, .75), labels = c("V: 1-22", "A: 23-100")) +
+  ggtitle("Linksseitiger Test") +
+   theme_classic() +
+  theme(text = element_text(size = 25), axis.text.y = element_blank(), axis.ticks.y = element_blank())   
+```
+]
+]
+
+.pull-right[
+Es ergibt sich:
+
+* Verwerfungsbereich der $H_{0}$ von 1-22
+* Annahmebereich der $H_{0}$ von 23-100
+* Unsere Stichprobe ergab 28 Rückfälle
+* Dieser Wert liegt im Annahmebereich der $H_{0}$
+* Test ist nicht signifikant $\rightarrow$ $H_{0}$ beibehalten
+
+Interpretation:
+
+* Numerisch weniger Rückfälle als 30%
+* ABER: Wir können nicht mit 95% Wahrscheinlichkeit sagen, dass $p<.3$
+
+]
 
 ---
 class: top, left

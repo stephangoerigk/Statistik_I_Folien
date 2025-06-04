@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Einheit 7</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Prof. Dr. Stephan Goerigk" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/hygge.css" rel="stylesheet" />
+    <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view/tile-view.js"></script>
+    <script src="libs/fabric/fabric.min.js"></script>
+    <link href="libs/xaringanExtra-scribble/scribble.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-scribble/scribble.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#EE0071"],"pen_size":4,"eraser_size":40,"palette":[]}) })</script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+name: Title slide
+class: middle, left
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+# Statistik I
+***
+### Einheit 7: Hypothesen und Hypothesentests
+##### 04.06.2025 | Prof. Dr. Stephan Goerigk
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Lernziele:
+
+Sie lernen:
+
+* Was ein Signifikanztest ist
+
+* den Unterschied zwischen der Null- und der Alternativhypothese
+
+* das Signifikanzniveau `\(\alpha\)`
+
+* die Abgrenzung zwischen einem einseitigen und einem zweiseitigen Signifikanztest
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Wiederholung:
+
+**Inferenzstatistik: **
+
+* Umfasst alle statistischen Verfahren, die es erlauben, trotz der Informationsunvollständigkeit der Stichprobendaten Aussagen über eine Population zu treffen.
+
+* Wir wissen nun, dass wir einzelne Populationsparameter aus der Stichprobe schätzen können
+
+ABER: 
+
+* Das reine Schätzen eines Wertes ist noch keine wissenschaftliche Aussage
+
+* Was für "Aussagen", die wir über die Population treffen, sind gemeint?
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Hypothesen
+
+* Statistisch zu prüfende Aussagen: Hypothesen (kennen wir bereits aus QM-1)
+
+* Der Inhalt einer Hypothese muss quantifiziert werden, damit wir sie prüfen können
+
+* Hypothese wird in eine prüfbare Gleichung (oder Ungleichung `\(\rightarrow\)` größer-kleiner Verhältnisse) umgewandelt
+  * inhaltlich: Männer sind im Durchschnitt größer als 173 cm
+  * numerisch: `\(𝜇&gt; 173\)`
+  
+* Die Entscheidung über die Gültigkeit der Hypothese erfolgt auf Basis unserer Wahrscheinlichkeitsverteilungen ("wie wahrscheinlich ist es, dass...")
+  * "Wie wahrscheinlich ist es, dass unter Annahme, dass die Körpergröße normalverteilt ist, der erwartete Mittelwert der Männer größer ist als 173 cm."
+
+* Trifft eine Hypothese zu spricht man oft vom Vorliegen eines **Effekts**
+
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Hypothesentest - To-Do Liste
+
+Zur erfolgreichen Durchführung eines Hypothesentests müssen folgende wichtige Schritte geschehen
+
+1. Austellen von Nullhypothese und Alternativhypothese (Hypothesenpaar)
+
+2. Bestimmung einer zugrundeliegenden Verteilung
+
+3. Festlegung des Annahme- und Ablehnungsbereichs der Nullhypothese (kritischer Wert)
+
+4. Beobachtungswert auf Wahrscheinlichkeitsverteilung abbilden
+  * Binomialverteilung `\(\rightarrow\)` Wahrscheinlichkeiten
+  * z-Verteilung `\(\rightarrow\)` Mittelwerte, wenn `\(\sigma\)` in Population bekannt
+  * t-Verteilung `\(\rightarrow\)` Mittelwerte, wenn `\(\sigma\)` in Population nicht bekannt
+  * F-Verteilung `\(\rightarrow\)` Varianzen
+  * `\(\chi^2\)`-Verteilung `\(\rightarrow\)` Häufigkeiten/Proportionen
+
+5. Vergleich kritischer Wert und Teststatistik
+
+6. Entscheidung: Test signifikant oder nicht signifikant
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Hypothesen
+
+Statistische Hypothese:
+
+* Entscheidung basiert darauf, ob sich ein beobachteter Wert überzufällig stark von einem vorgegebenen Wert unterscheidet
+
+* Das heißt einfach, dass man überprüft, ob die Abweichung des beobachteten Wertes vom hypothetisierten Wert zu groß ist, als dass sie noch zufällig sein kann.
+
+* Um alle Wahrscheinlichkeiten für einen Ausgang des Hypothesentests abzudecken formuliert man ein Hypothesenpaar
+
+  * `\(H_{0}\)`: Der hypothetisierte Effekt liegt nicht vor (Werte unterscheiden sich nicht)
+  
+  * `\(H_{1}\)`: Der hypothetisierte Effekt liegt vor (Werte unterscheiden sich)
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Nullhypothese und Alternativhypothese
+
+Nullhypothese `\((H_{0})\)`:
+
+* Gegenstück zur eigentlichen Untersuchungshypothese, der Alternativhypothese
+
+* Die `\(H_{0}\)` stellt meistens den aktuellen Zustand oder anders ausgedrückt den „Standard“ dar gegen den getestet wird 
+
+Alternativhypothese `\((H_{1})\)`: 
+
+* Die Alternativhypothese beinhaltet oft die neue Annahme, den "Effekt". 
+
+* Drückt eine "Unterschiedlichkeit" von einem Referenzwert aus
+
+`\(\rightarrow\)` Nur über das komplementäre Hypothesenpaar lässt sich eine komplementäre Gesamtwahrscheinlichkeit abdecken:
+
+`$$P_{H_{0}} + P_{H_{1}}=1$$`
+
+
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Signifikanzniveau
+
+* Um das Ausmaß der Abweichung zu definieren, welches uns als strengen Wissennschaftler:innen ausreiichend "sicher" erscheint (kritischer Wert) legen wir eine **"Irrtumswahrscheinlichkeit"** fest
+
+* Diese bezeichnet man als **Signifikanzniveau**  `\(\alpha\)`.
+
+* Meistens wird `\(\alpha=.05\)` gewählt (häufige Konvention aus der Wissenschaft)
+
+* Das bedeutet, dass wir eine 5% Wahrscheinlichkeit erlauben unsere Hypothese fälschlicherweise anzunehmen
+
+* Die 5% legen einen bestimmten Bereich auf der Wahrscheinlichkeitsverteilung fest (**Verwerfungsbereich**)
+  * z-Verteilung
+  * t-Verteilung
+  * ...
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Signifikanzniveau und Verwerfungsbereich
+
+.pull-left[
+.center[
+&lt;img src="Statistik_I_07_WS24_files/figure-html/unnamed-chunk-1-1.png" width="400px" /&gt;
+]
+]
+
+.pull-right[
+* Die große Fläche der Verteilung entspricht der Annahme unserer `\(H_0\)` 
+
+* Der Erwartungswert ist 0 (kein Effekt `\(\rightarrow\)` daher Null-Hypothese)
+
+* Werte jenseits des "kritischen Werts" sind im **Verwerfungsbereich** der `\(H_0\)` (dunkelblau).
+
+* Diese sind unter Annahme der `\(H_0\)` ausreichend unwahrscheinlich.
+
+* Wir glauben nicht mehr an einen Zufall!
+
+* Die `\(H_0\)` wird verworfen.
+
+]
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### p-Wert
+
+* In Statistik-Softwareprodukten wird zusammen mit der Teststatistik eines statistischen Tests ein sogenannter **p-Wert** ausgegeben
+
+* Der p-Wert gibt die **Wahrscheinlichkeit für den Fehler erster Art** an, also die Wahrscheinlichkeit, eine gültige `\(H_{0}\)` zu verwerfen aufgrund der beobachteten Daten
+
+* **Vorteil** des p-Wertes liegt darin, dass bei der Entscheidung keine Tabelle der Verteilung der Teststatistik benötigt wird
+
+* Wird der zweiseitige p-Wert angegeben und die `\(H_{1}\)` ist gerichtet, muss man den p-Wert **durch 2 dividieren** und mit `\(α\)` vergleichen.
+
+* Bei einseitigen Hypothesen ist die zusätzliche überprüfung notwendig, ob die Teststatistik tatsächlich im Verwerfungsbereich der `\(H_{0}\)` liegt
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Fehler beim Hypothesentest
+
+* Beim Treffen von Entscheidungen können Menschen nicht nur in ganz alltäglichen Situationen Fehler unterlaufen
+
+* Konkret gibt es bei Hypothesentests **vier Möglichkeiten**, wie die Entscheidung ausfallen kann
+
+  * Fehler 1. Art bzw. `\(\alpha\)`-Fehler: Wenn die Nullhypothese fälschlicherweise verworfen wird und die Alternativhypothese angenommen wird
+  * Fehler 2. Art bzw. `\(\beta\)`-Fehler: Wenn die Nullhypothese fälschlicherweise beibehalten wird, obwohl die Alternativhypothese wahr ist 
+.center[
+&lt;img src="bilder/fehler.jpg" width="550px" /&gt;
+]
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Fehler beim Hypothesentest
+
+* Die Wahrscheinlichkeit, einen Fehler 1. Art zu begehen, entspricht immer maximal dem Signifikanzniveau
+
+* Je kleiner `\(α\)`, umso kleiner der Fehler 1. Art `\((H_{0}\)` irrtümlich zu verwerfen)
+
+* → `\(α\)` möglichst klein wählen, z.B. `\(α = 0.001\)`?
+
+* Entscheiden für Signifikanzniveau ist vergleichbar mit dem Abschluss einer Versicherung. Umso besser der Versicherungsschutz gegen einen `\(α\)`-Fehler, umso höher die Kosten.
+
+Kosten eines kleinen (strengen) Signifikanzniveaus:
+* Größerer Fehler 2. Art `\((β\)`-Fehler = `\(H_{0}\)` irrtümlich beizubehalten)  
+* geringere Teststärke `\(1 − β\)` (Macht oder Power = Wahrscheinlichkeit, `\(H_{0}\)` zugunsten einer `\(H_{1}\)` zu verwerfen, wenn tatsächlich `\(H_{1}\)` gilt)
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Beziehungen zwischen Statistischen Fehlern
+
+**Dilemma**
+
+* Versicherung gegen `\(α\)`-Fehler hat die Kosten eines höheren `\(β\)`-Fehlers und geringerer Macht des Tests
+
+* Versicherung gegen `\(β\)`-Fehler hat die Kosten eines höheren `\(α\)`-Fehlers
+
+* Kompromiss in der Praxis: `\(α =.05\)` oder  `\(α = .01\)` je nachdem, welchen Fehler man eher riskieren möchte
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Ein- und Zweiseitige Hypothesen
+
+**Einseitige Hypothese:**
+
+* Der beobachtete Wert ist größer oder kleiner als ein Referenzwert 
+* Man spricht von einer gerichteten Hypothese
+* Beispiel Hypothesenpaar (inhaltlich):
+  * `\(H_{0}\)`: Männer sind durchschnittlich 173 cm groß oder kleiner
+  * `\(H_{1}\)`: Männer sind durchschnittlich größer als 173 cm
+
+**Zweiseitige Hypothese:**
+
+* Der beobachtete Wert unterscheidet sich von dem Referenzwert 
+* Man spricht von einer ungerichteten Hypothese
+* Beispiel Hypothesenpaar (inhaltlich):
+  * `\(H_{0}\)`: Die Durchschnittsgröße von Männern liegt bei etwa 173 cm
+  * `\(H_{1}\)`: Die Durchschnittsgröße von Männern unterscheidet sich von 173 cm
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Ein- und Zweiseitige Hypothesen
+
+**Einseitige Hypothese:**
+
+* Der beobachtete Wert ist größer oder kleiner als ein Referenzwert 
+* Man spricht von einer gerichteten Hypothese
+* Beispiel Hypothesenpaar (statistisch):
+  * `\(H_{0}\)`: `\(𝜇\leq 173\)` cm
+  * `\(H_{1}\)`: `\(𝜇&gt; 173\)` cm
+
+**Zweiseitige Hypothese:**
+
+* Der beobachtete Wert unterscheidet sich von dem Referenzwert 
+* Man spricht von einer ungerichteten Hypothese
+* Beispiel Hypothesenpaar (statistisch):
+  * `\(H_{0}\)`: `\(𝜇= 173\)` cm
+  * `\(H_{1}\)`: `\(𝜇\neq 173\)` cm
+  
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Ein- und Zweiseitige Hypothesen - Graphisch
+
+.pull-left[
+.center[
+&lt;img src="Statistik_I_07_WS24_files/figure-html/unnamed-chunk-3-1.png" width="400px" /&gt;
+]
+]
+.center[
+.pull-right[
+&lt;img src="Statistik_I_07_WS24_files/figure-html/unnamed-chunk-4-1.png" width="400px" /&gt;
+]
+]
+
+`\(\rightarrow\)` Gesamte "Unsicherheit" `\((\alpha = 0.05)\)` wird auf eine Seite gesetzt (z.B. kleiner vs. größer als 0).
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Ein- und Zweiseitige Hypothesen - Graphisch
+
+.center[
+&lt;img src="Statistik_I_07_WS24_files/figure-html/unnamed-chunk-5-1.png" width="400px" /&gt;
+]
+
+`\(\rightarrow\)` "Unsicherheit" `\((\alpha = 0.05)\)` wird auf beide Seiten aufgeteilt (unterschiedlich von 0).
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Ein- und Zweiseitige Hypothesen - Graphisch
+
+.pull-left[
+.center[
+&lt;img src="Statistik_I_07_WS24_files/figure-html/unnamed-chunk-6-1.png" width="400px" /&gt;
+]
+]
+
+.pull-right[
+* Erwartungswert: wahrscheinlichster Wert unter Annahme der `\(H_{0}\)` 
+
+Beispiel: 
+* `\(H_{0}\)`: `\(𝜇= 173\)`
+* wenn `\(𝜇= 173\)` dann `\(𝜇-173=0\)`
+* Erwartungswert unter Annahme der `\(H_{0}\)` = 0
+
+* dunkelblaue Fläche: Verwerfungsbereich `\(H_{0}\)`
+* hellblaue Fläche: Annahmebereich `\(H_{0}\)`
+]
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Ein- und Zweiseitige Hypothesen - Graphisch
+
+.pull-left[
+.center[
+&lt;img src="Statistik_I_07_WS24_files/figure-html/unnamed-chunk-7-1.png" width="400px" /&gt;
+]
+]
+
+.pull-right[
+* rote Linie: Kritischer Wert
+
+* Um zu glauben, dass `\(𝜇\neq 173\)` `\((H_{1})\)` muss der beobachtete Wert ausreichend weit vom Erwartungswert der `\(H_{0}=0\)` wegliegen
+
+* Als Schwelle/Entscheidungsgrundlage definiert man einen kritischen Wert
+
+* Dieser liegt oft bei dem Wert, der unter Annahme der Wahrscheinlichkeitsverteilung 5% Auftretenswahrscheinlichkeit hat
+
+In Worten: Der beobachtete Wert ist unter Annahme der `\(H_{0}\)` nur 5% wahrscheinlich, somit ist es auf Basis der Beobachtung unwahrscheinlich, dass die `\(H_{0}\)` zutrifft.
+]
+
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Ein- und Zweiseitige Hypothesen
+
+Festlegung auf eine Formulierung
+
+* Wahl des Hypothesenpaars sollte a priori erfolgen
+
+  * vor der eigenen Untersuchung
+  * ohne Berücksichtigung der aktuellen Daten
+  * aufgrund inhaltlicher Kriterien
+  
+* Spezialfall einseitige `\(H_{1}\)`:
+
+  * Richtung basiert auf einer von den aktuellen Daten unabhängigen Vorinformation 
+
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Ein-Stichproben `\(z\)`-Test (Gauß-Test)
+
+* Hypothesen über `\(μ\)` einer normalverteilten Variable, wobei `\(σ^2\)` (Populationsvarianz) bekannt ist
+
+* Mögliche Hypothesen:
+  * `\(H_0\)`: `\(μ=μ_{0}\)`; `\(H_1\)`: `\(μ\neqμ_0\)` (ungerichtet)
+  
+  * `\(H_0\)`: `\(μ≤μ_{0}\)`; `\(H_1\)`: `\(μ&gt;μ_{0}\)` (gerichtet)
+  
+  * `\(H_0\)`: `\(μ≥μ_{0}\)`; `\(H_1\)`: `\(μ&lt;μ_{0}\)` (gerichtet)
+
+* `\(μ=\)` Populationsmittelwert; `\(μ_{0}=\)` hypothetischer Populationsparameter 
+
+* Prüft anhand des Mittelwerts einer Stichprobe ob der Erwartungswert in der entsprechenden Population gleich einem vorgegebenen Wert ist (dem unter `\(H_{0}\)` erwarteten `\(μ_{0}\)`).
+
+* Vergleich eines Stichprobenmittelwertes mit dem hypothetischen Populationsparameter `\(μ_{0}\)`.
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Ein-Stichproben `\(z\)`-Test (Gauß-Test)
+
+* Ziel: Prüfen, ob der Populationsmittelwert `\((μ)\)` sich von hypothetischen Populationsparameter `\((μ_{0})\)` unterscheidet
+
+* Methode: Da wir Populationsmittelwert `\((μ)\)` nicht kennen, nutzen wir den Stichprobenmittelwert `\((\bar{x})\)`
+
+* Es geht also um den **Unterschied** zwischen `\(μ\)` und `\(μ_{0}\)` 
+
+  * mathematisch können wir diesen als Differenz  ausdrücken: `\(\bar{x} - μ_{0}\)`.
+  
+* Wenn `\(H_0\)`: `\(μ=μ_{0}\)` und `\(H_1\)`: `\(μ\neqμ_0\)`, dann müsste `\(\bar{x} - μ_{0} \neq 0\)` sein.
+
+  * In Worten: Wenn ein Unterschied besteht, muss die Differenz `\(\neq 0\)` sein
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Ein-Stichproben `\(z\)`-Test (Gauß-Test)
+
+* Wenn ein Unterschied besteht, muss die Differenz `\(\bar{x} - μ_{0}\)` `\(\neq 0\)` sein.
+
+* Dabei reicht uns ein rein numerischer Unterschied nicht
+
+  * z.B. 1 vs. 1.000000001 ist ein Unterschied, aber dieser ist sehr klein und ggf. nicht sehr bedeutsam
+  
+* Wir wollen eine **verlässliche** Aussage machen (Unterschied muss über gewisse Unsicherheit erhaben sein)
+
+* **numerischer Unterschied `\(\neq\)` signifikanter (verlässlicher) Unterschied**
+
+* Ziel: Wir müssen für den Unterschied eine Wahrscheinlichkeit angeben können 
+
+* Für normalverteilte Variablen können wir dafür die `\(z\)`-Tabelle nutzen
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Ein-Stichproben `\(z\)`-Test (Gauß-Test)
+
+**Bestimmung des z-Werts**
+
+* Wir wandeln den Effekt, über den wir unsere Hypothese aufstellen `\((\bar{x} - μ_{0})\)` in eine Teststatistik um:
+
+`$$z_{emp} =\sqrt{n} \cdot \frac{\bar{x} - μ_{0}}{\sigma}$$`
+
+* Da der z-Wert aus den beobachteten Daten berechnet wurde, nenne wir ihn auch empirischen z-Wert `\((z_{emp})\)`
+
+&lt;small&gt;
+
+  * `\(z:\)` standardnormalverteilter Wert, für den Wahrscheinlichkeit in Tabelle nachgesehen werden kann (Ziel)
+
+  * `\(\bar{x}:\)` Mittelwert in Stichprobe (beobachtet)
+
+  * `\(μ_{0}:\)` hypothetischer Populationsparameter aus Fragestellung
+
+  * `\(\sigma:\)` Populationsstandardabweichung (bekannt)
+
+  * `\(n:\)` Stichprobengröße (muss berücksichtigt werden `\(\rightarrow\)` größere Stichprobe, mehr Verlässlichkeit)
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Ein-Stichproben `\(z\)`-Test (Gauß-Test)
+
+.center[
+&lt;img src="bilder/one_sample_t.png" width="850px" /&gt;
+]
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Ein-Stichproben `\(z\)`-Test (Gauß-Test)
+
+.pull-left[
+* Zur Erinnerung: Warhscheinlichkeit, die `\(H_0\)` abzulehnen, obwohl sie in Wirklichkeit gilt, heißt `\(\alpha\)`-Fehler oder Fehler 1. Art
+
+* z-Wert ist signifikant, wenn seine Auftretenswahrscheinlichkeit kleiner ist als das gewählte `\(\alpha\)` `\((H_0\)` verwerfen)
+
+* Für die Signifikanzprüfung kann der z-Wert `\((z_{emp})\)` mit dem kritischen z-Wert `\((z_{krit})\)` verglichen werden (in z-Tabelle nachsehen)
+
+* Die Wahl des Signikanzniveaus ist von inhaltlichen Überlegungen abhängig und wird oft als `\(\alpha=.05\)` gewählt.
+
+]
+
+.pull-right[
+
+.center[
+&lt;img src="Statistik_I_07_WS24_files/figure-html/unnamed-chunk-9-1.png" width="400px" /&gt;
+]
+]
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Ein-Stichproben `\(z\)`-Test (Gauß-Test)
+
+.pull-left[
+
+.center[
+&lt;img src="Statistik_I_07_WS24_files/figure-html/unnamed-chunk-10-1.png" width="400px" /&gt;
+]
+]
+
+.pull-right[
+* Signifikanzniveau `\(\alpha=.05\)` muss auf beide Seiten aufgeteilt werden
+
+* Damit `\(\alpha=.05\)` erreicht wird, darf `\(z_{krit}\)` nur 2.5% der Fläche abschneiden
+
+* Auftretenswahrscheinlichkeit von `\(z_{emp}\)` muss kleiner als 2.5% 
+
+* Ist Betrag von `\(z_{emp}\)` größer als `\(z_{krit}\)` so ist Test signifikant
+]
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Ein-Stichproben `\(z\)`-Test (Gauß-Test)
+
+.pull-left[
+
+* Mittelwertsdifferenz muss in vorhergesagte Richtung auftreten
+
+* Gesamte 5% liegen auf vorhergesagter Seite der Verteilung
+
+* Folge: Gleiche empirische Mittelwertsdifferenz wird bei einseitigen Hypothesen leichter signifikant (Betrag von `\(z_{krit}\)` ist kleiner, bzw. Ablehnungsbereich ist größer).
+
+]
+
+.pull-right[
+
+.center[
+&lt;img src="Statistik_I_07_WS24_files/figure-html/unnamed-chunk-11-1.png" width="400px" /&gt;
+]
+]
+
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Ein-Stichproben `\(z\)`-Test (Gauß-Test) - Beispiel
+
+
+.pull-left[
+&lt;small&gt;
+
+* Weicht der Mittelwert einer Zufallsstichprobe aus dem Irak, `\(\bar{x}_{I}\)`, in einem in Deutschland entwickelten sprachfreien Intelligenztest signifikant vom Populationsparameter in Deutschland, `\(μ_{D} = 100\)`, ab?
+
+* WICHTIG: Nur die iranische Stichprobe wurde in der Studie rekrutiert und gemessen. Der deutsche Referenzwert wird vorgegeben.
+
+Daten:
+* `\(n = 108\)`, Testpunkte normalverteilt, 
+* `\(\bar{x}_{I} = 99.32\)` 
+* `\(\sigma_{I} = 15\)`
+* `\(α=0.05\)`
+
+Hypothesen:
+
+* `\(H_{0}\)`: `\(μ_{I} = 100\)`
+* `\(H_{1}\)`: `\(μ_{I} \neq 100\)`; 
+
+]
+
+.pull-right[
+.center[
+&lt;img src="Statistik_I_07_WS24_files/figure-html/unnamed-chunk-12-1.png" width="450px" height="450px" /&gt;
+]
+]
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Ein-Stichproben `\(z\)`-Test (Gauß-Test)
+
+**Beispiel 1:**
+
+&lt;small&gt;
+
+* `\(n = 108\)`, Testpunkte normalverteilt, `\(\bar{x}_{I} = 99.32\)` , `\(\sigma_{I} = 4.03\)`
+
+* `\(H_{0}\)`: `\(μ_{I} = 100\)`; `\(H_{1}\)`: `\(μ_{I} \neq 100\)`; `\(α=0.05\)`
+
+Teststatistik:
+
+`$$z_{emp} =\sqrt{n} \cdot \frac{\bar{x} - μ_{0}}{\sigma}$$`
+
+`$$z_{emp} =\sqrt{108} \cdot \frac{99.32 - 100}{15}=-0.47$$`
+
+In z-Tabelle `\(z_{krit}\)` bei `\(p = 1-\frac{\alpha=.05}{2}= 0.975\)` (durch 2 teilen, da 2-seitige Fragestellung)
+
+* `\(z_{krit} = -1.96\)`  
+
+* `\(-0.47 &gt; -1.96 \rightarrow\)` `\(H_{0}\)` beibehalten
+
+* Interpretation: Der Mittelwert der Zufallsstichprobe aus dem Irak unterscheidet sich nicht signifikant vom deutschen Referenzwert.
+
+&lt;/small&gt;
+
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Beispiel 1: Binomialtest (einseitiges Testen)
+
+Ein Therapieverfahren zur Behandlung von Angststörungen soll nach 6 Montaten eine Rückfallquote von maximal 30% haben.
+
+* Das Verfahren soll an einer Zufallsstichprobe von `\(N=100\)` Patient:innnen geprüft werden
+
+Aufstellen des Hypothesenpaares:
+  * `\(H_{0}\)`: `\(p \geq .3\)` (mindestens 30%)
+  * `\(H_{1}\)`: `\(p &lt; .3\)` (unter 30%)
+
+Fragen:
+* Wie viele Patienten in der Stichprobe erleiden einen Rückfall
+* Ist dieses Ergebnis **überzufällig** und somit auf die Population (aller Angstpatient:innen) verallgemeinerbar
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Beispiel 1: Binomialtest (einseitiges Testen)
+
+**Beobachtung in der Stichprobe (Schätzer):**
+
+* In der Stichprobe erleiden `\(n=28\)` Patienten einen Rückfall
+
+* In absoluten Zahlen spricht das erst einmal für das Verfahren `\((\frac{28}{100}=28\%&lt;30\%)\)`
+
+**Frage, die der Hypothesentest stellt:**
+
+* Ist `\(n=28\)` (28%) ausreichend weit weg von 30%, sodass wir das Ergebnis verallgemeinern können?
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Beispiel 1: Binomialtest (einseitiges Testen)
+
+**Bestimmung einer passenden Wahrscheinlichkeitsverteilung:**
+
+* Art (und i.d.R.) Name des Tests basiert auf zugrunde liegender Verteilung
+
+* Unsere Zufallsvariable `\(X\)` (s.h. Hypothese) ist in Wahrscheinlichkeiten angegeben `\((p=.3)\)`
+
+* Wahrscheinlichkeitsverteilung zur Wahrscheinlichkeit von Wahrscheinlichkeiten `\((p):\)` Binomialverteilung 
+
+**Auswahl Hypothesentest:**
+* Wir wählen als Hypothesentest des **Binomialtest**
+* Zur Entscheidung über unsere Hypothesen werden wir eine **Binomialverteilungstabelle** nutzen
+* Merke: 
+  * Bei gerichteten (einseitigen) Formulierungen wie "mindestens" oder "höchstens" nutzen wir die **kumulierte Binomialverteilungstabelle**
+  * Bei ungerichteten Formulierungen wie "genau" nutzen wir die **einfache Binomialverteilungstabelle**
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Beispiel 1: Binomialtest (einseitiges Testen)
+
+**Parameter für den Binomialtest:**
+
+* `\(p=30\%=.3\)`
+
+* `\(N = 100\)`
+
+* Signifikanzniveau `\(\alpha=5\%=.05\)`
+
+* `\(k=28\)`
+
+Ist die Rückfallquote niedrig genug, um die Nulllhypothese zu verwerfen?
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Beispiel 1: Binomialtest (einseitiges Testen)
+
+**Festlegung kritischer Wert (Annahme und Ablehnungsbereich der Nullhypothese):**
+
+.pull-left[
+.center[
+&lt;img src="Statistik_I_07_WS24_files/figure-html/unnamed-chunk-13-1.png" width="400px" /&gt;
+]
+]
+
+.pull-right[
+Fällt das Stichprobenergebnis in den Ablehnungsbereich: 
+
+* `\(H_{0}\)`: `\(p \geq .3\)` (verwerfen)
+* `\(H_{1}\)`: `\(p &lt; .3\)` (annehmen)
+
+Kritischer Wert kann in der kumulierte Binomialverteilungstabelle nachgesehen werden ([**Link zur Tabelle**](https://www.hs-merseburg.de/fileadmin/Extra/Hagenloch/Lehre/Verteilungen_EmpVerf.pdf))
+
+Wir wollen für `\(n=100\)` und die Wahrscheinlichkeit `\(p=.3\)` den letzten Wert `\(k\)` finden, der unter Annahme der BV eine Auftretenswahrscheinlichkeit kleiner als unser Signifikanzniveau `\((\alpha=.05)\)` hat
+]
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Beispiel 1: Binomialtest (einseitiges Testen)
+
+**Festlegung kritischer Wert (Annahme und Ablehnungsbereich der Nullhypothese):**
+
+* Kritischer Wert kann in der kumulierten Binomialverteilungstabelle nachgesehen werden ([**Link zur Tabelle, S.6**](https://www.hs-merseburg.de/fileadmin/Extra/Hagenloch/Lehre/Verteilungen_EmpVerf.pdf))
+
+* Wir wollen für `\(n=100\)` und die Wahrscheinlichkeit `\(p=.3\)` den letzten Wert `\(k\)` finden, für den der dazugehörige Wert in der Tabelle unterhalb des Signifikanznveaus `\(\alpha=.05\)` gilt
+
+`\(\rightarrow\)` Dieser Wert ist unser kritischer Wert
+
+* In unserem Beispiel ist der kritische Wert `\(k=22\)` bei einer Wahrscheinlichkeit von `\(p=.0479\)`
+
+* Hätten wir `\(k=22\)` unterschritten, könnten wir mit 95% Sicherheit glauben, dass das Programm max. 30% Rückfallrate hat.
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Beispiel 1: Binomialtest (einseitiges Testen)
+
+**Festlegung kritischer Wert (Annahme und Ablehnungsbereich der Nullhypothese):**
+
+.pull-left[
+.center[
+&lt;img src="Statistik_I_07_WS24_files/figure-html/unnamed-chunk-14-1.png" width="400px" /&gt;
+]
+]
+
+.pull-right[
+Es ergibt sich:
+
+* Verwerfungsbereich der `\(H_{0}\)` von 1-22
+* Annahmebereich der `\(H_{0}\)` von 23-100
+* Unsere Stichprobe ergab 28 Rückfälle
+* Dieser Wert liegt im Annahmebereich der `\(H_{0}\)`
+* Test ist nicht signifikant `\(\rightarrow\)` `\(H_{0}\)` beibehalten
+
+Interpretation:
+
+* Numerisch weniger Rückfälle als 30%
+* ABER: Wir können nicht mit 95% Wahrscheinlichkeit sagen, dass `\(p&lt;.3\)`
+
+]
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Macht eines Tests (Teststärke, aka Power)
+
+* `\(1 − β\)` = Power
+
+* Wahrscheinlichkeit dafür, dass ein statistischer Test zugunsten einer `\(H_{1}\)` entscheidet, wenn diese gilt (d.h. die `\(H_{0}\)` richtigerweise zu verwerfen)
+
+* Die Teststärke hängt von verschiedenen Faktoren ab:
+  * Signifikanzniveau `\(α\)` (je kleiner, desto weniger Power)
+  * Ein- oder zweiseitige Alternativhypothese (bei einseitiger `\(H_{1}\)` höhere Power)
+  * Größe des Effekts (des Unterschiedes zwischen Beobachtungs- und Referenzwerts)
+  * Streuung der Variable `\(X\)` in der Population  (je größer desto weniger Power)
+  * Stichprobenumfang `\(n\)` (je größer, desto mehr Power)
+  * Verwendeter statistischer Test: je höher der verwendete Informationsgehalt der Daten, umso höher seine Macht
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+####  Statistische Signifikanz und praktische Relevanz
+
+* Mit genügend großem Stichprobenumfang kann man praktisch jede `\(H_{0}\)` verwerfen
+
+* Festlegung einer Effektgröße `\(ε\)` (z.B. praktisch relevanter Unterschied) und einer spezifischen `\(H_{1}\)`
+
+* Muss aufgrund inhaltlicher Überlegungen vor Datenerhebung festgelegt werden (Poweranalyse)
+
+* Vorteil: notwendiger Stichprobenumfang, der bei gegebenem `\(α\)`, gewünschtem `\(1 − β\)` und bestimmter Effektgröße eine eindeutige Entscheidung ermöglicht, bestimmbar
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+####  Kumulierung des `\(α\)`-Fehlers
+
+Führt man mehrere statistische Tests durch, hat man bei jedem dieser Tests das Risiko eines `\(α\)`-Fehlers
+
+Beispiel:
+* Jemand führt drei statistische Tests durch um eine Hypothese zu prüfen
+
+* Annahme: Unabhängigkeit der einzelnen Tests 
+
+* Wahrscheinlichkeit, dass mindestens 1 Test signifikant wird `\(= 1−(1−0.05)^3 = 0.14\)`
+
+* 14% Fehlerwahrscheinlichkeit statt 5%
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+####  Kumulierung des `\(α\)`-Fehlers
+
+Führt man `\(k\)` unabhängige statistische Tests zur überprüfung einer `\(H_{0}\)` durch, kommt es zu einer Kumulierung des `\(α\)`-Fehler Risikos 
+
+`$$α′ = 1−(1−α)^k$$`
+Lösung:
+
+* Lässt es sich nicht vermeiden, mehrere statistische Tests zur Prüfung einer Hypothese durchzuführen, muss eine `\(α\)`-Fehler Korrektur vorgenommen werden
+* Der Test wird somit strenger (Grenze für signifikantes Ergebnis niedriger)
+* `\(α\)`-Fehler Adjustierung nach Boferroni: 
+
+`$$α_{adj} = 1 − (1 − α)^{1/k}$$`
+
+Beispiel: 3 Tests 
+
+`$$α_{adj} =1−(1−0.05)^{1/3} =0.017$$`
+
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+####  Darstellung des Ergebnisses eines Hypothesentests
+
+* Voraussetzung: Formulierung der `\(H_{0}\)` und `\(H_{1}\)`
+* Angabe von `\(α\)`
+* Angabe von `\(N\)`
+* Angabe des p-Wertes
+* Angabe der Teststatistik (+ df wo nötig)
+* Teststärke und Effektgröße
+* Korrekte Formulierung bei nicht-signifikantem Ergebnis: 
+  * `\(H_{0}\)` wird beibehalten (korrekt)
+  * `\(H_{0}\)` wurde bewiesen (falsch)
+* Falsche Interpretationen:
+* "Je kleiner der p-Wert, umso größer der Effekt."
+  * Der p-Wert ist keine Effektgröße.
+ * Der p-Wert gibt die Wahrscheinlichkeit für das Zutreffen der `\(H_{0}\)` an.
+  * Der p-Wert ist die `\(P(beobachtetes Ergebnis|H_{0})\)`
+
+---
+class: top, left
+### Take-aways
+
+.full-width[.content-box-gray[
+* Zur Prüfung der Geltung einer Hypothese (ja/nein) rechnen wir **Signifikanztests**
+
+* **Auswahl des Tests** richtet sich nach der Wahrscheinlichkeitsverteiltung der Testgrößen (Wahrscheinlichkeit, Mittelwerte, Häufigkeiten...)
+
+* Zur Prüfung muss ein Hypothesenpaar aus Nullhypothese und Alternativhypothese aufgestellt werden.
+
+* Je nach Vorwissen können wir Nullhypothese und Alternativhypothese **gerichtet und ungerichtet** formulieren.
+
+* Als Entscheidungskriterium definieren wir einen **kritischen Wert** (oft Wert mit Auftretenswahrscheinlichkeit 5% unter Annahme der Nullhypothese)
+
+* Ist der Test signifikant wird die Nullhypothese **verworfen** und die Alternativhypothese vorläufig angenommen (s.h. Popper)
+]
+]
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+  "slideNumberFormat": "%current%",
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "countIncrementalSlides": false,
+  "ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
