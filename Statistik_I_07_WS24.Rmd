@@ -757,7 +757,7 @@ class: top, left
 
 <small>
 
-* $n = 108$, Testpunkte normalverteilt, $\bar{x}_{I} = 99.32$ , $\sigma_{I} = 4.03$
+* $n = 108$, Testpunkte normalverteilt, $\bar{x}_{I} = 99.32$ , $\sigma_{I} = 15$
 
 * $H_{0}$: $μ_{I} = 100$; $H_{1}$: $μ_{I} \neq 100$; $α=0.05$
 

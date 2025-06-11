@@ -209,11 +209,11 @@ class: top, left
 
 $$t = \frac{101.32 − 100}{\frac{4.15}{\sqrt{36}}} = 1.91$$
 
-* $df = 35$; $t_{30;0.95} = 1.70$, $t_{40;0.95} = 1.68$
+* $df = 35$; $t_{30;0.95} = 1.70$ (immer den nächst-kleineren df Wert aus der t-Tabelle nehmen)
 
 * Richtung stimmt: unter $H_{1}$ positiver t-Wert erwartet
 
-* $1.91 > 1.69 \rightarrow$ $H_{0}$ verwerfen
+* $1.91 > 1.70 \rightarrow$ $H_{0}$ verwerfen
 
 * Interpretation: Schüler mit Geometrieunterricht zeigen überdurchschnittliche Testleistungen.
 
@@ -360,6 +360,8 @@ class: top, left
 
 <small>
 
+.pull-left[
+
 * Unterscheiden sich die Varianzen zweier unabhängiger Stichproben aus normalverteilten Grundgesamtheiten?
 
 * $H_0$: $σ_1^2 = σ_2^2$
@@ -376,7 +378,16 @@ $$F=\frac{\hat{\sigma}^2_1}{\hat{\sigma}^2_2}; df_1 = n_1 − 1, df_2 = n_2 − 
 * $H_0$: $σ_1^2 = σ_2^2$ wird verworfen, wenn $F > F(df_1,df_2,1−α/2)$ (kritischer Wert)
 
 </small>
+]
 
+.pull-right[
+Die F-Verteilung (Vergleich von 2 Varianzen):
+.center[
+```{r eval = TRUE, echo = F, out.width = "450px"}
+knitr::include_graphics("bilder/fdist_sig.png")
+```
+]
+]
 ---
 class: top, left
 ### $t$-Test
@@ -571,9 +582,11 @@ Beispiel 1:
 
 Gegeben:
 
-* VG: $\bar{x}_{VG} =7.22,s^2_{VG} =6.12;n_{VG}=53$ 
-* KG: $\bar{x}_{KG} =4.91,s^2_{KG} =6.54;n_{KG}=51$ 
-* NV gegeben, $α=.05$
+* Autogenes Training: $\bar{x}_{VG} =7.22,s^2_{VG} =6.12;n_{VG}=53$ 
+
+* Konventionelle Therapie: $\bar{x}_{KG} =4.91,s^2_{KG} =6.54;n_{KG}=51$ 
+
+* NV darf angenommen werden, $α=.05$
 
 </small>
 
@@ -588,35 +601,55 @@ Beispiel 1:
 
 Gegeben:
 
-* VG: $\bar{x}_{VG} =7.22,s^2_{VG} =6.12;n_{VG}=53$ 
-* KG: $\bar{x}_{VG} =4.91,s^2_{VG} =6.54;n_{VG}=51$ 
-* NV gegeben, $α=.05$
+* Autogenes Training: 
+  * $\bar{x}_{VG} =7.22$
+  * $s^2_{VG} =6.12$
+  * $n_{VG}=53$ 
+
+* Konventionelle Therapie: 
+  * $\bar{x}_{VG} = 4.91$
+  * $s^2_{VG} =6.54$
+  * $n_{VG}=51$ 
 
 ]
 
 .pull-right[
 .center[
 ```{r echo=FALSE, out.width="450px", out.height="450px"}
-df <- data.frame(PF = rnorm(100000, mean = 7.22, sd = sqrt(6.12)))
-df2 <- data.frame(PF = rnorm(100000, mean = 4.91, sd = sqrt(6.54)))
+# set.seed(12)
+# df <- data.frame(PF = rnorm(10000, mean = 7.22, sd = sqrt(6.12)))
+# df2 <- data.frame(PF = rnorm(10000, mean = 4.91, sd = sqrt(6.54)))
+# 
+# df$Gruppe = "VG"
+# df2$Gruppe = "KG"
 
-df$Gruppe = "VG"
-df2$Gruppe = "KG"
+df = data.frame(Gruppe = c("VG", "KG"),
+                mean = c(7.22, 4.91),
+                sd = c(sqrt(6.12), sqrt(6.54)),
+                se = c(sqrt(6.12)/sqrt(53), sqrt(6.54)/sqrt(51)))
 
-#df = rbind(df, df2)
+ggplot(df, aes(x = Gruppe, y = mean, fill = Gruppe)) +
+stat_summary(geom = "bar") +
+  geom_errorbar(aes(ymin = mean-se, ymax =mean+se), width = .2) +
+  labs(y = "Verbesserung") +
+  theme_classic() +
+  coord_cartesian(ylim = c(0,8)) +
+  scale_y_continuous(breaks = 0:8) +
+  theme(text = element_text(size = 25),
+        legend.position = "none")
 
-ggplot(df, aes(x = PF, colour = Gruppe)) + 
-    # geom_histogram(aes(y =..density..),
-    #                breaks = seq(0, 15, by = 1),
-    #                fill = "transparent", bins = 100) +
-  scale_x_continuous(breaks = c(0,4.91,7.22, 10, 15)) +
-  geom_vline(xintercept = 7.22, linetype = "dashed", colour = "blue") +
-  geom_vline(xintercept = 4.91, linetype = "dashed", colour = "red") +
-  stat_function(fun = dnorm, args = list(mean = mean(df$PF), sd = sd(df$PF)), colour = "blue") +
-  stat_function(fun = dnorm, args = list(mean = mean(df2$PF), sd = sd(df2$PF)), colour = "red") +
-  labs(x = "IQ", y = "relative Häufigkeit") +
-   theme_classic() +
-  theme(text = element_text(size = 25))
+# ggplot(df, aes(x = PF, colour = Gruppe)) + 
+#     # geom_histogram(aes(y =..density..),
+#     #                breaks = seq(0, 15, by = 1),
+#     #                fill = "transparent", bins = 100) +
+#   scale_x_continuous(breaks = c(0,4.91,7.22, 10, 15)) +
+#   geom_vline(xintercept = 7.22, linetype = "dashed", colour = "blue") +
+#   geom_vline(xintercept = 4.91, linetype = "dashed", colour = "red") +
+#   stat_function(fun = dnorm, args = list(mean = mean(df$PF), sd = sd(df$PF)), colour = "blue") +
+#   stat_function(fun = dnorm, args = list(mean = mean(df2$PF), sd = sd(df2$PF)), colour = "red") +
+#   labs(x = "IQ", y = "relative Häufigkeit") +
+#    theme_classic() +
+#   theme(text = element_text(size = 25))
 ```
 ]
 ]
@@ -638,7 +671,7 @@ $$F=\frac{6.54}{6.12}=1.07; df_1=50, df_2=52$$
 
 $$t = \frac{7.22- 4.91}{\sqrt{\frac{52 \cdot 6.12 + 50 \cdot 6.54}{52+50} (\frac{1}{53}+\frac{1}{51})}}=4.64; df=53+51 - 2=102$$
 
-* Prüfung in t-Tabelle: $t_{102;0.95} = 1.66 < 4.64 \rightarrow$ $H_0$ verwerfen
+* Prüfung in t-Tabelle: $t_{60;0.95} = 1.671 < 4.64 \rightarrow$ $H_0$ verwerfen
 
 * Interpretation: Ergebnis spricht dafür, dass autogenes Training zusätzlichen Effekt hat.
 
@@ -648,9 +681,55 @@ class: top, left
 
 #### $t$-Test für unabhängige Stichproben mit gleichen Varianzen
 
+**Effekstärke: Cohen's d**
+
+.pull-left[
+
+$$ 
+d = \frac{\bar{x}_1 - \bar{x}_2}{s}
+$$
+
+mit
+
+$$
+s_{\text{pooled}} = \sqrt{\frac{(n_1 - 1)s_1^2 + (n_2 - 1)s_2^2}{n_1 + n_2 - 2}}
+$$
+
+kombiniert:
+
+$$ 
+d = \frac{\bar{x}_1 - \bar{x}_2}{\sqrt{\frac{(n_1 - 1)s_1^2 + (n_2 - 1)s_2^2}{n_1 + n_2 - 2}}}
+$$
+]
+
+.pull-right[
+<small>
+
+* Standardisierte Differenz zwischen 2 Mittelwerten
+
+* Kann  alle reelle Zahlen von $-∞$ bis $+∞$ annehmen
+
+* Unabhängig von der Einheit (in Standardabweichungen angegeben)
+
+* z.B. $d=1$ bedeutet $\bar{x}_1$ ist eine Standardabweichung höher als $\bar{x}_2$
+
+```{r echo=F}
+df <- data.frame(Effektstärke = c("Kleiner Effekt", "Mittlerer Effekt", "Großer Effekt"),
+                 `d` = c("|0.2|", "|0.5|", "|0.8|"))
+names(df)[2] = "Cohen's d"
+
+kable(df[,], escape = FALSE)
+```
+]
+---
+class: top, left
+### $t$-Test
+
+#### $t$-Test für unabhängige Stichproben mit gleichen Varianzen
+
 **Bewertung des t-Werts:**
 
-* t-Wert schneidet geiwssen Prozentsatz der Fläche einer t-Verteilung ab
+* t-Wert schneidet gewissen Prozentsatz der Fläche einer t-Verteilung ab
 
 * Wahrscheinlichkeit des t-Werts gibt Wahrscheinlichkeit an, ob Nullhypothese zutrifft
 
