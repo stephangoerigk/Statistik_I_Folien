@@ -56,7 +56,7 @@ class: middle, left
 # Statistik I
 ***
 ### Einheit 1: Grundlagen der Datenanalyse
-##### `r format(as.Date(data.frame(readxl::read_excel("Modul Quantitative Methoden I_Termine.xlsx"))$Datum), "%d.%m.%Y")[1]` | Prof. Dr. Stephan Goerigk
+##### Wintersemester 2025 | Prof. Dr. Stephan Goerigk
 
 ---
 class: top, left
