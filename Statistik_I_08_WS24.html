@@ -28,7 +28,7 @@ class: middle, left
 # Statistik I
 ***
 ### Einheit 8: `\(t\)`-Test
-##### 11.06.2025 | Prof. Dr. Stephan Goerigk
+##### Wintersemester 2025 | Prof. Dr. Stephan Goerigk
 
 ---
 class: top, left
@@ -765,13 +765,13 @@ Beispiel: Vergleich der Reduktion von Symptomatik zwischen 2 Gruppen `\((N=16)\)
 &lt;tbody&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; G1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 10.5 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.51 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 11.12 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.36 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; G2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 6.0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.31 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.27 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -792,13 +792,13 @@ t.test(Reduktion ~ Gruppe, data = df, var.equal = T)
 ## 	Two Sample t-test
 ## 
 ## data:  Reduktion by Gruppe
-## t = 6.364, df = 14, p-value = 1.757e-05
+## t = 5.4859, df = 14, p-value = 8.023e-05
 ## alternative hypothesis: true difference in means between group G1 and group G2 is not equal to 0
 ## 95 percent confidence interval:
-##  2.983407 6.016593
+##  3.121296 7.128704
 ## sample estimates:
 ## mean in group G1 mean in group G2 
-##             10.5              6.0
+##           11.125            6.000
 ```
 ]
 ]
@@ -827,13 +827,13 @@ Beispiel: Prüfung, ob Symptomreduktion zwischen 2 Zeitpunkten signifikant ist `
 &lt;tbody&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; T1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 8.88 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.46 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.62 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.06 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; T2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 6.12 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2.03 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.62 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.41 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -843,24 +843,24 @@ Beispiel: Prüfung, ob Symptomreduktion zwischen 2 Zeitpunkten signifikant ist `
 ]
 ]
 .pull-right[
-.code80[
+.code60[
 
 ``` r
-t.test(Reduktion ~ Messung, data = df, paired = T)
+t.test(df$Reduktion[df$Messung == "T1"], df$Reduktion[df$Messung == "T2"], paired = T)
 ```
 
 ```
 ## 
 ## 	Paired t-test
 ## 
-## data:  Reduktion by Messung
-## t = 3.3606, df = 7, p-value = 0.01208
+## data:  df$Reduktion[df$Messung == "T1"] and df$Reduktion[df$Messung == "T2"]
+## t = 3.7417, df = 7, p-value = 0.007247
 ## alternative hypothesis: true mean difference is not equal to 0
 ## 95 percent confidence interval:
-##  0.8149876 4.6850124
+##  1.104083 4.895917
 ## sample estimates:
 ## mean difference 
-##            2.75
+##               3
 ```
 ]
 ]

@@ -57,7 +57,7 @@ class: middle, left
 # Statistik I
 ***
 ### Einheit 8: $t$-Test
-##### `r format(as.Date(data.frame(readxl::read_excel("Modul Quantitative Methoden I_Termine.xlsx"))$Datum), "%d.%m.%Y")[8]` | Prof. Dr. Stephan Goerigk
+##### Wintersemester 2025 | Prof. Dr. Stephan Goerigk
 
 ---
 class: top, left
@@ -962,9 +962,9 @@ ggplot(df, aes(x = Messung, y = Reduktion)) +
 ]
 ]
 .pull-right[
-.code80[
+.code60[
 ```{r}
-t.test(Reduktion ~ Messung, data = df, paired = T)
+t.test(df$Reduktion[df$Messung == "T1"], df$Reduktion[df$Messung == "T2"], paired = T)
 ```
 ]
 ]

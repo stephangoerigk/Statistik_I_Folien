@@ -56,7 +56,7 @@ class: middle, left
 # Statistik I
 ***
 ### Einheit 2: Skalenniveaus und statistische Kennwerte
-##### `r format(as.Date(data.frame(readxl::read_excel("Modul Quantitative Methoden I_Termine.xlsx"))$Datum), "%d.%m.%Y")[2]` | Prof. Dr. Stephan Goerigk
+##### Wintersemester 2025 | Prof. Dr. Stephan Goerigk
 
 ---
 class: top, left
