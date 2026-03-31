@@ -17,6 +17,7 @@ output:
     seal: false
 ---
 
+
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 
@@ -52,6 +53,7 @@ knitr::opts_chunk$set(
 
 name: Title slide
 class: middle, left
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <br><br><br><br><br><br><br>
 # Statistik I
 ***
