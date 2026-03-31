@@ -20,6 +20,8 @@ output:
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 
+htmltools::tagList(rmarkdown::html_dependency_jquery())
+
 library(tidyverse)
 library(kableExtra)
 library(ggplot2)

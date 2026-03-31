@@ -6,6 +6,7 @@
     <meta name="author" content="Prof. Dr. Stephan Goerigk" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/hygge.css" rel="stylesheet" />
+    <script src="libs/jquery/jquery-3.6.0.min.js"></script>
     <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
     <script src="libs/tile-view/tile-view.js"></script>
     <script src="libs/fabric/fabric.min.js"></script>
@@ -765,13 +766,13 @@ Beispiel: Vergleich der Reduktion von Symptomatik zwischen 2 Gruppen `\((N=16)\)
 &lt;tbody&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; G1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 10.25 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.58 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.62 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.07 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; G2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 7.12 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.73 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.75 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.19 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -792,13 +793,13 @@ t.test(Reduktion ~ Gruppe, data = df, var.equal = T)
 ## 	Two Sample t-test
 ## 
 ## data:  Reduktion by Gruppe
-## t = 3.775, df = 14, p-value = 0.002049
+## t = 2.7025, df = 14, p-value = 0.01717
 ## alternative hypothesis: true difference in means between group G1 and group G2 is not equal to 0
 ## 95 percent confidence interval:
-##  1.349526 4.900474
+##  0.5933497 5.1566503
 ## sample estimates:
 ## mean in group G1 mean in group G2 
-##           10.250            7.125
+##            9.625            6.750
 ```
 ]
 ]
@@ -827,13 +828,13 @@ Beispiel: Prüfung, ob Symptomreduktion zwischen 2 Zeitpunkten signifikant ist `
 &lt;tbody&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; T1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 9.25 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2.96 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8.75 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.31 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; T2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 7.62 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.06 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.50 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.07 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -854,13 +855,13 @@ t.test(df$Reduktion[df$Messung == "T1"], df$Reduktion[df$Messung == "T2"], paire
 ## 	Paired t-test
 ## 
 ## data:  df$Reduktion[df$Messung == "T1"] and df$Reduktion[df$Messung == "T2"]
-## t = 1.2551, df = 7, p-value = 0.2497
+## t = 1.9912, df = 7, p-value = 0.08673
 ## alternative hypothesis: true mean difference is not equal to 0
 ## 95 percent confidence interval:
-##  -1.436562  4.686562
+##  -0.4219058  4.9219058
 ## sample estimates:
 ## mean difference 
-##           1.625
+##            2.25
 ```
 ]
 ]
