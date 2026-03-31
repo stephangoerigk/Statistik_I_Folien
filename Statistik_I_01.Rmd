@@ -163,7 +163,7 @@ knitr::include_graphics("bilder/concept.png")
 ---
 class: top, left
 ### Übersicht Lehrveranstaltung 
-
+<small>
 Termine:
 * 13 Termine
 * Mittwoch 13:50 - 15:30
@@ -183,7 +183,7 @@ Prüfungsleistung:
 * Taschenrechner benötigt!
 * Ausgedruckte Formelsammlung wird gestellt
 * Handgeschriebene Formelsammlung
-
+</small>
 ---
 class: top, left
 ### Termine
