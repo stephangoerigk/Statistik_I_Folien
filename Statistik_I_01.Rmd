@@ -6,6 +6,8 @@ institute: "RStudio, PBC"
 date: "2016/12/12 (updated: `r Sys.Date()`)"
 output:
   xaringan::moon_reader:
+    includes:
+      in_header: jquery.html
     css: [xaringan-themer.css, "hygge"]
     lib_dir: libs
     nature:
@@ -53,7 +55,6 @@ knitr::opts_chunk$set(
 
 name: Title slide
 class: middle, left
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <br><br><br><br><br><br><br>
 # Statistik I
 ***
