@@ -1,9 +1,9 @@
 ---
 title: "Einheit 3"
-subtitle: "⚔<br/>with xaringan"
+subtitle: "Statistik I"
 author: "Prof. Dr. Stephan Goerigk"
-institute: "RStudio, PBC"
-date: "2016/12/12 (updated: `r Sys.Date()`)"
+institute: "Charlotte Fresenius Universität"
+date: "`r Sys.Date()`"
 output:
   xaringan::moon_reader:
     css: [xaringan-themer.css, "hygge"]
@@ -70,7 +70,7 @@ class: top, left
 
 **Kompetenzen:**
 
-* Berechnen von **absoluten/relativen Häufigkeiten** und Darstelltung in **Häufigkeitstabelle**
+* Berechnen von **absoluten/relativen Häufigkeiten** und Darstellung in **Häufigkeitstabelle**
 
 * Berechnen von Summen und Notation mit **Summenzeichen**.
 
@@ -104,7 +104,7 @@ class: top, left
 
 * Werte idealerweise so bestimmen, dass Verteilung aus den Kennwerten rekonstruiert werden könnte
 
-Zwei häufige Arten statistischer Kenntwerte:
+Zwei häufige Arten statistischer Kennwerte:
 
 1. **Maße der zentralen Tendenz** (Lagemaße)
 
@@ -713,7 +713,7 @@ kable(df[,], col.names = NULL)
 ```
 ]
  <font size="-1">
-Lösungweg: 
+Lösungsweg:
 
 $$x_{sortiert}= `r paste(x[order(x)], collapse = ";")`$$
 
@@ -753,7 +753,7 @@ kable(df[,], col.names = NULL)
 ]
  <font size="-1">
 
-Lösungweg: 
+Lösungsweg:
 
 $$x_{sortiert}= `r paste(x[order(x)], collapse = ";")`$$
 $$n \cdot \alpha = `r n` \cdot 0.25 = `r n * 0.25` \rightarrow I_{0.25} = 5$$
@@ -856,7 +856,7 @@ class: top, left
 
 #### Statistische Kennwerte
 
-##### **Schiefe** (*engl. curtosis*):
+##### **Schiefe** (*engl. skewness*):
 
 * Die Schiefe $g_1$ ist eine Maßzahl, die uns angibt, in welche Richtung eine Häufigkeitsverteilung schief ist.
 
@@ -882,7 +882,7 @@ class: top, left
 
 #### Statistische Kennwerte
 
-##### **Schiefe** (*engl. curtosis*):
+##### **Schiefe** (*engl. skewness*):
 
 .pull-left[
 .center[
@@ -947,8 +947,6 @@ df = data.frame(ID = paste0(rep(1:N)),
                 BDI = c(8, 12, 41, 20, 14, 2),
                 Behandlungsgruppe = c("A", "A", "A", "B", "B", "B")
 )
-x = df$Meter_m
-n = length(x)
 df2 = df
 df = as.data.frame(t(df))
 #rownames(df) = NULL
@@ -1009,8 +1007,6 @@ df = data.frame(ID = paste0(rep(1:N)),
                 BDI = c(44, 2, 3, 55, 12, 41),
                 Behandlungsgruppe = c("B", "B", "B", "A", "A", "B")
 )
-x = df$Meter_m
-n = length(x)
 df2 = df
 df = as.data.frame(t(df))
 #rownames(df) = NULL
@@ -1027,7 +1023,7 @@ class: top, left
 
 .full-width[.content-box-gray[
 
-* **Streuungsmaße** geben Variation der Messwerte um Maß der zentralen Tendez an.
+* **Streuungsmaße** geben Variation der Messwerte um Maß der zentralen Tendenz an.
 
 * **Varianz** wichtigstes aber unpraktisches Maß der Streuung um den Mittelwert.
 
