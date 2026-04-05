@@ -262,7 +262,7 @@ class: top, left
 
 #### Graphen
 
-##### Bivariat (nun haben wir 2 Variablen, Grübeln + Gruppe)
+##### Bivariat - nun haben wir 2 Variablen, Grübeln (numerisch) + Gruppe (Kategorie)
 
 ```{r echo = F}
 set.seed(123)
