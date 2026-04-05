@@ -62,40 +62,6 @@ class: middle, left
 
 ---
 class: top, left
-### Wiederholung Einheit 3 - Was können wir schon?
-
-* Kenntnis der **Skalenniveaus**
-
-* Kenntnis univariater Deskriptivstatistiken
-
-* Wissen, wann welche Deskriptivstatistiken gerechnet werden sollten
-
-**Kompetenzen:**
-
-* Berechnen von **absoluten/relativen Häufigkeiten** und Darstellung in **Häufigkeitstabelle**
-
-* Berechnen von Summen und Notation mit **Summenzeichen**.
-
-* Berechnen von Modus, Mittelwert (mehrere Gruppen, aus Häufigkeitstabelle), Median, Spannweite, Varianz, Standardabweichung, Quantile, Quartilabstand
-
----
-class: top, left
-### Agenda für Heute:
-
-#### Ziel: Effiziente Beschreibung **von 2** Variablen (**bivariate** Statistik)
-
-**Was wir danach kennen werden:**
-
-* Eigenschaften unterschiedlicher statistischer Graphen
-
-* Situationen in denen diese eingesetzt werden sollten
-
-**Was wir danach können werden:**
-
-* Graphen für 2 oder mehr Variablen erstellen
-
----
-class: top, left
 ### Visualisierung
 
 #### Graphen
@@ -186,7 +152,134 @@ class: top, left
 
 #### Graphen
 
-##### Bivariat 
+##### Univariat – Bestandteile
+
+.pull-left[
+<span style="color:black">**Bestandteile Histogramm:**</span>
+
+<svg viewBox="0 0 420 290" xmlns="http://www.w3.org/2000/svg" style="width:100%" font-family="Arial, sans-serif" font-size="11">
+
+  <!-- Y-Achse -->
+  <line x1="65" y1="18" x2="65" y2="218" stroke="#333" stroke-width="1.5"/>
+  <!-- X-Achse -->
+  <line x1="65" y1="218" x2="370" y2="218" stroke="#333" stroke-width="1.5"/>
+
+  <!-- Y-Ticks -->
+  <line x1="59" y1="218" x2="65" y2="218" stroke="#555" stroke-width="1"/>
+  <line x1="59" y1="168" x2="65" y2="168" stroke="#555" stroke-width="1"/>
+  <line x1="59" y1="118" x2="65" y2="118" stroke="#555" stroke-width="1"/>
+  <line x1="59" y1="68"  x2="65" y2="68"  stroke="#555" stroke-width="1"/>
+  <text x="53" y="222" text-anchor="end" font-size="9" fill="#555">0</text>
+  <text x="53" y="172" text-anchor="end" font-size="9" fill="#555">5</text>
+  <text x="53" y="122" text-anchor="end" font-size="9" fill="#555">10</text>
+  <text x="53" y="72"  text-anchor="end" font-size="9" fill="#555">15</text>
+
+  <!-- Balken (aneinander liegend, je Breite 48) -->
+  <rect x="65"  y="178" width="48" height="40"  fill="#f5e0e8" stroke="#621C37" stroke-width="1.8"/>
+  <rect x="113" y="128" width="48" height="90"  fill="#f5e0e8" stroke="#621C37" stroke-width="1.8"/>
+  <rect x="161" y="78"  width="48" height="140" fill="#f5e0e8" stroke="#621C37" stroke-width="1.8"/>
+  <rect x="209" y="108" width="48" height="110" fill="#f5e0e8" stroke="#621C37" stroke-width="1.8"/>
+  <rect x="257" y="153" width="48" height="65"  fill="#f5e0e8" stroke="#621C37" stroke-width="1.8"/>
+  <rect x="305" y="188" width="48" height="30"  fill="#f5e0e8" stroke="#621C37" stroke-width="1.8"/>
+
+  <!-- X-Beschriftung Klassen -->
+  <text x="89"  y="232" text-anchor="middle" font-size="8.5" fill="#555">70</text>
+  <text x="137" y="232" text-anchor="middle" font-size="8.5" fill="#555">85</text>
+  <text x="185" y="232" text-anchor="middle" font-size="8.5" fill="#555">100</text>
+  <text x="233" y="232" text-anchor="middle" font-size="8.5" fill="#555">115</text>
+  <text x="281" y="232" text-anchor="middle" font-size="8.5" fill="#555">130</text>
+
+  <!-- ── Label: Balken aneinander – oben Mitte ── -->
+  <line x1="209" y1="105" x2="209" y2="38" stroke="#621C37" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="260" y="24" text-anchor="middle" fill="#621C37" font-weight="bold" font-size="9.5">
+    <tspan x="260" dy="0">Balken liegen aneinander</tspan>
+    <tspan x="260" dy="13" font-size="8.5" font-weight="normal">(kein Abstand = stetige Variable)</tspan>
+  </text>
+
+  <!-- ── Label: Klassenbreite (Doppelpfeil unter Balken 3) ── -->
+  <line x1="161" y1="242" x2="209" y2="242" stroke="#621C37" stroke-width="1.3"/>
+  <line x1="161" y1="237" x2="161" y2="247" stroke="#621C37" stroke-width="1.3"/>
+  <line x1="209" y1="237" x2="209" y2="247" stroke="#621C37" stroke-width="1.3"/>
+  <text x="185" y="260" text-anchor="middle" fill="#621C37" font-size="9.5">Klassenbreite</text>
+
+  <!-- ── Label: Y-Achse ── -->
+  <text transform="rotate(-90,12,118)" x="12" y="118" text-anchor="middle" fill="#621C37" font-weight="bold" font-size="9.5">Häufigkeit (N)</text>
+
+  <!-- ── Label: X-Achse ── -->
+  <text x="217" y="276" text-anchor="middle" fill="#621C37" font-weight="bold" font-size="9.5">Merkmalswert</text>
+  <text x="217" y="288" text-anchor="middle" fill="#621C37" font-style="italic" font-size="8.5">(geordnetes Kontinuum)</text>
+
+</svg>
+]
+
+.pull-right[
+<span style="color:black">**Bestandteile Balkendiagramm (Häufigkeiten):**</span>
+
+<svg viewBox="0 0 420 290" xmlns="http://www.w3.org/2000/svg" style="width:100%" font-family="Arial, sans-serif" font-size="11">
+
+  <!-- Y-Achse -->
+  <line x1="65" y1="18" x2="65" y2="218" stroke="#333" stroke-width="1.5"/>
+  <!-- X-Achse -->
+  <line x1="65" y1="218" x2="370" y2="218" stroke="#333" stroke-width="1.5"/>
+
+  <!-- Y-Ticks -->
+  <line x1="59" y1="218" x2="65" y2="218" stroke="#555" stroke-width="1"/>
+  <line x1="59" y1="168" x2="65" y2="168" stroke="#555" stroke-width="1"/>
+  <line x1="59" y1="118" x2="65" y2="118" stroke="#555" stroke-width="1"/>
+  <line x1="59" y1="68"  x2="65" y2="68"  stroke="#555" stroke-width="1"/>
+  <text x="53" y="222" text-anchor="end" font-size="9" fill="#555">0</text>
+  <text x="53" y="172" text-anchor="end" font-size="9" fill="#555">5</text>
+  <text x="53" y="122" text-anchor="end" font-size="9" fill="#555">10</text>
+  <text x="53" y="72"  text-anchor="end" font-size="9" fill="#555">15</text>
+
+  <!-- Balken Depression: x=80, Breite=60, Höhe=130 → top y=88 -->
+  <rect x="80"  y="88"  width="60" height="130" fill="#f5e0e8" stroke="#621C37" stroke-width="1.8"/>
+  <!-- Balken Sucht: x=165, Breite=60, Höhe=80 → top y=138 -->
+  <rect x="165" y="138" width="60" height="80"  fill="#f5e0e8" stroke="#621C37" stroke-width="1.8"/>
+  <!-- Balken Psychose: x=250, Breite=60, Höhe=50 → top y=168 -->
+  <rect x="250" y="168" width="60" height="50"  fill="#f5e0e8" stroke="#621C37" stroke-width="1.8"/>
+
+  <!-- Kategorie-Labels -->
+  <text x="110" y="232" text-anchor="middle" font-size="9" fill="#333">Depression</text>
+  <text x="195" y="232" text-anchor="middle" font-size="9" fill="#333">Sucht</text>
+  <text x="280" y="232" text-anchor="middle" font-size="9" fill="#333">Psychose</text>
+
+  <!-- ── Label: Lücke zwischen Balken ── -->
+  <line x1="140" y1="218" x2="165" y2="218" stroke="#EE0071" stroke-width="2.5"/>
+  <line x1="152" y1="50" x2="152" y2="215" stroke="#EE0071" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="152" y="24" text-anchor="middle" fill="#EE0071" font-weight="bold" font-size="9.5">
+    <tspan x="152" dy="0">Lücke zwischen</tspan>
+    <tspan x="152" dy="12">Balken</tspan>
+    <tspan x="152" dy="12" font-size="8.5" font-weight="normal">(kategoriale Variable)</tspan>
+  </text>
+
+  <!-- ── Label: Balkenhöhe = Häufigkeit (rechts von Psychose-Balken) ── -->
+  <line x1="310" y1="168" x2="326" y2="168" stroke="#621C37" stroke-width="1.3"/>
+  <line x1="310" y1="218" x2="326" y2="218" stroke="#621C37" stroke-width="1.3"/>
+  <line x1="318" y1="168" x2="318" y2="218" stroke="#621C37" stroke-width="1.3"/>
+  <line x1="318" y1="193" x2="332" y2="193" stroke="#621C37" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="335" y="189" fill="#621C37" font-weight="bold" font-size="9.5">
+    <tspan x="335" dy="0">Balkenhöhe</tspan>
+    <tspan x="335" dy="13" font-size="8.5" font-weight="normal">= Häufigkeit</tspan>
+  </text>
+
+  <!-- ── Label: Y-Achse ── -->
+  <text transform="rotate(-90,12,118)" x="12" y="118" text-anchor="middle" fill="#621C37" font-weight="bold" font-size="9.5">Häufigkeit (N)</text>
+
+  <!-- ── Label: X-Achse ── -->
+  <text x="220" y="276" text-anchor="middle" fill="#621C37" font-weight="bold" font-size="9.5">Kategorie (Diagnose)</text>
+  <text x="220" y="288" text-anchor="middle" fill="#621C37" font-style="italic" font-size="8.5">(unabhängige Kategorien, Reihenfolge beliebig)</text>
+
+</svg>
+]
+
+---
+class: top, left
+### Visualisierung
+
+#### Graphen
+
+##### Bivariat
 
 * Wir wissen nun, wie wir Häufigkeiten (N) in Histogrammen und Balkendiagrammen darstellen können
 
@@ -245,6 +338,9 @@ ggplot(df2, aes(x = Grübeln, fill = Gruppe)) +
 ]
 ]
 .pull-right[
+
+<small>
+
 * 2 Gruppen auch im Histogramm darstellbar
 
 * Y-Achse = N
@@ -283,6 +379,7 @@ kable(df[,], col.names = NULL)%>%
 ```{r echo = F, out.height="320px"}
 ggplot(df2, aes(y = Grübeln, x = Gruppe)) +
   stat_summary(geom = "bar", fun = "mean", fill = "white", colour = "black", width = .5) +
+  stat_summary(geom = "errorbar", fun.data = mean_se, width = .2) +
   labs(y = "Grübeln") +
   theme_classic() +
   theme(text = element_text(size = 25))
@@ -290,13 +387,114 @@ ggplot(df2, aes(y = Grübeln, x = Gruppe)) +
 ]
 ]
 .pull-right[
-* Balkendiagramm ist übersichtlicher
+
+<small>
+
+* Vorteil gegenüber Histogramm $\rightarrow$ Balkendiagramm ist übersichtlicher
 
 * Y-Achse = numerisch (oft AV)
 
 * X-Achse = kategorial (oft UV)
 
 * Balkenhöhe = Mittelwert
+]
+
+---
+class: top, left
+### Visualisierung
+
+#### Graphen
+
+##### Bivariat (nun haben wir 2 Variablen, Grübeln + Gruppe)
+
+.pull-left[
+.center[
+```{r echo = F, out.height="320px"}
+ggplot(df2, aes(y = Grübeln, x = Gruppe)) +
+  stat_summary(geom = "bar", fun = "mean", fill = "white", colour = "black", width = .5) +
+  stat_summary(geom = "errorbar", fun.data = mean_se, width = .2) +
+  labs(y = "Grübeln") +
+  theme_classic() +
+  theme(text = element_text(size = 25))
+```
+]
+]
+.pull-right[
+<span style="color:black">**Bestandteile Balkendiagramm (Mittelwert):**</span>
+
+<svg viewBox="0 0 460 280" xmlns="http://www.w3.org/2000/svg" style="width:100%" font-family="Arial, sans-serif" font-size="11">
+
+  <!-- Y-Achse -->
+  <line x1="80" y1="20" x2="80" y2="230" stroke="#333" stroke-width="1.5"/>
+  <!-- Nulllinie / X-Achse -->
+  <line x1="80" y1="230" x2="345" y2="230" stroke="#333" stroke-width="1.5"/>
+
+  <!-- Y-Achse Ticks -->
+  <line x1="74" y1="230" x2="80" y2="230" stroke="#555" stroke-width="1"/>
+  <line x1="74" y1="178" x2="80" y2="178" stroke="#555" stroke-width="1"/>
+  <line x1="74" y1="126" x2="80" y2="126" stroke="#555" stroke-width="1"/>
+  <line x1="74" y1="74" x2="80" y2="74" stroke="#555" stroke-width="1"/>
+  <text x="68" y="234" text-anchor="end" font-size="9.5" fill="#555">0</text>
+  <text x="68" y="182" text-anchor="end" font-size="9.5" fill="#555">5</text>
+  <text x="68" y="130" text-anchor="end" font-size="9.5" fill="#555">10</text>
+  <text x="68" y="78" text-anchor="end" font-size="9.5" fill="#555">15</text>
+
+  <!-- Balken A: Mitte x=145, Oberkante y=74, Höhe=156 -->
+  <rect x="108" y="74" width="74" height="156" fill="#f5e0e8" stroke="#621C37" stroke-width="2"/>
+
+  <!-- Fehlerbalken A: Mitte y=74 -->
+  <line x1="145" y1="54" x2="145" y2="94" stroke="#621C37" stroke-width="1.8"/>
+  <line x1="131" y1="54" x2="159" y2="54" stroke="#621C37" stroke-width="1.8"/>
+  <line x1="131" y1="94" x2="159" y2="94" stroke="#621C37" stroke-width="1.8"/>
+
+  <!-- Balken B: Mitte x=255, Oberkante y=157, Höhe=73 -->
+  <rect x="218" y="157" width="74" height="73" fill="#f5e0e8" stroke="#621C37" stroke-width="2"/>
+
+  <!-- Fehlerbalken B: Mitte y=157 -->
+  <line x1="255" y1="137" x2="255" y2="177" stroke="#621C37" stroke-width="1.8"/>
+  <line x1="241" y1="137" x2="269" y2="137" stroke="#621C37" stroke-width="1.8"/>
+  <line x1="241" y1="177" x2="269" y2="177" stroke="#621C37" stroke-width="1.8"/>
+
+  <!-- Gruppenbezeichnungen -->
+  <text x="145" y="248" text-anchor="middle" fill="#333" font-size="13" font-weight="bold">A</text>
+  <text x="255" y="248" text-anchor="middle" fill="#333" font-size="13" font-weight="bold">B</text>
+
+  <!-- Y-Achsen-Label (rotiert) -->
+  <text transform="rotate(-90,16,125)" x="16" y="125" text-anchor="middle" fill="#333" font-size="11">Grübeln</text>
+
+  <!-- ── Label: Fehlerbalken → Oberkante Fehlerbalken A ── -->
+  <line x1="145" y1="37" x2="145" y2="51" stroke="#621C37" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="145" y="25" text-anchor="middle" fill="#621C37" font-weight="bold">
+    <tspan x="145" dy="0">Fehlerbalken</tspan>
+    <tspan x="145" dy="13" font-size="9.5" font-weight="normal">(± SE)</tspan>
+  </text>
+
+  <!-- ── Label: Balkenhöhe = Mittelwert → Klammer rechts an Balken B ── -->
+  <line x1="296" y1="157" x2="312" y2="157" stroke="#621C37" stroke-width="1.3"/>
+  <line x1="296" y1="230" x2="312" y2="230" stroke="#621C37" stroke-width="1.3"/>
+  <line x1="304" y1="157" x2="304" y2="230" stroke="#621C37" stroke-width="1.3"/>
+  <line x1="304" y1="193" x2="318" y2="193" stroke="#621C37" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="320" y="188" fill="#621C37" font-weight="bold" font-size="10">
+    <tspan x="320" dy="0">Balkenhöhe</tspan>
+    <tspan x="320" dy="14" font-size="9.5" font-weight="normal">= Mittelwert</tspan>
+  </text>
+
+  <!-- ── Label: Y-Achse (AV) ── -->
+  <line x1="76" y1="48" x2="46" y2="48" stroke="#621C37" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="44" y="35" text-anchor="middle" fill="#621C37" font-weight="bold" font-size="10">
+    <tspan x="44" dy="0">Y-Achse</tspan>
+    <tspan x="44" dy="13" font-size="9" font-weight="normal">(numerisch,</tspan>
+    <tspan x="44" dy="12" font-size="9" font-weight="normal">AV)</tspan>
+  </text>
+
+  <!-- ── Label: Nulllinie ── -->
+  <line x1="200" y1="234" x2="200" y2="252" stroke="#621C37" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="200" y="265" text-anchor="middle" fill="#621C37" font-weight="bold" font-size="10.5">Nulllinie</text>
+
+  <!-- ── Label: X-Achse (UV) ── -->
+  <text x="255" y="265" text-anchor="middle" fill="#621C37" font-size="9.5">(kategorial, UV)</text>
+
+</svg>
 ]
 
 ---
@@ -326,6 +524,7 @@ kable(df[,], col.names = NULL)%>%
 ```{r echo = F,  out.height="320px"}
 ggplot(df2, aes(y = Grübeln, x = Gruppe)) +
   stat_summary(geom = "bar", fun = "mean", fill = "white", colour = "black", width = .5) +
+  stat_summary(geom = "errorbar", fun.data = mean_se, width = .2) +
   labs(y = "Grübeln") +
   theme_classic() +
   theme(text = element_text(size = 25))
@@ -333,6 +532,9 @@ ggplot(df2, aes(y = Grübeln, x = Gruppe)) +
 ]
 ]
 .pull-right[
+
+<small>
+
 * Balkendiagramm ist übersichtlicher
 
 * Y-Achse = numerisch (oft AV)
@@ -383,6 +585,9 @@ geom_boxplot() +
 ]
 ]
 .pull-right[
+
+<small>
+
 **Boxplot:**
 
 * Alternative zum Balkendiagramm
@@ -417,7 +622,7 @@ geom_boxplot() +
 ]
 ]
 .pull-right[
-**Bestandteile Boxplot:**
+<span style="color:black">**Bestandteile Boxplot:**</span>
 
 <svg viewBox="0 0 440 260" xmlns="http://www.w3.org/2000/svg" style="width:100%" font-family="Arial, sans-serif" font-size="11">
 
@@ -560,6 +765,7 @@ class: top, left
 ```{r echo = F, out.width="350px"}
 ggplot(df2, aes(y = Tremor, x = Entzug)) +
   stat_summary(geom = "bar", fun = "mean", fill = "white", colour = "black", width = .5) +
+  stat_summary(geom = "errorbar", fun.data = mean_se, width = .2) +
   labs(y = "Tremor") +
   theme_classic() +
   theme(text = element_text(size = 25))
@@ -675,6 +881,9 @@ geom_point(size = 4) +
 ]
 
 .pull-right[
+
+<small>
+
 **Streudiagramm:**
 
 * Punktewolke = Wertepaare (Jeder Punkt = 1 Person)
@@ -726,11 +935,107 @@ geom_point(size = 4) +
 .pull-right[
 **Streudiagramm:**
 
-* Später können wir auch lineare Zusammenhänge zwischen den Variablen visualisieren  
+* Später können wir auch lineare Zusammenhänge zwischen den Variablen visualisieren
 
 * hier z.B. positiver Zusammenhang (hohe Werte auf X gehen einher mit hohen Werten auf Y)
 
 * Dafür müssen wir noch lernen, wie eine Regressionsgerade berechnet wird
+]
+
+---
+class: top, left
+### Visualisierung
+
+#### Graphen
+
+##### Bivariat (2 numerische Variablen)
+
+.pull-left[
+.center[
+```{r echo = F, out.width="320px", out.height="300px"}
+ggplot(df2, aes(y = Konzentration, x = Schlaf)) +
+geom_point(size = 4) +
+  geom_smooth(method = "lm", se = F) +
+  labs(y = "Konzentration", x = "Schlaf") +
+  theme_classic() +
+  theme(text = element_text(size = 25))
+```
+]
+]
+.pull-right[
+<span style="color:black">**Bestandteile Streudiagramm:**</span>
+
+<svg viewBox="0 0 460 290" xmlns="http://www.w3.org/2000/svg" style="width:100%" font-family="Arial, sans-serif" font-size="11">
+
+  <!-- Y-Achse -->
+  <line x1="70" y1="20" x2="70" y2="230" stroke="#333" stroke-width="1.5"/>
+  <!-- X-Achse -->
+  <line x1="70" y1="230" x2="350" y2="230" stroke="#333" stroke-width="1.5"/>
+
+  <!-- Y-Ticks + Labels -->
+  <line x1="64" y1="230" x2="70" y2="230" stroke="#555" stroke-width="1"/>
+  <line x1="64" y1="178" x2="70" y2="178" stroke="#555" stroke-width="1"/>
+  <line x1="64" y1="125" x2="70" y2="125" stroke="#555" stroke-width="1"/>
+  <line x1="64" y1="73"  x2="70" y2="73"  stroke="#555" stroke-width="1"/>
+  <text x="58" y="234" text-anchor="end" font-size="9.5" fill="#555">0</text>
+  <text x="58" y="182" text-anchor="end" font-size="9.5" fill="#555">5</text>
+  <text x="58" y="129" text-anchor="end" font-size="9.5" fill="#555">10</text>
+  <text x="58" y="77"  text-anchor="end" font-size="9.5" fill="#555">15</text>
+
+  <!-- X-Ticks + Labels -->
+  <line x1="70"  y1="230" x2="70"  y2="237" stroke="#555" stroke-width="1"/>
+  <line x1="163" y1="230" x2="163" y2="237" stroke="#555" stroke-width="1"/>
+  <line x1="257" y1="230" x2="257" y2="237" stroke="#555" stroke-width="1"/>
+  <text x="70"  y="247" text-anchor="middle" font-size="9.5" fill="#555">0</text>
+  <text x="163" y="247" text-anchor="middle" font-size="9.5" fill="#555">5</text>
+  <text x="257" y="247" text-anchor="middle" font-size="9.5" fill="#555">10</text>
+
+  <!-- Regressionsgerade -->
+  <line x1="70" y1="209" x2="350" y2="52" stroke="#621C37" stroke-width="2"/>
+
+  <!-- Datenpunkte (normal) -->
+  <circle cx="98"  cy="193" r="4" fill="#621C37"/>
+  <circle cx="117" cy="204" r="4" fill="#621C37"/>
+  <circle cx="145" cy="167" r="4" fill="#621C37"/>
+  <circle cx="163" cy="141" r="4" fill="#621C37"/>
+  <circle cx="191" cy="157" r="4" fill="#621C37"/>
+  <circle cx="238" cy="125" r="4" fill="#621C37"/>
+  <circle cx="257" cy="94"  r="4" fill="#621C37"/>
+  <circle cx="285" cy="104" r="4" fill="#621C37"/>
+  <circle cx="313" cy="67"  r="4" fill="#621C37"/>
+
+  <!-- Datenpunkt hervorgehoben -->
+  <circle cx="210" cy="120" r="5.5" fill="#EE0071"/>
+
+  <!-- ── Label: Datenpunkt ── -->
+  <line x1="210" y1="113" x2="210" y2="76" stroke="#EE0071" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="210" y="64" text-anchor="middle" fill="#EE0071" font-weight="bold">
+    <tspan x="210" dy="0">Datenpunkt</tspan>
+    <tspan x="210" dy="13" font-size="9.5" font-weight="normal">(= 1 Wertepaar / 1 Person)</tspan>
+  </text>
+
+  <!-- ── Label: Regressionsgerade ── -->
+  <line x1="352" y1="52" x2="368" y2="38" stroke="#621C37" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="370" y="33" fill="#621C37" font-weight="bold" font-size="10">
+    <tspan x="370" dy="0">Regressions-</tspan>
+    <tspan x="370" dy="13" font-size="9.5" font-weight="normal">gerade</tspan>
+  </text>
+
+  <!-- ── Label: Y-Achse ── -->
+  <line x1="65" y1="62" x2="50" y2="62" stroke="#621C37" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="35" y="49" text-anchor="middle" fill="#621C37" font-weight="bold" font-size="10">
+    <tspan x="35" dy="0">Y-Achse</tspan>
+    <tspan x="35" dy="13" font-size="9" font-weight="normal">(AV, num.)</tspan>
+  </text>
+
+  <!-- ── Label: X-Achse ── -->
+  <line x1="200" y1="236" x2="200" y2="253" stroke="#621C37" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="200" y="265" text-anchor="middle" fill="#621C37" font-weight="bold" font-size="10">
+    <tspan x="200" dy="0">X-Achse</tspan>
+    <tspan x="200" dy="13" font-size="9" font-weight="normal">(UV, numerisch)</tspan>
+  </text>
+
+</svg>
 ]
 
 ---
@@ -957,7 +1262,7 @@ Mit unterschiedlichen Farben und Punktformen:
 ```{r echo = F, out.width="320px", out.height="300px"}
 ggplot(df2, aes(y = Angst, x = Verschmutzungsintensität, colour = Diagnose, shape = Diagnose)) +
 geom_point(size = 4) +
-  #geom_smooth(method = "lm", se = F) +
+  geom_smooth(method = "lm", se = F) +
   labs(y = "Angst") +
   theme_classic() +
   theme(text = element_text(size = 25))
@@ -971,7 +1276,7 @@ Mit unterschiedlichen Facetten:
 ```{r echo = F, out.width="320px", out.height="300px"}
 ggplot(df2, aes(y = Angst, x = Verschmutzungsintensität)) +
 geom_point(size = 4) +
-  #geom_smooth(method = "lm", se = F) +
+  geom_smooth(method = "lm", se = F) +
   labs(y = "Angst") +
   facet_grid(.~Diagnose) +
   theme_classic() +
