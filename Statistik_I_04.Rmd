@@ -1,9 +1,9 @@
 ---
 title: "Einheit 4"
-subtitle: "⚔<br/>with xaringan"
+subtitle: "Statistik I"
 author: "Prof. Dr. Stephan Goerigk"
-institute: "RStudio, PBC"
-date: "2016/12/12 (updated: `r Sys.Date()`)"
+institute: "Charlotte Fresenius Universität"
+date: "`r Sys.Date()`"
 output:
   xaringan::moon_reader:
     css: [xaringan-themer.css, "hygge"]
@@ -64,7 +64,7 @@ class: middle, left
 class: top, left
 ### Wiederholung Einheit 3 - Was können wir schon?
 
-* Kenntnis der **Skalennveaus**
+* Kenntnis der **Skalenniveaus**
 
 * Kenntnis univariater Deskriptivstatistiken
 
@@ -72,7 +72,7 @@ class: top, left
 
 **Kompetenzen:**
 
-* Berechnen von **absoluten/relativen Häufigkeiten** und Darstelltung in **Häufigkeitstabelle**
+* Berechnen von **absoluten/relativen Häufigkeiten** und Darstellung in **Häufigkeitstabelle**
 
 * Berechnen von Summen und Notation mit **Summenzeichen**.
 
@@ -188,7 +188,7 @@ class: top, left
 
 ##### Bivariat 
 
-* Wir wissen nun, wie wir Häufigkeiten (N) in Histogrammen und Balkendiagrammen dastellen können
+* Wir wissen nun, wie wir Häufigkeiten (N) in Histogrammen und Balkendiagrammen darstellen können
 
 * Manchmal wollen wir jedoch auch andere Statistiken darstellen (z.B. Mittelwert)
 
@@ -343,7 +343,7 @@ ggplot(df2, aes(y = Grübeln, x = Gruppe)) +
 
 * Auch 3 oder mehr Gruppen sind darstellbar 
 
-* Nicht verwechseln: Immer noch ein bivariat (aber Gruppe hat 3 Stufen)
+* Nicht verwechseln: Immer noch bivariat (aber Gruppe hat 3 Stufen)
 ]
 
 
@@ -417,7 +417,7 @@ geom_boxplot() +
 ]
 ]
 .pull-right[
-** Bestandteile Boxplot:**
+**Bestandteile Boxplot:**
 
 * Mittellinie = Median
 
@@ -967,13 +967,13 @@ class: top, left
 
 * Wir können einzelne Verteilungen (**univariat**) oder Kombinationen von Variablen darstellen (**bi-/multivariat**)
 
-* **Balkendiagramm und Boxplot** eigenen sich zur Darstellung von Gruppenunterschieden
+* **Balkendiagramm und Boxplot** eignen sich zur Darstellung von Gruppenunterschieden
 
 * **Vorteile Boxplot:** Median und IQR auch für ordinale Skalen angemessen, zeigt Ausreißer
 
 * **Streudiagramm** eignet sich zur Darstellung von **Merkmalszusammenhängen** zweier numerischer Variablen
 
-* Bei Kombination mehrerer Variablen nutzen wir zusätzlich zu den Achsen **Aethetics** (Farben, Facetten...)
+* Bei Kombination mehrerer Variablen nutzen wir zusätzlich zu den Achsen **Aesthetics** (Farben, Facetten...)
 ]
 ]
 
