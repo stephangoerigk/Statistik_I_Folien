@@ -217,7 +217,7 @@ class: top, left
 
 #### Graphen
 
-##### Bivariat (nun haben wir 2 Variablen, Grübeln + Gruppe)
+##### Bivariat - nun haben wir 2 Variablen, Grübeln (numerisch) + Gruppe (Kategorie)
 
 ```{r echo = F}
 set.seed(123)
@@ -419,19 +419,85 @@ geom_boxplot() +
 .pull-right[
 **Bestandteile Boxplot:**
 
-* Mittellinie = Median
+<svg viewBox="0 0 440 260" xmlns="http://www.w3.org/2000/svg" style="width:100%" font-family="Arial, sans-serif" font-size="11">
 
-* Box = Quartilabstand (IQR, 50% aller Werte)
+  <!-- Whisker links -->
+  <line x1="55" y1="128" x2="158" y2="128" stroke="#621C37" stroke-width="2.5"/>
+  <line x1="55" y1="110" x2="55" y2="146" stroke="#621C37" stroke-width="2.5"/>
 
-* Whiskers = maximale Länge von IQR mal 1.5
+  <!-- Whisker rechts -->
+  <line x1="292" y1="128" x2="385" y2="128" stroke="#621C37" stroke-width="2.5"/>
+  <line x1="385" y1="110" x2="385" y2="146" stroke="#621C37" stroke-width="2.5"/>
 
-* Punkte außerhalb der Whiskers = Ausreißer
+  <!-- IQR Box -->
+  <rect x="158" y="108" width="134" height="40" fill="#f5e0e8" stroke="#621C37" stroke-width="2.5" rx="2"/>
 
-* Y-Achse = numerisch (oft AV)
+  <!-- Median -->
+  <line x1="243" y1="108" x2="243" y2="148" stroke="#EE0071" stroke-width="3"/>
 
-* X-Achse = kategorial (oft UV)
+  <!-- Ausreißer Punkte -->
+  <circle cx="22" cy="128" r="4" fill="#621C37"/>
+  <circle cx="415" cy="128" r="4" fill="#621C37"/>
 
-* 1 Box pro Gruppe (kann theoretisch auch ungruppiert dargestellt werden)
+  <!-- ── Labels oben ── -->
+
+  <!-- Ausreißer links -->
+  <line x1="22" y1="90" x2="22" y2="110" stroke="#621C37" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="22" y="85" text-anchor="middle" fill="#621C37" font-size="10" font-weight="bold">Ausreißer</text>
+
+  <!-- Ausreißer rechts -->
+  <line x1="415" y1="90" x2="415" y2="110" stroke="#621C37" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="415" y="85" text-anchor="middle" fill="#621C37" font-size="10" font-weight="bold">Ausreißer</text>
+
+  <!-- unteres Whisker -->
+  <line x1="55" y1="60" x2="55" y2="106" stroke="#621C37" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="55" y="38" text-anchor="middle" fill="#621C37" font-weight="bold">
+    <tspan x="55" dy="0">unteres</tspan>
+    <tspan x="55" dy="14">Whisker</tspan>
+    <tspan x="55" dy="13" font-size="9.5" font-weight="normal">(Minimum)</tspan>
+  </text>
+
+  <!-- oberes Whisker -->
+  <line x1="385" y1="60" x2="385" y2="106" stroke="#621C37" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="385" y="38" text-anchor="middle" fill="#621C37" font-weight="bold">
+    <tspan x="385" dy="0">oberes</tspan>
+    <tspan x="385" dy="14">Whisker</tspan>
+    <tspan x="385" dy="13" font-size="9.5" font-weight="normal">(Maximum)</tspan>
+  </text>
+
+  <!-- IQR Klammer oben -->
+  <line x1="158" y1="93" x2="292" y2="93" stroke="#621C37" stroke-width="1.5"/>
+  <line x1="158" y1="93" x2="158" y2="103" stroke="#621C37" stroke-width="1.5"/>
+  <line x1="292" y1="93" x2="292" y2="103" stroke="#621C37" stroke-width="1.5"/>
+  <text x="225" y="88" text-anchor="middle" fill="#621C37" font-size="10">Interquartilsabstand (IQR)</text>
+
+  <!-- ── Labels unten ── -->
+
+  <!-- Median -->
+  <line x1="243" y1="152" x2="243" y2="165" stroke="#EE0071" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="243" y="177" text-anchor="middle" fill="#EE0071" font-weight="bold" font-size="11">Median</text>
+
+  <!-- Q1 -->
+  <line x1="158" y1="152" x2="158" y2="165" stroke="#621C37" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="158" y="175" text-anchor="middle" fill="#621C37">
+    <tspan x="158" dy="0" font-weight="bold">Q1</tspan>
+    <tspan x="158" dy="14" font-size="9.5">(unteres Quartil)</tspan>
+  </text>
+
+  <!-- Q3 -->
+  <line x1="292" y1="152" x2="292" y2="165" stroke="#621C37" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="292" y="175" text-anchor="middle" fill="#621C37">
+    <tspan x="292" dy="0" font-weight="bold">Q3</tspan>
+    <tspan x="292" dy="14" font-size="9.5">(oberes Quartil)</tspan>
+  </text>
+
+  <!-- Spannweite Klammer unten -->
+  <line x1="22" y1="222" x2="415" y2="222" stroke="#621C37" stroke-width="1.5"/>
+  <line x1="22" y1="214" x2="22" y2="222" stroke="#621C37" stroke-width="1.5"/>
+  <line x1="415" y1="214" x2="415" y2="222" stroke="#621C37" stroke-width="1.5"/>
+  <text x="218" y="240" text-anchor="middle" fill="#621C37" font-size="10.5">Spannweite (Range)</text>
+
+</svg>
 ]
 
 ---

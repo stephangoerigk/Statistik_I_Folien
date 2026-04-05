@@ -159,7 +159,7 @@ class: top, left
 
 #### Graphen
 
-##### Bivariat (nun haben wir 2 Variablen, Grübeln + Gruppe)
+##### Bivariat - nun haben wir 2 Variablen, Grübeln (numerisch) + Gruppe (Kategorie)
 
 &lt;table class="table" style="font-size: 14px; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
@@ -769,19 +769,85 @@ class: top, left
 .pull-right[
 **Bestandteile Boxplot:**
 
-* Mittellinie = Median
+&lt;svg viewBox="0 0 440 260" xmlns="http://www.w3.org/2000/svg" style="width:100%" font-family="Arial, sans-serif" font-size="11"&gt;
 
-* Box = Quartilabstand (IQR, 50% aller Werte)
+  &lt;!-- Whisker links --&gt;
+  &lt;line x1="55" y1="128" x2="158" y2="128" stroke="#621C37" stroke-width="2.5"/&gt;
+  &lt;line x1="55" y1="110" x2="55" y2="146" stroke="#621C37" stroke-width="2.5"/&gt;
 
-* Whiskers = maximale Länge von IQR mal 1.5
+  &lt;!-- Whisker rechts --&gt;
+  &lt;line x1="292" y1="128" x2="385" y2="128" stroke="#621C37" stroke-width="2.5"/&gt;
+  &lt;line x1="385" y1="110" x2="385" y2="146" stroke="#621C37" stroke-width="2.5"/&gt;
 
-* Punkte außerhalb der Whiskers = Ausreißer
+  &lt;!-- IQR Box --&gt;
+  &lt;rect x="158" y="108" width="134" height="40" fill="#f5e0e8" stroke="#621C37" stroke-width="2.5" rx="2"/&gt;
 
-* Y-Achse = numerisch (oft AV)
+  &lt;!-- Median --&gt;
+  &lt;line x1="243" y1="108" x2="243" y2="148" stroke="#EE0071" stroke-width="3"/&gt;
 
-* X-Achse = kategorial (oft UV)
+  &lt;!-- Ausreißer Punkte --&gt;
+  &lt;circle cx="22" cy="128" r="4" fill="#621C37"/&gt;
+  &lt;circle cx="415" cy="128" r="4" fill="#621C37"/&gt;
 
-* 1 Box pro Gruppe (kann theoretisch auch ungruppiert dargestellt werden)
+  &lt;!-- ── Labels oben ── --&gt;
+
+  &lt;!-- Ausreißer links --&gt;
+  &lt;line x1="22" y1="90" x2="22" y2="110" stroke="#621C37" stroke-width="1" stroke-dasharray="3,3"/&gt;
+  &lt;text x="22" y="85" text-anchor="middle" fill="#621C37" font-size="10" font-weight="bold"&gt;Ausreißer&lt;/text&gt;
+
+  &lt;!-- Ausreißer rechts --&gt;
+  &lt;line x1="415" y1="90" x2="415" y2="110" stroke="#621C37" stroke-width="1" stroke-dasharray="3,3"/&gt;
+  &lt;text x="415" y="85" text-anchor="middle" fill="#621C37" font-size="10" font-weight="bold"&gt;Ausreißer&lt;/text&gt;
+
+  &lt;!-- unteres Whisker --&gt;
+  &lt;line x1="55" y1="60" x2="55" y2="106" stroke="#621C37" stroke-width="1" stroke-dasharray="3,3"/&gt;
+  &lt;text x="55" y="38" text-anchor="middle" fill="#621C37" font-weight="bold"&gt;
+    &lt;tspan x="55" dy="0"&gt;unteres&lt;/tspan&gt;
+    &lt;tspan x="55" dy="14"&gt;Whisker&lt;/tspan&gt;
+    &lt;tspan x="55" dy="13" font-size="9.5" font-weight="normal"&gt;(Minimum)&lt;/tspan&gt;
+  &lt;/text&gt;
+
+  &lt;!-- oberes Whisker --&gt;
+  &lt;line x1="385" y1="60" x2="385" y2="106" stroke="#621C37" stroke-width="1" stroke-dasharray="3,3"/&gt;
+  &lt;text x="385" y="38" text-anchor="middle" fill="#621C37" font-weight="bold"&gt;
+    &lt;tspan x="385" dy="0"&gt;oberes&lt;/tspan&gt;
+    &lt;tspan x="385" dy="14"&gt;Whisker&lt;/tspan&gt;
+    &lt;tspan x="385" dy="13" font-size="9.5" font-weight="normal"&gt;(Maximum)&lt;/tspan&gt;
+  &lt;/text&gt;
+
+  &lt;!-- IQR Klammer oben --&gt;
+  &lt;line x1="158" y1="93" x2="292" y2="93" stroke="#621C37" stroke-width="1.5"/&gt;
+  &lt;line x1="158" y1="93" x2="158" y2="103" stroke="#621C37" stroke-width="1.5"/&gt;
+  &lt;line x1="292" y1="93" x2="292" y2="103" stroke="#621C37" stroke-width="1.5"/&gt;
+  &lt;text x="225" y="88" text-anchor="middle" fill="#621C37" font-size="10"&gt;Interquartilsabstand (IQR)&lt;/text&gt;
+
+  &lt;!-- ── Labels unten ── --&gt;
+
+  &lt;!-- Median --&gt;
+  &lt;line x1="243" y1="152" x2="243" y2="165" stroke="#EE0071" stroke-width="1" stroke-dasharray="3,3"/&gt;
+  &lt;text x="243" y="177" text-anchor="middle" fill="#EE0071" font-weight="bold" font-size="11"&gt;Median&lt;/text&gt;
+
+  &lt;!-- Q1 --&gt;
+  &lt;line x1="158" y1="152" x2="158" y2="165" stroke="#621C37" stroke-width="1" stroke-dasharray="3,3"/&gt;
+  &lt;text x="158" y="175" text-anchor="middle" fill="#621C37"&gt;
+    &lt;tspan x="158" dy="0" font-weight="bold"&gt;Q1&lt;/tspan&gt;
+    &lt;tspan x="158" dy="14" font-size="9.5"&gt;(unteres Quartil)&lt;/tspan&gt;
+  &lt;/text&gt;
+
+  &lt;!-- Q3 --&gt;
+  &lt;line x1="292" y1="152" x2="292" y2="165" stroke="#621C37" stroke-width="1" stroke-dasharray="3,3"/&gt;
+  &lt;text x="292" y="175" text-anchor="middle" fill="#621C37"&gt;
+    &lt;tspan x="292" dy="0" font-weight="bold"&gt;Q3&lt;/tspan&gt;
+    &lt;tspan x="292" dy="14" font-size="9.5"&gt;(oberes Quartil)&lt;/tspan&gt;
+  &lt;/text&gt;
+
+  &lt;!-- Spannweite Klammer unten --&gt;
+  &lt;line x1="22" y1="222" x2="415" y2="222" stroke="#621C37" stroke-width="1.5"/&gt;
+  &lt;line x1="22" y1="214" x2="22" y2="222" stroke="#621C37" stroke-width="1.5"/&gt;
+  &lt;line x1="415" y1="214" x2="415" y2="222" stroke="#621C37" stroke-width="1.5"/&gt;
+  &lt;text x="218" y="240" text-anchor="middle" fill="#621C37" font-size="10.5"&gt;Spannweite (Range)&lt;/text&gt;
+
+&lt;/svg&gt;
 ]
 
 ---
