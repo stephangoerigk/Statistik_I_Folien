@@ -1,9 +1,9 @@
 ---
 title: "Einheit 2"
-subtitle: "⚔<br/>with xaringan"
+subtitle: "Statistik I"
 author: "Prof. Dr. Stephan Goerigk"
-institute: "RStudio, PBC"
-date: "2016/12/12 (updated: `r Sys.Date()`)"
+institute: "Charlotte Fresenius Universität"
+date: "`r Sys.Date()`"
 output:
   xaringan::moon_reader:
     css: [xaringan-themer.css, "hygge"]
@@ -68,7 +68,7 @@ class: top, left
   * stetig vs. diskret
   * manifest vs. latent
   * AV vs. UV
-  * Drittvariablen: Stör- und Kontrollvaribable, Moderator, Mediator
+  * Drittvariablen: Stör- und Kontrollvariable, Moderator, Mediator
 
 * Wir kennen Kriterien wissenschaftlicher Hypothesen (ungerichtet vs. gerichtet)
 
@@ -76,9 +76,9 @@ class: top, left
 
 * Erfassung **einer** Variable in eine **Urliste/Vektor**
 
-* Kombination **mehrer** Variablen in einer **Datenmatrix**
+* Kombination **mehrerer** Variablen in einer **Datenmatrix**
 
-* Berechnen von **absoluten/relativen Häufigkeiten** und Darstelltung in **Häufigkeitstabelle**
+* Berechnen von **absoluten/relativen Häufigkeiten** und Darstellung in **Häufigkeitstabelle**
 
 * Berechnen von Summen und Notation mit **Summenzeichen**.
 
@@ -506,7 +506,7 @@ class: top, left
 
 * Nullpunkt lokalisiert, wo die Variable aufhört zu **existieren**
 
-* **Selten** in Sozialwissenschaften (Variablen wie Intelligenz, Neurotizimus... haben keine sinnvolle 0)
+* **Selten** in Sozialwissenschaften (Variablen wie Intelligenz, Neurotizismus... haben keine sinnvolle 0)
 
 * macht somit Aussagen über das Verhältnis von Merkmalsausprägungen
 
@@ -545,7 +545,7 @@ class: top, left
 df = data.frame(Skalenniveau = c("Nominalskala", "Ordinalskala", "Intervallskala", "Verhältnisskala"),
                 Aussagen = c("Gleichheit/Verschiedenheit", "Größer-Kleiner Relation", "Gleichheit von Differenzen", "Gleichheit von Verhältnissen"),
                 Beispiele = c("Diagnosen, Nationalität, Gruppenzugehörigkeit", "Schulabschlüsse, Bundesligatabelle, Medaillenfarbe", "IQ, Persönlichkeit", "Gewicht, Länge"),
-                Transformationen = c("wenn x1 ungleich x2 dann y1 ungleich y2", "wenn x1 > x2 > x3 dann y1 > y2 > y3 oder y1 < y2 < y3", "$y_i= a + b \\cdot x_i$", "$y_i= b \\cdot x_i$"))
+                Transformationen = c("wenn \\(x_1\\) ungleich \\(x_2\\) dann \\(y_1\\) ungleich \\(y_2\\)", "wenn \\(x_1 > x_2 > x_3\\) dann \\(y_1 > y_2 > y_3\\)", "\\(y_i = a + b \\cdot x_i\\)", "\\(y_i = b \\cdot x_i\\)"))
 
 df %>%
   kbl(escape = F) %>%
@@ -589,13 +589,13 @@ class: top, left
 
 #### Festlegung des Skalenniveaus:
 
-* **Praxis:** es kommt vor, dass eingesetzte Messinstrumente Daten auf niedrigerem Skalleniveau erfassen, als theoretisch möglich (z.B. aus Sparsamkeit)
+* **Praxis:** es kommt vor, dass eingesetzte Messinstrumente Daten auf niedrigerem Skalenniveau erfassen, als theoretisch möglich (z.B. aus Sparsamkeit)
 
 * **Statistischer Nachweis** des Messniveaus (z.B. eines Intelligenztests) oft sehr aufwändig (eigene Disziplin: **Messtheorie**)
 
 * Psychologie: **Likertskala** wird häufig für Fragebogenitems (Einzelfragen) eingesetzt (z.B. 1 = stimmt nicht zu, 2 = stimme etwas zu...)
 
-* **Einzelwert** des Items auf der Likerskala i.d.R. ordinalskaliert
+* **Einzelwert** des Items auf der Likertskala i.d.R. ordinalskaliert
 
 * **Gesamtfragebogenwert** (Summe der der Einzelitems) wird als metrisch behandelt
 
@@ -681,7 +681,7 @@ class: top, left
 
 * Werte idealerweise so bestimmen, dass Verteilung aus den Kennwerten rekonstruiert werden könnte
 
-Zwei häufige Arten statistischer Kenntwerte:
+Zwei häufige Arten statistischer Kennwerte:
 
 1. **Maße der zentralen Tendenz** (aka. Lagemaße)
 
@@ -751,7 +751,7 @@ class: top, left
 #### Statistische Kennwerte
 
 .pull-left[
-**Gängige Maße der zentralen Tendenz:**
+**Gängige Maße der zentralen Tendenz** *(Thema dieser Einheit)*:
 
 * Modalwert
 
@@ -761,7 +761,7 @@ class: top, left
 ]
 
 .pull-right[
-**Gängige Streuungsmaße:**
+**Gängige Streuungsmaße** *(Vorausblick – Einheit 3)*:
 
 * Spannweite
 
@@ -790,27 +790,27 @@ d = data.frame(
                 "Standardabweichung",
                 "Korrelationskoeffizient",
                 "Regressionskoeffizient"),
-  Stichprobenebene = c("$\\bar{x}$",
-                       "$Md$",
-                       "$s^2$",
-                       "$s$",
-                       "$r$",
-                       "$b$"),
-  Populationsebene = c("$\\mu$",
-                       "$\\eta$",
-                       "$\\sigma^2$",
-                       "$\\sigma$",
-                       "$\\rho$",
-                       "$\\beta$"),
-  Populationsschätzer = c("$\\hat{\\mu}$",
-                       "$\\hat{\\eta}$",
-                       "$\\hat{\\sigma^2}$",
-                       "$\\hat{\\sigma}$",
-                       "$\\hat{\\rho}$",
-                       "$\\hat{\\beta}$")
+  Stichprobenebene = c("\\(\\bar{x}\\)",
+                       "\\(Md\\)",
+                       "\\(s^2\\)",
+                       "\\(s\\)",
+                       "\\(r\\)",
+                       "\\(b\\)"),
+  Populationsebene = c("\\(\\mu\\)",
+                       "\\(\\eta\\)",
+                       "\\(\\sigma^2\\)",
+                       "\\(\\sigma\\)",
+                       "\\(\\rho\\)",
+                       "\\(\\beta\\)"),
+  Populationsschätzer = c("\\(\\hat{\\mu}\\)",
+                       "\\(\\hat{\\eta}\\)",
+                       "\\(\\hat{\\sigma}^2\\)",
+                       "\\(\\hat{\\sigma}\\)",
+                       "\\(\\hat{\\rho}\\)",
+                       "\\(\\hat{\\beta}\\)")
 )
 
-kable(d)%>%
+kable(d, escape = FALSE) %>%
   kable_styling(font_size = 18)
 ```
 
@@ -938,7 +938,7 @@ class: top, left
 
 #### Statistische Kennwerte - Maße der zentralen Tendenz:
 
-**Aufgabe Mittelwert:** Berechnen Sie das Durschnittsalter folgender Stichprobe (in Jahren) $(N=12)$
+**Aufgabe Mittelwert:** Berechnen Sie das Durchschnittsalter folgender Stichprobe (in Jahren) $(N=12)$
 
 .center[
 ```{r echo = F}
@@ -963,7 +963,7 @@ class: top, left
 
 #### Statistische Kennwerte - Maße der zentralen Tendenz:
 
-**Aufgabe Mittelwert:** Berechnen Sie das Durschnittsalter folgender Stichprobe (in Jahren) $(N=12)$
+**Aufgabe Mittelwert:** Berechnen Sie das Durchschnittsalter folgender Stichprobe (in Jahren) $(N=12)$
 
 .center[
 ```{r echo = F}
@@ -1047,7 +1047,7 @@ kable(t, col.names = NULL)
 
 Formel: $$\bar{x}=\frac{\sum\limits _{j=1}^{k}x'_{j} \cdot f_{j}}{n}$$
 
-Lösungsweg: $$\bar{x}=\frac{1\cdot2+2\cdot1+3\cdot3+4\cdot7+4\cdot2+6\cdot5+7\cdot4+8\cdot1+9\cdot3+10\cdot2}{30}=\frac{`r  1*2+2*1+3*3+4*7+4*2+6*5+7*4+8*1+9*3+10*2`}{30} = `r round(mean(x), 2)`$$
+Lösungsweg: $$\bar{x}=\frac{1\cdot2+2\cdot1+3\cdot3+4\cdot7+5\cdot2+6\cdot5+7\cdot4+8\cdot1+9\cdot3+10\cdot2}{30}=\frac{`r  1*2+2*1+3*3+4*7+5*2+6*5+7*4+8*1+9*3+10*2`}{30} = `r round(mean(x), 2)`$$
 
 ---
 class: top, left
@@ -1174,7 +1174,7 @@ kable(df[,], col.names = NULL)
 
 Formel: $$\def\arraystretch{1.2} \textit{Md} = \Bigg\{\begin{array}{@{}c@{}}\frac{x_{(\frac{n}{2})}+x_{(\frac{n}{2}+1)}}{2} \quad \textrm{falls }n \textrm{ gerade}\\[6pt] x_{(\frac{n+1}{2})}\quad \textrm{falls }n \textrm{ ungerade}\end{array}$$
 
-Lösungweg: 
+Lösungsweg:
 
 $$x_{sortiert}= `r paste(x[order(x)], collapse = ";")`$$
 
@@ -1230,7 +1230,7 @@ kable(df[,], col.names = NULL)
 
 Formel: $$\def\arraystretch{1.2} \textit{Md} = \Bigg\{\begin{array}{@{}c@{}}\frac{x_{(\frac{n}{2})}+x_{(\frac{n}{2}+1)}}{2} \quad \textrm{falls }n \textrm{ gerade}\\[6pt] x_{(\frac{n+1}{2})}\quad \textrm{falls }n \textrm{ ungerade}\end{array}$$
 
-Lösungweg: 
+Lösungsweg:
 
 $$x_{sortiert}= `r paste(x[order(x)], collapse = ";")`$$
 
@@ -1302,9 +1302,9 @@ class: top, left
 
 .full-width[.content-box-gray[
 
-* **Histogramm** und **Balkendiagramm** eigenen sich zur Darstellung der Verteilung einer Variable.
+* **Histogramm** und **Balkendiagramm** eignen sich zur Darstellung der Verteilung einer Variable.
 
-* Wir unterscheiden 3 Arten von **Skalenniveaus**: Nominal-, Ordinal-, Intervall- und Verhältnisskalenniveau.
+* Wir unterscheiden 4 Arten von **Skalenniveaus**: Nominal-, Ordinal-, Intervall- und Verhältnisskalenniveau.
 
 * Die Skalenniveaus **entscheiden**, welche Statistiken wir rechnen dürfen.
 
