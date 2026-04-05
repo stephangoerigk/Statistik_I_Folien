@@ -1,9 +1,9 @@
 ---
 title: "Einheit 1"
-subtitle: "⚔<br/>with xaringan"
+subtitle: "Statistik I"
 author: "Prof. Dr. Stephan Goerigk"
-institute: "RStudio, PBC"
-date: "2016/12/12 (updated: `r Sys.Date()`)"
+institute: "Charlotte Fresenius Universität"
+date: "`r Sys.Date()`"
 output:
   xaringan::moon_reader:
     css: [xaringan-themer.css, "hygge"]
@@ -105,7 +105,7 @@ class: top, left
 <small>
 
 .pull-left[
-Psychotherapy and Social Neuroscience Research Unit (Ko-Leitung) - Klinik für Psychiatrie und Psychohtherapie der LMU
+Psychotherapy and Social Neuroscience Research Unit (Ko-Leitung) - Klinik für Psychiatrie und Psychotherapie der LMU
 
 .center[
 ```{r eval = TRUE, echo = F, out.width = "300px"}
@@ -173,7 +173,7 @@ Termine:
 
 Begleitendes Seminar:
 
-Dozent:innen: 
+Dozent:innen des Seminars:
 * M.Sc. Claudia Dörrler ([claudia.doerrler@charlotte-fresenius-uni.de](mailto:claudia.doerrler@charlotte-fresenius-uni.de))
 * M.Sc. Maximilian Jaeger ([maximilian.jaeger@charlotte-fresenius-uni.de](mailto:maximilian.jaeger@charlotte-fresenius-uni.de))
 
@@ -217,7 +217,7 @@ Es werden händische Berechnungen durchgeführt.
 
 ***
 
-Vertieftest Üben:
+Vertieftes Üben:
 
 * Folien ersetzen nicht den Vorlesungsbesuch
 
@@ -280,7 +280,7 @@ class: top, left
 
 Sie sucht nach einer Fragestellung, die noch nicht gelöst wurde und ihr machbar erscheint.
 
-Sie liest eine Menge Bücher und die neuesten Paper..
+Sie liest eine Menge Bücher und die neuesten Paper.
 
 ```{r eval = TRUE, echo = F, out.width = "300px"}
 knitr::include_graphics("bilder/workpc.jpg")
@@ -523,7 +523,7 @@ Aus den 100 Werten berechnet sie den Durchschnitt.
 knitr::include_graphics("bilder/calculator.png")
 ```
 
-Im Schnitt wird ihre Stichprobe um 2.5 Worte besser.
+Im Schnitt wird ihre Stichprobe um 2.5 Paare besser.
 ]
 ]
 
@@ -539,7 +539,7 @@ Mit dem Ergebnis geht Charlotte zu ihrem Chef.
 ]
 
 .pull-left[
-"Chef, die Leute werden 2.5 Worte besser."
+"Chef, die Leute werden 2.5 Paare besser."
 
 .center[
 ```{r eval = TRUE, echo = F, out.width = "300px"}
@@ -609,7 +609,7 @@ Mit dem Ergebnis geht Charlotte zu ihrem Chef.
 ]
 
 .pull-left[
-"Chef, die Leute werden 2.5 Worte besser und dieser Wert liegt mit 95% Sicherheit zwischen 1.5 und 3.5."
+"Chef, die Leute werden 2.5 Paare besser und dieser Wert liegt mit 95% Sicherheit zwischen 1.5 und 3.5."
 
 .center[
 ```{r eval = TRUE, echo = F, out.width = "300px"}
@@ -619,7 +619,7 @@ knitr::include_graphics("bilder/boss1.png")
 ]
 .pull-right[
 .center[
-Der Chef ist zufrieden. Er kann sich zu 95% sicher sein, dass die Verbessung nicht 0 oder schlechter ist. 
+Der Chef ist zufrieden. Er kann sich zu 95% sicher sein, dass die Verbesserung nicht 0 oder schlechter ist. 
 
 ```{r eval = TRUE, echo = F, out.width = "180px"}
 knitr::include_graphics("bilder/thumbs.jpg")
@@ -653,7 +653,7 @@ class: top, left
 
 * **Daten:** Beobachtungen der gesamten zu interessierenden Eigenschaften
 
-* **Datensatz:** Zusammenstellung der bebobachteten Daten (häufig im Matrixformat)
+* **Datensatz:** Zusammenstellung der beobachteten Daten (häufig im Matrixformat)
 
 * **Datenbank:** bereits existierende archivierte Datenansammlungen (z.B. UK Biobank)
 
@@ -670,7 +670,7 @@ knitr::include_graphics("bilder/dataset.png")
 class: top, left
 ### Anwendung von Statistik
 
-* In dieser Übung werden wir auch Statistik **per Hand** rechnen
+* In dieser Vorlesung werden wir auch Statistik **per Hand** rechnen
 
 * Notwendigkeit zum mathematischen Verständnis der Verfahren
 
@@ -719,7 +719,7 @@ class: top, left
 
 #### Arten von Variablen
 
-Variablen können anhand unterschiedlicher Eingeschaften unterteilt werden:
+Variablen können anhand unterschiedlicher Eigenschaften unterteilt werden:
 
 * nach Art der Merkmalsausprägungen
 
@@ -855,7 +855,7 @@ class: top, left
 
 #### Kontrollvariable
 
-* Störvariable deren Ausprägungen erhoben (gemessen) wurde 
+* Störvariable deren Ausprägungen erhoben (gemessen) wurden
 
 * Einfluss kann kontrolliert werden (z.B. mittels statistischer Methoden)
 
@@ -918,7 +918,7 @@ d = c(1, 23, 5, 6, 7, 8, 4, 43, 4, 5, 6, 5, 43, 34, 20, 6, 5, 34, 5, 6, 7, 7, 5,
 df = as.data.frame(d)
 df = as.data.frame(t(df))
 rownames(df) = NULL
-kable(df[,], col.names = NULL)
+kable(df[,], col.names = NULL, escape = FALSE)
 ```
 
 
@@ -940,7 +940,7 @@ class: top, left
 
   * können Informationen über die durchschnittliche Ausprägung in einer Stichprobe liefern
   
-  * Modalwert (diejenige Merkmalausprägung, die die meisten Elemente enthält)
+  * Modalwert (diejenige Merkmalsausprägung, die die meisten Elemente enthält)
   
   * Median (Wert bis zu dem 50% aller Werte liegen)
   
@@ -966,7 +966,7 @@ class: top, left
 
 * Ziel: In der Stichprobe berechnete Statistik (z.B. Deskriptivstatistik) soll auf Population **verallgemeinert** werden
 
-* Achtung: Habe ich die Möglichkeit, jedes Individuum meiner Population zu messen brauche ich keine Inferenzstatistik
+* Achtung: Habe ich die Möglichkeit, jedes Individuum meiner Population zu messen, brauche ich keine Inferenzstatistik
 
 * Methode: **Statistische Hypothesenprüfung** (Grundidee der **Signifikanztestung**)
 
@@ -979,7 +979,7 @@ class: top, left
 
 Hypothese (griech.) = Unterstellung, Vermutung
 
-Eine Vermutung/Annahme ist dann als wissenschaftliche Hypothese zu verstehen wenn sie folgende 4 Kriterien erfüllt:
+Eine Vermutung/Annahme ist dann als wissenschaftliche Hypothese zu verstehen, wenn sie folgende 5 Kriterien erfüllt:
 
 Wenn sie...
 1. ...sich auf reale Sachverhalte bezieht, die empirisch untersuchbar sind. (**Empirie**)
@@ -1123,7 +1123,7 @@ class: top, left
 
   * **Alternativhypothese $(H_1)$:** Der hypothetisierte Effekt besteht
 
-* In der Forschung hofft man oft, dass die $H_1$ zufrifft (Hier steckt der angenommene Effekt drin)
+* In der Forschung hofft man oft, dass die $H_1$ zutrifft (Hier steckt der angenommene Effekt drin)
 
 * Man versucht, **"Die $H_0$ zu verwerfen"** (Hypothesentest kommt später)
 
@@ -1177,13 +1177,13 @@ class: top, left
 
 * **N** Anzahl der Personen in der Stichprobe (Stichprobenumfang).
 
-* Notation von Stichprobenvariablen: hiert nutzt man oft Großbuchstaben, z.B. $X$
+* Notation von Stichprobenvariablen: hier nutzt man oft Großbuchstaben, z.B. $X$
 
 * Hat man 2 Variablen nutzt man für die UV oft $X$ und für die AV $Y$
 
 *  Merkmalsausprägungen der einzelnen Personen in der Stichprobe bei Variable X (beobachtete Werte)
 
-  $x_1,...x_2,...,x_n$  
+  $x_1, x_2, \ldots, x_n$
   
 * $i$ steht für **Index**: Platzhalter für beliebige Zahl $x_1,...x_i,...,x_n$ 
   
@@ -1206,15 +1206,15 @@ Beispiel:
 ```{r echo = F}
 set.seed(123)
 N = 10
-df = data.frame(x = paste0("x", rep(1:N)),
+df = data.frame(x = paste0("x<sub>", 1:N, "</sub>"),
               Alter = sample(20:80, 10, replace = T)
 )
 df = as.data.frame(t(df))
 rownames(df) = NULL
-kable(df[,], col.names = NULL)
+kable(df[,], col.names = NULL, escape = FALSE)
 ```
 
-$\rightarrow$ $x3$ = 70 bedeutet, dass die Urliste an dritter Stelle eingetragene Person 70 Jahre alt ist.
+$\rightarrow$ $x_3$ = 70 bedeutet, dass die Urliste an dritter Stelle eingetragene Person 70 Jahre alt ist.
 
 ---
 class: top, left
@@ -1234,15 +1234,15 @@ Beispiel:
 ```{r echo = F}
 set.seed(123)
 N = 10
-df = data.frame(x = paste0("x", rep(1:N)),
+df = data.frame(x = paste0("x<sub>", 1:N, "</sub>"),
               geschlecht = sample(1:2, 10, replace = T)
 )
 df = as.data.frame(t(df))
 rownames(df) = NULL
-kable(df[,], col.names = NULL)
+kable(df[,], col.names = NULL, escape = FALSE)
 ```
 
-$\rightarrow$ $x3$ = 1 bedeutet, dass die Urliste an dritter Stelle eingetragene Person weiblich ist.
+$\rightarrow$ $x_3$ = 1 bedeutet, dass die Urliste an dritter Stelle eingetragene Person weiblich ist.
 
 ---
 class: top, left
@@ -1262,15 +1262,15 @@ Beispiel:
 ```{r echo = F}
 set.seed(123)
 N = 5
-df = data.frame(x = paste0("x", rep(1:N)),
+df = data.frame(x = paste0("x<sub>", 1:N, "</sub>"),
               geschlecht = c("Max", "Anna", "Leo", "Nina", "John")
 )
 df = as.data.frame(t(df))
 rownames(df) = NULL
-kable(df[,], col.names = NULL)
+kable(df[,], col.names = NULL, escape = FALSE)
 ```
 
-$\rightarrow$ $x3$ = Leo bedeutet, dass der Name der in der Urliste an dritter Stelle eingetragenen Person "Leo" ist.
+$\rightarrow$ $x_3$ = Leo bedeutet, dass der Name der in der Urliste an dritter Stelle eingetragenen Person "Leo" ist.
 
 ---
 class: top, left
@@ -1348,9 +1348,9 @@ class: top, left
 
 Beispiel:
 
-Summe aller Messwerte $xi$ für $i = 1$ bis $n$.
+Summe aller Messwerte $x_i$ für $i = 1$ bis $n$.
 
-$$x1 +x2 +x3 +...+xn$$
+$$x_1 + x_2 + x_3 + \ldots + x_n$$
 
 Hat eine Summe sehr viele Summanden, ist es zweckmäßig, das Summenzeichen (griech. Sigma) zu verwenden.
 
@@ -1390,13 +1390,21 @@ Es gelten die allgemeinen Rechenregeln für Additionen
 
 **Beispiel 1**:
 
-$\sum\limits _{i=1}^{n}a-x_{i} = (a-x1+a-x2+...+a-xn)$
+$\sum\limits _{i=1}^{n}(a-x_{i}) = (a-x_1)+(a-x_2)+\ldots+(a-x_n)$
 
 ***
 
 **Beispiel 2**:
 
-$\sum\limits _{i=1}^{n}ax_{i} = (ax1+ax2+...+axn) = a(x1+x2+...+xn) = a\sum\limits _{i=1}^{n}x_{i}$
+$\sum\limits _{i=1}^{n}ax_{i} = (ax_1+ax_2+\ldots+ax_n) = a(x_1+x_2+\ldots+x_n) = a\sum\limits _{i=1}^{n}x_{i}$
+
+***
+
+**Beispiel 3**:
+
+$\sum\limits _{i=1}^{n}c = c + c + \ldots + c = n \cdot c$
+
+$\rightarrow$ Die Summe einer Konstanten $c$ über $n$ Terme ergibt $n \cdot c$
 
 ---
 class: top, left
@@ -1442,12 +1450,12 @@ Beispiel: Urliste Lieblingstier $N=10$
 ```{r echo = F}
 set.seed(123)
 N = 10
-df = data.frame(x = paste0("x", rep(1:N)),
+df = data.frame(x = paste0("x<sub>", 1:N, "</sub>"),
               Tier = c("Hund", "Katze", "Hund", "Elefant", "Hund", "Adler", "Katze", "Delphin", "Maulwurf", "Goldfisch")
 )
 df = as.data.frame(t(df))
 rownames(df) = NULL
-kable(df[,], col.names = NULL)
+kable(df[,], col.names = NULL, escape = FALSE)
 ```
 
 Häufigkeitstabelle (absolute Häufigkeiten):
@@ -1455,7 +1463,7 @@ Häufigkeitstabelle (absolute Häufigkeiten):
 ```{r echo = F}
 set.seed(123)
 N = 10
-df = data.frame(x = paste0("x", rep(1:N)),
+df = data.frame(x = paste0("x<sub>", 1:N, "</sub>"),
               Tier = c("Hund", "Katze", "Hund", "Elefant", "Hund", "Adler", "Katze", "Delphin", "Maulwurf", "Goldfisch")
 )
 t = as.data.frame(t(as.data.frame(table(df$Tier))))
@@ -1472,12 +1480,12 @@ Beispiel: Urliste Lieblingstier $N=10$
 ```{r echo = F}
 set.seed(123)
 N = 10
-df = data.frame(x = paste0("x", rep(1:N)),
+df = data.frame(x = paste0("x<sub>", 1:N, "</sub>"),
               Tier = c("Hund", "Katze", "Hund", "Elefant", "Hund", "Adler", "Katze", "Delphin", "Maulwurf", "Goldfisch")
 )
 df = as.data.frame(t(df))
 rownames(df) = NULL
-kable(df[,], col.names = NULL)
+kable(df[,], col.names = NULL, escape = FALSE)
 ```
 
 Häufigkeitstabelle (absolute Häufigkeiten):
@@ -1485,7 +1493,7 @@ Häufigkeitstabelle (absolute Häufigkeiten):
 ```{r echo = F}
 set.seed(123)
 N = 10
-df = data.frame(x = paste0("x", rep(1:N)),
+df = data.frame(x = paste0("x<sub>", 1:N, "</sub>"),
               Tier = c("Hund", "Katze", "Hund", "Elefant", "Hund", "Adler", "Katze", "Delphin", "Maulwurf", "Goldfisch")
 )
 t = as.data.frame(t(as.data.frame(table(df$Tier))))
@@ -1498,7 +1506,7 @@ Häufigkeitstabelle (relative Häufigkeiten $(absolut / N) * 100$):
 ```{r echo = F}
 set.seed(123)
 N = 10
-df = data.frame(x = paste0("x", rep(1:N)),
+df = data.frame(x = paste0("x<sub>", 1:N, "</sub>"),
               Tier = c("Hund", "Katze", "Hund", "Elefant", "Hund", "Adler", "Katze", "Delphin", "Maulwurf", "Goldfisch")
 )
 t = as.data.frame(t(as.data.frame(paste0(prop.table(table(df$Tier))* 100, "%"))))
@@ -1520,12 +1528,12 @@ Beispiel: Urliste Lieblingstier $N=10$
 ```{r echo = F}
 set.seed(123)
 N = 10
-df = data.frame(x = paste0("x", rep(1:N)),
+df = data.frame(x = paste0("x<sub>", 1:N, "</sub>"),
               Tier = c("Hund", "Katze", "Hund", "Elefant", "Hund", "Adler", "Katze", "Delphin", "Maulwurf", "Goldfisch")
 )
 df = as.data.frame(t(df))
 rownames(df) = NULL
-kable(df[,], col.names = NULL)
+kable(df[,], col.names = NULL, escape = FALSE)
 ```
 
 Häufigkeitstabelle:
@@ -1533,7 +1541,7 @@ Häufigkeitstabelle:
 ```{r echo = F}
 set.seed(123)
 N = 10
-df = data.frame(x = paste0("x", rep(1:N)),
+df = data.frame(x = paste0("x<sub>", 1:N, "</sub>"),
               Tier = c("Hund", "Katze", "Hund", "Elefant", "Hund", "Adler", "Katze", "Delphin", "Maulwurf", "Goldfisch")
 )
 
@@ -1552,7 +1560,7 @@ class: top, left
 
 * Erstellen Sie eine Urliste für folgende Variable
 
-* Vorliebe Psychotherapie Leitlinienverfahren $[1=Psychoanalyse, 2=Verhaltentherapie, 3=Tiefenpsychologisch, 4= Systemisch]$
+* Vorliebe Psychotherapie Leitlinienverfahren $[1=Psychoanalyse, 2=Verhaltenstherapie, 3=Tiefenpsychologisch, 4= Systemisch]$
 
 * Erstellen Sie aus der Urliste eine Häufigkeitstabelle für die Ausprägungen der Variable in der Schreibweise $N (\%)$.
 
@@ -1572,7 +1580,7 @@ class: top, left
 
 * Variablen werden i.d.R. in einer **Datenmatrix** erfasst
 
-* Auprägungen von Variablen können mit **Häufigkeitstabelle** zusammengefasst werden
+* Ausprägungen von Variablen können mit **Häufigkeitstabelle** zusammengefasst werden
 
 * Wichtige Deskriptivstatistiken: **Relative und absolute Häufigkeiten** 
 ]
