@@ -174,12 +174,12 @@ function render() {
   svg.appendChild(el('line',{x1:medX,y1:55,x2:medX,y2:AXIS_Y,stroke:'#621C37','stroke-width':'2','stroke-dasharray':'5 3'}));
   const medLblX = medX < 50 ? medX + 26 : medX;
   svg.appendChild(el('rect',{x:medLblX-24,y:38,width:48,height:18,rx:'4',fill:'#4a1528'}));
-  svg.appendChild(el('text',{x:medLblX,y:50,'text-anchor':'middle',fill:'#fff','font-size':'11','font-weight':'500','font-family':'inherit'},'Med='+median.toFixed(1)));
+  svg.appendChild(el('text',{x:medLblX,y:50,'text-anchor':'middle',fill:'#fff','font-size':'9','font-weight':'500','font-family':'inherit'},'Med='+median.toFixed(1)));
 
   svg.appendChild(el('line',{x1:meanX,y1:38,x2:meanX,y2:AXIS_Y,stroke:'#EE0071','stroke-width':'2','stroke-dasharray':'5 3'}));
   const meanLblX = clampLabel(meanX, medX, 52);
   svg.appendChild(el('rect',{x:meanLblX-24,y:20,width:48,height:18,rx:'4',fill:'#621C37'}));
-  svg.appendChild(el('text',{x:meanLblX,y:32,'text-anchor':'middle',fill:'#fff','font-size':'11','font-weight':'500','font-family':'inherit'},'x̄='+mean.toFixed(1)));
+  svg.appendChild(el('text',{x:meanLblX,y:32,'text-anchor':'middle',fill:'#fff','font-size':'9','font-weight':'500','font-family':'inherit'},'x̄='+mean.toFixed(1)));
 
   if (Math.abs(mean - median) > 2) {
     const lo = Math.min(meanX, medX), hi = Math.max(meanX, medX);
