@@ -1,9 +1,9 @@
 ---
 title: "Einheit 6"
-subtitle: "⚔<br/>with xaringan"
+subtitle: "Quantitative Methoden I"
 author: "Prof. Dr. Stephan Goerigk"
-institute: "RStudio, PBC"
-date: "2016/12/12 (updated: `r Sys.Date()`)"
+institute: "Charlotte Fresenius Hochschule"
+date: "Sommersemester 2026"
 output:
   xaringan::moon_reader:
     css: [xaringan-themer.css, "hygge"]
@@ -334,7 +334,7 @@ class: top, left
 
 #### Schätzwerte:
 
-**Zufallsschwankungen im Schätzwert (Beispiel 1 - Angsststörungen)**
+**Zufallsschwankungen im Schätzwert (Beispiel 1 - Angststörungen)**
 
 .center[
 ```{r eval = TRUE, echo = F, out.width = "750px"}
@@ -348,10 +348,10 @@ class: top, left
 
 #### Schätzwerte:
 
-**Zufallsschwankungen im Schätzwert (Beispiel 1 - Angsststörungen)**
+**Zufallsschwankungen im Schätzwert (Beispiel 1 - Angststörungen)**
 
 .pull-left[
-* Die relative Häufigkeit der Angsststörung in dieser Population wäre $h_A=\frac{7}{50}=0.14$
+* Die relative Häufigkeit der Angststörung in dieser Population wäre $h_A=\frac{7}{50}=0.14$
 
 * Angenommen, wir würden uns für $h_A$ in dieser Population interessieren, könnten die Population aber nicht direkt untersuchen, sondern nur einfache Zufallsstichproben der Größe $n = 10$ ziehen.
 
@@ -372,7 +372,7 @@ class: top, left
 
 #### Schätzwerte:
 
-**Zufallsschwankungen im Schätzwert (Beispiel 1 - Angsststörungen)**
+**Zufallsschwankungen im Schätzwert (Beispiel 1 - Angststörungen)**
 
 .pull-left[
 Beispiele für mögliche zufällig gezogene Stichproben der Größe $n = 10$ und jeweils resultierender Schätzwert $h_S$:
@@ -602,7 +602,7 @@ class: top, left
 
 * Formal: Eine erwartungstreue Schätzfunktion $\hat{𝜃}$ für einen Parameter $𝜃$ ist konsistent, falls gilt:
 
-$$\lim_{x \to \infty} SE(\hat{𝜃}) = 0$$
+$$\lim_{n \to \infty} SE(\hat{𝜃}) = 0$$
 ---
 class: top, left
 ### Schätzungen und Stichprobenfehler
@@ -653,7 +653,7 @@ class: top, left
 
 <small>
 
-* Wir interessieren und für einen unbekannten wahren Parameter $θ$, der die Verteilung einer Zufallsvariable charakterisiert
+* Wir interessieren uns für einen unbekannten wahren Parameter $θ$, der die Verteilung einer Zufallsvariable charakterisiert
 
 * $θ$ wird durch eine Schätzfunktion $\hat{𝜃}$ aus einer (repräsentativen) Stichprobe mit Umfang $n$ geschätzt
 
@@ -701,7 +701,7 @@ class: top, left
 
 3. $\bar{X}$ ist abgesehen von der multiplikativen Konstante $\frac{1}{n}$ eine Summe normalverteilter Variablen, und es gilt
 
-$$\bar{X}~N(μ,\frac{σ^2}{n})$$
+$$\bar{X} \sim N(\mu,\frac{\sigma^2}{n})$$
 
 * Wenn $X$ normalverteilt ist, hat $\bar{X}$ wiederum Normalverteilung mit dem selben Erwartungswert, aber wesentlich kleinerer Varianz $\frac{σ^2}{n}$
 
@@ -741,7 +741,7 @@ class: top, left
 Was passiert wenn...
 * Je kleiner $σ$, desto enger das KI (geringere Schwankung $\rightarrow$ mehr Konfidenz)
 * Je größer $n$, desto enger das KI (größere Stichprobe $\rightarrow$ mehr Konfidenz)
-* Je kleiner α, desto breiter das KI (strengere Irrtumswarhscheinlichkeit $\rightarrow$ mehr Konfidenz)
+* Je kleiner α, desto breiter das KI (strengere Irrtumswahrscheinlichkeit $\rightarrow$ mehr Konfidenz)
 
 ---
 class: top, left
@@ -835,7 +835,7 @@ class: top, left
 
 $$μ_{1,2}=25.48 \pm t_{1-\frac{α}{2}}\frac{6.12}{\sqrt{87}}, df=86$$
 
-* Tabelle enthält keine Eintragung für $df = 86$, aber nächtgelegener Wert ist $df = 60$; $t_{0.975} = 2.00$
+* Tabelle enthält keine Eintragung für $df = 86$, aber nächstgelegener Wert ist $df = 60$; $t_{0.975} = 2.00$
 
 $$μ_{1,2}=25.48 \pm 2.00\frac{6.12}{\sqrt{87}}, df=86$$
 * $μ_{25.48}$ liegt mit einer  Vertrauenswahrscheinlichkeit von $.95$ im Konfidenzintervall [24.17, 26.79].

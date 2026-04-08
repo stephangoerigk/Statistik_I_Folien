@@ -1,9 +1,9 @@
 ---
 title: "Einheit 8"
-subtitle: "⚔<br/>with xaringan"
+subtitle: "Quantitative Methoden I"
 author: "Prof. Dr. Stephan Goerigk"
-institute: "RStudio, PBC"
-date: "2016/12/12 (updated: `r Sys.Date()`)"
+institute: "Charlotte Fresenius Hochschule"
+date: "Sommersemester 2026"
 output:
   xaringan::moon_reader:
     css: [xaringan-themer.css, "hygge"]
@@ -103,13 +103,13 @@ class: top, left
 
 #### Entwicklung eines Entscheidungskriteriums
 
-* Zur Erinnerung: Warhscheinlichkeit, die $H_0$ abzulehnen, obwohl sie in Wirklichkeit gilt, heißt $\alpha$-Fehler oder Fehler 1. Art
+* Zur Erinnerung: Wahrscheinlichkeit, die $H_0$ abzulehnen, obwohl sie in Wirklichkeit gilt, heißt $\alpha$-Fehler oder Fehler 1. Art
 
 * t-Wert ist signifikant, wenn seine Auftretenswahrscheinlichkeit kleiner ist als das gewählte $\alpha$
 
 * Für die Signifikanzprüfung kann der t-Wert $(t_{emp})$ auch mit dem kritischen t-Wert $(t_{krit})$ verglichen werden (in t-Tabelle nachsehen)
 
-* Die Wahl des Signikanzniveaus ist von inhaltlichen Überlegungen abhängig und wird oft als $\alpha=.05$ gewählt.
+* Die Wahl des Signifikanzniveaus ist von inhaltlichen Überlegungen abhängig und wird oft als $\alpha=.05$ gewählt.
 
 ---
 class: top, left
@@ -342,7 +342,7 @@ Prüfung der Voraussetzungen:
 * Graphische Prüfung: Histogramm oder QQ-Plot
 * Prüfung mit Signifikanztest (Wenn signifikant $\rightarrow$ NV-Annahme verletzt):
   * Shapiro-Wilk Test (empfohlen für $3 \leq n \leq 5.000)$
-  * Kolgomorow-Smirnov Test
+  * Kolmogorov-Smirnov Test
   * berechnen wir nicht händisch $\rightarrow$ in Klausur wird angegeben, ob NV in Population angenommen werden kann
 * Viele Statistiker nehmen mittlerweile an, dass Tests ab balancierten Gruppengrößen von $n_1=n_2 \geq 30$ robust sind
 
@@ -608,10 +608,10 @@ Gegeben:
   * $s^2_{VG} =6.12$
   * $n_{VG}=53$ 
 
-* Konventionelle Therapie: 
-  * $\bar{x}_{VG} = 4.91$
-  * $s^2_{VG} =6.54$
-  * $n_{VG}=51$ 
+* Konventionelle Therapie:
+  * $\bar{x}_{KG} = 4.91$
+  * $s^2_{KG} =6.54$
+  * $n_{KG}=51$
 
 ]
 
@@ -683,7 +683,7 @@ class: top, left
 
 #### $t$-Test für unabhängige Stichproben mit gleichen Varianzen
 
-**Effekstärke: Cohen's d**
+**Effektgröße: Cohen's d**
 
 .pull-left[
 
@@ -735,7 +735,7 @@ class: top, left
 
 * Wahrscheinlichkeit des t-Werts gibt Wahrscheinlichkeit an, ob Nullhypothese zutrifft
 
-* Ergibt t-Test (Nullhypothesentest) eine geringe Wahrscheinlichkeit, ist Ablehnung der Nullhypothese mögllich
+* Ergibt t-Test (Nullhypothesentest) eine geringe Wahrscheinlichkeit, ist Ablehnung der Nullhypothese möglich
 
 * die zugrundeliegenden Populationen haben nicht den gleichen, sondern verschiedene Mittelwerte
 
@@ -772,7 +772,7 @@ $$df=\frac{(\frac{s^2_1}{n_1} + \frac{s^2_2}{n_2})^2}{\frac{(\frac{s^2_1}{n_1})^
 class: top, left
 ### $t$-Test
 
-#### Freiheitsgerade einer $t$-Verteilung
+#### Freiheitsgrade einer $t$-Verteilung
 
 * Exakte Form der $t$-Verteilung ist abhängig vom Stichprobenumfang $\rightarrow$ deckt sich nicht exakt mit $z$-Verteilung
 

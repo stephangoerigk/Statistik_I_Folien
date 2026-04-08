@@ -1,9 +1,9 @@
 ---
 title: "Einheit 7"
-subtitle: "⚔<br/>with xaringan"
+subtitle: "Quantitative Methoden I"
 author: "Prof. Dr. Stephan Goerigk"
-institute: "RStudio, PBC"
-date: "2016/12/12 (updated: `r Sys.Date()`)"
+institute: "Charlotte Fresenius Hochschule"
+date: "Sommersemester 2026"
 output:
   xaringan::moon_reader:
     css: [xaringan-themer.css, "hygge"]
@@ -188,7 +188,7 @@ class: top, left
 
 #### Signifikanzniveau
 
-* Um das Ausmaß der Abweichung zu definieren, welches uns als strengen Wissennschaftler:innen ausreiichend "sicher" erscheint (kritischer Wert) legen wir eine **"Irrtumswahrscheinlichkeit"** fest
+* Um das Ausmaß der Abweichung zu definieren, welches uns als strengen Wissenschaftler:innen ausreichend "sicher" erscheint (kritischer Wert) legen wir eine **"Irrtumswahrscheinlichkeit"** fest
 
 * Diese bezeichnet man als **Signifikanzniveau**  $\alpha$.
 
@@ -250,7 +250,7 @@ class: top, left
 
 * Wird der zweiseitige p-Wert angegeben und die $H_{1}$ ist gerichtet, muss man den p-Wert **durch 2 dividieren** und mit $α$ vergleichen.
 
-* Bei einseitigen Hypothesen ist die zusätzliche überprüfung notwendig, ob die Teststatistik tatsächlich im Verwerfungsbereich der $H_{0}$ liegt
+* Bei einseitigen Hypothesen ist die zusätzliche Überprüfung notwendig, ob die Teststatistik tatsächlich im Verwerfungsbereich der $H_{0}$ liegt
 
 ---
 class: top, left
@@ -604,13 +604,13 @@ class: top, left
 #### Ein-Stichproben $z$-Test (Gauß-Test)
 
 .pull-left[
-* Zur Erinnerung: Warhscheinlichkeit, die $H_0$ abzulehnen, obwohl sie in Wirklichkeit gilt, heißt $\alpha$-Fehler oder Fehler 1. Art
+* Zur Erinnerung: Wahrscheinlichkeit, die $H_0$ abzulehnen, obwohl sie in Wirklichkeit gilt, heißt $\alpha$-Fehler oder Fehler 1. Art
 
 * z-Wert ist signifikant, wenn seine Auftretenswahrscheinlichkeit kleiner ist als das gewählte $\alpha$ $(H_0$ verwerfen)
 
 * Für die Signifikanzprüfung kann der z-Wert $(z_{emp})$ mit dem kritischen z-Wert $(z_{krit})$ verglichen werden (in z-Tabelle nachsehen)
 
-* Die Wahl des Signikanzniveaus ist von inhaltlichen Überlegungen abhängig und wird oft als $\alpha=.05$ gewählt.
+* Die Wahl des Signifikanzniveaus ist von inhaltlichen Überlegungen abhängig und wird oft als $\alpha=.05$ gewählt.
 
 ]
 
@@ -712,9 +712,9 @@ class: top, left
 .pull-left[
 <small>
 
-* Weicht der Mittelwert einer Zufallsstichprobe aus dem Irak, $\bar{x}_{I}$, in einem in Deutschland entwickelten sprachfreien Intelligenztest signifikant vom Populationsparameter in Deutschland, $μ_{D} = 100$, ab?
+* Weicht der Mittelwert einer Zufallsstichprobe aus Indonesien, $\bar{x}_{I}$, in einem in Deutschland entwickelten sprachfreien Intelligenztest signifikant vom Populationsparameter in Deutschland, $μ_{D} = 100$, ab?
 
-* WICHTIG: Nur die iranische Stichprobe wurde in der Studie rekrutiert und gemessen. Der deutsche Referenzwert wird vorgegeben.
+* WICHTIG: Nur die indonesische Stichprobe wurde in der Studie rekrutiert und gemessen. Der deutsche Referenzwert wird vorgegeben.
 
 Daten:
 * $n = 108$, Testpunkte normalverteilt, 
@@ -725,7 +725,7 @@ Daten:
 Hypothesen:
 
 * $H_{0}$: $μ_{I} = 100$
-* $H_{1}$: $μ_{I} \neq 100$; 
+* $H_{1}$: $μ_{I} \neq 100$ (indonesische Stichprobe)
 
 ]
 
@@ -775,7 +775,7 @@ In z-Tabelle $z_{krit}$ bei $p = 1-\frac{\alpha=.05}{2}= 0.975$ (durch 2 teilen,
 
 * $-0.47 > -1.96 \rightarrow$ $H_{0}$ beibehalten
 
-* Interpretation: Der Mittelwert der Zufallsstichprobe aus dem Irak unterscheidet sich nicht signifikant vom deutschen Referenzwert.
+* Interpretation: Der Mittelwert der Zufallsstichprobe aus Indonesien unterscheidet sich nicht signifikant vom deutschen Referenzwert.
 
 </small>
 
@@ -851,7 +851,7 @@ class: top, left
 
 * $k=28$
 
-Ist die Rückfallquote niedrig genug, um die Nulllhypothese zu verwerfen?
+Ist die Rückfallquote niedrig genug, um die Nullhypothese zu verwerfen?
 
 ---
 class: top, left
@@ -897,7 +897,7 @@ class: top, left
 
 * Kritischer Wert kann in der kumulierten Binomialverteilungstabelle nachgesehen werden ([**Link zur Tabelle, S.6**](https://www.hs-merseburg.de/fileadmin/Extra/Hagenloch/Lehre/Verteilungen_EmpVerf.pdf))
 
-* Wir wollen für $n=100$ und die Wahrscheinlichkeit $p=.3$ den letzten Wert $k$ finden, für den der dazugehörige Wert in der Tabelle unterhalb des Signifikanznveaus $\alpha=.05$ gilt
+* Wir wollen für $n=100$ und die Wahrscheinlichkeit $p=.3$ den letzten Wert $k$ finden, für den der dazugehörige Wert in der Tabelle unterhalb des Signifikanzniveaus $\alpha=.05$ gilt
 
 $\rightarrow$ Dieser Wert ist unser kritischer Wert
 
@@ -1006,7 +1006,7 @@ Lösung:
 
 * Lässt es sich nicht vermeiden, mehrere statistische Tests zur Prüfung einer Hypothese durchzuführen, muss eine $α$-Fehler Korrektur vorgenommen werden
 * Der Test wird somit strenger (Grenze für signifikantes Ergebnis niedriger)
-* $α$-Fehler Adjustierung nach Boferroni: 
+* $α$-Fehler Adjustierung nach Bonferroni: 
 
 $$α_{adj} = 1 − (1 − α)^{1/k}$$
 
@@ -1043,7 +1043,7 @@ class: top, left
 .full-width[.content-box-gray[
 * Zur Prüfung der Geltung einer Hypothese (ja/nein) rechnen wir **Signifikanztests**
 
-* **Auswahl des Tests** richtet sich nach der Wahrscheinlichkeitsverteiltung der Testgrößen (Wahrscheinlichkeit, Mittelwerte, Häufigkeiten...)
+* **Auswahl des Tests** richtet sich nach der Wahrscheinlichkeitsverteilung der Testgrößen (Wahrscheinlichkeit, Mittelwerte, Häufigkeiten...)
 
 * Zur Prüfung muss ein Hypothesenpaar aus Nullhypothese und Alternativhypothese aufgestellt werden.
 

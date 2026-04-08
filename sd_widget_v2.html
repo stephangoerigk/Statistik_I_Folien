@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #ffffff;
+    color: #1a1a1a;
+    padding: 16px;
+  }
+  .controls {
+    display: flex;
+    gap: 12px;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+  .slider-wrap {
+    flex: 1;
+    min-width: 130px;
+  }
+  .slider-wrap label {
+    font-size: 12px;
+    color: #666;
+    display: block;
+    margin-bottom: 4px;
+  }
+  input[type=range] {
+    width: 100%;
+    accent-color: #621C37;
+    cursor: pointer;
+  }
+  .cards {
+    display: flex;
+    gap: 8px;
+  }
+  .card {
+    text-align: center;
+    background: #f5f5f3;
+    border-radius: 8px;
+    padding: 8px 14px;
+    min-width: 72px;
+  }
+  .card-label { font-size: 11px; color: #888; }
+  .card-value { font-size: 20px; font-weight: 500; color: #1a1a1a; }
+  .btn-row { display: flex; gap: 8px; align-items: flex-end; }
+  button {
+    padding: 7px 14px;
+    font-size: 13px;
+    cursor: pointer;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background: transparent;
+    color: #1a1a1a;
+    font-family: inherit;
+    transition: background 0.15s;
+    white-space: nowrap;
+  }
+  button:hover { background: #f0f0ee; }
+  button.primary {
+    background: #621C37;
+    color: #fff;
+    border-color: #621C37;
+  }
+  button.primary:hover { background: #4a1528; }
+  button.reset { border-color: #e0887a; color: #c0392b; }
+  button.reset:hover { background: #fdf0ee; }
+  .section-label {
+    font-size: 11px;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 2px;
+  }
+  .legend {
+    display: flex;
+    gap: 14px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    color: #666;
+  }
+  .legend-swatch { width: 24px; height: 3px; border-radius: 2px; }
+  .legend-dot { width: 9px; height: 9px; border-radius: 50%; background: #621C37; }
+  @keyframes drop {
+    0%   { transform: translateY(-55px); opacity: 0; }
+    60%  { transform: translateY(4px); opacity: 1; }
+    80%  { transform: translateY(-2px); }
+    100% { transform: translateY(0px); opacity: 1; }
+  }
+</style>
+</head>
+<body>
+
+<div class="controls">
+  <div class="slider-wrap">
+    <label>Population σ (Streuung)</label>
+    <input type="range" id="sdSlider" min="10" max="70" value="30" step="1">
+    <div style="display:flex;justify-content:space-between;font-size:11px;color:#aaa;margin-top:2px;"><span>eng</span><span>breit</span></div>
+  </div>
+  <div class="slider-wrap">
+    <label>N (Stichprobengröße)</label>
+    <input type="range" id="nSlider" min="5" max="100" value="20" step="1">
+    <div style="display:flex;justify-content:space-between;font-size:11px;color:#aaa;margin-top:2px;"><span>5</span><span>100</span></div>
+  </div>
+  <div class="cards">
+    <div class="card">
+      <div class="card-label">σ Population</div>
+      <div class="card-value" id="sdVal">30</div>
+    </div>
+    <div class="card">
+      <div class="card-label">N</div>
+      <div class="card-value" id="nVal">20</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Gesamt</div>
+      <div class="card-value" id="totalVal">0</div>
+    </div>
+  </div>
+  <div class="btn-row">
+    <button class="primary" onclick="drawSample()">Stichprobe ziehen ↓</button>
+    <button class="reset" onclick="resetDots()">Zurücksetzen</button>
+  </div>
+</div>
+
+<div class="section-label">Population (Normalverteilung)</div>
+<svg id="popSvg" width="100%" viewBox="0 0 640 180" style="display:block;margin-bottom:4px;"></svg>
+
+<div class="section-label" style="margin-top:4px;">Gezogene Stichproben (Histogramm)</div>
+<svg id="histSvg" width="100%" viewBox="0 0 640 160" style="display:block;"></svg>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-swatch" style="background:#EE0071;"></div> ±1σ (68%)</div>
+  <div class="legend-item"><div class="legend-swatch" style="background:#f5afc8;"></div> ±2σ (95%)</div>
+  <div class="legend-item"><div class="legend-swatch" style="background:#fdeef5; border: 1px solid #f5afc8;"></div> ±3σ (99.7%)</div>
+  <div class="legend-item" style="margin-left:auto;"><div class="legend-dot"></div> Stichprobenwert</div>
+</div>
+
+<script>
+const ns = 'http://www.w3.org/2000/svg';
+const W = 640;
+const MX = 320;
+const SCALE = 2.8;
+const MEAN = 50;
+
+let sdRaw = 30;
+let nRaw = 20;
+let allSamples = [];
+
+function el(tag, attrs, txt) {
+  const e = document.createElementNS(ns, tag);
+  for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v);
+  if (txt !== undefined) e.textContent = txt;
+  return e;
+}
+
+function gauss() {
+  let u = 0, v = 0;
+  while (u === 0) u = Math.random();
+  while (v === 0) v = Math.random();
+  return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+}
+
+function xToSvg(x) { return MX + (x - MEAN) * SCALE; }
+function normalPDF(x, sd) {
+  return Math.exp(-0.5 * (x * x) / (sd * sd)) / (sd * Math.sqrt(2 * Math.PI));
+}
+
+function addArrowDefs(svg) {
+  const defs = el('defs', {});
+  ['arr','arrL'].forEach(id => {
+    const mk = el('marker', { id, viewBox: '0 0 10 10', refX: '8', refY: '5', markerWidth: '5', markerHeight: '5', orient: 'auto-start-reverse' });
+    mk.appendChild(el('path', { d: 'M2 1L8 5L2 9', fill: 'none', stroke: '#621C37', 'stroke-width': '1.5', 'stroke-linecap': 'round' }));
+    defs.appendChild(mk);
+  });
+  svg.appendChild(defs);
+}
+
+function buildPop(sd, newDots) {
+  const svg = document.getElementById('popSvg');
+  svg.innerHTML = '';
+  addArrowDefs(svg);
+
+  const MY = 138;
+  const sdPx = sd * SCALE;
+
+  // bands
+  [{ m: 3, f: '#fdeef5' }, { m: 2, f: '#f5afc8' }, { m: 1, f: '#EE0071' }].forEach(b => {
+    const bw = sdPx * b.m * 2;
+    const bx = MX - sdPx * b.m;
+    if (bx < 20 || bx + bw > W - 20) return;
+    svg.appendChild(el('rect', { x: Math.max(20, bx), y: 18, width: Math.min(bw, W - 40), height: MY - 18, fill: b.f, opacity: '0.4' }));
+  });
+
+  // axis
+  svg.appendChild(el('line', { x1: 20, y1: MY, x2: W - 20, y2: MY, stroke: 'rgba(0,0,0,0.1)', 'stroke-width': '1' }));
+
+  // curve
+  const peak = normalPDF(0, sd);
+  const curveH = MY - 26;
+  let pts = [];
+  for (let xi = -150; xi <= 150; xi += 2) {
+    const px = MX + xi * SCALE;
+    if (px < 20 || px > W - 20) continue;
+    const py = MY - (normalPDF(xi, sd) / peak) * curveH;
+    pts.push(`${pts.length === 0 ? 'M' : 'L'}${px.toFixed(1)},${py.toFixed(1)}`);
+  }
+  svg.appendChild(el('path', { d: pts.join(' '), fill: 'none', stroke: '#621C37', 'stroke-width': '2.5', 'stroke-linecap': 'round' }));
+
+  // mean line
+  svg.appendChild(el('line', { x1: MX, y1: 18, x2: MX, y2: MY, stroke: '#621C37', 'stroke-width': '1.5', 'stroke-dasharray': '4 3', opacity: '0.6' }));
+  svg.appendChild(el('text', { x: MX, y: MY + 14, 'text-anchor': 'middle', fill: '#1a1a1a', 'font-size': '11', 'font-family': 'inherit' }, 'μ = 50'));
+
+  // sd ticks
+  [{ x: MX + sdPx, l: '+1σ' }, { x: MX - sdPx, l: '-1σ' }, { x: MX + sdPx * 2, l: '+2σ' }, { x: MX - sdPx * 2, l: '-2σ' }].forEach(m => {
+    if (m.x < 24 || m.x > W - 24) return;
+    svg.appendChild(el('line', { x1: m.x, y1: MY - 4, x2: m.x, y2: MY + 4, stroke: '#aaa', 'stroke-width': '1' }));
+    svg.appendChild(el('text', { x: m.x, y: MY + 15, 'text-anchor': 'middle', fill: '#aaa', 'font-size': '10', 'font-family': 'inherit' }, m.l));
+  });
+
+  // sigma brace
+  if (MX + sdPx < W - 24) {
+    svg.appendChild(el('line', { x1: MX, y1: MY + 28, x2: MX + sdPx, y2: MY + 28, stroke: '#621C37', 'stroke-width': '1.5', 'marker-end': 'url(#arr)', 'marker-start': 'url(#arrL)' }));
+    svg.appendChild(el('text', { x: MX + sdPx / 2, y: MY + 42, 'text-anchor': 'middle', fill: '#621C37', 'font-size': '11', 'font-weight': '500', 'font-family': 'inherit' }, '1σ = ' + sd));
+  }
+
+  // dots (all samples)
+  allSamples.forEach(v => {
+    const cx = xToSvg(v);
+    if (cx < 24 || cx > W - 24) return;
+    const cy = MY - 10 - Math.abs(gauss()) * 18;
+    svg.appendChild(el('circle', { cx, cy, r: 4, fill: '#621C37', opacity: '0.55' }));
+  });
+
+  // animate new dots
+  if (newDots && newDots.length) {
+    const circles = [...svg.querySelectorAll('circle')];
+    const newCxSet = newDots.map(v => xToSvg(v).toFixed(1));
+    circles.filter(c => newCxSet.includes(parseFloat(c.getAttribute('cx')).toFixed(1)))
+      .forEach((c, i) => {
+        const cy = parseFloat(c.getAttribute('cy'));
+        setTimeout(() => {
+          c.style.transformOrigin = `${c.getAttribute('cx')}px ${cy}px`;
+          c.style.animation = 'drop 0.35s ease-out forwards';
+        }, i * 30);
+      });
+  }
+}
+
+function buildHist(sd) {
+  const svg = document.getElementById('histSvg');
+  svg.innerHTML = '';
+
+  const HH = 140;
+  const AXIS_Y = HH - 16;
+  const BIN_W = 14;
+  const numBins = Math.floor((W - 60) / BIN_W);
+  const binStart = MEAN - (numBins / 2) * (BIN_W / SCALE);
+
+  const counts = new Array(numBins).fill(0);
+  allSamples.forEach(v => {
+    const bi = Math.floor((v - binStart) / (BIN_W / SCALE));
+    if (bi >= 0 && bi < numBins) counts[bi]++;
+  });
+
+  const maxCount = Math.max(...counts, 1);
+  const barMaxH = AXIS_Y - 8;
+
+  svg.appendChild(el('line', { x1: 20, y1: AXIS_Y, x2: W - 20, y2: AXIS_Y, stroke: 'rgba(0,0,0,0.1)', 'stroke-width': '1' }));
+
+  const sdPx = sd * SCALE;
+  [{ m: 3, f: '#fdeef5' }, { m: 2, f: '#f5afc8' }, { m: 1, f: '#EE0071' }].forEach(b => {
+    const bx = MX - sdPx * b.m;
+    const bw = sdPx * b.m * 2;
+    svg.appendChild(el('rect', { x: Math.max(20, bx), y: 8, width: Math.min(bw, W - 40), height: barMaxH, fill: b.f, opacity: '0.25' }));
+  });
+
+  counts.forEach((c, i) => {
+    if (c === 0) return;
+    const bx = 30 + i * BIN_W;
+    const bh = (c / maxCount) * barMaxH;
+    const by = AXIS_Y - bh;
+    svg.appendChild(el('rect', { x: bx + 1, y: by, width: BIN_W - 2, height: bh, fill: '#621C37', opacity: '0.65', rx: '2' }));
+    if (c > 0 && bh > 14) {
+      svg.appendChild(el('text', { x: bx + BIN_W / 2, y: by + 11, 'text-anchor': 'middle', fill: '#fff', 'font-size': '9', 'font-family': 'inherit' }, c));
+    }
+  });
+
+  svg.appendChild(el('line', { x1: MX, y1: 8, x2: MX, y2: AXIS_Y, stroke: '#621C37', 'stroke-width': '1.5', 'stroke-dasharray': '4 3', opacity: '0.5' }));
+
+  if (allSamples.length > 1) {
+    const mean = allSamples.reduce((a, b) => a + b, 0) / allSamples.length;
+    const variance = allSamples.reduce((a, b) => a + (b - mean) ** 2, 0) / allSamples.length;
+    const sdSample = Math.sqrt(variance);
+    svg.appendChild(el('text', { x: W - 22, y: 18, 'text-anchor': 'end', fill: '#888', 'font-size': '11', 'font-family': 'inherit' },
+      `x̄ = ${mean.toFixed(1)}   s = ${sdSample.toFixed(1)}   n = ${allSamples.length}`));
+  }
+
+  if (allSamples.length === 0) {
+    svg.appendChild(el('text', { x: MX, y: AXIS_Y / 2 + 8, 'text-anchor': 'middle', fill: '#ccc', 'font-size': '13', 'font-family': 'inherit' }, 'Noch keine Stichproben gezogen'));
+  }
+
+  // x-axis labels at mean ± sigma multiples
+  [-2, -1, 0, 1, 2].forEach(m => {
+    const xv = MEAN + m * sd;
+    const px = xToSvg(xv);
+    if (px < 24 || px > W - 24) return;
+    svg.appendChild(el('text', { x: px, y: AXIS_Y + 12, 'text-anchor': 'middle', fill: '#aaa', 'font-size': '9', 'font-family': 'inherit' }, xv.toFixed(0)));
+  });
+}
+
+function drawSample() {
+  const sd = sdRaw;
+  const n = nRaw;
+  const newVals = [];
+  for (let i = 0; i < n; i++) {
+    newVals.push(MEAN + gauss() * sd);
+  }
+  allSamples = [...allSamples, ...newVals];
+  document.getElementById('totalVal').textContent = allSamples.length;
+  buildPop(sd, newVals);
+  buildHist(sd);
+}
+
+function resetDots() {
+  allSamples = [];
+  document.getElementById('totalVal').textContent = 0;
+  buildPop(sdRaw, []);
+  buildHist(sdRaw);
+}
+
+document.getElementById('sdSlider').addEventListener('input', e => {
+  sdRaw = +e.target.value;
+  document.getElementById('sdVal').textContent = sdRaw;
+  buildPop(sdRaw, []);
+  buildHist(sdRaw);
+});
+
+document.getElementById('nSlider').addEventListener('input', e => {
+  nRaw = +e.target.value;
+  document.getElementById('nVal').textContent = nRaw;
+});
+
+buildPop(sdRaw, []);
+buildHist(sdRaw);
+</script>
+</body>
+</html>

@@ -1,12 +1,12 @@
 ---
 title: "Einheit 12"
-subtitle: "⚔<br/>with xaringan"
+subtitle: "Quantitative Methoden I"
 author: "Prof. Dr. Stephan Goerigk"
-institute: "RStudio, PBC"
-date: "2016/12/12 (updated: `r Sys.Date()`)"
+institute: "Charlotte Fresenius Hochschule"
+date: "Sommersemester 2026"
 output:
   xaringan::moon_reader:
-    css: [xaringan-themer.css, "hygge"]
+    css: [xaringan-themer.css, "hygge", style.css]
     lib_dir: libs
     nature:
       slideNumberFormat: "%current%"
@@ -203,7 +203,7 @@ class: top, left
 
 #### Übungsaufgabe 1: Remuneration
 
-Kritischen t-Wert $(t_{krit})$ für $a=.05$ nachschlagen:
+Kritischen t-Wert $(t_{krit})$ für $\alpha=.05$ nachschlagen:
 
 .center[
 ```{r eval = TRUE, echo = F, out.width = "750px"}
@@ -318,7 +318,7 @@ class: top, left
 
 #### Übungsaufgabe 2: Emotionsinduktion
 
-Kritischen t-Wert $(t_{krit})$ für $a=.05$ nachschlagen:
+Kritischen t-Wert $(t_{krit})$ für $\alpha=.05$ nachschlagen:
 
 .center[
 ```{r eval = TRUE, echo = F, out.width = "450px"}
@@ -388,7 +388,7 @@ class: top, left
 
 a) Stellen Sie $H_{0}$ und $H_{1}$ auf.
 
-b) Berechnen Sie den Kennwert des Tests und seine Streung.
+b) Berechnen Sie den Kennwert des Tests und seine Streuung.
 
 c) Prüfen Sie, ob sich die Therapie signifikant positiv auf die Lebensqualität auswirkt $(\alpha=.05)$. Normalverteilung der Differenzwerte kann angenommen werden.
 ]
@@ -483,7 +483,7 @@ class: top, left
 
 #### Übungsaufgabe 3: Therapieevaluation
 
-Kritischen t-Wert $(t_{krit})$ für $a=.05$ nachschlagen:
+Kritischen t-Wert $(t_{krit})$ für $\alpha=.05$ nachschlagen:
 
 .center[
 ```{r eval = TRUE, echo = F, out.width = "750px"}
@@ -513,7 +513,7 @@ t-Test für abhängige Stichproben:
 $$t_{abhängig}=\frac{\bar{x}_d}{\hat{\sigma}_{\bar{x}_d}}= \frac{1.6}{0.52}=3.07$$
 * $t_{krit(df=9)}=1.833$ $\rightarrow$ Spalte für 0.95 in der t-Tabelle, da gerichtete Hypothese
 * Der empirische t-Wert ist größer als der kritische t-Wert, die Mittelwerte unterscheiden sich signifikant voneinander.
-* Die $H_{0}$ kann verworfen werden. Die neue Thearpievariante führt zu signifikanter Verbesserung in der Lebensqualität.
+* Die $H_{0}$ kann verworfen werden. Die neue Therapievariante führt zu signifikanter Verbesserung in der Lebensqualität.
 
 </small>
 
@@ -568,7 +568,7 @@ a) Stellen Sie $H_{0}$ und $H_{1}$ auf.
 
 * $H_{0}$:
   * Die $H_{0}$ besagt, dass die Zeit bis zum Relapse nicht höher als der Referenzwert ist.
-  * Laut der $H_{0}$ führt die Therapie nicht zu einem Therapieansprechen, dass länger als 40 Monate stabil ist.
+  * Laut der $H_{0}$ führt die Therapie nicht zu einem Therapieansprechen, das länger als 40 Monate stabil ist.
 * $H_{1}$:
   * Die $H_{1}$ besagt, dass die Therapie zu stabilen Ergebnissen, mit Zeiten bis Relapse von durchschnittlich länger als 40 Monate führt.
 
@@ -601,7 +601,7 @@ class: top, left
 
 #### Übungsaufgabe 4: Zeit bis Relapse
 
-Kritischen t-Wert $(t_{krit})$ für $a=.05$ nachschlagen:
+Kritischen t-Wert $(t_{krit})$ für $\alpha=.05$ nachschlagen:
 
 .center[
 ```{r eval = TRUE, echo = F, out.width = "750px"}
@@ -627,12 +627,12 @@ Ein-Stichproben t-Test:
 
 $$t = \frac{\bar{x}-μ}{\frac{\hat{\sigma}}{\sqrt{n}}}; df = n-1$$
 
-$$t = \frac{44.9-40}{\frac{8.9}{\sqrt{40}}}; df = 15-1$$
+$$t = \frac{44.9-40}{\frac{8.9}{\sqrt{15}}}; df = 15-1$$
 
 $$t = \frac{4.9}{2.298}=2.13; df = 14$$
 * $t_{krit(df=14)}=1.761$ $\rightarrow$ Spalte für 0.95 in der t-Tabelle, da gerichtete Hypothese
 * Der empirische t-Wert ist größer als der kritische t-Wert, die Mittelwerte unterscheiden sich signifikant voneinander.
-* Die $H_{0}$ kann verworfen werden. Die durchschnittliche Zeit bis zu einem Rückfall ist signifikant länger als 40 Tage.
+* Die $H_{0}$ kann verworfen werden. Die durchschnittliche Zeit bis zu einem Rückfall ist signifikant länger als 40 Monate.
 
 </small>
 
@@ -673,7 +673,7 @@ class: top, left
   * VORSICHT: Bei der Spearman Korrelation Differenzen zwischen Rängen berechnen
   
 3. Korrelationskoeffizient berechnen
-  * Pearson: Zunächtst Kovarianz und maximale Kovarianz $|cov_{max}|$ berechnen
+  * Pearson: Zunächst Kovarianz und maximale Kovarianz $|cov_{max}|$ berechnen
   * Spearman: Kann direkt über Formel berechnet werden
 
 4. Richtung (positiv/negativ) und Stärke (Cohen: schwach/klein, mittel, groß/stark) bestimmen
@@ -740,7 +740,7 @@ a) Stellen Sie $H_{0}$ und $H_{1}$ auf.
   * Die $H_{0}$ besagt, dass kein signifikanter Zusammenhang zwischen Gruppengröße und Zeit bis zur Hilfeleistung besteht.
   * Laut der $H_{0}$ variieren die beiden Variablen nicht systematisch miteinander
 * $H_{1}$:
-  * Die $H_{1}$ besagt, signifikanter Zusammenhang zwischen Gruppengröße und Zeit bis zur Hilfeleistung besteht.
+  * Die $H_{1}$ besagt, dass ein signifikanter Zusammenhang zwischen Gruppengröße und Zeit bis zur Hilfeleistung besteht.
   * Laut der $H_{1}$ gehen hohe/niedrige Gruppengrößen mit langen/kurzen Zeit bis zur Hilfeleistung einher.
 
 ---
@@ -775,7 +775,7 @@ b) Prüfen Sie, ob es einen signifikanten statistischen Zusammenhang zwischen de
 Berechnen der Kovarianz:
 
 $$cov_{x,y}=\frac{(13-8.1)\cdot(47-30.2)+(8-8.1)\cdot(36-30.2)+...}{`r N-1`}=23.99$$
-Berechnen der maximale Kovarianz:
+Berechnen der maximalen Kovarianz:
 
 $$|cov_{max}|=\hat{\sigma}_x \cdot \hat{\sigma}_y = `r round(sd(df2[,2]),2)` \cdot `r round(sd(df2[,3]),2)`= `r round(round(sd(df2[,3]),2) * round(sd(df2[,2]),2), 2)`$$
 Berechnen der Produkt-Moment-Korrelation:
@@ -802,7 +802,7 @@ class: top, left
 
 #### Übungsaufgabe 1: Bystander Effekt
 
-Kritischen t-Wert $(t_{krit})$ für $a=.05$ nachschlagen:
+Kritischen t-Wert $(t_{krit})$ für $\alpha=.05$ nachschlagen:
 
 .center[
 ```{r eval = TRUE, echo = F, out.width = "750px"}
@@ -835,7 +835,7 @@ class: top, left
 
 #### Übungsaufgabe 2: Klassische Musik
 
-* In einer Studie soll geprüft werden, ob die Anzahl an Stunden, die Kinder pro Woche klassische Musik hören positiv mit deren Intelligenz zusasmmenhängt.
+* In einer Studie soll geprüft werden, ob die Anzahl an Stunden, die Kinder pro Woche klassische Musik hören positiv mit deren Intelligenz zusammenhängt.
 
 * Es wurde eine Gruppe von 13 Kindern über ihren klassischen Musikkonsum (in Stunden pro Woche) befragt, danach wurde ein Intelligenztest absolviert und der Intelligenzquotient (IQ) berechnet.
 
@@ -882,7 +882,7 @@ a) Stellen Sie $H_{0}$ und $H_{1}$ auf.
   * Laut der $H_{0}$ variieren die beiden Variablen nicht oder negativ systematisch miteinander
 * $H_{1}$:
   * Die $H_{1}$ besagt, dass ein positiver Zusammenhang zwischen den Stunden, die ein Kind klassische Musik hört und dem IQ besteht.
-  * Laut der $H_{1}$ geht ein hoher klassischer Musikkonsum mit einem hohen einher.
+  * Laut der $H_{1}$ geht ein hoher klassischer Musikkonsum mit einem hohen IQ einher.
 
 ---
 class: top, left
@@ -916,7 +916,7 @@ b) Prüfen Sie, ob es einen signifikanten statistischen Zusammenhang zwischen de
 Berechnen der Kovarianz:
 
 $$cov_{x,y}=\frac{(7-8.38)\cdot(114-100)+(8-8.38)\cdot(99-100)+...}{`r N-1`}=`r round(cov(df2[,2], df2[,3]), 2)`$$
-Berechnen der maximale Kovarianz:
+Berechnen der maximalen Kovarianz:
 
 $$|cov_{max}|=\hat{\sigma}_x \cdot \hat{\sigma}_y = `r round(sd(df2[,2]),2)` \cdot `r round(sd(df2[,3]),2)`= `r round(round(sd(df2[,3]),2) * round(sd(df2[,2]),2), 2)`$$
 Berechnen der Produkt-Moment-Korrelation:
@@ -943,7 +943,7 @@ class: top, left
 
 #### Übungsaufgabe 2: Klassische Musik
 
-Kritischen t-Wert $(t_{krit})$ für $a=.05$ nachschlagen:
+Kritischen t-Wert $(t_{krit})$ für $\alpha=.05$ nachschlagen:
 
 .center[
 ```{r eval = TRUE, echo = F, out.width = "750px"}
@@ -1038,7 +1038,7 @@ class: top, left
 
 #### Übungsaufgabe 3: Springen und Werfen
 
-Kritischen t-Wert $(t_{krit})$ für $a=.05$ nachschlagen:
+Kritischen t-Wert $(t_{krit})$ für $\alpha=.05$ nachschlagen:
 
 .center[
 ```{r eval = TRUE, echo = F, out.width = "750px"}
@@ -1061,7 +1061,7 @@ $$t=\frac{r \cdot \sqrt{N-2}}{\sqrt{1-r^2}}= \frac{0.89 \cdot \sqrt{12-2}}{\sqrt
 
 * $t_{krit(df=10)}=2.228$ $\rightarrow$ Spalte für 0.975 in der t-Tabelle, da ungerichtete Hypothese
 * Der empirische t-Wert ist größer als der kritische t-Wert, es besteht ein signifikanter Zusammenhang.
-* Die $H_{0}$ wird verworfen. Der Rang den Schüler im Speerwerfen erreichen korreliert signifikant mit dem Rang, den sie im Weitsprung erreichen.
+* Die $H_{0}$ wird verworfen. Der Rang, den die Schüler:innen im Speerwerfen erreichen, korreliert signifikant mit dem Rang, den sie im Weitsprung erreichen.
 
 
 ---

@@ -130,11 +130,11 @@ class: top, left
 x = rnorm(100, mean = 0, sd = 1)
 ggplot(data = data.frame(x = c(-5 * sd(x) + mean(x), 9 * sd(x) + mean(x))), aes(x)) +
   stat_function(fun = dnorm, n = 101, args = list(mean = mean(x), sd = sd(x))) + 
-  stat_function(fun = dnorm, geom = "point", n = 101, args = list(mean = mean(x), sd = sd(x))) +
+  #stat_function(fun = dnorm, geom = "point", n = 101, args = list(mean = mean(x), sd = sd(x))) +
   stat_function(fun = dnorm, n = 101, args = list(mean = mean(x)+2, sd = sd(x))) + 
-  stat_function(fun = dnorm, geom = "point", n = 101, args = list(mean = mean(x)+2, sd = sd(x))) + 
+  #stat_function(fun = dnorm, geom = "point", n = 101, args = list(mean = mean(x)+2, sd = sd(x))) + 
   stat_function(fun = dnorm, n = 101, args = list(mean = mean(x)+4, sd = sd(x))) + 
-  stat_function(fun = dnorm, geom = "point", n = 101, args = list(mean = mean(x)+4, sd = sd(x))) + 
+  #stat_function(fun = dnorm, geom = "point", n = 101, args = list(mean = mean(x)+4, sd = sd(x))) + 
   ylab("Häufigkeit (N)") +
   xlab("Variable") +
   scale_x_continuous(breaks = NULL) +
@@ -152,11 +152,11 @@ ggplot(data = data.frame(x = c(-5 * sd(x) + mean(x), 9 * sd(x) + mean(x))), aes(
 x = rnorm(100, mean = 0, sd = 1)
 ggplot(data = data.frame(x = c(-9 * sd(x) + mean(x), 9 * sd(x) + mean(x))), aes(x)) +
   stat_function(fun = dnorm, n = 101, args = list(mean = mean(x), sd = sd(x))) + 
-    stat_function(fun = dnorm, geom = "point", n = 101, args = list(mean = mean(x), sd = sd(x))) + 
+    #stat_function(fun = dnorm, geom = "point", n = 101, args = list(mean = mean(x), sd = sd(x))) + 
   stat_function(fun = dnorm, n = 101, args = list(mean = mean(x), sd = sd(x)+1)) + 
-    stat_function(fun = dnorm, geom = "point", n = 101, args = list(mean = mean(x), sd = sd(x)+1)) + 
+    #stat_function(fun = dnorm, geom = "point", n = 101, args = list(mean = mean(x), sd = sd(x)+1)) + 
   stat_function(fun = dnorm, n = 101, args = list(mean = mean(x), sd = sd(x)+2)) + 
-    stat_function(fun = dnorm, geom = "point", n = 101, args = list(mean = mean(x), sd = sd(x)+2)) + 
+    #stat_function(fun = dnorm, geom = "point", n = 101, args = list(mean = mean(x), sd = sd(x)+2)) + 
   ylab("Häufigkeit (N)") +
   xlab("Variable") +
   scale_x_continuous(breaks = NULL) +
@@ -199,11 +199,11 @@ class: top, left
 x = rnorm(100, mean = 0, sd = 1)
 ggplot(data = data.frame(x = c(-9 * sd(x) + mean(x), 9 * sd(x) + mean(x))), aes(x)) +
   stat_function(fun = dnorm, n = 101, args = list(mean = mean(x), sd = sd(x))) + 
-    stat_function(fun = dnorm, geom = "point", n = 101, args = list(mean = mean(x), sd = sd(x))) + 
+   # stat_function(fun = dnorm, geom = "point", n = 101, args = list(mean = mean(x), sd = sd(x))) + 
   stat_function(fun = dnorm, n = 101, args = list(mean = mean(x), sd = sd(x)+1)) + 
-    stat_function(fun = dnorm, geom = "point", n = 101, args = list(mean = mean(x), sd = sd(x)+1)) + 
+   # stat_function(fun = dnorm, geom = "point", n = 101, args = list(mean = mean(x), sd = sd(x)+1)) + 
   stat_function(fun = dnorm, n = 101, args = list(mean = mean(x), sd = sd(x)+2)) + 
-    stat_function(fun = dnorm, geom = "point", n = 101, args = list(mean = mean(x), sd = sd(x)+2)) + 
+   # stat_function(fun = dnorm, geom = "point", n = 101, args = list(mean = mean(x), sd = sd(x)+2)) + 
   ylab("Häufigkeit (N)") +
   xlab("Variable") +
   scale_x_continuous(breaks = NULL) +
@@ -374,7 +374,7 @@ $$s^2=\frac{\sum\limits _{i=1}^{n}(x_{i}-\bar{x})^2}{n-1}$$
 df2$ID = as.numeric(as.character(df2$ID))
 
 ggplot(data = df2, aes(x = ID, y= Items)) +
-geom_point() +
+geom_point(size = 3) +
   geom_hline(yintercept = mean(df2$Items), linetype = "dashed", colour = "red") +
   ylab("Items") +
   xlab("ID") +
@@ -426,7 +426,7 @@ df2$ID = as.numeric(as.character(df2$ID))
 
 ggplot(data = df2, aes(x = ID, y= Items)) +
   geom_segment(aes(xend = ID, y= Items, yend = mean(df2$Items)), linetype = "dotted", colour = "black") +
-  geom_point() +
+  geom_point(size = 3) +
   geom_hline(yintercept = mean(df2$Items), linetype = "dashed", colour = "red") +
   ylab("Items") +
   xlab("ID") +
@@ -511,7 +511,7 @@ class: top, left
 x = rnorm(100, mean = 0, sd = 1)
 ggplot(data = data.frame(x = c(-9 * sd(x) + mean(x), 9 * sd(x) + mean(x))), aes(x)) +
   stat_function(fun = dnorm, n = 101, args = list(mean = mean(x), sd = sd(x)+2)) + 
-    stat_function(fun = dnorm, geom = "point", n = 101, args = list(mean = mean(x), sd = sd(x)+2)) + 
+    #stat_function(fun = dnorm, geom = "point", n = 101, args = list(mean = mean(x), sd = sd(x)+2)) + 
   ylab("Häufigkeit (N)") +
   xlab("") +
   scale_x_continuous(breaks = c(mean(x) - (sd(x)+2), mean(x), mean(x) + (sd(x)+2)), labels = c("-s","", "+s")) +
@@ -558,6 +558,10 @@ class: top, left
 
 **Standardabweichung $(s)$**:
 
+<small>
+
+.pull-left[
+
 68 - 95 - 99.7 Faustregel (gilt bei annähernd normalverteilten Daten):
 
 >* 68% aller Daten liegen innerhalb 1 Standardabweichung vom Mittelwert
@@ -567,6 +571,131 @@ class: top, left
 >* 99.7% aller Daten liegen innerhalb 3 Standardabweichungen vom Mittelwert
 
 $\rightarrow$ Bei normalverteilten Daten reicht also ein kurzer Blick auf den Mittelwert und die Standardabweichung, um eine Vorstellung davon zu erhalten, in welchen Bereich sich die meisten Daten bewegen
+
+]
+
+.pull-right[
+
+<svg viewBox="0 0 500 278" xmlns="http://www.w3.org/2000/svg" style="width:100%" font-family="Arial, sans-serif">
+
+  <defs>
+    <marker id="arr" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <path d="M 0,0 L 6,3 L 0,6 Z" fill="black"/>
+    </marker>
+  </defs>
+
+  <!-- Hintergrundgitter -->
+  <line x1="40" y1="50"  x2="460" y2="50"  stroke="#e4e4e4" stroke-width="0.8"/>
+  <line x1="40" y1="90"  x2="460" y2="90"  stroke="#e4e4e4" stroke-width="0.8"/>
+  <line x1="40" y1="130" x2="460" y2="130" stroke="#e4e4e4" stroke-width="0.8"/>
+  <line x1="40" y1="170" x2="460" y2="170" stroke="#e4e4e4" stroke-width="0.8"/>
+  <line x1="40" y1="195" x2="460" y2="195" stroke="#e4e4e4" stroke-width="0.8"/>
+
+  <!-- ±3σ Fläche (hellstes Rosa) — komplette Kurve + Basislinie -->
+  <path d="M 55,193
+    C 65.8,192.0 76.7,190.6 87.5,187.4
+    C 98.3,184.3 109.2,179.4 120,171.6
+    C 130.8,163.8 141.7,152.8 152.5,138.8
+    C 163.3,124.8 174.2,107.5 185,90.1
+    C 195.8,72.7 206.7,55.0 217.5,42.3
+    C 228.3,29.6 239.2,22.0 250,22
+    C 260.8,22.0 271.7,29.6 282.5,42.3
+    C 293.3,55.0 304.2,72.7 315,90.1
+    C 325.8,107.5 336.7,124.8 347.5,138.8
+    C 358.3,152.8 369.2,163.8 380,171.6
+    C 390.8,179.4 401.7,184.3 412.5,187.4
+    C 423.3,190.6 434.2,192.0 445,193
+    L 445,195 L 55,195 Z" fill="#FFFFFF"/>
+
+  <!-- ±2σ Fläche (mittleres Rosa) -->
+  <path d="M 120,195 L 120,171.6
+    C 130.8,163.8 141.7,152.8 152.5,138.8
+    C 163.3,124.8 174.2,107.5 185,90.1
+    C 195.8,72.7 206.7,55.0 217.5,42.3
+    C 228.3,29.6 239.2,22.0 250,22
+    C 260.8,22.0 271.7,29.6 282.5,42.3
+    C 293.3,55.0 304.2,72.7 315,90.1
+    C 325.8,107.5 336.7,124.8 347.5,138.8
+    C 358.3,152.8 369.2,163.8 380,171.6
+    L 380,195 Z" fill="#fdeef5"/>
+
+  <!-- ±1σ Fläche (CFH Pink) -->
+  <path d="M 185,195 L 185,90.1
+    C 195.8,72.7 206.7,55.0 217.5,42.3
+    C 228.3,29.6 239.2,22.0 250,22
+    C 260.8,22.0 271.7,29.6 282.5,42.3
+    C 293.3,55.0 304.2,72.7 315,90.1
+    L 315,195 Z" fill="#f5afc8"/>
+
+  <!-- Glockenkurve (smooth, 12 Segmente) -->
+  <path d="M 55,193
+    C 65.8,192.0 76.7,190.6 87.5,187.4
+    C 98.3,184.3 109.2,179.4 120,171.6
+    C 130.8,163.8 141.7,152.8 152.5,138.8
+    C 163.3,124.8 174.2,107.5 185,90.1
+    C 195.8,72.7 206.7,55.0 217.5,42.3
+    C 228.3,29.6 239.2,22.0 250,22
+    C 260.8,22.0 271.7,29.6 282.5,42.3
+    C 293.3,55.0 304.2,72.7 315,90.1
+    C 325.8,107.5 336.7,124.8 347.5,138.8
+    C 358.3,152.8 369.2,163.8 380,171.6
+    C 390.8,179.4 401.7,184.3 412.5,187.4
+    C 423.3,190.6 434.2,192.0 445,193"
+    fill="none" stroke="#621C37" stroke-width="2.2"/>
+
+  <!-- Basislinie -->
+  <line x1="42" y1="195" x2="458" y2="195" stroke="#621C37" stroke-width="1.5"/>
+
+  <!-- Vertikale gestrichelte Linien -->
+  <line x1="185" y1="90.1" x2="185" y2="195" stroke="#621C37" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="315" y1="90.1" x2="315" y2="195" stroke="#621C37" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="120" y1="171.6" x2="120" y2="195" stroke="#621C37" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="380" y1="171.6" x2="380" y2="195" stroke="#621C37" stroke-width="1" stroke-dasharray="4,3"/>
+  <!-- μ Mittellinie -->
+  <line x1="250" y1="22" x2="250" y2="195" stroke="#621C37" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- Prozent-Labels -->
+  <text x="217" y="140" text-anchor="middle" fill="black" font-weight="bold" font-size="13">34%</text>
+  <text x="283" y="140" text-anchor="middle" fill="black" font-weight="bold" font-size="13">34%</text>
+  <text x="152" y="175" text-anchor="middle" fill="black" font-weight="bold" font-size="10.5">13,5%</text>
+  <text x="348" y="175" text-anchor="middle" fill="black" font-weight="bold" font-size="10.5">13,5%</text>
+
+  <!-- 2,35% mit Pfeilen -->
+  <text x="82"  y="132" text-anchor="middle" fill="black" font-weight="bold" font-size="10.5">2,35%</text>
+  <line x1="82" y1="136" x2="76" y2="183" stroke="black" stroke-width="1.2" marker-end="url(#arr)"/>
+  <text x="418" y="132" text-anchor="middle" fill="black" font-weight="bold" font-size="10.5">2,35%</text>
+  <line x1="418" y1="136" x2="424" y2="183" stroke="black" stroke-width="1.2" marker-end="url(#arr)"/>
+
+  <!-- X-Achse Beschriftungen -->
+  <text x="55"  y="210" text-anchor="middle" fill="#621C37" font-size="9.5">μ−3σ</text>
+  <text x="120" y="210" text-anchor="middle" fill="#621C37" font-size="9.5">μ−2σ</text>
+  <text x="185" y="210" text-anchor="middle" fill="#621C37" font-size="9.5">μ−σ</text>
+  <text x="250" y="210" text-anchor="middle" fill="#621C37" font-size="9.5">μ</text>
+  <text x="315" y="210" text-anchor="middle" fill="#621C37" font-size="9.5">μ+σ</text>
+  <text x="380" y="210" text-anchor="middle" fill="#621C37" font-size="9.5">μ+2σ</text>
+  <text x="445" y="210" text-anchor="middle" fill="#621C37" font-size="9.5">μ+3σ</text>
+
+  <!-- Klammer 68% -->
+  <line x1="185" y1="222" x2="315" y2="222" stroke="#621C37" stroke-width="1.3"/>
+  <line x1="185" y1="217" x2="185" y2="222" stroke="#621C37" stroke-width="1.3"/>
+  <line x1="315" y1="217" x2="315" y2="222" stroke="#621C37" stroke-width="1.3"/>
+  <text x="250" y="233" text-anchor="middle" fill="#621C37" font-weight="bold" font-size="10.5">68%</text>
+
+  <!-- Klammer 95% -->
+  <line x1="120" y1="241" x2="380" y2="241" stroke="#621C37" stroke-width="1.3"/>
+  <line x1="120" y1="236" x2="120" y2="241" stroke="#621C37" stroke-width="1.3"/>
+  <line x1="380" y1="236" x2="380" y2="241" stroke="#621C37" stroke-width="1.3"/>
+  <text x="250" y="252" text-anchor="middle" fill="#621C37" font-weight="bold" font-size="10.5">95%</text>
+
+  <!-- Klammer 99,7% -->
+  <line x1="55"  y1="260" x2="445" y2="260" stroke="#621C37" stroke-width="1.3"/>
+  <line x1="55"  y1="255" x2="55"  y2="260" stroke="#621C37" stroke-width="1.3"/>
+  <line x1="445" y1="255" x2="445" y2="260" stroke="#621C37" stroke-width="1.3"/>
+  <text x="250" y="271" text-anchor="middle" fill="#621C37" font-weight="bold" font-size="10.5">99,7%</text>
+
+</svg>
+
+]
 
 ---
 class: top, left
@@ -651,6 +780,7 @@ class: top, left
 
 ##### Streuungsmaße:
 
+.pull-left[
 **Quartilabstand:**
 
 * so wie der Median **robust** gegenüber Ausreißern (dann geeignetes Streuungsmaß)
@@ -660,6 +790,72 @@ class: top, left
 * Zwischen dem unteren und oberen Quartil liegen **50% aller Werte**
 
 >Formel: $$q_{A}= \widetilde{x}_{0.75} - \widetilde{x}_{0.25}$$
+]
+
+.pull-right[
+<svg width="100%" viewBox="0 0 380 190" style="display:block; margin-top:20px;">
+
+  <!-- Dashed lines drawn FIRST so box can cover them -->
+  <!-- Q1 vertical dashed line -->
+  <line x1="110" y1="46" x2="110" y2="108" stroke="#621C37" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <!-- Median vertical dashed line -->
+  <line x1="190" y1="46" x2="190" y2="108" stroke="#621C37" stroke-width="2" stroke-dasharray="4 3"/>
+  <!-- Q3 vertical dashed line -->
+  <line x1="270" y1="46" x2="270" y2="108" stroke="#621C37" stroke-width="1.5" stroke-dasharray="4 3"/>
+
+  <!-- IQR shaded region drawn ON TOP of lines: white base + pink tint = fully opaque -->
+  <rect x="110" y="58" width="160" height="50" fill="white" rx="3"/>
+  <rect x="110" y="58" width="160" height="50" fill="#EE0071" opacity="0.12" rx="3"/>
+
+  <!-- 50% label inside shaded region -->
+  <text x="190" y="78" text-anchor="middle" fill="#EE0071" font-size="11" font-weight="600" font-family="inherit">50% aller Werte</text>
+  <text x="190" y="95" text-anchor="middle" fill="#EE0071" font-size="10" font-family="inherit">= Quartilabstand</text>
+
+  <!-- 25% labels in outer regions -->
+  <text x="68" y="83" text-anchor="middle" fill="#ccc" font-size="10" font-family="inherit">25%</text>
+  <text x="312" y="83" text-anchor="middle" fill="#ccc" font-size="10" font-family="inherit">25%</text>
+
+  <!-- Label boxes -->
+  <rect x="83" y="27" width="54" height="17" rx="3" fill="#621C37"/>
+  <text x="110" y="39" text-anchor="middle" fill="#fff" font-size="10" font-family="inherit">Q₁ (25%)</text>
+
+  <rect x="152" y="27" width="76" height="17" rx="3" fill="#621C37"/>
+  <text x="190" y="39" text-anchor="middle" fill="#fff" font-size="10" font-family="inherit">Median (50%)</text>
+
+  <rect x="243" y="27" width="54" height="17" rx="3" fill="#621C37"/>
+  <text x="270" y="39" text-anchor="middle" fill="#fff" font-size="10" font-family="inherit">Q₃ (75%)</text>
+
+  <!-- Axis line -->
+  <line x1="22" y1="108" x2="355" y2="108" stroke="#aaa" stroke-width="1.5"/>
+  <polygon points="357,108 352,105 352,111" fill="#aaa"/>
+
+  <!-- Axis ticks -->
+  <line x1="30" y1="104" x2="30" y2="112" stroke="#aaa" stroke-width="1.5"/>
+  <line x1="110" y1="104" x2="110" y2="112" stroke="#621C37" stroke-width="1.5"/>
+  <line x1="190" y1="104" x2="190" y2="112" stroke="#621C37" stroke-width="1.5"/>
+  <line x1="270" y1="104" x2="270" y2="112" stroke="#621C37" stroke-width="1.5"/>
+  <line x1="350" y1="104" x2="350" y2="112" stroke="#aaa" stroke-width="1.5"/>
+
+  <!-- Tick labels -->
+  <text x="30" y="124" text-anchor="middle" fill="#aaa" font-size="10" font-family="inherit">0</text>
+  <text x="110" y="124" text-anchor="middle" fill="#621C37" font-size="11" font-weight="600" font-family="inherit">25</text>
+  <text x="190" y="124" text-anchor="middle" fill="#621C37" font-size="11" font-weight="600" font-family="inherit">50</text>
+  <text x="270" y="124" text-anchor="middle" fill="#621C37" font-size="11" font-weight="600" font-family="inherit">75</text>
+  <text x="350" y="124" text-anchor="middle" fill="#aaa" font-size="10" font-family="inherit">100</text>
+
+  <!-- Axis label -->
+  <text x="190" y="140" text-anchor="middle" fill="#ccc" font-size="9" font-family="inherit">Spannweite</text>
+
+  <!-- IQR bracket -->
+  <line x1="110" y1="155" x2="270" y2="155" stroke="#EE0071" stroke-width="2"/>
+  <line x1="110" y1="149" x2="110" y2="161" stroke="#EE0071" stroke-width="2"/>
+  <line x1="270" y1="149" x2="270" y2="161" stroke="#EE0071" stroke-width="2"/>
+
+  <!-- IQR label -->
+  <text x="190" y="176" text-anchor="middle" fill="#EE0071" font-size="11" font-weight="600" font-family="inherit">q<tspan dy="3" font-size="8">A</tspan><tspan dy="-3"> = Q</tspan><tspan dy="3" font-size="8">3</tspan><tspan dy="-3"> − Q</tspan><tspan dy="3" font-size="8">1</tspan></text>
+
+</svg>
+]
 
 ---
 class: top, left
@@ -858,6 +1054,7 @@ class: top, left
 
 ##### **Schiefe** (*engl. skewness*):
 
+
 * Die Schiefe $g_1$ ist eine Maßzahl, die uns angibt, in welche Richtung eine Häufigkeitsverteilung schief ist.
 
 * Ist $g_1=0$, so ist die Verteilung symmetrisch.
@@ -867,6 +1064,7 @@ class: top, left
 * Die Schiefe ist sinnvoll für eingipfelige Verteilungen.
 
 * ACHTUNG: Muss in Prüfung nicht berechnet werden.
+.pull-left[
 
 >Formel:
 
@@ -874,6 +1072,40 @@ class: top, left
 ```{r eval = TRUE, echo = F, out.width = "320px"}
 knitr::include_graphics("bilder/schiefe.png")
 ```
+]
+]
+
+.pull-right[
+<svg width="100%" viewBox="0 0 540 155" style="display:block; margin-top:40px;">
+
+  <!-- === Symmetric (g = 0) — CP at y=28 forces horizontal tangent at peak === -->
+  <path d="M 12,112 C 22,111 40,104 55,92 C 68,82 80,28 90,28 C 100,28 112,82 125,92 C 140,104 158,111 168,112 Z"
+        fill="#EE0071" fill-opacity="0.15" stroke="#621C37" stroke-width="1.8"/>
+  <line x1="12" y1="112" x2="168" y2="112" stroke="#621C37" stroke-width="1.2"/>
+  <text x="90" y="16" text-anchor="middle" fill="#621C37" font-size="13" font-weight="600" font-family="inherit">g = 0</text>
+  <text x="90" y="132" text-anchor="middle" fill="#444" font-size="12" font-family="inherit">symmetrisch</text>
+
+  <!-- Divider -->
+  <line x1="180" y1="16" x2="180" y2="118" stroke="#ddd" stroke-width="1" stroke-dasharray="3 3"/>
+
+  <!-- === Left-skewed (g < 0) === -->
+  <path d="M 192,112 C 200,112 215,109 228,104 C 244,97 254,72 264,47 C 272,32 283,26 296,26 C 308,26 318,40 328,63 C 336,81 342,100 348,112 Z"
+        fill="#EE0071" fill-opacity="0.15" stroke="#621C37" stroke-width="1.8"/>
+  <line x1="192" y1="112" x2="348" y2="112" stroke="#621C37" stroke-width="1.2"/>
+  <text x="270" y="14" text-anchor="middle" fill="#621C37" font-size="13" font-weight="600" font-family="inherit">g &lt; 0</text>
+  <text x="270" y="132" text-anchor="middle" fill="#444" font-size="12" font-family="inherit">linksschief</text>
+
+  <!-- Divider -->
+  <line x1="360" y1="16" x2="360" y2="118" stroke="#ddd" stroke-width="1" stroke-dasharray="3 3"/>
+
+  <!-- === Right-skewed (g > 0) === -->
+  <path d="M 372,112 C 378,100 384,81 392,63 C 402,40 412,26 424,26 C 437,26 448,32 456,47 C 466,72 476,97 492,104 C 505,109 520,112 528,112 Z"
+        fill="#EE0071" fill-opacity="0.15" stroke="#621C37" stroke-width="1.8"/>
+  <line x1="372" y1="112" x2="528" y2="112" stroke="#621C37" stroke-width="1.2"/>
+  <text x="450" y="14" text-anchor="middle" fill="#621C37" font-size="13" font-weight="600" font-family="inherit">g &gt; 0</text>
+  <text x="450" y="132" text-anchor="middle" fill="#444" font-size="12" font-family="inherit">rechtsschief</text>
+
+</svg>
 ]
 
 ---

@@ -1,0 +1,230 @@
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #fff; color: #1a1a1a; padding: 14px; }
+.controls { display: flex; gap: 10px; align-items: flex-end; flex-wrap: wrap; margin-bottom: 14px; }
+.sl-wrap { flex: 1; min-width: 120px; }
+.sl-wrap label { font-size: 12px; color: #777; display: block; margin-bottom: 3px; }
+input[type=range] { width: 100%; accent-color: #EE0071; cursor: pointer; }
+.cards { display: flex; gap: 8px; flex-shrink: 0; }
+.card { text-align: center; background: #f5f5f3; border-radius: 8px; padding: 8px 14px; min-width: 80px; border-left: 3px solid transparent; }
+.card.mean { border-left-color: #EE0071; }
+.card.median { border-left-color: #621C37; }
+.card-lbl { font-size: 11px; color: #888; }
+.card-val { font-size: 20px; font-weight: 500; }
+.card.mean .card-val { color: #EE0071; }
+.card.median .card-val { color: #621C37; }
+.btn-row { display: flex; gap: 7px; flex-shrink: 0; }
+button { padding: 7px 12px; font-size: 12px; cursor: pointer; border-radius: 7px; border: 1px solid #ccc; background: transparent; color: #1a1a1a; font-family: inherit; transition: background .15s; white-space: nowrap; }
+button:hover { background: #f0f0ee; }
+button.reset { border-color: #e0887a; color: #c0392b; }
+button.reset:hover { background: #fdf0ee; }
+.hint { font-size: 11px; color: #aaa; margin-bottom: 10px; }
+.legend { display: flex; gap: 16px; margin-top: 8px; flex-wrap: wrap; }
+.leg-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: #666; }
+.leg-line { width: 22px; height: 2px; border-radius: 1px; }
+.leg-dot { width: 10px; height: 10px; border-radius: 50%; }
+@keyframes popIn { 0%{transform:scale(0);opacity:0} 60%{transform:scale(1.3)} 100%{transform:scale(1);opacity:1} }
+</style>
+
+<div class="controls">
+  <div class="sl-wrap">
+    <label>Ausreißer-Stärke</label>
+    <input type="range" id="outlierSlider" min="0" max="100" value="0" step="1">
+    <div style="display:flex;justify-content:space-between;font-size:10px;color:#bbb;margin-top:1px;"><span>kein Ausreißer</span><span>extremer Ausreißer</span></div>
+  </div>
+  <div class="sl-wrap">
+    <label>Anzahl Ausreißer</label>
+    <input type="range" id="nOutlierSlider" min="1" max="4" value="1" step="1">
+    <div style="display:flex;justify-content:space-between;font-size:10px;color:#bbb;margin-top:1px;"><span>1</span><span>4</span></div>
+  </div>
+  <div class="cards">
+    <div class="card mean"><div class="card-lbl">Mittelwert x̄</div><div class="card-val" id="meanVal">—</div></div>
+    <div class="card median"><div class="card-lbl">Median</div><div class="card-val" id="medVal">—</div></div>
+    <div class="card"><div class="card-lbl">Differenz</div><div class="card-val" id="diffVal">—</div></div>
+  </div>
+  <div class="btn-row">
+    <button onclick="randomize()">Neu ziehen</button>
+    <button class="reset" onclick="resetOutlier()">Ausreißer entfernen</button>
+  </div>
+</div>
+
+<p class="hint">Schieberegler bewegen um Ausreißer hinzuzufügen — beobachte wie Mittelwert und Median reagieren.</p>
+
+<svg id="mainSvg" width="100%" viewBox="0 0 640 220" style="display:block; cursor:default;"></svg>
+
+<div class="legend">
+  <div class="leg-item"><div class="leg-line" style="background:#EE0071;"></div> Mittelwert (empfindlich)</div>
+  <div class="leg-item"><div class="leg-line" style="background:#621C37;"></div> Median (robust)</div>
+  <div class="leg-item"><div class="leg-dot" style="background:#621C37;"></div> Normale Werte</div>
+  <div class="leg-item"><div class="leg-dot" style="background:#E24B4A;"></div> Ausreißer</div>
+</div>
+
+<script>
+const svg = document.getElementById('mainSvg');
+const ns = 'http://www.w3.org/2000/svg';
+const W = 640, H = 220;
+const PAD = 44, AXIS_Y = 150, DOT_Y = 128;
+
+const XMIN = 0, XMAX = 500;
+const BASE_MIN = 30, BASE_MAX = 100;
+
+function xToSvg(v) { return PAD + (v / XMAX) * (W - PAD * 2); }
+
+function el(tag, attrs, txt) {
+  const e = document.createElementNS(ns, tag);
+  for (const [k,v] of Object.entries(attrs)) e.setAttribute(k,v);
+  if (txt !== undefined) e.textContent = txt;
+  return e;
+}
+
+let baseData = [];
+let outlierStrength = 0;
+let nOutliers = 1;
+
+function gauss(mu, sd) {
+  let u=0,v=0;
+  while(u===0) u=Math.random();
+  while(v===0) v=Math.random();
+  return mu + sd * Math.sqrt(-2*Math.log(u)) * Math.cos(2*Math.PI*v);
+}
+
+function clamp(v,lo,hi){ return Math.max(lo,Math.min(hi,v)); }
+
+function makeBase() {
+  const arr = [];
+  for (let i=0; i<18; i++) arr.push(clamp(gauss(60, 12), BASE_MIN, BASE_MAX));
+  return arr.sort((a,b)=>a-b);
+}
+
+function getOutliers() {
+  if (outlierStrength === 0) return [];
+  const out = [];
+  for (let i=0; i<nOutliers; i++) {
+    const val = BASE_MAX + 20 + outlierStrength * 3.6 * (1 + i * 0.15);
+    out.push(clamp(val, BASE_MAX + 20, XMAX));
+  }
+  return out;
+}
+
+function calcStats(arr) {
+  const n = arr.length;
+  const mean = arr.reduce((a,b)=>a+b,0) / n;
+  const sorted = [...arr].sort((a,b)=>a-b);
+  const median = n%2===0 ? (sorted[n/2-1]+sorted[n/2])/2 : sorted[Math.floor(n/2)];
+  return { mean, median };
+}
+
+function jitter(i) {
+  return DOT_Y + (i % 3 - 1) * 13;
+}
+
+function render() {
+  svg.innerHTML = '';
+
+  const defs = el('defs',{});
+  ['arrM','arrMd'].forEach((id,idx)=>{
+    const mk = el('marker',{id,viewBox:'0 0 10 10',refX:'8',refY:'5',markerWidth:'5',markerHeight:'5',orient:'auto-start-reverse'});
+    mk.appendChild(el('path',{d:'M2 1L8 5L2 9',fill:'none',stroke:idx===0?'#EE0071':'#621C37','stroke-width':'1.5','stroke-linecap':'round'}));
+    defs.appendChild(mk);
+  });
+  svg.appendChild(defs);
+
+  svg.appendChild(el('rect',{x:PAD,y:16,width:xToSvg(BASE_MAX)-PAD,height:AXIS_Y-16,fill:'#fdeef5',opacity:'0.5',rx:'3'}));
+
+  svg.appendChild(el('line',{x1:PAD,y1:AXIS_Y,x2:W-PAD+8,y2:AXIS_Y,stroke:'rgba(0,0,0,0.1)','stroke-width':'1'}));
+
+  const tickVals = [0, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500];
+  tickVals.forEach(v => {
+    const px = xToSvg(v);
+    if (px > W - PAD + 10) return;
+    svg.appendChild(el('line',{x1:px,y1:AXIS_Y,x2:px,y2:AXIS_Y+4,stroke:'#ccc','stroke-width':'1'}));
+    svg.appendChild(el('text',{x:px,y:AXIS_Y+14,'text-anchor':'middle',fill:'#aaa','font-size':'10','font-family':'inherit'},v));
+  });
+
+  svg.appendChild(el('text',{x:xToSvg(BASE_MAX/2),y:12,'text-anchor':'middle',fill:'#f5afc8','font-size':'10','font-family':'inherit'},'normale Werte'));
+
+  const outliers = getOutliers();
+  const allData = [...baseData, ...outliers];
+  const { mean, median } = calcStats(allData);
+
+  document.getElementById('meanVal').textContent = mean.toFixed(1);
+  document.getElementById('medVal').textContent = median.toFixed(1);
+  document.getElementById('diffVal').textContent = Math.abs(mean - median).toFixed(1);
+
+  baseData.forEach((v, i) => {
+    const cx = xToSvg(v);
+    const cy = jitter(i);
+    svg.appendChild(el('circle',{cx,cy,r:'6',fill:'#621C37',opacity:'0.7'}));
+  });
+
+  outliers.forEach((v, i) => {
+    const cx = xToSvg(v);
+    if (cx > W - 6) return;
+    const cy = DOT_Y - 4;
+    const c = el('circle',{cx,cy,r:'7',fill:'#E24B4A',opacity:'0.88'});
+    if (outlierStrength > 0) c.style.animation = 'popIn 0.3s ease-out';
+    svg.appendChild(c);
+    svg.appendChild(el('text',{x:cx,y:cy-12,'text-anchor':'middle',fill:'#A32D2D','font-size':'10','font-weight':'500','font-family':'inherit'}, v.toFixed(0)));
+  });
+
+  const meanX = xToSvg(mean);
+  const medX  = xToSvg(median);
+
+  svg.appendChild(el('line',{x1:medX,y1:55,x2:medX,y2:AXIS_Y,stroke:'#621C37','stroke-width':'2','stroke-dasharray':'5 3'}));
+  const medLblX = medX < 50 ? medX + 26 : medX;
+  svg.appendChild(el('rect',{x:medLblX-24,y:38,width:48,height:18,rx:'4',fill:'#4a1528'}));
+  svg.appendChild(el('text',{x:medLblX,y:50,'text-anchor':'middle',fill:'#fff','font-size':'11','font-weight':'500','font-family':'inherit'},'Med='+median.toFixed(1)));
+
+  svg.appendChild(el('line',{x1:meanX,y1:38,x2:meanX,y2:AXIS_Y,stroke:'#EE0071','stroke-width':'2','stroke-dasharray':'5 3'}));
+  const meanLblX = clampLabel(meanX, medX, 52);
+  svg.appendChild(el('rect',{x:meanLblX-24,y:20,width:48,height:18,rx:'4',fill:'#621C37'}));
+  svg.appendChild(el('text',{x:meanLblX,y:32,'text-anchor':'middle',fill:'#fff','font-size':'11','font-weight':'500','font-family':'inherit'},'x̄='+mean.toFixed(1)));
+
+  if (Math.abs(mean - median) > 2) {
+    const lo = Math.min(meanX, medX), hi = Math.max(meanX, medX);
+    svg.appendChild(el('line',{x1:lo+3,y1:175,x2:hi-3,y2:175,stroke:'#bbb','stroke-width':'1','stroke-dasharray':'3 2','marker-end':'url(#arrM)','marker-start':'url(#arrMd)'}));
+    const midX = (lo+hi)/2;
+    svg.appendChild(el('rect',{x:midX-18,y:166,width:36,height:14,rx:'3',fill:'#f5f5f3'}));
+    svg.appendChild(el('text',{x:midX,y:176,'text-anchor':'middle',fill:'#888','font-size':'10','font-family':'inherit'},'\u0394'+Math.abs(mean-median).toFixed(1)));
+  }
+
+  if (outlierStrength > 0) {
+    const msg = mean > median
+      ? 'Mittelwert wird nach rechts gezogen \u2014 Median bleibt stabil'
+      : 'Mittelwert und Median stimmen \u00fcberein';
+    svg.appendChild(el('text',{x:W/2,y:205,'text-anchor':'middle',fill:'#999','font-size':'11','font-style':'italic','font-family':'inherit'},msg));
+  }
+}
+
+function clampLabel(x, other, minDist) {
+  if (Math.abs(x - other) < minDist) return x < other ? other - minDist : other + minDist;
+  return x;
+}
+
+function clamp(v,lo,hi){ return Math.max(lo,Math.min(hi,v)); }
+
+function randomize() {
+  baseData = makeBase();
+  render();
+}
+
+function resetOutlier() {
+  document.getElementById('outlierSlider').value = 0;
+  outlierStrength = 0;
+  render();
+}
+
+document.getElementById('outlierSlider').addEventListener('input', e => {
+  outlierStrength = +e.target.value;
+  render();
+});
+
+document.getElementById('nOutlierSlider').addEventListener('input', e => {
+  nOutliers = +e.target.value;
+  render();
+});
+
+baseData = makeBase();
+render();
+</script>
