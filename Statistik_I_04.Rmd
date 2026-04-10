@@ -135,7 +135,7 @@ df = data.frame(ID = paste0(rep(1:N)),
                 Diagnose = c(rep("Depression", 15), rep("Sucht", 9), rep("Psychose", 6))
 )
 ggplot(data = df, aes(x = Diagnose)) +
-  geom_bar(fill = "black", width = .5) +
+  geom_bar(fill = "#fdeef5", colour = "#621C37", width = .5) +
   #scale_x_continuous(breaks = 0:10) +
   labs(y = "Häufigkeit (N)") +
   theme_classic() +
@@ -332,6 +332,8 @@ kable(df[,], col.names = NULL)%>%
 ggplot(df2, aes(x = Grübeln, fill = Gruppe)) +
   geom_histogram() +
   labs(y = "N") +
+  scale_fill_manual(values = c("A" = "#621C37",
+                               "B" = "#EE0071")) +
   theme_classic() +
   theme(text = element_text(size = 25))
 ```
@@ -378,7 +380,7 @@ kable(df[,], col.names = NULL)%>%
 .center[
 ```{r echo = F, out.height="320px"}
 ggplot(df2, aes(y = Grübeln, x = Gruppe)) +
-  stat_summary(geom = "bar", fun = "mean", fill = "white", colour = "black", width = .5) +
+  stat_summary(geom = "bar", fun = "mean", fill = "#fdeef5", colour = "#621C37", width = .5) +
   stat_summary(geom = "errorbar", fun.data = mean_se, width = .2) +
   labs(y = "Grübeln") +
   theme_classic() +
@@ -411,7 +413,7 @@ class: top, left
 .center[
 ```{r echo = F, out.height="320px"}
 ggplot(df2, aes(y = Grübeln, x = Gruppe)) +
-  stat_summary(geom = "bar", fun = "mean", fill = "white", colour = "black", width = .5) +
+  stat_summary(geom = "bar", fun = "mean", fill = "#fdeef5", colour = "#621C37", width = .5) +
   stat_summary(geom = "errorbar", fun.data = mean_se, width = .2) +
   labs(y = "Grübeln") +
   theme_classic() +
@@ -523,7 +525,7 @@ kable(df[,], col.names = NULL)%>%
 .center[
 ```{r echo = F,  out.height="320px"}
 ggplot(df2, aes(y = Grübeln, x = Gruppe)) +
-  stat_summary(geom = "bar", fun = "mean", fill = "white", colour = "black", width = .5) +
+  stat_summary(geom = "bar", fun = "mean", fill = "#fdeef5", colour = "#621C37", width = .5) +
   stat_summary(geom = "errorbar", fun.data = mean_se, width = .2) +
   labs(y = "Grübeln") +
   theme_classic() +
@@ -575,7 +577,7 @@ kable(df[,], col.names = NULL)%>%
 .center[
 ```{r echo = F, out.height="320px"}
 ggplot(df2, aes(y = Grübeln, x = Gruppe)) +
-geom_boxplot() +
+geom_boxplot(fill = "#fdeef5", colour = "#621C37") +
   labs(y = "Grübeln") +
   theme_classic() +
   theme(text = element_text(size = 25))
@@ -614,7 +616,7 @@ class: top, left
 .center[
 ```{r echo = F, out.width="350px", out.height="320px"}
 ggplot(df2, aes(y = Grübeln, x = Gruppe)) +
-geom_boxplot() +
+geom_boxplot(fill = "#fdeef5", colour = "#621C37") +
   labs(y = "Grübeln") +
   theme_classic() +
   theme(text = element_text(size = 25))
@@ -924,7 +926,7 @@ kable(df[,], col.names = NULL)%>%
 ```{r echo = F, out.width="320px", out.height="300px"}
 ggplot(df2, aes(y = Konzentration, x = Schlaf)) +
 geom_point(size = 4) +
-  geom_smooth(method = "lm", se = F) +
+  geom_smooth(method = "lm", se = F, colour = "#621C37") +
   labs(y = "Konzentration", x = "Schlaf") +
   theme_classic() +
   theme(text = element_text(size = 25))
@@ -933,6 +935,9 @@ geom_point(size = 4) +
 ]
 
 .pull-right[
+
+<small>
+
 **Streudiagramm:**
 
 * Später können wir auch lineare Zusammenhänge zwischen den Variablen visualisieren
@@ -955,7 +960,7 @@ class: top, left
 ```{r echo = F, out.width="320px", out.height="300px"}
 ggplot(df2, aes(y = Konzentration, x = Schlaf)) +
 geom_point(size = 4) +
-  geom_smooth(method = "lm", se = F) +
+  geom_smooth(method = "lm", se = F,  colour = "#621C37") +
   labs(y = "Konzentration", x = "Schlaf") +
   theme_classic() +
   theme(text = element_text(size = 25))
@@ -1133,6 +1138,8 @@ class: top, left
 
 ##### Bivariat (2 kategoriale Variablen)
 
+<small>
+
 ```{r echo = F}
 set.seed(123)
 N = 12
@@ -1154,6 +1161,8 @@ proptable_to_bar_2 = function(table){
   t = as.data.frame(table)
   p = ggplot(data = t, aes(x = Var1, y = Freq, fill = Var2)) +
     geom_bar(stat = "identity", position = position_dodge2()) +
+     scale_fill_manual(values = c("Ja" = "#621C37",
+                               "Nein" = "#fdeef5")) +
     labs(x = "", y = "", fill = "") +
     coord_cartesian(ylim = c(0,1)) +
     scale_y_continuous(labels = scales::percent) +
@@ -1253,6 +1262,8 @@ class: top, left
 
 ##### Multivariat (mehr als 2 Variablen)
 
+<small>
+
 Mangels weiterer Achsen (als X und Y) behelfen wir uns mit sogenannten Aesthetics (Farben, etc.)
 
 .pull-left[
@@ -1263,6 +1274,8 @@ Mit unterschiedlichen Farben und Punktformen:
 ggplot(df2, aes(y = Angst, x = Verschmutzungsintensität, colour = Diagnose, shape = Diagnose)) +
 geom_point(size = 4) +
   geom_smooth(method = "lm", se = F) +
+   scale_colour_manual(values = c("A" = "#621C37",
+                               "B" = "#EE0071")) +
   labs(y = "Angst") +
   theme_classic() +
   theme(text = element_text(size = 25))
@@ -1276,7 +1289,7 @@ Mit unterschiedlichen Facetten:
 ```{r echo = F, out.width="320px", out.height="300px"}
 ggplot(df2, aes(y = Angst, x = Verschmutzungsintensität)) +
 geom_point(size = 4) +
-  geom_smooth(method = "lm", se = F) +
+  geom_smooth(method = "lm", se = F, colour = "#621C37") +
   labs(y = "Angst") +
   facet_grid(.~Diagnose) +
   theme_classic() +
