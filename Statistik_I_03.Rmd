@@ -494,9 +494,9 @@ $$s^2=\frac{`r paste(paste0("(",x, "-", round(mean(x),2),")^2"), collapse = " + 
 Berechnung in R:
 
 ```{r}
-X = c(9, 10, 13, 10, 10)
+Items = c(9, 10, 13, 10, 10)
 
-var(X)
+var(Items)
 ```
 
 ]
@@ -810,9 +810,9 @@ $$s=\sqrt{`r round(var(x), 2)`} = `r round(sd(x), 2)`$$
 Berechnung in R:
 
 ```{r}
-X = c(9, 10, 13, 10, 10)
+Items = c(9, 10, 13, 10, 10)
 
-sd(X)
+sd(Items)
 ```
 
 ]
@@ -997,9 +997,9 @@ kable(df[,], col.names = NULL)
 Berechnung in R:
 
 ```{r}
-X = c(9, 10, 17, 11, 12, 18, 13,  6,  8,  9, 16, 12, 13, 11,  9)
+Stunden = c(9, 10, 17, 11, 12, 18, 13,  6,  8,  9, 16, 12, 13, 11,  9)
 
-IQR(X)
+IQR(Stunden)
 ```
 
 
