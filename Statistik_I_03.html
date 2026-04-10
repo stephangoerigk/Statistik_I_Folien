@@ -15,6 +15,7 @@
     <script src="libs/xaringanExtra-scribble/scribble.js"></script>
     <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#EE0071"],"pen_size":4,"eraser_size":40,"palette":[]}) })</script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="style.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -153,8 +154,6 @@ class: top, left
 
 #### Statistische Kennwerte
 
-##### Streuungsmaße:
-
 **Spannweite `\(R\)`** (aka Variationsbreite, *engl. range*):
 
 &lt;small&gt;
@@ -182,9 +181,27 @@ Beispiel: Spannweite einer Variable `\(X\)` mit `\((N=10)\)`
 |X  |10 |11 |9  |10 |12 |10 |10 |11 |8  |9  |
 ]
 
+.pull-left[
+
 &gt;Formel: `$$R = x_{n}- x_{1}$$`
 
 `$$R = 12- 8 = 4$$`
+]
+
+.pull-right[
+Berechnung in R:
+
+
+``` r
+X = c(10, 11, 9, 10, 12, 10, 10, 11, 8, 9)
+
+diff(range(X))
+```
+
+```
+## [1] 4
+```
+]
 
 ---
 class: top, left
@@ -246,7 +263,7 @@ Beispiel: Varianz einer Variable **erinnerte Items** in Gedächtnisaufgabe `\((N
 ]
 .pull-right[
 .center[
-&lt;img src="Statistik_I_03_files/figure-html/unnamed-chunk-7-1.png" alt="" width="400px" height="320px" /&gt;
+&lt;img src="Statistik_I_03_files/figure-html/unnamed-chunk-8-1.png" alt="" width="400px" height="320px" /&gt;
 ]
 ]
 
@@ -278,7 +295,7 @@ Beispiel: Varianz einer Variable **erinnerte Items** in Gedächtnisaufgabe `\((N
 ]
 .pull-right[
 .center[
-&lt;img src="Statistik_I_03_files/figure-html/unnamed-chunk-9-1.png" alt="" width="400px" height="320px" /&gt;
+&lt;img src="Statistik_I_03_files/figure-html/unnamed-chunk-10-1.png" alt="" width="400px" height="320px" /&gt;
 ]
 ]
 
@@ -288,11 +305,11 @@ class: top, left
 
 #### Statistische Kennwerte
 
-##### Streuungsmaße:
-
 **Varianz `\((s^2)\)`**:
 
 Beispiel: Varianz einer Variable **erinnerte Items** in Gedächtnisaufgabe `\((N=5)\)`
+
+.pull-left[
 
 .center[
 
@@ -301,10 +318,32 @@ Beispiel: Varianz einer Variable **erinnerte Items** in Gedächtnisaufgabe `\((N
 |ID    |1  |2  |3  |4  |5  |
 |Items |9  |10 |13 |10 |10 |
 
+&lt;small&gt;
+
+
 .left[Lösungsweg:] 
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 `$$\bar{x}=\frac{9 + 10 + 13 + 10 + 10}{5}=\frac{52}{5}=10.4$$`
 `$$s^2=\frac{(9-10.4)^2 + (10-10.4)^2 + (13-10.4)^2 + (10-10.4)^2 + (10-10.4)^2}{5-1}=\frac{9.2}{4}=2.3$$`
+]
+]
+
+.pull-right[
+Berechnung in R:
+
+
+``` r
+X = c(9, 10, 13, 10, 10)
+
+var(X)
+```
+
+```
+## [1] 2.3
+```
+
 ]
 
 ---
@@ -342,12 +381,12 @@ class: top, left
 
 .pull-left[
 .center[
-&lt;img src="Statistik_I_03_files/figure-html/unnamed-chunk-11-1.png" alt="" width="350px" height="350px" /&gt;
+&lt;img src="Statistik_I_03_files/figure-html/unnamed-chunk-13-1.png" alt="" width="350px" height="350px" /&gt;
 ]
 ]
 
 .pull-right[
-&lt;img src="Statistik_I_03_files/figure-html/unnamed-chunk-12-1.png" alt="" width="350px" height="350px" /&gt;
+&lt;img src="Statistik_I_03_files/figure-html/unnamed-chunk-14-1.png" alt="" width="350px" height="350px" /&gt;
 ]
 
 ---
@@ -536,11 +575,13 @@ class: top, left
 
 #### Statistische Kennwerte
 
-##### Streuungsmaße:
+&lt;small&gt;
 
 **Beispiel - Standardabweichung:**
 
 Standardabweichung einer Variable **erinnerte Items** in Gedächtnisaufgabe `\((N=5)\)`
+
+.pull-left[
 
 .center[
 
@@ -549,13 +590,32 @@ Standardabweichung einer Variable **erinnerte Items** in Gedächtnisaufgabe `\((
 |ID    |1  |2  |3  |4  |5  |
 |Items |9  |10 |13 |10 |10 |
 
-&lt;small&gt;
+
+
+&lt;br&gt;
 
 .left[Lösungsweg:] 
 
 `$$\bar{x}=\frac{9 + 10 + 13 + 10 + 10}{5}=\frac{52}{5}=10.4$$`
 `$$s^2=\frac{(9-10.4)^2 + (10-10.4)^2 + (13-10.4)^2 + (10-10.4)^2 + (10-10.4)^2}{5-1}=\frac{9.2}{4}=2.3$$`
 `$$s=\sqrt{2.3} = 1.52$$`
+]
+]
+
+.pull-right[
+Berechnung in R:
+
+
+``` r
+X = c(9, 10, 13, 10, 10)
+
+sd(X)
+```
+
+```
+## [1] 1.516575
+```
+
 ]
 
 ---
@@ -675,8 +735,6 @@ class: top, left
 
 **Beispiel - Quartilabstand:** Stunden Smartphonenutzung pro Woche `\((N=15)\)`
 
-&lt;small&gt;
-
 .center[
 
 |        |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
@@ -685,18 +743,54 @@ class: top, left
 |Stunden |9  |10 |17 |11 |12 |18 |13 |6  |8  |9  |16 |12 |13 |11 |9  |
 ]
  &lt;font size="-1"&gt;
+
 Lösungsweg:
 
-`$$x_{sortiert}= 6;8;9;9;9;10;11;11;12;12;13;13;16;17;18$$`
 
+`$$x_{sortiert}= 6;8;9;9;9;10;11;11;12;12;13;13;16;17;18$$`
 `$$n \cdot \alpha = 15 \cdot 0.25 = 3.75 \rightarrow I_{0.25} = 4$$`
 `$$n \cdot \alpha = 15 \cdot 0.75 = 11.25 \rightarrow I_{0.75} = 12$$`
-
 `$$q_{0.25} = x_{(I_{0.25})} = x_{(4)} = 9$$`
 `$$q_{0.75} = x_{(I_{0.75})} = x_{(12)} = 13$$`
 `$$q_{A}= \widetilde{x}_{0.75} - \widetilde{x}_{0.25} = 13 - 9 = 4$$`
 
 &lt;/font&gt;
+
+
+---
+class: top, left
+### Skalenniveaus und statistische Kennwerte
+
+#### Statistische Kennwerte
+
+##### Streuungsmaße:
+
+**Beispiel - Quartilabstand:** Stunden Smartphonenutzung pro Woche `\((N=15)\)`
+
+.center[
+
+|        |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+|:-------|:--|:--|:--|:--|:--|:--|:--|:--|:--|:--|:--|:--|:--|:--|:--|
+|ID      |1  |2  |3  |4  |5  |6  |7  |8  |9  |10 |11 |12 |13 |14 |15 |
+|Stunden |9  |10 |17 |11 |12 |18 |13 |6  |8  |9  |16 |12 |13 |11 |9  |
+]
+
+&lt;br&gt;
+
+Berechnung in R:
+
+
+``` r
+X = c(9, 10, 17, 11, 12, 18, 13,  6,  8,  9, 16, 12, 13, 11,  9)
+
+IQR(X)
+```
+
+```
+## [1] 4
+```
+
+
 
 ---
 class: top, left
@@ -740,13 +834,13 @@ class: top, left
 
 
 .pull-left[
-&lt;img src="Statistik_I_03_files/figure-html/unnamed-chunk-19-1.png" alt="" width="420px" /&gt;
+&lt;img src="Statistik_I_03_files/figure-html/unnamed-chunk-24-1.png" alt="" width="420px" /&gt;
 ]
 
 
 
 .pull-right[
-&lt;img src="Statistik_I_03_files/figure-html/unnamed-chunk-21-1.png" alt="" width="420px" /&gt;
+&lt;img src="Statistik_I_03_files/figure-html/unnamed-chunk-26-1.png" alt="" width="420px" /&gt;
 ]
 
 ---
@@ -860,6 +954,8 @@ class: top, left
 
 #### Übung: Erstellen einer Stichprobenbeschreibungstabelle (Tabelle 1 eines Papers)
 
+&lt;small&gt;
+
 **Muster Datenmatrix:**
 
 .center[
@@ -873,6 +969,7 @@ class: top, left
 |Behandlungsgruppe |A        |A        |A        |B        |B        |B        |
 ]
 
+&lt;br&gt;
 **Muster Stichprobenbeschreibungstabelle (zusammengefasste Daten):**
 
 
@@ -881,6 +978,49 @@ class: top, left
 |Geschlecht, w, n (%) |3 (100)       |2 (66.67)     |5 (83.33)     |
 |Alter, m (SD)        |54.33 (12.01) |27.67 (11.72) |41 (18.06)    |
 |BDI, m (SD)          |20.33 (18.01) |12 (9.17)     |16.17 (13.57) |
+
+
+---
+class: top, left
+### Skalenniveaus und statistische Kennwerte
+
+#### Übung: Erstellen einer Stichprobenbeschreibungstabelle (Tabelle 1 eines Papers)
+
+&lt;small&gt;&lt;small&gt;
+
+**Muster Datenmatrix:**
+
+.center[
+
+|                  |         |         |         |         |         |         |
+|:-----------------|:--------|:--------|:--------|:--------|:--------|:--------|
+|ID                |1        |2        |3        |4        |5        |6        |
+|Geschlecht        |weiblich |weiblich |weiblich |weiblich |männlich |weiblich |
+|Alter             |42       |55       |66       |19       |23       |41       |
+|BDI               |8        |12       |41       |20       |14       |2        |
+|Behandlungsgruppe |A        |A        |A        |B        |B        |B        |
+]
+
+Berechnung in R:
+
+
+
+
+
+``` r
+report_sample(df, by = "Behandlungsgruppe", n = T)
+```
+
+```
+## # Descriptive Statistics
+## 
+## Variable                    |          A (n=3) |          B (n=3) |      Total (n=6)
+## ------------------------------------------------------------------------------------
+## Geschlecht [weiblich], %, n |         100.0, 3 |          66.7, 2 |          83.3, 5
+## Mean Alter (SD), n          | 54.33 (12.01), 3 | 27.67 (11.72), 3 | 41.00 (18.06), 6
+## Mean BDI (SD), n            | 20.33 (18.01), 3 |  12.00 (9.17), 3 | 16.17 (13.57), 6
+```
+
 
 ---
 class: top, left

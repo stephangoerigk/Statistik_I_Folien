@@ -6,7 +6,7 @@ institute: "Charlotte Fresenius Universität"
 date: "`r Sys.Date()`"
 output:
   xaringan::moon_reader:
-    css: [xaringan-themer.css, "hygge"]
+    css: [xaringan-themer.css, "hygge", style.css]
     lib_dir: libs
     nature:
       slideNumberFormat: "%current%"
@@ -31,6 +31,7 @@ library(MASS)
 library(ggpubr)
 library(xaringanthemer)
 library(xaringanExtra)
+library(report)
 
 style_duo_accent(
   primary_color = "#621C37",
@@ -266,8 +267,6 @@ class: top, left
 
 #### Statistische Kennwerte
 
-##### Streuungsmaße:
-
 **Spannweite $R$** (aka Variationsbreite, *engl. range*):
 
 <small>
@@ -300,9 +299,22 @@ kable(df[,], col.names = NULL)
 ```
 ]
 
+.pull-left[
+
 >Formel: $$R = x_{n}- x_{1}$$
 
 $$R = 12- 8 = 4$$
+]
+
+.pull-right[
+Berechnung in R:
+
+```{r}
+X = c(10, 11, 9, 10, 12, 10, 10, 11, 8, 9)
+
+diff(range(X))
+```
+]
 
 ---
 class: top, left
@@ -445,11 +457,11 @@ class: top, left
 
 #### Statistische Kennwerte
 
-##### Streuungsmaße:
-
 **Varianz $(s^2)$**:
 
 Beispiel: Varianz einer Variable **erinnerte Items** in Gedächtnisaufgabe $(N=5)$
+
+.pull-left[
 
 .center[
 ```{r echo = F}
@@ -466,10 +478,27 @@ df = as.data.frame(t(df))
 kable(df[,], col.names = NULL)
 ```
 
+<small>
+
+
 .left[Lösungsweg:] 
+
+<br><br><br>
 
 $$\bar{x}=\frac{`r paste(x, collapse = " + ")`}{`r n`}=\frac{`r sum(x)`}{`r n`}=`r round(mean(x), 2)`$$
 $$s^2=\frac{`r paste(paste0("(",x, "-", round(mean(x),2),")^2"), collapse = " + ")`}{`r n`-1}=\frac{`r sum((x - mean(x))^2)`}{`r n-1`}=`r round(var(x), 2)`$$
+]
+]
+
+.pull-right[
+Berechnung in R:
+
+```{r}
+X = c(9, 10, 13, 10, 10)
+
+var(X)
+```
+
 ]
 
 ---
@@ -742,11 +771,13 @@ class: top, left
 
 #### Statistische Kennwerte
 
-##### Streuungsmaße:
+<small>
 
 **Beispiel - Standardabweichung:**
 
 Standardabweichung einer Variable **erinnerte Items** in Gedächtnisaufgabe $(N=5)$
+
+.pull-left[
 
 .center[
 ```{r echo = F}
@@ -763,13 +794,27 @@ df = as.data.frame(t(df))
 kable(df[,], col.names = NULL)
 ```
 
-<small>
+
+
+<br>
 
 .left[Lösungsweg:] 
 
 $$\bar{x}=\frac{`r paste(x, collapse = " + ")`}{`r n`}=\frac{`r sum(x)`}{`r n`}=`r round(mean(x), 2)`$$
 $$s^2=\frac{`r paste(paste0("(",x, "-", round(mean(x),2),")^2"), collapse = " + ")`}{`r n`-1}=\frac{`r sum((x - mean(x))^2)`}{`r n-1`}=`r round(var(x), 2)`$$
 $$s=\sqrt{`r round(var(x), 2)`} = `r round(sd(x), 2)`$$
+]
+]
+
+.pull-right[
+Berechnung in R:
+
+```{r}
+X = c(9, 10, 13, 10, 10)
+
+sd(X)
+```
+
 ]
 
 ---
@@ -891,8 +936,6 @@ class: top, left
 
 **Beispiel - Quartilabstand:** Stunden Smartphonenutzung pro Woche $(N=15)$
 
-<small>
-
 .center[
 ```{r echo = F}
 set.seed(123)
@@ -909,18 +952,57 @@ kable(df[,], col.names = NULL)
 ```
 ]
  <font size="-1">
+
 Lösungsweg:
 
-$$x_{sortiert}= `r paste(x[order(x)], collapse = ";")`$$
 
+$$x_{sortiert}= `r paste(x[order(x)], collapse = ";")`$$
 $$n \cdot \alpha = `r n` \cdot 0.25 = `r n * 0.25` \rightarrow I_{0.25} = 4$$
 $$n \cdot \alpha = `r n` \cdot 0.75 = `r n * 0.75` \rightarrow I_{0.75} = 12$$
-
 $$q_{0.25} = x_{(I_{0.25})} = x_{(4)} = 9$$
 $$q_{0.75} = x_{(I_{0.75})} = x_{(12)} = 13$$
 $$q_{A}= \widetilde{x}_{0.75} - \widetilde{x}_{0.25} = 13 - 9 = 4$$
 
 </font>
+
+
+---
+class: top, left
+### Skalenniveaus und statistische Kennwerte
+
+#### Statistische Kennwerte
+
+##### Streuungsmaße:
+
+**Beispiel - Quartilabstand:** Stunden Smartphonenutzung pro Woche $(N=15)$
+
+.center[
+```{r echo = F}
+set.seed(123)
+N = 15
+df = data.frame(ID = paste0(rep(1:N)),
+                 Stunden = round(rnorm(N, 11, 4))
+)
+x = df$Stunden
+n = length(x)
+df2 = df
+df = as.data.frame(t(df))
+#rownames(df) = NULL
+kable(df[,], col.names = NULL)
+```
+]
+
+<br>
+
+Berechnung in R:
+
+```{r}
+X = c(9, 10, 17, 11, 12, 18, 13,  6,  8,  9, 16, 12, 13, 11,  9)
+
+IQR(X)
+```
+
+
 
 ---
 class: top, left
@@ -1167,6 +1249,8 @@ class: top, left
 
 #### Übung: Erstellen einer Stichprobenbeschreibungstabelle (Tabelle 1 eines Papers)
 
+<small>
+
 **Muster Datenmatrix:**
 
 .center[
@@ -1186,6 +1270,7 @@ kable(df[,], col.names = NULL)
 ```
 ]
 
+<br>
 **Muster Stichprobenbeschreibungstabelle (zusammengefasste Daten):**
 
 ```{r echo = F}
@@ -1220,6 +1305,54 @@ names(tab) = c("Charakteristik", "A (N=3)", "B (N=3)", "Total (N=6)")
 
 kable(tab)
 ```
+
+
+---
+class: top, left
+### Skalenniveaus und statistische Kennwerte
+
+#### Übung: Erstellen einer Stichprobenbeschreibungstabelle (Tabelle 1 eines Papers)
+
+<small><small>
+
+**Muster Datenmatrix:**
+
+.center[
+```{r echo = F}
+set.seed(123)
+N = 6
+df = data.frame(ID = paste0(rep(1:N)),
+                 Geschlecht = c("weiblich", "weiblich", "weiblich", "weiblich", "männlich", "weiblich"),
+                Alter = c(42, 55, 66, 19, 23, 41),
+                BDI = c(8, 12, 41, 20, 14, 2),
+                Behandlungsgruppe = c("A", "A", "A", "B", "B", "B")
+)
+df2 = df
+df = as.data.frame(t(df))
+#rownames(df) = NULL
+kable(df[,], col.names = NULL)
+```
+]
+
+Berechnung in R:
+
+```{r echo=FALSE}
+set.seed(123)
+N = 6
+df = data.frame(ID = paste0(rep(1:N)),
+                 Geschlecht = c("weiblich", "weiblich", "weiblich", "weiblich", "männlich", "weiblich"),
+                Alter = c(42, 55, 66, 19, 23, 41),
+                BDI = c(8, 12, 41, 20, 14, 2),
+                Behandlungsgruppe = c("A", "A", "A", "B", "B", "B")
+)
+df = df[,-1]
+```
+
+
+```{r}
+report_sample(df, by = "Behandlungsgruppe", n = T)
+```
+
 
 ---
 class: top, left
