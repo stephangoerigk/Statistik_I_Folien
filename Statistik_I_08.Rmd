@@ -6,7 +6,7 @@ institute: "Charlotte Fresenius Hochschule"
 date: "Sommersemester 2026"
 output:
   xaringan::moon_reader:
-    css: [xaringan-themer.css, "hygge"]
+    css: [xaringan-themer.css, "hygge", style.css]
     lib_dir: libs
     nature:
       slideNumberFormat: "%current%"
@@ -122,9 +122,9 @@ class: top, left
 .center[
 ```{r echo = F, out.width="400px"}
 ggplot(data.frame(x = c(-4, 4)), aes(x)) +
-    stat_function(fun = dnorm, geom = "area", fill = "steelblue", alpha = .3) +
-    stat_function(fun = dnorm,geom = "area", fill = "steelblue", xlim = c(qnorm(.975), 4)) +
-  stat_function(fun = dnorm,geom = "area", fill = "steelblue", xlim = c(-4, qnorm(.025))) +
+      stat_function(fun = dnorm, geom = "area", fill = "#fdeef5", color = "#621C37") +
+    stat_function(fun = dnorm,geom = "area", fill = "#EE0071", xlim = c(qnorm(.975), 4)) +
+  stat_function(fun = dnorm,geom = "area", fill = "#EE0071", xlim = c(-4, qnorm(.025))) +
   labs(x = "", y = "") +
       annotate(geom = "text", x = -2.5, y = 0.05, label = "2.5%", size = 6) +
     annotate(geom = "text", x = 2.5, y = 0.05, label = "2.5%", size = 6) +
@@ -167,8 +167,8 @@ class: top, left
 .center[
 ```{r echo = F, out.width="400px"}
 ggplot(data.frame(x = c(-4, 4)), aes(x)) +
-    stat_function(fun = dnorm, geom = "area", fill = "steelblue", alpha = .3) +
-    stat_function(fun = dnorm,geom = "area", fill = "steelblue", xlim = c(qnorm(.95), 4)) +
+    stat_function(fun = dnorm, geom = "area", fill = "#fdeef5", color = "#621C37") +
+    stat_function(fun = dnorm,geom = "area", fill = "#EE0071", xlim = c(qnorm(.95), 4)) +
     scale_x_continuous(breaks = c( 0, qnorm(.95)), labels = c("0", expression(t[krit]))) +
   labs(x = "", y = "") +
     annotate(geom = "text", x = 2.5, y = 0.05, label = "5%", size = 6) +
@@ -178,6 +178,155 @@ ggplot(data.frame(x = c(-4, 4)), aes(x)) +
 ```
 ]
 ]
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Ein- und Zweiseitige Hypothesen - Graphisch
+
+<svg width="100%" viewBox="0 0 900 345" style="display:block; margin-top:4px;">
+
+  <!-- === COLUMN HEADER BACKGROUNDS === -->
+  <rect x="0" y="0" width="300" height="30" fill="#621C37"/>
+  <rect x="301" y="0" width="298" height="30" fill="#621C37"/>
+  <rect x="601" y="0" width="299" height="30" fill="#621C37"/>
+  <!-- === COLUMN HEADER TEXT === -->
+  <text x="150" y="21" text-anchor="middle" fill="white" font-size="14" font-weight="700" font-family="inherit">zweiseitig</text>
+  <text x="450" y="21" text-anchor="middle" fill="white" font-size="14" font-weight="700" font-family="inherit">linksseitig</text>
+  <text x="750" y="21" text-anchor="middle" fill="white" font-size="14" font-weight="700" font-family="inherit">rechtsseitig</text>
+
+  <!-- === H₀ DECISION LABELS === -->
+  <!-- Col 1: left reject | center accept | right reject -->
+  <text x="53"  y="42" text-anchor="middle" fill="#444" font-size="9" font-family="inherit">H₀</text>
+  <text x="53"  y="54" text-anchor="middle" fill="#444" font-size="9" font-family="inherit">ablehnen</text>
+  <text x="150" y="42" text-anchor="middle" fill="#444" font-size="9" font-family="inherit">H₀ nicht</text>
+  <text x="150" y="54" text-anchor="middle" fill="#444" font-size="9" font-family="inherit">ablehnen</text>
+  <text x="247" y="42" text-anchor="middle" fill="#444" font-size="9" font-family="inherit">H₀</text>
+  <text x="247" y="54" text-anchor="middle" fill="#444" font-size="9" font-family="inherit">ablehnen</text>
+  <!-- Col 2: left reject | right accept -->
+  <text x="353" y="42" text-anchor="middle" fill="#444" font-size="9" font-family="inherit">H₀</text>
+  <text x="353" y="54" text-anchor="middle" fill="#444" font-size="9" font-family="inherit">ablehnen</text>
+  <text x="452" y="48" text-anchor="middle" fill="#444" font-size="9" font-family="inherit">H₀ nicht ablehnen</text>
+  <!-- Col 3: left accept | right reject -->
+  <text x="748" y="48" text-anchor="middle" fill="#444" font-size="9" font-family="inherit">H₀ nicht ablehnen</text>
+  <text x="847" y="42" text-anchor="middle" fill="#444" font-size="9" font-family="inherit">H₀</text>
+  <text x="847" y="54" text-anchor="middle" fill="#444" font-size="9" font-family="inherit">ablehnen</text>
+
+  <!-- === BELL CURVES: LIGHT FILL (drawn first) === -->
+  <path d="M 44,182 C 56,181 76,173 94,155 C 114,135 136,68 150,68 C 164,68 186,135 206,155 C 224,173 244,181 256,182 Z"
+        fill="#fdeef5" stroke="none"/>
+  <path d="M 344,182 C 356,181 376,173 394,155 C 414,135 436,68 450,68 C 464,68 486,135 506,155 C 524,173 544,181 556,182 Z"
+        fill="#fdeef5" stroke="none"/>
+  <path d="M 644,182 C 656,181 676,173 694,155 C 714,135 736,68 750,68 C 764,68 786,135 806,155 C 824,173 844,181 856,182 Z"
+        fill="#fdeef5" stroke="none"/>
+
+  <!-- === REJECTION REGION FILLS === -->
+  <!-- Zweiseitig: left tail (x=44–82) -->
+  <path d="M 44,182 C 54,181 67,176 82,167 L 82,182 Z" fill="#EE0071" opacity="0.35"/>
+  <!-- Zweiseitig: right tail (x=218–256) -->
+  <path d="M 218,182 L 218,167 C 232,176 246,181 256,182 Z" fill="#EE0071" opacity="0.35"/>
+  <!-- Linksseitig: left tail (x=344–382) -->
+  <path d="M 344,182 C 354,181 367,176 382,162 L 382,182 Z" fill="#EE0071" opacity="0.35"/>
+  <!-- Rechtsseitig: right tail (x=818–856) -->
+  <path d="M 818,182 L 818,162 C 832,176 844,181 856,182 Z" fill="#EE0071" opacity="0.35"/>
+
+  <!-- === BELL CURVE OUTLINES === -->
+  <path d="M 44,182 C 56,181 76,173 94,155 C 114,135 136,68 150,68 C 164,68 186,135 206,155 C 224,173 244,181 256,182"
+        fill="none" stroke="#621C37" stroke-width="2"/>
+  <path d="M 344,182 C 356,181 376,173 394,155 C 414,135 436,68 450,68 C 464,68 486,135 506,155 C 524,173 544,181 556,182"
+        fill="none" stroke="#621C37" stroke-width="2"/>
+  <path d="M 644,182 C 656,181 676,173 694,155 C 714,135 736,68 750,68 C 764,68 786,135 806,155 C 824,173 844,181 856,182"
+        fill="none" stroke="#621C37" stroke-width="2"/>
+
+  <!-- === CRITICAL VALUE DASHED LINES === -->
+  <line x1="82"  y1="32" x2="82"  y2="188" stroke="#621C37" stroke-width="1.2" stroke-dasharray="4 3"/>
+  <line x1="218" y1="32" x2="218" y2="188" stroke="#621C37" stroke-width="1.2" stroke-dasharray="4 3"/>
+  <line x1="382" y1="32" x2="382" y2="188" stroke="#621C37" stroke-width="1.2" stroke-dasharray="4 3"/>
+  <line x1="818" y1="32" x2="818" y2="188" stroke="#621C37" stroke-width="1.2" stroke-dasharray="4 3"/>
+
+  <!-- === α LABELS === -->
+  <text x="61"  y="165" text-anchor="middle" fill="#621C37" font-size="11" font-weight="600" font-family="inherit">α/2</text>
+  <text x="239" y="165" text-anchor="middle" fill="#621C37" font-size="11" font-weight="600" font-family="inherit">α/2</text>
+  <text x="361" y="165" text-anchor="middle" fill="#621C37" font-size="11" font-weight="600" font-family="inherit">α</text>
+  <text x="839" y="165" text-anchor="middle" fill="#621C37" font-size="11" font-weight="600" font-family="inherit">α</text>
+
+  <!-- === AXIS LINES === -->
+  <line x1="44"  y1="183" x2="256" y2="183" stroke="#888" stroke-width="1"/>
+  <line x1="344" y1="183" x2="556" y2="183" stroke="#888" stroke-width="1"/>
+  <line x1="644" y1="183" x2="856" y2="183" stroke="#888" stroke-width="1"/>
+
+  <!-- === AXIS TICKS === -->
+  <line x1="82"  y1="181" x2="82"  y2="187" stroke="#621C37" stroke-width="1.2"/>
+  <line x1="150" y1="181" x2="150" y2="187" stroke="#888"    stroke-width="1"/>
+  <line x1="218" y1="181" x2="218" y2="187" stroke="#621C37" stroke-width="1.2"/>
+  <line x1="382" y1="181" x2="382" y2="187" stroke="#621C37" stroke-width="1.2"/>
+  <line x1="450" y1="181" x2="450" y2="187" stroke="#888"    stroke-width="1"/>
+  <line x1="750" y1="181" x2="750" y2="187" stroke="#888"    stroke-width="1"/>
+  <line x1="818" y1="181" x2="818" y2="187" stroke="#621C37" stroke-width="1.2"/>
+
+  <!-- === AXIS LABELS === -->
+  <text x="82"  y="200" text-anchor="middle" fill="#621C37" font-size="10" font-family="inherit">−t<tspan dy="3" font-size="8">α/2</tspan></text>
+  <text x="150" y="200" text-anchor="middle" fill="#888"    font-size="10" font-family="inherit">0</text>
+  <text x="218" y="200" text-anchor="middle" fill="#621C37" font-size="10" font-family="inherit">t<tspan dy="3" font-size="8">α/2</tspan></text>
+  <text x="382" y="200" text-anchor="middle" fill="#621C37" font-size="10" font-family="inherit">−t<tspan dy="3" font-size="8">α</tspan></text>
+  <text x="450" y="200" text-anchor="middle" fill="#888"    font-size="10" font-family="inherit">0</text>
+  <text x="750" y="200" text-anchor="middle" fill="#888"    font-size="10" font-family="inherit">0</text>
+  <text x="818" y="200" text-anchor="middle" fill="#621C37" font-size="10" font-family="inherit">t<tspan dy="3" font-size="8">α</tspan></text>
+
+  <!-- === COLUMN DIVIDERS === -->
+  <line x1="300" y1="0" x2="300" y2="308" stroke="#ccc" stroke-width="1"/>
+  <line x1="600" y1="0" x2="600" y2="308" stroke="#ccc" stroke-width="1"/>
+
+  <!-- === TABLE SECTION === -->
+  <line x1="0" y1="205" x2="900" y2="205" stroke="#ccc" stroke-width="1"/>
+  <!-- Sub-column header background -->
+  <rect x="0" y="205" width="900" height="22" fill="#f5f5f3"/>
+  <!-- Sub-column dividers -->
+  <line x1="140" y1="205" x2="140" y2="308" stroke="#ddd" stroke-width="1"/>
+  <line x1="440" y1="205" x2="440" y2="308" stroke="#ddd" stroke-width="1"/>
+  <line x1="740" y1="205" x2="740" y2="308" stroke="#ddd" stroke-width="1"/>
+  <!-- Sub-column header text -->
+  <text x="70"  y="220" text-anchor="middle" fill="#621C37" font-size="10" font-weight="600" font-family="inherit">Ein-Stichproben</text>
+  <text x="220" y="220" text-anchor="middle" fill="#621C37" font-size="10" font-weight="600" font-family="inherit">(un-)abhängig</text>
+  <text x="370" y="220" text-anchor="middle" fill="#621C37" font-size="10" font-weight="600" font-family="inherit">Ein-Stichproben</text>
+  <text x="520" y="220" text-anchor="middle" fill="#621C37" font-size="10" font-weight="600" font-family="inherit">(un-)abhängig</text>
+  <text x="670" y="220" text-anchor="middle" fill="#621C37" font-size="10" font-weight="600" font-family="inherit">Ein-Stichproben</text>
+  <text x="820" y="220" text-anchor="middle" fill="#621C37" font-size="10" font-weight="600" font-family="inherit">(un-)abhängig</text>
+  <!-- Sub-header bottom separator -->
+  <line x1="0" y1="227" x2="900" y2="227" stroke="#ccc" stroke-width="1"/>
+
+  <!-- === H₀ FORMULAS === -->
+  <text x="8"   y="244" fill="#444" font-size="10" font-family="inherit">H₀: μ = μ₀</text>
+  <text x="148" y="244" fill="#444" font-size="10" font-family="inherit">H₀: μ₁ − μ₂ = 0  <tspan fill="#bbb">μ₁ = μ₂</tspan></text>
+  <text x="308" y="244" fill="#444" font-size="10" font-family="inherit">H₀: μ ≥ μ₀</text>
+  <text x="448" y="244" fill="#444" font-size="10" font-family="inherit">H₀: μ₁ − μ₂ ≥ 0</text>
+  <text x="608" y="244" fill="#444" font-size="10" font-family="inherit">H₀: μ ≤ μ₀</text>
+  <text x="748" y="244" fill="#444" font-size="10" font-family="inherit">H₀: μ₁ − μ₂ ≤ 0</text>
+
+  <!-- H₀/H₁ row separator -->
+  <line x1="0" y1="258" x2="900" y2="258" stroke="#eee" stroke-width="1"/>
+
+  <!-- === H₁ FORMULAS === -->
+  <text x="8"   y="275" fill="#444" font-size="10" font-family="inherit">H₁: μ ≠ μ₀</text>
+  <text x="148" y="275" fill="#444" font-size="10" font-family="inherit">H₁: μ₁ − μ₂ ≠ 0  <tspan fill="#bbb">μ₁ ≠ μ₂</tspan></text>
+  <text x="308" y="275" fill="#444" font-size="10" font-family="inherit">H₁: μ &lt; μ₀</text>
+  <text x="448" y="275" fill="#444" font-size="10" font-family="inherit">H₁: μ₁ − μ₂ &lt; 0</text>
+  <text x="608" y="275" fill="#444" font-size="10" font-family="inherit">H₁: μ &gt; μ₀</text>
+  <text x="748" y="275" fill="#444" font-size="10" font-family="inherit">H₁: μ₁ − μ₂ &gt; 0</text>
+
+  <!-- Table outer border -->
+  <rect x="0" y="205" width="900" height="98" fill="none" stroke="#ccc" stroke-width="1"/>
+
+  <!-- === FOOTER === -->
+  <line x1="0" y1="308" x2="900" y2="308" stroke="#ddd" stroke-width="1"/>
+  <rect x="4" y="316" width="8" height="8" fill="#621C37"/>
+  <text x="18" y="324" fill="#555" font-size="9.5" font-family="inherit">μ₀ ist ein Wert gegen welchen wir testen (beispielsweise ein Referenzwert)</text>
+  <rect x="4" y="330" width="8" height="8" fill="#621C37"/>
+  <text x="18" y="338" fill="#555" font-size="9.5" font-family="inherit">alternative Schreibweisen sind in grau geschrieben</text>
+
+</svg>
+
 
 ---
 class: top, left
@@ -420,8 +569,8 @@ ggplot(df, aes(x = PF, colour = Gruppe)) +
  # scale_x_continuous(breaks = c(0,4.91,7.22, 10, 15)) +
   # geom_vline(xintercept = 7.22, linetype = "dashed", colour = "blue") +
   # geom_vline(xintercept = 4.91, linetype = "dashed", colour = "red") +
-  stat_function(fun = dnorm, args = list(mean = mean(df$PF), sd = sd(df$PF)), colour = "blue") +
-  stat_function(fun = dnorm, args = list(mean = mean(df2$PF), sd = sd(df2$PF)), colour = "red") +
+  stat_function(fun = dnorm, args = list(mean = mean(df$PF), sd = sd(df$PF)), colour = "#621C37") +
+  stat_function(fun = dnorm, args = list(mean = mean(df2$PF), sd = sd(df2$PF)), colour = "#EE0071") +
   labs(x = "X", y = "relative Häufigkeit") +
    theme_classic() +
   theme(text = element_text(size = 25))
@@ -449,8 +598,8 @@ ggplot(df, aes(x = PF, colour = Gruppe)) +
  # scale_x_continuous(breaks = c(0,4.91,7.22, 10, 15)) +
   # geom_vline(xintercept = 7.22, linetype = "dashed", colour = "blue") +
   # geom_vline(xintercept = 4.91, linetype = "dashed", colour = "red") +
-  stat_function(fun = dnorm, args = list(mean = mean(df$PF), sd = sd(df$PF)), colour = "blue") +
-  stat_function(fun = dnorm, args = list(mean = mean(df2$PF), sd = sd(df2$PF)*1.5), colour = "red") +
+  stat_function(fun = dnorm, args = list(mean = mean(df$PF), sd = sd(df$PF)), colour = "#621C37") +
+  stat_function(fun = dnorm, args = list(mean = mean(df2$PF), sd = sd(df2$PF)*1.5), colour = "#EE0071") +
   labs(x = "X", y = "relative Häufigkeit") +
    theme_classic() +
   theme(text = element_text(size = 25))
@@ -631,10 +780,12 @@ df = data.frame(Gruppe = c("VG", "KG"),
                 se = c(sqrt(6.12)/sqrt(53), sqrt(6.54)/sqrt(51)))
 
 ggplot(df, aes(x = Gruppe, y = mean, fill = Gruppe)) +
-stat_summary(geom = "bar") +
+stat_summary(geom = "bar", colour = "#621C37") +
   geom_errorbar(aes(ymin = mean-se, ymax =mean+se), width = .2) +
   labs(y = "Verbesserung") +
   theme_classic() +
+  scale_fill_manual(values = c("VG" = "#621C37",
+                               "KG" = "#fdeef5")) +
   coord_cartesian(ylim = c(0,8)) +
   scale_y_continuous(breaks = 0:8) +
   theme(text = element_text(size = 25),
@@ -723,6 +874,7 @@ names(df)[2] = "Cohen's d"
 kable(df[,], escape = FALSE)
 ```
 ]
+
 ---
 class: top, left
 ### $t$-Test
@@ -909,7 +1061,8 @@ knitr::kable(df_med,
 .center[
 ```{r, echo = F, out.width="250px"}
 ggplot(df, aes(x = Gruppe, y = Reduktion)) +
-   stat_summary(size = 1.5, geom = "bar") +
+   stat_summary(size = 1.5, geom = "bar", fill = "#fdeef5", color = "#621C37") +
+  stat_summary(geom = "errorbar", fun.data = mean_se, width = .2, color = "#621C37") +
     labs(x = "Gruppe", y = "Reduktion") +
   theme_classic() +
   theme(text = element_text(size = 28))
@@ -917,7 +1070,7 @@ ggplot(df, aes(x = Gruppe, y = Reduktion)) +
 ]
 ]
 .pull-right[
-.code80[
+.code60[
 ```{r}
 t.test(Reduktion ~ Gruppe, data = df, var.equal = T)
 ```
@@ -955,9 +1108,10 @@ knitr::kable(df_med,
 .center[
 ```{r, echo = F, out.width="250px"}
 ggplot(df, aes(x = Messung, y = Reduktion)) +
-   stat_summary(size = 1.5) +
-  stat_summary(geom = "line", group = 1) +
+   stat_summary(size = 1.5, colour = "#621C37") +
+  stat_summary(geom = "line", group = 1, colour = "#621C37") +
     labs(x = "Messung", y = "Reduktion") +
+  coord_cartesian(ylim = c(0,12)) +
   theme_classic() +
   theme(text = element_text(size = 28))
 ```

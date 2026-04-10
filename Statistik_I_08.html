@@ -16,6 +16,7 @@
     <script src="libs/kePrint/kePrint.js"></script>
     <link href="libs/lightable/lightable.css" rel="stylesheet" />
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="style.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -73,13 +74,13 @@ class: top, left
 
 #### Entwicklung eines Entscheidungskriteriums
 
-* Zur Erinnerung: Warhscheinlichkeit, die `\(H_0\)` abzulehnen, obwohl sie in Wirklichkeit gilt, heißt `\(\alpha\)`-Fehler oder Fehler 1. Art
+* Zur Erinnerung: Wahrscheinlichkeit, die `\(H_0\)` abzulehnen, obwohl sie in Wirklichkeit gilt, heißt `\(\alpha\)`-Fehler oder Fehler 1. Art
 
 * t-Wert ist signifikant, wenn seine Auftretenswahrscheinlichkeit kleiner ist als das gewählte `\(\alpha\)`
 
 * Für die Signifikanzprüfung kann der t-Wert `\((t_{emp})\)` auch mit dem kritischen t-Wert `\((t_{krit})\)` verglichen werden (in t-Tabelle nachsehen)
 
-* Die Wahl des Signikanzniveaus ist von inhaltlichen Überlegungen abhängig und wird oft als `\(\alpha=.05\)` gewählt.
+* Die Wahl des Signifikanzniveaus ist von inhaltlichen Überlegungen abhängig und wird oft als `\(\alpha=.05\)` gewählt.
 
 ---
 class: top, left
@@ -126,6 +127,155 @@ class: top, left
 &lt;img src="Statistik_I_08_files/figure-html/unnamed-chunk-2-1.png" alt="" width="400px" /&gt;
 ]
 ]
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Ein- und Zweiseitige Hypothesen - Graphisch
+
+&lt;svg width="100%" viewBox="0 0 900 345" style="display:block; margin-top:4px;"&gt;
+
+  &lt;!-- === COLUMN HEADER BACKGROUNDS === --&gt;
+  &lt;rect x="0" y="0" width="300" height="30" fill="#621C37"/&gt;
+  &lt;rect x="301" y="0" width="298" height="30" fill="#621C37"/&gt;
+  &lt;rect x="601" y="0" width="299" height="30" fill="#621C37"/&gt;
+  &lt;!-- === COLUMN HEADER TEXT === --&gt;
+  &lt;text x="150" y="21" text-anchor="middle" fill="white" font-size="14" font-weight="700" font-family="inherit"&gt;zweiseitig&lt;/text&gt;
+  &lt;text x="450" y="21" text-anchor="middle" fill="white" font-size="14" font-weight="700" font-family="inherit"&gt;linksseitig&lt;/text&gt;
+  &lt;text x="750" y="21" text-anchor="middle" fill="white" font-size="14" font-weight="700" font-family="inherit"&gt;rechtsseitig&lt;/text&gt;
+
+  &lt;!-- === H₀ DECISION LABELS === --&gt;
+  &lt;!-- Col 1: left reject | center accept | right reject --&gt;
+  &lt;text x="53"  y="42" text-anchor="middle" fill="#444" font-size="9" font-family="inherit"&gt;H₀&lt;/text&gt;
+  &lt;text x="53"  y="54" text-anchor="middle" fill="#444" font-size="9" font-family="inherit"&gt;ablehnen&lt;/text&gt;
+  &lt;text x="150" y="42" text-anchor="middle" fill="#444" font-size="9" font-family="inherit"&gt;H₀ nicht&lt;/text&gt;
+  &lt;text x="150" y="54" text-anchor="middle" fill="#444" font-size="9" font-family="inherit"&gt;ablehnen&lt;/text&gt;
+  &lt;text x="247" y="42" text-anchor="middle" fill="#444" font-size="9" font-family="inherit"&gt;H₀&lt;/text&gt;
+  &lt;text x="247" y="54" text-anchor="middle" fill="#444" font-size="9" font-family="inherit"&gt;ablehnen&lt;/text&gt;
+  &lt;!-- Col 2: left reject | right accept --&gt;
+  &lt;text x="353" y="42" text-anchor="middle" fill="#444" font-size="9" font-family="inherit"&gt;H₀&lt;/text&gt;
+  &lt;text x="353" y="54" text-anchor="middle" fill="#444" font-size="9" font-family="inherit"&gt;ablehnen&lt;/text&gt;
+  &lt;text x="452" y="48" text-anchor="middle" fill="#444" font-size="9" font-family="inherit"&gt;H₀ nicht ablehnen&lt;/text&gt;
+  &lt;!-- Col 3: left accept | right reject --&gt;
+  &lt;text x="748" y="48" text-anchor="middle" fill="#444" font-size="9" font-family="inherit"&gt;H₀ nicht ablehnen&lt;/text&gt;
+  &lt;text x="847" y="42" text-anchor="middle" fill="#444" font-size="9" font-family="inherit"&gt;H₀&lt;/text&gt;
+  &lt;text x="847" y="54" text-anchor="middle" fill="#444" font-size="9" font-family="inherit"&gt;ablehnen&lt;/text&gt;
+
+  &lt;!-- === BELL CURVES: LIGHT FILL (drawn first) === --&gt;
+  &lt;path d="M 44,182 C 56,181 76,173 94,155 C 114,135 136,68 150,68 C 164,68 186,135 206,155 C 224,173 244,181 256,182 Z"
+        fill="#fdeef5" stroke="none"/&gt;
+  &lt;path d="M 344,182 C 356,181 376,173 394,155 C 414,135 436,68 450,68 C 464,68 486,135 506,155 C 524,173 544,181 556,182 Z"
+        fill="#fdeef5" stroke="none"/&gt;
+  &lt;path d="M 644,182 C 656,181 676,173 694,155 C 714,135 736,68 750,68 C 764,68 786,135 806,155 C 824,173 844,181 856,182 Z"
+        fill="#fdeef5" stroke="none"/&gt;
+
+  &lt;!-- === REJECTION REGION FILLS === --&gt;
+  &lt;!-- Zweiseitig: left tail (x=44–82) --&gt;
+  &lt;path d="M 44,182 C 54,181 67,176 82,167 L 82,182 Z" fill="#EE0071" opacity="0.35"/&gt;
+  &lt;!-- Zweiseitig: right tail (x=218–256) --&gt;
+  &lt;path d="M 218,182 L 218,167 C 232,176 246,181 256,182 Z" fill="#EE0071" opacity="0.35"/&gt;
+  &lt;!-- Linksseitig: left tail (x=344–382) --&gt;
+  &lt;path d="M 344,182 C 354,181 367,176 382,162 L 382,182 Z" fill="#EE0071" opacity="0.35"/&gt;
+  &lt;!-- Rechtsseitig: right tail (x=818–856) --&gt;
+  &lt;path d="M 818,182 L 818,162 C 832,176 844,181 856,182 Z" fill="#EE0071" opacity="0.35"/&gt;
+
+  &lt;!-- === BELL CURVE OUTLINES === --&gt;
+  &lt;path d="M 44,182 C 56,181 76,173 94,155 C 114,135 136,68 150,68 C 164,68 186,135 206,155 C 224,173 244,181 256,182"
+        fill="none" stroke="#621C37" stroke-width="2"/&gt;
+  &lt;path d="M 344,182 C 356,181 376,173 394,155 C 414,135 436,68 450,68 C 464,68 486,135 506,155 C 524,173 544,181 556,182"
+        fill="none" stroke="#621C37" stroke-width="2"/&gt;
+  &lt;path d="M 644,182 C 656,181 676,173 694,155 C 714,135 736,68 750,68 C 764,68 786,135 806,155 C 824,173 844,181 856,182"
+        fill="none" stroke="#621C37" stroke-width="2"/&gt;
+
+  &lt;!-- === CRITICAL VALUE DASHED LINES === --&gt;
+  &lt;line x1="82"  y1="32" x2="82"  y2="188" stroke="#621C37" stroke-width="1.2" stroke-dasharray="4 3"/&gt;
+  &lt;line x1="218" y1="32" x2="218" y2="188" stroke="#621C37" stroke-width="1.2" stroke-dasharray="4 3"/&gt;
+  &lt;line x1="382" y1="32" x2="382" y2="188" stroke="#621C37" stroke-width="1.2" stroke-dasharray="4 3"/&gt;
+  &lt;line x1="818" y1="32" x2="818" y2="188" stroke="#621C37" stroke-width="1.2" stroke-dasharray="4 3"/&gt;
+
+  &lt;!-- === α LABELS === --&gt;
+  &lt;text x="61"  y="165" text-anchor="middle" fill="#621C37" font-size="11" font-weight="600" font-family="inherit"&gt;α/2&lt;/text&gt;
+  &lt;text x="239" y="165" text-anchor="middle" fill="#621C37" font-size="11" font-weight="600" font-family="inherit"&gt;α/2&lt;/text&gt;
+  &lt;text x="361" y="165" text-anchor="middle" fill="#621C37" font-size="11" font-weight="600" font-family="inherit"&gt;α&lt;/text&gt;
+  &lt;text x="839" y="165" text-anchor="middle" fill="#621C37" font-size="11" font-weight="600" font-family="inherit"&gt;α&lt;/text&gt;
+
+  &lt;!-- === AXIS LINES === --&gt;
+  &lt;line x1="44"  y1="183" x2="256" y2="183" stroke="#888" stroke-width="1"/&gt;
+  &lt;line x1="344" y1="183" x2="556" y2="183" stroke="#888" stroke-width="1"/&gt;
+  &lt;line x1="644" y1="183" x2="856" y2="183" stroke="#888" stroke-width="1"/&gt;
+
+  &lt;!-- === AXIS TICKS === --&gt;
+  &lt;line x1="82"  y1="181" x2="82"  y2="187" stroke="#621C37" stroke-width="1.2"/&gt;
+  &lt;line x1="150" y1="181" x2="150" y2="187" stroke="#888"    stroke-width="1"/&gt;
+  &lt;line x1="218" y1="181" x2="218" y2="187" stroke="#621C37" stroke-width="1.2"/&gt;
+  &lt;line x1="382" y1="181" x2="382" y2="187" stroke="#621C37" stroke-width="1.2"/&gt;
+  &lt;line x1="450" y1="181" x2="450" y2="187" stroke="#888"    stroke-width="1"/&gt;
+  &lt;line x1="750" y1="181" x2="750" y2="187" stroke="#888"    stroke-width="1"/&gt;
+  &lt;line x1="818" y1="181" x2="818" y2="187" stroke="#621C37" stroke-width="1.2"/&gt;
+
+  &lt;!-- === AXIS LABELS === --&gt;
+  &lt;text x="82"  y="200" text-anchor="middle" fill="#621C37" font-size="10" font-family="inherit"&gt;−t&lt;tspan dy="3" font-size="8"&gt;α/2&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text x="150" y="200" text-anchor="middle" fill="#888"    font-size="10" font-family="inherit"&gt;0&lt;/text&gt;
+  &lt;text x="218" y="200" text-anchor="middle" fill="#621C37" font-size="10" font-family="inherit"&gt;t&lt;tspan dy="3" font-size="8"&gt;α/2&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text x="382" y="200" text-anchor="middle" fill="#621C37" font-size="10" font-family="inherit"&gt;−t&lt;tspan dy="3" font-size="8"&gt;α&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text x="450" y="200" text-anchor="middle" fill="#888"    font-size="10" font-family="inherit"&gt;0&lt;/text&gt;
+  &lt;text x="750" y="200" text-anchor="middle" fill="#888"    font-size="10" font-family="inherit"&gt;0&lt;/text&gt;
+  &lt;text x="818" y="200" text-anchor="middle" fill="#621C37" font-size="10" font-family="inherit"&gt;t&lt;tspan dy="3" font-size="8"&gt;α&lt;/tspan&gt;&lt;/text&gt;
+
+  &lt;!-- === COLUMN DIVIDERS === --&gt;
+  &lt;line x1="300" y1="0" x2="300" y2="308" stroke="#ccc" stroke-width="1"/&gt;
+  &lt;line x1="600" y1="0" x2="600" y2="308" stroke="#ccc" stroke-width="1"/&gt;
+
+  &lt;!-- === TABLE SECTION === --&gt;
+  &lt;line x1="0" y1="205" x2="900" y2="205" stroke="#ccc" stroke-width="1"/&gt;
+  &lt;!-- Sub-column header background --&gt;
+  &lt;rect x="0" y="205" width="900" height="22" fill="#f5f5f3"/&gt;
+  &lt;!-- Sub-column dividers --&gt;
+  &lt;line x1="140" y1="205" x2="140" y2="308" stroke="#ddd" stroke-width="1"/&gt;
+  &lt;line x1="440" y1="205" x2="440" y2="308" stroke="#ddd" stroke-width="1"/&gt;
+  &lt;line x1="740" y1="205" x2="740" y2="308" stroke="#ddd" stroke-width="1"/&gt;
+  &lt;!-- Sub-column header text --&gt;
+  &lt;text x="70"  y="220" text-anchor="middle" fill="#621C37" font-size="10" font-weight="600" font-family="inherit"&gt;Ein-Stichproben&lt;/text&gt;
+  &lt;text x="220" y="220" text-anchor="middle" fill="#621C37" font-size="10" font-weight="600" font-family="inherit"&gt;(un-)abhängig&lt;/text&gt;
+  &lt;text x="370" y="220" text-anchor="middle" fill="#621C37" font-size="10" font-weight="600" font-family="inherit"&gt;Ein-Stichproben&lt;/text&gt;
+  &lt;text x="520" y="220" text-anchor="middle" fill="#621C37" font-size="10" font-weight="600" font-family="inherit"&gt;(un-)abhängig&lt;/text&gt;
+  &lt;text x="670" y="220" text-anchor="middle" fill="#621C37" font-size="10" font-weight="600" font-family="inherit"&gt;Ein-Stichproben&lt;/text&gt;
+  &lt;text x="820" y="220" text-anchor="middle" fill="#621C37" font-size="10" font-weight="600" font-family="inherit"&gt;(un-)abhängig&lt;/text&gt;
+  &lt;!-- Sub-header bottom separator --&gt;
+  &lt;line x1="0" y1="227" x2="900" y2="227" stroke="#ccc" stroke-width="1"/&gt;
+
+  &lt;!-- === H₀ FORMULAS === --&gt;
+  &lt;text x="8"   y="244" fill="#444" font-size="10" font-family="inherit"&gt;H₀: μ = μ₀&lt;/text&gt;
+  &lt;text x="148" y="244" fill="#444" font-size="10" font-family="inherit"&gt;H₀: μ₁ − μ₂ = 0  &lt;tspan fill="#bbb"&gt;μ₁ = μ₂&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text x="308" y="244" fill="#444" font-size="10" font-family="inherit"&gt;H₀: μ ≥ μ₀&lt;/text&gt;
+  &lt;text x="448" y="244" fill="#444" font-size="10" font-family="inherit"&gt;H₀: μ₁ − μ₂ ≥ 0&lt;/text&gt;
+  &lt;text x="608" y="244" fill="#444" font-size="10" font-family="inherit"&gt;H₀: μ ≤ μ₀&lt;/text&gt;
+  &lt;text x="748" y="244" fill="#444" font-size="10" font-family="inherit"&gt;H₀: μ₁ − μ₂ ≤ 0&lt;/text&gt;
+
+  &lt;!-- H₀/H₁ row separator --&gt;
+  &lt;line x1="0" y1="258" x2="900" y2="258" stroke="#eee" stroke-width="1"/&gt;
+
+  &lt;!-- === H₁ FORMULAS === --&gt;
+  &lt;text x="8"   y="275" fill="#444" font-size="10" font-family="inherit"&gt;H₁: μ ≠ μ₀&lt;/text&gt;
+  &lt;text x="148" y="275" fill="#444" font-size="10" font-family="inherit"&gt;H₁: μ₁ − μ₂ ≠ 0  &lt;tspan fill="#bbb"&gt;μ₁ ≠ μ₂&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text x="308" y="275" fill="#444" font-size="10" font-family="inherit"&gt;H₁: μ &amp;lt; μ₀&lt;/text&gt;
+  &lt;text x="448" y="275" fill="#444" font-size="10" font-family="inherit"&gt;H₁: μ₁ − μ₂ &amp;lt; 0&lt;/text&gt;
+  &lt;text x="608" y="275" fill="#444" font-size="10" font-family="inherit"&gt;H₁: μ &amp;gt; μ₀&lt;/text&gt;
+  &lt;text x="748" y="275" fill="#444" font-size="10" font-family="inherit"&gt;H₁: μ₁ − μ₂ &amp;gt; 0&lt;/text&gt;
+
+  &lt;!-- Table outer border --&gt;
+  &lt;rect x="0" y="205" width="900" height="98" fill="none" stroke="#ccc" stroke-width="1"/&gt;
+
+  &lt;!-- === FOOTER === --&gt;
+  &lt;line x1="0" y1="308" x2="900" y2="308" stroke="#ddd" stroke-width="1"/&gt;
+  &lt;rect x="4" y="316" width="8" height="8" fill="#621C37"/&gt;
+  &lt;text x="18" y="324" fill="#555" font-size="9.5" font-family="inherit"&gt;μ₀ ist ein Wert gegen welchen wir testen (beispielsweise ein Referenzwert)&lt;/text&gt;
+  &lt;rect x="4" y="330" width="8" height="8" fill="#621C37"/&gt;
+  &lt;text x="18" y="338" fill="#555" font-size="9.5" font-family="inherit"&gt;alternative Schreibweisen sind in grau geschrieben&lt;/text&gt;
+
+&lt;/svg&gt;
+
 
 ---
 class: top, left
@@ -286,7 +436,7 @@ Prüfung der Voraussetzungen:
 * Graphische Prüfung: Histogramm oder QQ-Plot
 * Prüfung mit Signifikanztest (Wenn signifikant `\(\rightarrow\)` NV-Annahme verletzt):
   * Shapiro-Wilk Test (empfohlen für `\(3 \leq n \leq 5.000)\)`
-  * Kolgomorow-Smirnov Test
+  * Kolmogorov-Smirnov Test
   * berechnen wir nicht händisch `\(\rightarrow\)` in Klausur wird angegeben, ob NV in Population angenommen werden kann
 * Viele Statistiker nehmen mittlerweile an, dass Tests ab balancierten Gruppengrößen von `\(n_1=n_2 \geq 30\)` robust sind
 
@@ -508,10 +658,10 @@ Gegeben:
   * `\(s^2_{VG} =6.12\)`
   * `\(n_{VG}=53\)` 
 
-* Konventionelle Therapie: 
-  * `\(\bar{x}_{VG} = 4.91\)`
-  * `\(s^2_{VG} =6.54\)`
-  * `\(n_{VG}=51\)` 
+* Konventionelle Therapie:
+  * `\(\bar{x}_{KG} = 4.91\)`
+  * `\(s^2_{KG} =6.54\)`
+  * `\(n_{KG}=51\)`
 
 ]
 
@@ -548,7 +698,7 @@ class: top, left
 
 #### `\(t\)`-Test für unabhängige Stichproben mit gleichen Varianzen
 
-**Effekstärke: Cohen's d**
+**Effektgröße: Cohen's d**
 
 .pull-left[
 
@@ -587,6 +737,7 @@ $$
 |Mittlerer Effekt |&amp;#124;0.5&amp;#124; |
 |Großer Effekt    |&amp;#124;0.8&amp;#124; |
 ]
+
 ---
 class: top, left
 ### `\(t\)`-Test
@@ -599,7 +750,7 @@ class: top, left
 
 * Wahrscheinlichkeit des t-Werts gibt Wahrscheinlichkeit an, ob Nullhypothese zutrifft
 
-* Ergibt t-Test (Nullhypothesentest) eine geringe Wahrscheinlichkeit, ist Ablehnung der Nullhypothese mögllich
+* Ergibt t-Test (Nullhypothesentest) eine geringe Wahrscheinlichkeit, ist Ablehnung der Nullhypothese möglich
 
 * die zugrundeliegenden Populationen haben nicht den gleichen, sondern verschiedene Mittelwerte
 
@@ -636,7 +787,7 @@ class: top, left
 class: top, left
 ### `\(t\)`-Test
 
-#### Freiheitsgerade einer `\(t\)`-Verteilung
+#### Freiheitsgrade einer `\(t\)`-Verteilung
 
 * Exakte Form der `\(t\)`-Verteilung ist abhängig vom Stichprobenumfang `\(\rightarrow\)` deckt sich nicht exakt mit `\(z\)`-Verteilung
 
@@ -766,13 +917,13 @@ Beispiel: Vergleich der Reduktion von Symptomatik zwischen 2 Gruppen `\((N=16)\)
 &lt;tbody&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; G1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 9.62 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2.07 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10.88 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.55 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; G2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 6.75 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2.19 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7.50 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.31 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -782,7 +933,7 @@ Beispiel: Vergleich der Reduktion von Symptomatik zwischen 2 Gruppen `\((N=16)\)
 ]
 ]
 .pull-right[
-.code80[
+.code60[
 
 ``` r
 t.test(Reduktion ~ Gruppe, data = df, var.equal = T)
@@ -793,13 +944,13 @@ t.test(Reduktion ~ Gruppe, data = df, var.equal = T)
 ## 	Two Sample t-test
 ## 
 ## data:  Reduktion by Gruppe
-## t = 2.7025, df = 14, p-value = 0.01717
+## t = 4.7001, df = 14, p-value = 0.0003411
 ## alternative hypothesis: true difference in means between group G1 and group G2 is not equal to 0
 ## 95 percent confidence interval:
-##  0.5933497 5.1566503
+##  1.834892 4.915108
 ## sample estimates:
 ## mean in group G1 mean in group G2 
-##            9.625            6.750
+##           10.875            7.500
 ```
 ]
 ]
@@ -828,13 +979,13 @@ Beispiel: Prüfung, ob Symptomreduktion zwischen 2 Zeitpunkten signifikant ist `
 &lt;tbody&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; T1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 8.75 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2.31 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10.50 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.33 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; T2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 6.50 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.07 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7.62 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.92 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -855,13 +1006,13 @@ t.test(df$Reduktion[df$Messung == "T1"], df$Reduktion[df$Messung == "T2"], paire
 ## 	Paired t-test
 ## 
 ## data:  df$Reduktion[df$Messung == "T1"] and df$Reduktion[df$Messung == "T2"]
-## t = 1.9912, df = 7, p-value = 0.08673
+## t = 2.4225, df = 7, p-value = 0.04592
 ## alternative hypothesis: true mean difference is not equal to 0
 ## 95 percent confidence interval:
-##  -0.4219058  4.9219058
+##  0.06867599 5.68132401
 ## sample estimates:
 ## mean difference 
-##            2.25
+##           2.875
 ```
 ]
 ]
