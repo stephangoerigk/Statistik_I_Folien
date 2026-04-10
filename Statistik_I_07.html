@@ -1270,6 +1270,7 @@ class: top, left
 
 ####  Kumulierung des `\(α\)`-Fehlers
 
+.pull-left[
 Führt man mehrere statistische Tests durch, hat man bei jedem dieser Tests das Risiko eines `\(α\)`-Fehlers
 
 Beispiel:
@@ -1277,9 +1278,14 @@ Beispiel:
 
 * Annahme: Unabhängigkeit der einzelnen Tests 
 
-* Wahrscheinlichkeit, dass mindestens 1 Test signifikant wird `\(= 1−(1−0.05)^3 = 0.14\)`
+* Wahrscheinlichkeit, dass mindestens 1 Test fälschlicherweise signifikant wird `\(= 1−(1−0.05)^3 = 0.14\)`
 
 * 14% Fehlerwahrscheinlichkeit statt 5%
+]
+
+.pull-right[
+&lt;img src="Statistik_I_07_files/figure-html/unnamed-chunk-13-1.png" alt="" width="100%" /&gt;
+]
 
 ---
 class: top, left
@@ -1287,20 +1293,23 @@ class: top, left
 
 ####  Kumulierung des `\(α\)`-Fehlers
 
-Führt man `\(k\)` unabhängige statistische Tests zur überprüfung einer `\(H_{0}\)` durch, kommt es zu einer Kumulierung des `\(α\)`-Fehler Risikos 
+
+Führt man `\(k\)` unabhängige statistische Tests zur überprüfung einer `\(H_{0}\)` durch, kommt es zu einer Kumulierung des `\(α\)`-Fehler Risikos
 
 `$$α′ = 1−(1−α)^k$$`
 Lösung:
 
 * Lässt es sich nicht vermeiden, mehrere statistische Tests zur Prüfung einer Hypothese durchzuführen, muss eine `\(α\)`-Fehler Korrektur vorgenommen werden
 * Der Test wird somit strenger (Grenze für signifikantes Ergebnis niedriger)
-* `\(α\)`-Fehler Adjustierung nach Bonferroni: 
+* `\(α\)`-Fehler Adjustierung nach Bonferroni:
 
 `$$α_{adj} = 1 − (1 − α)^{1/k}$$`
 
-Beispiel: 3 Tests 
+Beispiel: 3 Tests
 
 `$$α_{adj} =1−(1−0.05)^{1/3} =0.017$$`
+
+
 
 
 ---
