@@ -65,22 +65,6 @@ class: middle, left
 class: top, left
 ### Hypothesen und Hypothesentests
 
-#### Lernziele:
-
-Sie lernen:
-
-* Was ein Signifikanztest ist
-
-* den Unterschied zwischen der Null- und der Alternativhypothese
-
-* das Signifikanzniveau $\alpha$
-
-* die Abgrenzung zwischen einem einseitigen und einem zweiseitigen Signifikanztest
-
----
-class: top, left
-### Hypothesen und Hypothesentests
-
 #### Wiederholung:
 
 **Inferenzstatistik: **
@@ -95,13 +79,214 @@ ABER:
 
 * Was für "Aussagen", die wir über die Population treffen, sind gemeint?
 
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Was sind Hypothesen?
+
+Hypothese (griech.) = Unterstellung, Vermutung
+
+Eine Vermutung/Annahme ist dann als wissenschaftliche Hypothese zu verstehen, wenn sie folgende 5 Kriterien erfüllt:
+
+Wenn sie...
+1. ...sich auf reale Sachverhalte bezieht, die empirisch untersuchbar sind. (**Empirie**)
+
+2. ...allgemein gültig ist und über den Einzelfall bzw. ein singuläres Ereignis hinausgeht. (**All-Satz**)
+
+3. ...zumindest implizit die Form eines Konditionalsatzes hat. (**wenn-dann, je-desto**)
+
+4. ...durch Erfahrungen potenziell widerlegbar ist. (**Falsifizierbarkeit**)
+
+5. ...(theoretisch begründbar ist)
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+.pull-left[
+#### Beispiele für Hypothesen:
+
+* Frauen sind kreativer als Männer
+
+* Mit zunehmender Müdigkeit sinkt die Konzentrationsfähigkeit
+
+* Je schöner das Wetter, desto besser die Stimmung
+
+* Jungen und Mädchen lesen unterschiedlich viel in ihrer Freizeit
+
+Behauptungen erfüllen alle genannten Kriterien: sind daher Hypothesen
+]
+
+.pull-right[
+```{r eval = TRUE, echo = F, out.width = "300px"}
+knitr::include_graphics("bilder/obelix.png")
+```
+]
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Hypothesen: JA oder NEIN?
+
+* Bei starkem Zigarettenkonsum kann es zu Herzinfarkt kommen
+
+* Wenn es regnet, kann die Sonne scheinen.
+
+* Es gibt Kinder, die niemals weinen.
+
+* SchülerInnen aus Gymnasien zeigen gute Leistungen
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Hypothesen: JA oder NEIN?
+
+* Bei starkem Zigarettenkonsum kann es zu Herzinfarkt kommen
+
+$\rightarrow$ Kann-Sätze sind nicht falsifizierbar
+
+* Wenn es regnet, kann die Sonne scheinen.
+
+$\rightarrow$ Kann-Sätze sind nicht falsifizierbar
+
+* Es gibt Kinder, die niemals weinen.
+
+$\rightarrow$ kein All-Satz, nicht falsifizierbar
+
+* Schüler:innen aus Gymnasien zeigen gute Leistungen
+
+$\rightarrow$ Wenn-dann Struktur nicht gegeben, daher nicht
+falsifizierbar
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Hypothesen: JA oder NEIN?
+
+* Die Konzentrationsfähigkeit hängt mit der Blutalkoholkonzentration zusammen.
+
+* Positive Verstärkung durch Lehrer:innen kann zu guten Leistungen bei Schüler:innen führen.
+
+* Positives Feedback beeinflusst die Arbeitsleistung.
+
+* Viele Studierende mögen Methodenlehrveranstaltungen.
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Hypothesen: JA oder NEIN?
+
+* Die Konzentrationsfähigkeit hängt mit der Blutalkoholkonzentration zusammen.
+
+$\rightarrow$ JA
+
+* Positive Verstärkung durch Lehrer:innen kann zu guten Leistungen bei Schüler:innen führen.
+
+$\rightarrow$ NEIN
+
+* Positives Feedback beeinflusst die Arbeitsleistung.
+
+$\rightarrow$ JA
+
+* Viele Studierende mögen Methodenlehrveranstaltungen.
+
+$\rightarrow$ NEIN
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Richtung von Hypothesen
+
+Je nach Erkenntnisstand kann eine ungerichtete oder eine gerichtete Hypothese formuliert werden.
+
+**Ungerichtete Hypothese:**
+
+Die Konzentrationsfähigkeit hängt mit der Blutalkoholkonzentration zusammen.
+
+$\rightarrow$ Eher wenig theoretisches Vorwissen.
+
+**Gerichtete Hypothese:**
+
+Je höher die Blutalkoholkonzentration, desto niedriger die Konzentrationsfähigkeit.
+
+$\rightarrow$ Mehr theoretisches Vorwissen notwendig.
+
+---
+class: top, left
+###  Hypothesen und Hypothesentests
+
+#### Ableitung von statistisch-prüfbaren Hypothesen aus wiss. Hypothese
+
+* Die Hypothese muss in numerische Ausdrücke umgewandelt werden.
+
+* Man spricht von einem **Hypothesenpaar:**
+
+  * **Nullhypothese $(H_0)$:** Der hypothetisierte Effekt besteht nicht.
+
+  * **Alternativhypothese $(H_1)$:** Der hypothetisierte Effekt besteht
+
+* In der Forschung hofft man oft, dass die $H_1$ zutrifft (Hier steckt der angenommene Effekt drin)
+
+* Man versucht, **"Die $H_0$ zu verwerfen"** (Hypothesentest kommt später)
+
+---
+class: top, left
+###  Hypothesen und Hypothesentests
+
+#### Ableitung von statistisch-prüfbaren Hypothesen aus wiss. Hypothese
+
+Beispiel: **(Ungerichtete) Forschungshypothese:**
+
+"Männer und Frauen sind im Schnitt unterschiedlich groß."
+
+* ** $H_0$ ** Es besteht **kein Unterschied** zwischen der durchschnittlichen Größe der Männer (Mittelwert) und der durchschnittlichen Größe der Frauen.
+
+* ** $H_1$ ** Es besteht **ein Unterschied** zwischen der durchschnittlichen Größe der Männer (Mittelwert) und der durchschnittlichen Größe der Frauen.
+
+**Ableitung statistische Hypothese:**
+
+* ** $H_0$ ** Mittelwert Männer - Mittelwert Frauen $=$ 0
+
+$\rightarrow$ **In Zahlen:** Wenn kein Unterschied besteht ist Differenz  = 0  (z.B. 10 - 10 = 0)
+
+* ** $H_1$ ** Mittelwert Männer - Mittelwert Frauen $\neq$ 0
+
+$\rightarrow$ **In Zahlen:** Wenn ein Unterschied besteht ist Differenz $\neq$  0 (z.B. 15 - 10 = 5)
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Beispiele:
+
+* Binomialtest: Auftretenshäufigkeit $\rightarrow$ 1. Semester
+
+* $\chi^2$-Test: Unterschiede in Verteilungen $\rightarrow$ 1. Semester
+
+* unabhängiger t-Test: Unterschiede in Gruppenmittelwerten $\rightarrow$ 1. Semester
+
+* abhängiger t-Test: Unterschiede in Mittelwerten zwischen Zeitpunkten $\rightarrow$ 1. Semester
+
+* Korrelation: Zusammenhänge $\rightarrow$ 1. Semester
+
+* F-Test (ANOVA): Unterschiede in Varianzen $\rightarrow$ 2. Semester
+
+* Regression: Vorhersagen $\rightarrow$ 2. Semester
+
 ---
 class: top, left
 ### Hypothesen und Hypothesentests
 
 #### Hypothesen
 
-* Statistisch zu prüfende Aussagen: Hypothesen (kennen wir bereits aus QM-1)
+* Statistisch zu prüfende Aussagen: Hypothesen
 
 * Der Inhalt einer Hypothese muss quantifiziert werden, damit wir sie prüfen können
 
@@ -340,48 +525,11 @@ class: top, left
 
 **Zweiseitige Hypothese:**
 
-* Der beobachtete Wert unterscheidet sich von dem Referenzwert 
+* Der beobachtete Wert unterscheidet sich von dem Referenzwert
 * Man spricht von einer ungerichteten Hypothese
 * Beispiel Hypothesenpaar (statistisch):
   * $H_{0}$: $𝜇= 173$ cm
   * $H_{1}$: $𝜇\neq 173$ cm
-  
----
-class: top, left
-### Hypothesen und Hypothesentests
-
-#### Ein- und Zweiseitige Hypothesen - Graphisch
-
-.pull-left[
-.center[
-```{r echo = F, out.width="400px"}
-ggplot(data.frame(x = c(-4, 4)), aes(x)) +
-    stat_function(fun = dnorm, geom = "area", fill = "steelblue", alpha = .3) +
-    stat_function(fun = dnorm,geom = "area", fill = "steelblue", xlim = c(-4, qnorm(.05))) +
-  labs(x = "", y = "") +
-  annotate(geom = "text", x = -2.5, y = 0.05, label = "5%", size = 6) +
-  ggtitle("Linksseitiger Test") +
-   theme_classic() +
-  theme(text = element_text(size = 25), axis.text.y = element_blank(), axis.ticks.y = element_blank())   
-```
-]
-]
-.center[
-.pull-right[
-```{r echo = F, out.width="400px"}
-ggplot(data.frame(x = c(-4, 4)), aes(x)) +
-    stat_function(fun = dnorm, geom = "area", fill = "steelblue", alpha = .3) +
-      stat_function(fun = dnorm,geom = "area", fill = "steelblue", xlim = c(qnorm(.95), 4)) +
-  labs(x = "", y = "") +
-  annotate(geom = "text", x = 2.5, y = 0.05, label = "5%", size = 6) +
-  ggtitle("Rechtsseitiger Test") +
-   theme_classic() +
-  theme(text = element_text(size = 25), axis.text.y = element_blank(), axis.ticks.y = element_blank())   
-```
-]
-]
-
-$\rightarrow$ Gesamte "Unsicherheit" $(\alpha = 0.05)$ wird auf eine Seite gesetzt (z.B. kleiner vs. größer als 0).
 
 ---
 class: top, left
@@ -389,22 +537,147 @@ class: top, left
 
 #### Ein- und Zweiseitige Hypothesen - Graphisch
 
-.center[
-```{r echo = F, out.width="400px"}
-ggplot(data.frame(x = c(-4, 4)), aes(x)) +
-    stat_function(fun = dnorm, geom = "area", fill = "steelblue", alpha = .3) +
-    stat_function(fun = dnorm,geom = "area", fill = "steelblue", xlim = c(qnorm(.975), 4)) +
-  stat_function(fun = dnorm,geom = "area", fill = "steelblue", xlim = c(-4, qnorm(.025))) +
-  labs(x = "", y = "") +
-      annotate(geom = "text", x = -2.5, y = 0.05, label = "2.5%", size = 6) +
-    annotate(geom = "text", x = 2.5, y = 0.05, label = "2.5%", size = 6) +
-  ggtitle("Zweiseitiger Test") +
-   theme_classic() +
-  theme(text = element_text(size = 25), axis.text.y = element_blank(), axis.ticks.y = element_blank()) 
-```
-]
+<svg width="100%" viewBox="0 0 900 345" style="display:block; margin-top:4px;">
 
-$\rightarrow$ "Unsicherheit" $(\alpha = 0.05)$ wird auf beide Seiten aufgeteilt (unterschiedlich von 0).
+  <!-- === COLUMN HEADER BACKGROUNDS === -->
+  <rect x="0" y="0" width="300" height="30" fill="#621C37"/>
+  <rect x="301" y="0" width="298" height="30" fill="#621C37"/>
+  <rect x="601" y="0" width="299" height="30" fill="#621C37"/>
+  <!-- === COLUMN HEADER TEXT === -->
+  <text x="150" y="21" text-anchor="middle" fill="white" font-size="14" font-weight="700" font-family="inherit">zweiseitig</text>
+  <text x="450" y="21" text-anchor="middle" fill="white" font-size="14" font-weight="700" font-family="inherit">linksseitig</text>
+  <text x="750" y="21" text-anchor="middle" fill="white" font-size="14" font-weight="700" font-family="inherit">rechtsseitig</text>
+
+  <!-- === H₀ DECISION LABELS === -->
+  <!-- Col 1: left reject | center accept | right reject -->
+  <text x="53"  y="42" text-anchor="middle" fill="#444" font-size="9" font-family="inherit">H₀</text>
+  <text x="53"  y="54" text-anchor="middle" fill="#444" font-size="9" font-family="inherit">ablehnen</text>
+  <text x="150" y="42" text-anchor="middle" fill="#444" font-size="9" font-family="inherit">H₀ nicht</text>
+  <text x="150" y="54" text-anchor="middle" fill="#444" font-size="9" font-family="inherit">ablehnen</text>
+  <text x="247" y="42" text-anchor="middle" fill="#444" font-size="9" font-family="inherit">H₀</text>
+  <text x="247" y="54" text-anchor="middle" fill="#444" font-size="9" font-family="inherit">ablehnen</text>
+  <!-- Col 2: left reject | right accept -->
+  <text x="353" y="42" text-anchor="middle" fill="#444" font-size="9" font-family="inherit">H₀</text>
+  <text x="353" y="54" text-anchor="middle" fill="#444" font-size="9" font-family="inherit">ablehnen</text>
+  <text x="452" y="48" text-anchor="middle" fill="#444" font-size="9" font-family="inherit">H₀ nicht ablehnen</text>
+  <!-- Col 3: left accept | right reject -->
+  <text x="748" y="48" text-anchor="middle" fill="#444" font-size="9" font-family="inherit">H₀ nicht ablehnen</text>
+  <text x="847" y="42" text-anchor="middle" fill="#444" font-size="9" font-family="inherit">H₀</text>
+  <text x="847" y="54" text-anchor="middle" fill="#444" font-size="9" font-family="inherit">ablehnen</text>
+
+  <!-- === BELL CURVES: LIGHT FILL (drawn first) === -->
+  <path d="M 44,182 C 56,181 76,173 94,155 C 114,135 136,68 150,68 C 164,68 186,135 206,155 C 224,173 244,181 256,182 Z"
+        fill="#fdeef5" stroke="none"/>
+  <path d="M 344,182 C 356,181 376,173 394,155 C 414,135 436,68 450,68 C 464,68 486,135 506,155 C 524,173 544,181 556,182 Z"
+        fill="#fdeef5" stroke="none"/>
+  <path d="M 644,182 C 656,181 676,173 694,155 C 714,135 736,68 750,68 C 764,68 786,135 806,155 C 824,173 844,181 856,182 Z"
+        fill="#fdeef5" stroke="none"/>
+
+  <!-- === REJECTION REGION FILLS === -->
+  <!-- Zweiseitig: left tail (x=44–82) -->
+  <path d="M 44,182 C 54,181 67,176 82,167 L 82,182 Z" fill="#EE0071" opacity="0.35"/>
+  <!-- Zweiseitig: right tail (x=218–256) -->
+  <path d="M 218,182 L 218,167 C 232,176 246,181 256,182 Z" fill="#EE0071" opacity="0.35"/>
+  <!-- Linksseitig: left tail (x=344–382) -->
+  <path d="M 344,182 C 354,181 367,176 382,162 L 382,182 Z" fill="#EE0071" opacity="0.35"/>
+  <!-- Rechtsseitig: right tail (x=818–856) -->
+  <path d="M 818,182 L 818,162 C 832,176 844,181 856,182 Z" fill="#EE0071" opacity="0.35"/>
+
+  <!-- === BELL CURVE OUTLINES === -->
+  <path d="M 44,182 C 56,181 76,173 94,155 C 114,135 136,68 150,68 C 164,68 186,135 206,155 C 224,173 244,181 256,182"
+        fill="none" stroke="#621C37" stroke-width="2"/>
+  <path d="M 344,182 C 356,181 376,173 394,155 C 414,135 436,68 450,68 C 464,68 486,135 506,155 C 524,173 544,181 556,182"
+        fill="none" stroke="#621C37" stroke-width="2"/>
+  <path d="M 644,182 C 656,181 676,173 694,155 C 714,135 736,68 750,68 C 764,68 786,135 806,155 C 824,173 844,181 856,182"
+        fill="none" stroke="#621C37" stroke-width="2"/>
+
+  <!-- === CRITICAL VALUE DASHED LINES === -->
+  <line x1="82"  y1="32" x2="82"  y2="188" stroke="#621C37" stroke-width="1.2" stroke-dasharray="4 3"/>
+  <line x1="218" y1="32" x2="218" y2="188" stroke="#621C37" stroke-width="1.2" stroke-dasharray="4 3"/>
+  <line x1="382" y1="32" x2="382" y2="188" stroke="#621C37" stroke-width="1.2" stroke-dasharray="4 3"/>
+  <line x1="818" y1="32" x2="818" y2="188" stroke="#621C37" stroke-width="1.2" stroke-dasharray="4 3"/>
+
+  <!-- === α LABELS === -->
+  <text x="61"  y="165" text-anchor="middle" fill="#621C37" font-size="11" font-weight="600" font-family="inherit">α/2</text>
+  <text x="239" y="165" text-anchor="middle" fill="#621C37" font-size="11" font-weight="600" font-family="inherit">α/2</text>
+  <text x="361" y="165" text-anchor="middle" fill="#621C37" font-size="11" font-weight="600" font-family="inherit">α</text>
+  <text x="839" y="165" text-anchor="middle" fill="#621C37" font-size="11" font-weight="600" font-family="inherit">α</text>
+
+  <!-- === AXIS LINES === -->
+  <line x1="44"  y1="183" x2="256" y2="183" stroke="#888" stroke-width="1"/>
+  <line x1="344" y1="183" x2="556" y2="183" stroke="#888" stroke-width="1"/>
+  <line x1="644" y1="183" x2="856" y2="183" stroke="#888" stroke-width="1"/>
+
+  <!-- === AXIS TICKS === -->
+  <line x1="82"  y1="181" x2="82"  y2="187" stroke="#621C37" stroke-width="1.2"/>
+  <line x1="150" y1="181" x2="150" y2="187" stroke="#888"    stroke-width="1"/>
+  <line x1="218" y1="181" x2="218" y2="187" stroke="#621C37" stroke-width="1.2"/>
+  <line x1="382" y1="181" x2="382" y2="187" stroke="#621C37" stroke-width="1.2"/>
+  <line x1="450" y1="181" x2="450" y2="187" stroke="#888"    stroke-width="1"/>
+  <line x1="750" y1="181" x2="750" y2="187" stroke="#888"    stroke-width="1"/>
+  <line x1="818" y1="181" x2="818" y2="187" stroke="#621C37" stroke-width="1.2"/>
+
+  <!-- === AXIS LABELS === -->
+  <text x="82"  y="200" text-anchor="middle" fill="#621C37" font-size="10" font-family="inherit">−t<tspan dy="3" font-size="8">α/2</tspan></text>
+  <text x="150" y="200" text-anchor="middle" fill="#888"    font-size="10" font-family="inherit">0</text>
+  <text x="218" y="200" text-anchor="middle" fill="#621C37" font-size="10" font-family="inherit">t<tspan dy="3" font-size="8">α/2</tspan></text>
+  <text x="382" y="200" text-anchor="middle" fill="#621C37" font-size="10" font-family="inherit">−t<tspan dy="3" font-size="8">α</tspan></text>
+  <text x="450" y="200" text-anchor="middle" fill="#888"    font-size="10" font-family="inherit">0</text>
+  <text x="750" y="200" text-anchor="middle" fill="#888"    font-size="10" font-family="inherit">0</text>
+  <text x="818" y="200" text-anchor="middle" fill="#621C37" font-size="10" font-family="inherit">t<tspan dy="3" font-size="8">α</tspan></text>
+
+  <!-- === COLUMN DIVIDERS === -->
+  <line x1="300" y1="0" x2="300" y2="308" stroke="#ccc" stroke-width="1"/>
+  <line x1="600" y1="0" x2="600" y2="308" stroke="#ccc" stroke-width="1"/>
+
+  <!-- === TABLE SECTION === -->
+  <line x1="0" y1="205" x2="900" y2="205" stroke="#ccc" stroke-width="1"/>
+  <!-- Sub-column header background -->
+  <rect x="0" y="205" width="900" height="22" fill="#f5f5f3"/>
+  <!-- Sub-column dividers -->
+  <line x1="140" y1="205" x2="140" y2="308" stroke="#ddd" stroke-width="1"/>
+  <line x1="440" y1="205" x2="440" y2="308" stroke="#ddd" stroke-width="1"/>
+  <line x1="740" y1="205" x2="740" y2="308" stroke="#ddd" stroke-width="1"/>
+  <!-- Sub-column header text -->
+  <text x="70"  y="220" text-anchor="middle" fill="#621C37" font-size="10" font-weight="600" font-family="inherit">Ein-Stichproben</text>
+  <text x="220" y="220" text-anchor="middle" fill="#621C37" font-size="10" font-weight="600" font-family="inherit">(un-)abhängig</text>
+  <text x="370" y="220" text-anchor="middle" fill="#621C37" font-size="10" font-weight="600" font-family="inherit">Ein-Stichproben</text>
+  <text x="520" y="220" text-anchor="middle" fill="#621C37" font-size="10" font-weight="600" font-family="inherit">(un-)abhängig</text>
+  <text x="670" y="220" text-anchor="middle" fill="#621C37" font-size="10" font-weight="600" font-family="inherit">Ein-Stichproben</text>
+  <text x="820" y="220" text-anchor="middle" fill="#621C37" font-size="10" font-weight="600" font-family="inherit">(un-)abhängig</text>
+  <!-- Sub-header bottom separator -->
+  <line x1="0" y1="227" x2="900" y2="227" stroke="#ccc" stroke-width="1"/>
+
+  <!-- === H₀ FORMULAS === -->
+  <text x="8"   y="244" fill="#444" font-size="10" font-family="inherit">H₀: μ = μ₀</text>
+  <text x="148" y="244" fill="#444" font-size="10" font-family="inherit">H₀: μ₁ − μ₂ = 0  <tspan fill="#bbb">μ₁ = μ₂</tspan></text>
+  <text x="308" y="244" fill="#444" font-size="10" font-family="inherit">H₀: μ ≥ μ₀</text>
+  <text x="448" y="244" fill="#444" font-size="10" font-family="inherit">H₀: μ₁ − μ₂ ≥ 0</text>
+  <text x="608" y="244" fill="#444" font-size="10" font-family="inherit">H₀: μ ≤ μ₀</text>
+  <text x="748" y="244" fill="#444" font-size="10" font-family="inherit">H₀: μ₁ − μ₂ ≤ 0</text>
+
+  <!-- H₀/H₁ row separator -->
+  <line x1="0" y1="258" x2="900" y2="258" stroke="#eee" stroke-width="1"/>
+
+  <!-- === H₁ FORMULAS === -->
+  <text x="8"   y="275" fill="#444" font-size="10" font-family="inherit">H₁: μ ≠ μ₀</text>
+  <text x="148" y="275" fill="#444" font-size="10" font-family="inherit">H₁: μ₁ − μ₂ ≠ 0  <tspan fill="#bbb">μ₁ ≠ μ₂</tspan></text>
+  <text x="308" y="275" fill="#444" font-size="10" font-family="inherit">H₁: μ &lt; μ₀</text>
+  <text x="448" y="275" fill="#444" font-size="10" font-family="inherit">H₁: μ₁ − μ₂ &lt; 0</text>
+  <text x="608" y="275" fill="#444" font-size="10" font-family="inherit">H₁: μ &gt; μ₀</text>
+  <text x="748" y="275" fill="#444" font-size="10" font-family="inherit">H₁: μ₁ − μ₂ &gt; 0</text>
+
+  <!-- Table outer border -->
+  <rect x="0" y="205" width="900" height="98" fill="none" stroke="#ccc" stroke-width="1"/>
+
+  <!-- === FOOTER === -->
+  <line x1="0" y1="308" x2="900" y2="308" stroke="#ddd" stroke-width="1"/>
+  <rect x="4" y="316" width="8" height="8" fill="#621C37"/>
+  <text x="18" y="324" fill="#555" font-size="9.5" font-family="inherit">μ₀ ist ein Wert gegen welchen wir testen (beispielsweise ein Referenzwert)</text>
+  <rect x="4" y="330" width="8" height="8" fill="#621C37"/>
+  <text x="18" y="338" fill="#555" font-size="9.5" font-family="inherit">alternative Schreibweisen sind in grau geschrieben</text>
+
+</svg>
 
 ---
 class: top, left
@@ -961,6 +1234,160 @@ class: top, left
   * Streuung der Variable $X$ in der Population  (je größer desto weniger Power)
   * Stichprobenumfang $n$ (je größer, desto mehr Power)
   * Verwendeter statistischer Test: je höher der verwendete Informationsgehalt der Daten, umso höher seine Macht
+
+---
+class: top, left
+### Hypothesen und Hypothesentests
+
+#### Statistische Power – Visualisierung
+
+<svg width="100%" viewBox="0 0 900 385" style="display:block; margin-top:2px;">
+  <defs>
+    <clipPath id="pwrLeft">
+      <rect x="0" y="0" width="430" height="240"/>
+    </clipPath>
+    <clipPath id="pwrRight">
+      <rect x="430" y="0" width="470" height="240"/>
+    </clipPath>
+    <clipPath id="pwrPval">
+      <rect x="468" y="0" width="432" height="240"/>
+    </clipPath>
+  </defs>
+
+  <!-- TOP HEADER BAR -->
+  <rect x="0"   y="0" width="430" height="22" fill="#f5f5f3"/>
+  <rect x="430" y="0" width="470" height="22" fill="#fdeef5"/>
+  <line x1="430" y1="0" x2="430" y2="22" stroke="#621C37" stroke-width="1.5"/>
+  <text x="215" y="15" text-anchor="middle" fill="#555" font-size="10.5" font-weight="600" font-family="inherit">H₀ beibehalten (wenn Teststatistik in dieser Zone liegt)</text>
+  <text x="665" y="15" text-anchor="middle" fill="#621C37" font-size="10.5" font-weight="600" font-family="inherit">H₀ ablehnen (wenn Teststatistik in dieser Zone liegt)</text>
+
+  <!--
+    SMOOTH GAUSSIAN BELL CURVES — 6 segments, identical shape.
+    Peak approach/departure: CP at peak-y to force wide horizontal tangent (50px flat zone).
+    H0: peak x=285, y=42, baseline y=232. Symmetric width 275px each side (x=10 to x=560).
+    H1: exactly H0 + 240px on every x. peak x=525, x=250 to x=800.
+    Threshold: x=430. Test statistic: x=468.
+
+    H0 path:
+    M 10,232
+    C 60,232 110,225 150,210      far left tail — flat
+    C 180,198 210,165 228,130     left shoulder rising
+    C 248,90  260,42  285,42      upper left, CP2=(260,42) forces horiz. tangent
+    C 310,42  322,90  342,130     upper right, CP1=(310,42) forces horiz. tangent
+    C 360,165 390,198 420,210     right shoulder falling
+    C 460,225 510,232 560,232     far right tail — flat
+  -->
+
+  <!-- === FILLED REGIONS === -->
+
+  <!-- Richtig Negativ (1-α): H0 left of threshold -->
+  <path d="M 10,232 C 60,232 110,225 150,210 C 180,198 210,165 228,130 C 248,90 260,42 285,42 C 310,42 322,90 342,130 C 360,165 390,198 420,210 C 460,225 510,232 560,232 Z"
+        fill="#fdeef5" clip-path="url(#pwrLeft)"/>
+
+  <!-- Power (1-β): H1 right of threshold -->
+  <path d="M 250,232 C 300,232 350,225 390,210 C 420,198 450,165 468,130 C 488,90 500,42 525,42 C 550,42 562,90 582,130 C 600,165 630,198 660,210 C 700,225 750,232 800,232 Z"
+        fill="#fdeef5" clip-path="url(#pwrRight)"/>
+
+  <!-- Falsch Negativ (β): H1 left of threshold -->
+  <path d="M 250,232 C 300,232 350,225 390,210 C 420,198 450,165 468,130 C 488,90 500,42 525,42 C 550,42 562,90 582,130 C 600,165 630,198 660,210 C 700,225 750,232 800,232 Z"
+        fill="#EE0071" fill-opacity="0.22" clip-path="url(#pwrLeft)"/>
+
+  <!-- Falsch Positiv (α): H0 right of threshold — light -->
+  <path d="M 10,232 C 60,232 110,225 150,210 C 180,198 210,165 228,130 C 248,90 260,42 285,42 C 310,42 322,90 342,130 C 360,165 390,198 420,210 C 460,225 510,232 560,232 Z"
+        fill="#EE0071" fill-opacity="0.28" clip-path="url(#pwrRight)"/>
+
+  <!-- p-Wert: H0 right of test statistic — darker on top -->
+  <path d="M 10,232 C 60,232 110,225 150,210 C 180,198 210,165 228,130 C 248,90 260,42 285,42 C 310,42 322,90 342,130 C 360,165 390,198 420,210 C 460,225 510,232 560,232 Z"
+        fill="#EE0071" fill-opacity="0.55" clip-path="url(#pwrPval)"/>
+
+  <!-- === BELL CURVE OUTLINES === -->
+
+  <!-- H0: solid -->
+  <path d="M 10,232 C 60,232 110,225 150,210 C 180,198 210,165 228,130 C 248,90 260,42 285,42 C 310,42 322,90 342,130 C 360,165 390,198 420,210 C 460,225 510,232 560,232"
+        fill="none" stroke="#621C37" stroke-width="2.2"/>
+
+  <!-- H1: dashed, H0 + 240 on every x -->
+  <path d="M 250,232 C 300,232 350,225 390,210 C 420,198 450,165 468,130 C 488,90 500,42 525,42 C 550,42 562,90 582,130 C 600,165 630,198 660,210 C 700,225 750,232 800,232"
+        fill="none" stroke="#621C37" stroke-width="2.2" stroke-dasharray="8 5"/>
+
+  <!-- THRESHOLD LINE -->
+  <line x1="430" y1="22" x2="430" y2="235" stroke="#621C37" stroke-width="1.5" stroke-dasharray="5 3"/>
+
+  <!-- TEST STATISTIC LINE -->
+  <line x1="468" y1="22" x2="468" y2="235" stroke="#888" stroke-width="1.2" stroke-dasharray="3 3"/>
+
+  <!-- X-AXIS -->
+  <line x1="8" y1="232" x2="808" y2="232" stroke="#888" stroke-width="1.2"/>
+
+  <!-- CURVE LABELS -->
+  <text x="245" y="32" text-anchor="middle" fill="#621C37" font-size="12" font-weight="700" font-family="inherit">H₀ ist wahr</text>
+  <text x="245" y="45" text-anchor="middle" fill="#888" font-size="8.5" font-style="italic" font-family="inherit">(Nullverteilung)</text>
+  <text x="608" y="32" text-anchor="middle" fill="#621C37" font-size="12" font-weight="700" font-family="inherit">H₁ ist wahr</text>
+  <text x="608" y="45" text-anchor="middle" fill="#888" font-size="8.5" font-style="italic" font-family="inherit">(Alternativverteilung)</text>
+
+  <!-- REGION LABELS -->
+  <text x="185" y="160" text-anchor="middle" fill="#621C37" font-size="9.5" font-weight="600" font-family="inherit">Richtig Negativ</text>
+  <text x="185" y="173" text-anchor="middle" fill="#621C37" font-size="9.5" font-family="inherit">(1−α)</text>
+
+  <text x="397" y="197" text-anchor="middle" fill="#621C37" font-size="8.5" font-weight="600" font-family="inherit">Falsch</text>
+  <text x="397" y="208" text-anchor="middle" fill="#621C37" font-size="8.5" font-weight="600" font-family="inherit">Negativ</text>
+  <text x="397" y="219" text-anchor="middle" fill="#621C37" font-size="8" font-family="inherit">(β)</text>
+
+  <text x="448" y="206" text-anchor="middle" fill="#621C37" font-size="8.5" font-weight="600" font-family="inherit">Falsch</text>
+  <text x="448" y="217" text-anchor="middle" fill="#621C37" font-size="8.5" font-weight="600" font-family="inherit">Positiv</text>
+  <text x="448" y="228" text-anchor="middle" fill="#621C37" font-size="8" font-family="inherit">(α)</text>
+
+  <text x="498" y="213" text-anchor="middle" fill="#621C37" font-size="8.5" font-weight="600" font-family="inherit">p-Wert</text>
+
+  <text x="648" y="138" text-anchor="middle" fill="#621C37" font-size="9.5" font-weight="600" font-family="inherit">Richtig Positiv</text>
+  <text x="648" y="151" text-anchor="middle" fill="#621C37" font-size="9.5" font-family="inherit">(Power = 1−β)</text>
+
+  <!-- TEST STATISTIC LABEL -->
+  <text x="468" y="244" text-anchor="middle" fill="#666" font-size="8" font-family="inherit">Teststatistik</text>
+
+  <!-- MENGE ALLER MÖGLICHEN BEOBACHTUNGEN -->
+  <line x1="5"   y1="252" x2="423" y2="252" stroke="#888" stroke-width="1"/>
+  <polygon points="0,252 7,249 7,255"       fill="#888"/>
+  <polygon points="428,252 421,249 421,255" fill="#888"/>
+  <text x="214" y="261" text-anchor="middle" fill="#666" font-size="8.5" font-family="inherit">Menge aller möglichen Beobachtungen</text>
+  <line x1="432" y1="252" x2="803" y2="252" stroke="#888" stroke-width="1"/>
+  <polygon points="430,252 437,249 437,255" fill="#888"/>
+  <polygon points="808,252 801,249 801,255" fill="#888"/>
+
+  <!-- LEGEND -->
+  <line x1="0" y1="268" x2="900" y2="268" stroke="#ddd" stroke-width="1"/>
+
+  <rect x="10" y="276" width="12" height="12" fill="#fdeef5" stroke="#621C37" stroke-width="0.8"/>
+  <text x="27" y="286" fill="#621C37" font-size="9.5" font-weight="700" font-family="inherit">Richtig Negativ (1−α)</text>
+  <text x="27" y="299" fill="#666" font-size="8.5" font-family="inherit">H₀ korrekt beibehalten</text>
+  <text x="27" y="310" fill="#666" font-size="8.5" font-family="inherit">(kein Fehler)</text>
+
+  <line x1="185" y1="268" x2="185" y2="385" stroke="#eee" stroke-width="1"/>
+  <rect x="195" y="276" width="12" height="12" fill="#EE0071" fill-opacity="0.22" stroke="#621C37" stroke-width="0.8"/>
+  <text x="212" y="286" fill="#621C37" font-size="9.5" font-weight="700" font-family="inherit">Falsch Negativ (β) – Fehler 2. Art</text>
+  <text x="212" y="299" fill="#666" font-size="8.5" font-family="inherit">H₀ beibehalten, obwohl H₁ gilt</text>
+  <text x="212" y="310" fill="#666" font-size="8.5" font-family="inherit">(β-Fehler, Teststärke↓)</text>
+
+  <line x1="450" y1="268" x2="450" y2="385" stroke="#eee" stroke-width="1"/>
+  <rect x="460" y="276" width="12" height="12" fill="#EE0071" fill-opacity="0.28" stroke="#621C37" stroke-width="0.8"/>
+  <text x="477" y="286" fill="#621C37" font-size="9.5" font-weight="700" font-family="inherit">Falsch Positiv (α) – Fehler 1. Art</text>
+  <text x="477" y="299" fill="#666" font-size="8.5" font-family="inherit">H₀ abgelehnt, obwohl H₀ gilt</text>
+  <text x="477" y="310" fill="#666" font-size="8.5" font-family="inherit">(Signifikanzniveau, α-Fehler)</text>
+
+  <line x1="700" y1="268" x2="700" y2="385" stroke="#eee" stroke-width="1"/>
+  <rect x="710" y="276" width="12" height="12" fill="#EE0071" fill-opacity="0.55" stroke="#621C37" stroke-width="0.8"/>
+  <text x="727" y="286" fill="#621C37" font-size="9.5" font-weight="700" font-family="inherit">p-Wert</text>
+  <text x="727" y="299" fill="#666" font-size="8.5" font-family="inherit">Fläche unter H₀ rechts der</text>
+  <text x="727" y="310" fill="#666" font-size="8.5" font-family="inherit">beobachteten Teststatistik</text>
+
+  <line x1="0" y1="322" x2="900" y2="322" stroke="#eee" stroke-width="0.8"/>
+
+  <rect x="10" y="330" width="12" height="12" fill="#fdeef5" stroke="#621C37" stroke-width="0.8" stroke-dasharray="3 2"/>
+  <text x="27" y="340" fill="#621C37" font-size="9.5" font-weight="700" font-family="inherit">Power (1−β)</text>
+  <text x="27" y="353" fill="#666" font-size="8.5" font-family="inherit">H₀ korrekt abgelehnt, H₁ richtig erkannt</text>
+
+  <rect x="0" y="268" width="900" height="117" fill="none" stroke="#ddd" stroke-width="1"/>
+</svg>
 
 ---
 class: top, left
