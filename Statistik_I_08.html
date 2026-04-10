@@ -463,13 +463,11 @@ class: top, left
 * `\(H_0\)`: `\(σ_1^2 = σ_2^2\)`
 * `\(H_1\)`: `\(σ_1^2 \neq σ_2^2\)`
 
-Teststatistik:
-
-`$$F=\frac{\hat{\sigma}^2_1}{\hat{\sigma}^2_2}; df_1 = n_1 − 1, df_2 = n_2 − 1$$`
+&gt;Formel: `$$F=\frac{\hat{\sigma}^2_1}{\hat{\sigma}^2_2}; df_1 = n_1 − 1, df_2 = n_2 − 1$$`
 
 * Voraussetzungen: NV in jeder Population
 
-* ACHTUNG: Größere Varianz muss im Zähler stehen!
+* ACHTUNG: **Größere** Varianz muss im Zähler stehen!
 
 * `\(H_0\)`: `\(σ_1^2 = σ_2^2\)` wird verworfen, wenn `\(F &gt; F(df_1,df_2,1−α/2)\)` (kritischer Wert)
 
@@ -562,7 +560,7 @@ class: top, left
 
 * `\(t\)` ist der Wert, welcher auf der t-Verteilung liegt und uns eine Wahrscheinlichkeitseinschätzung für die Mittelwertsdifferenz erlaubt:
 
-`$$t = \frac{\bar{x}_{1}- \bar{x}_{2}}{\sqrt{\frac{(n_{1} - 1) \cdot \hat{\sigma^2_{1}}+ (n_{2} - 1) \cdot \hat{\sigma^2_{2}}}{(n_{1} - 1) + (n_{2} - 1)} (\frac{1}{n_{1}}+\frac{1}{n_{2}})}}; df=n_{1}+n_{2} - 2$$`
+&gt;Formel: `$$t = \frac{\bar{x}_{1}- \bar{x}_{2}}{\sqrt{\frac{(n_{1} - 1) \cdot \hat{\sigma^2_{1}}+ (n_{2} - 1) \cdot \hat{\sigma^2_{2}}}{(n_{1} - 1) + (n_{2} - 1)} (\frac{1}{n_{1}}+\frac{1}{n_{2}})}}; df=n_{1}+n_{2} - 2$$`
 
 Verbal:
 
@@ -731,11 +729,73 @@ $$
 * z.B. `\(d=1\)` bedeutet `\(\bar{x}_1\)` ist eine Standardabweichung höher als `\(\bar{x}_2\)`
 
 
+
 |Effektstärke     |Cohen's d       |
 |:----------------|:---------------|
 |Kleiner Effekt   |&amp;#124;0.2&amp;#124; |
 |Mittlerer Effekt |&amp;#124;0.5&amp;#124; |
 |Großer Effekt    |&amp;#124;0.8&amp;#124; |
+]
+
+---
+class: top, left
+
+### Effektstärke und Powerberechnung
+
+#### Hedge’s g (oft auch einfach nur d geschrieben)
+
+* Eine Variation von Cohen's d ist Hedge's g, welche ähnlich berechnet wird. 
+
+* Der Unterschied besteht darin, dass bei der Berechnung von Hedge's g die Varianzen nicht nur miteinander verbunden, sondern auch durch die Bessel-Korrektur (n-1) korrigiert werden. 
+
+* Diese Korrektur reduziert insbesondere bei kleinen Stichproben (n &lt; 20) den Fehler der Schätzung.
+
+.pull-left[
+&gt;Formel: `$$g=\frac{\bar{x}_1 - \bar{x}_2}{\sqrt{\frac{(n_1-1)  \cdot s^2_1 + (n_2-1)  \cdot s^2_2}{n_1 + n_2 - 2}}}$$`
+]
+
+&lt;small&gt;
+
+.pull-right[
+
+&lt;br&gt;
+
+
+|Effektstärke     |Hedge's g       |
+|:----------------|:---------------|
+|Kleiner Effekt   |&amp;#124;0.2&amp;#124; |
+|Mittlerer Effekt |&amp;#124;0.5&amp;#124; |
+|Großer Effekt    |&amp;#124;0.8&amp;#124; |
+]
+
+---
+class: top, left
+
+### Effektstärke und Powerberechnung
+
+#### Glass’s `\(Δ\)`
+
+* Glass’s delta gehört zu der gleichen Familie, wie die bereits vorgestellten Formeln von Cohen und Hedge. 
+
+* Glass’s Δ wurde ursprünglich für experimentelle Studien entwickelt. Anstatt eine gepoolte oder Besselkorrigierte Standardabweichung zu verwenden, wird einfach die Standardabweichung der Kontrollgruppe verwendet. 
+
+* Die Idee dahinter ist, dass die Kontrollgruppe kein Treatment bekommen hat und daher die Standardabweichung der Grundgesamtheit eher wiedergibt.
+
+.pull-left[
+&gt;Formel: `$$Δ=\frac{\bar{x}_1 - \bar{x}_2}{\sigma_{control}}$$`
+]
+
+.pull-right[
+
+&lt;small&gt;
+
+
+|Effektstärke     |Glass’s Δ       |
+|:----------------|:---------------|
+|Kleiner Effekt   |&amp;#124;0.2&amp;#124; |
+|Mittlerer Effekt |&amp;#124;0.5&amp;#124; |
+|Großer Effekt    |&amp;#124;0.8&amp;#124; |
+
 ]
 
 ---
@@ -886,7 +946,7 @@ class: top, left
 * `\(\bar{x}_d=0.722\)` und `\(\hat{\sigma}_d=4.186\)`
 * `\(\alpha=.05\)`
 
-`$$t_{abhängig}=\frac{\bar{x}_d}{\hat{\sigma}_{\bar{x}_d}}= \frac{\bar{x}_d}{\frac{\hat{\sigma}_d}{\sqrt{N}}}=\frac{0.722}{\frac{4.186}{\sqrt{36}}}=\frac{0.722}{0.698}=1.035$$`
+`$$t=\frac{\bar{x}_d}{\hat{\sigma}_{\bar{x}_d}}= \frac{\bar{x}_d}{\frac{\hat{\sigma}_d}{\sqrt{N}}}=\frac{0.722}{\frac{4.186}{\sqrt{36}}}=\frac{0.722}{0.698}=1.035$$`
 * kritischer Wert (nächster df Wert in Tabelle ist 30) von `\(t_{30,0.975}=2.042\)`
 
 * t-Wert ist nicht größer als kritischer Wert.
@@ -918,18 +978,18 @@ Beispiel: Vergleich der Reduktion von Symptomatik zwischen 2 Gruppen `\((N=16)\)
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; G1 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 10.88 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.55 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.53 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; G2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 7.50 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.31 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7.12 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.89 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 
 .center[
-&lt;img src="Statistik_I_08_files/figure-html/unnamed-chunk-12-1.png" alt="" width="250px" /&gt;
+&lt;img src="Statistik_I_08_files/figure-html/unnamed-chunk-14-1.png" alt="" width="250px" /&gt;
 ]
 ]
 .pull-right[
@@ -944,13 +1004,13 @@ t.test(Reduktion ~ Gruppe, data = df, var.equal = T)
 ## 	Two Sample t-test
 ## 
 ## data:  Reduktion by Gruppe
-## t = 4.7001, df = 14, p-value = 0.0003411
+## t = 3.3601, df = 14, p-value = 0.004669
 ## alternative hypothesis: true difference in means between group G1 and group G2 is not equal to 0
 ## 95 percent confidence interval:
-##  1.834892 4.915108
+##  1.356341 6.143659
 ## sample estimates:
 ## mean in group G1 mean in group G2 
-##           10.875            7.500
+##           10.875            7.125
 ```
 ]
 ]
@@ -979,19 +1039,19 @@ Beispiel: Prüfung, ob Symptomreduktion zwischen 2 Zeitpunkten signifikant ist `
 &lt;tbody&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; T1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 10.50 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2.33 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.88 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.73 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; T2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 7.62 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.92 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5.88 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.25 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 
 .center[
-&lt;img src="Statistik_I_08_files/figure-html/unnamed-chunk-16-1.png" alt="" width="250px" /&gt;
+&lt;img src="Statistik_I_08_files/figure-html/unnamed-chunk-18-1.png" alt="" width="250px" /&gt;
 ]
 ]
 .pull-right[
@@ -1006,13 +1066,13 @@ t.test(df$Reduktion[df$Messung == "T1"], df$Reduktion[df$Messung == "T2"], paire
 ## 	Paired t-test
 ## 
 ## data:  df$Reduktion[df$Messung == "T1"] and df$Reduktion[df$Messung == "T2"]
-## t = 2.4225, df = 7, p-value = 0.04592
+## t = 4.5126, df = 7, p-value = 0.002756
 ## alternative hypothesis: true mean difference is not equal to 0
 ## 95 percent confidence interval:
-##  0.06867599 5.68132401
+##  1.903985 6.096015
 ## sample estimates:
 ## mean difference 
-##           2.875
+##               4
 ```
 ]
 ]

@@ -518,13 +518,11 @@ class: top, left
 * $H_0$: $σ_1^2 = σ_2^2$
 * $H_1$: $σ_1^2 \neq σ_2^2$
 
-Teststatistik:
-
-$$F=\frac{\hat{\sigma}^2_1}{\hat{\sigma}^2_2}; df_1 = n_1 − 1, df_2 = n_2 − 1$$
+>Formel: $$F=\frac{\hat{\sigma}^2_1}{\hat{\sigma}^2_2}; df_1 = n_1 − 1, df_2 = n_2 − 1$$
 
 * Voraussetzungen: NV in jeder Population
 
-* ACHTUNG: Größere Varianz muss im Zähler stehen!
+* ACHTUNG: **Größere** Varianz muss im Zähler stehen!
 
 * $H_0$: $σ_1^2 = σ_2^2$ wird verworfen, wenn $F > F(df_1,df_2,1−α/2)$ (kritischer Wert)
 
@@ -661,7 +659,7 @@ class: top, left
 
 * $t$ ist der Wert, welcher auf der t-Verteilung liegt und uns eine Wahrscheinlichkeitseinschätzung für die Mittelwertsdifferenz erlaubt:
 
-$$t = \frac{\bar{x}_{1}- \bar{x}_{2}}{\sqrt{\frac{(n_{1} - 1) \cdot \hat{\sigma^2_{1}}+ (n_{2} - 1) \cdot \hat{\sigma^2_{2}}}{(n_{1} - 1) + (n_{2} - 1)} (\frac{1}{n_{1}}+\frac{1}{n_{2}})}}; df=n_{1}+n_{2} - 2$$
+>Formel: $$t = \frac{\bar{x}_{1}- \bar{x}_{2}}{\sqrt{\frac{(n_{1} - 1) \cdot \hat{\sigma^2_{1}}+ (n_{2} - 1) \cdot \hat{\sigma^2_{2}}}{(n_{1} - 1) + (n_{2} - 1)} (\frac{1}{n_{1}}+\frac{1}{n_{2}})}}; df=n_{1}+n_{2} - 2$$
 
 Verbal:
 
@@ -866,6 +864,7 @@ $$
 
 * z.B. $d=1$ bedeutet $\bar{x}_1$ ist eine Standardabweichung höher als $\bar{x}_2$
 
+
 ```{r echo=F}
 df <- data.frame(Effektstärke = c("Kleiner Effekt", "Mittlerer Effekt", "Großer Effekt"),
                  `d` = c("|0.2|", "|0.5|", "|0.8|"))
@@ -873,6 +872,69 @@ names(df)[2] = "Cohen's d"
 
 kable(df[,], escape = FALSE)
 ```
+]
+
+---
+class: top, left
+
+### Effektstärke und Powerberechnung
+
+#### Hedge’s g (oft auch einfach nur d geschrieben)
+
+* Eine Variation von Cohen's d ist Hedge's g, welche ähnlich berechnet wird. 
+
+* Der Unterschied besteht darin, dass bei der Berechnung von Hedge's g die Varianzen nicht nur miteinander verbunden, sondern auch durch die Bessel-Korrektur (n-1) korrigiert werden. 
+
+* Diese Korrektur reduziert insbesondere bei kleinen Stichproben (n < 20) den Fehler der Schätzung.
+
+.pull-left[
+>Formel: $$g=\frac{\bar{x}_1 - \bar{x}_2}{\sqrt{\frac{(n_1-1)  \cdot s^2_1 + (n_2-1)  \cdot s^2_2}{n_1 + n_2 - 2}}}$$
+]
+
+<small>
+
+.pull-right[
+
+<br>
+
+```{r echo=F}
+df <- data.frame(Effektstärke = c("Kleiner Effekt", "Mittlerer Effekt", "Großer Effekt"),
+                 `d` = c("|0.2|", "|0.5|", "|0.8|"))
+names(df)[2] = "Hedge's g"
+
+kable(df[,], escape = FALSE)
+```
+]
+
+---
+class: top, left
+
+### Effektstärke und Powerberechnung
+
+#### Glass’s $Δ$
+
+* Glass’s delta gehört zu der gleichen Familie, wie die bereits vorgestellten Formeln von Cohen und Hedge. 
+
+* Glass’s Δ wurde ursprünglich für experimentelle Studien entwickelt. Anstatt eine gepoolte oder Besselkorrigierte Standardabweichung zu verwenden, wird einfach die Standardabweichung der Kontrollgruppe verwendet. 
+
+* Die Idee dahinter ist, dass die Kontrollgruppe kein Treatment bekommen hat und daher die Standardabweichung der Grundgesamtheit eher wiedergibt.
+
+.pull-left[
+>Formel: $$Δ=\frac{\bar{x}_1 - \bar{x}_2}{\sigma_{control}}$$
+]
+
+.pull-right[
+
+<small>
+
+```{r echo=F}
+df <- data.frame(Effektstärke = c("Kleiner Effekt", "Mittlerer Effekt", "Großer Effekt"),
+                 `d` = c("|0.2|", "|0.5|", "|0.8|"))
+names(df)[2] = "Glass’s Δ"
+
+kable(df[,], escape = FALSE)
+```
+
 ]
 
 ---
@@ -1023,7 +1085,7 @@ class: top, left
 * $\bar{x}_d=0.722$ und $\hat{\sigma}_d=4.186$
 * $\alpha=.05$
 
-$$t_{abhängig}=\frac{\bar{x}_d}{\hat{\sigma}_{\bar{x}_d}}= \frac{\bar{x}_d}{\frac{\hat{\sigma}_d}{\sqrt{N}}}=\frac{0.722}{\frac{4.186}{\sqrt{36}}}=\frac{0.722}{0.698}=1.035$$
+$$t=\frac{\bar{x}_d}{\hat{\sigma}_{\bar{x}_d}}= \frac{\bar{x}_d}{\frac{\hat{\sigma}_d}{\sqrt{N}}}=\frac{0.722}{\frac{4.186}{\sqrt{36}}}=\frac{0.722}{0.698}=1.035$$
 * kritischer Wert (nächster df Wert in Tabelle ist 30) von $t_{30,0.975}=2.042$
 
 * t-Wert ist nicht größer als kritischer Wert.
