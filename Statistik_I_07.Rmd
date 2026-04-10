@@ -1329,15 +1329,15 @@ class: top, left
   <text x="285" y="138" text-anchor="middle" fill="#621C37" font-size="9.5" font-weight="600" font-family="inherit">Richtig negativ</text>
   <text x="285" y="151" text-anchor="middle" fill="#621C37" font-size="9.5" font-family="inherit">(1−α)</text>
 
-  <text x="397" y="197" text-anchor="middle" fill="#621C37" font-size="8.5" font-weight="600" font-family="inherit">Falsch</text>
-  <text x="397" y="208" text-anchor="middle" fill="#621C37" font-size="8.5" font-weight="600" font-family="inherit">negativ</text>
-  <text x="397" y="219" text-anchor="middle" fill="#621C37" font-size="8" font-family="inherit">(β)</text>
+  <text x="397" y="157" text-anchor="middle" fill="#621C37" font-size="8.5" font-weight="600" font-family="inherit">Falsch</text>
+  <text x="397" y="168" text-anchor="middle" fill="#621C37" font-size="8.5" font-weight="600" font-family="inherit">negativ</text>
+  <text x="397" y="179" text-anchor="middle" fill="#621C37" font-size="8" font-family="inherit">(β)</text>
 
-  <text x="448" y="206" text-anchor="middle" fill="#621C37" font-size="8.5" font-weight="600" font-family="inherit">Falsch</text>
-  <text x="448" y="217" text-anchor="middle" fill="#621C37" font-size="8.5" font-weight="600" font-family="inherit">positiv</text>
-  <text x="448" y="228" text-anchor="middle" fill="#621C37" font-size="8" font-family="inherit">(α)</text>
+  <text x="448" y="190" text-anchor="middle" fill="#621C37" font-size="8.5" font-weight="600" font-family="inherit">Falsch</text>
+  <text x="448" y="201" text-anchor="middle" fill="#621C37" font-size="8.5" font-weight="600" font-family="inherit">positiv</text>
+  <text x="448" y="212" text-anchor="middle" fill="#621C37" font-size="8" font-family="inherit">(α)</text>
 
-  <text x="498" y="213" text-anchor="middle" fill="#621C37" font-size="8.5" font-weight="600" font-family="inherit">p-Wert</text>
+  <text x="488" y="213" text-anchor="middle" fill="#621C37" font-size="8.5" font-weight="600" font-family="inherit">p-Wert</text>
 
   <text x="528" y="138" text-anchor="middle" fill="#621C37" font-size="9.5" font-weight="600" font-family="inherit">Richtig positiv</text>
   <text x="528" y="151" text-anchor="middle" fill="#621C37" font-size="9.5" font-family="inherit">(Power = 1−β)</text>
