@@ -928,9 +928,28 @@ kable(df[,], col.names = NULL)
 ```
 ]
 
+.pull-left[
+
+<small>
+
+Berechnung händisch:
+
 > Formel: $$\bar{x}=\frac{\sum\limits _{i=1}^{n}x_{i}}{n}$$
 
 Lösungsweg: $$\bar{x}=\frac{`r paste(x, collapse = " + ")`}{`r n`}=\frac{`r sum(x)`}{`r n`}=`r mean(x)`$$
+
+]
+
+.pull-right[
+Berechnung in R:
+
+```{r}
+X = c(10, 11, 9, 10, 12, 10, 10, 11, 8, 9)
+
+mean(X)
+```
+
+]
 
 ---
 class: top, left
@@ -1206,6 +1225,7 @@ kable(df[,], col.names = NULL)
 
 <small>
 
+.pull-left[
 > Formel: $$\def\arraystretch{1.2} \textit{Md} = \Bigg\{\begin{array}{@{}c@{}}\frac{x_{(\frac{n}{2})}+x_{(\frac{n}{2}+1)}}{2} \quad \textrm{falls }n \textrm{ gerade}\\[6pt] x_{(\frac{n+1}{2})}\quad \textrm{falls }n \textrm{ ungerade}\end{array}$$
 
 Lösungsweg:
@@ -1213,7 +1233,18 @@ Lösungsweg:
 $$x_{sortiert}= `r paste(x[order(x)], collapse = ";")`$$
 
 $$\textit{Md} = \frac{x_{(\frac{`r n`}{2})}+x_{(\frac{`r n`}{2}+1)}}{2}=`r median(x)`$$
+]
 
+.pull-right[
+Berechnung in R:
+
+```{r}
+X = c(10, 11, 9, 10, 12, 10, 10, 11, 8, 9)
+
+median(X)
+```
+
+]
 ---
 class: top, left
 ### Skalenniveaus und statistische Kennwerte
@@ -1264,6 +1295,7 @@ kable(df[,], col.names = NULL)
 
 <small>
 
+
 > Formel: $$\def\arraystretch{1.2} \textit{Md} = \Bigg\{\begin{array}{@{}c@{}}\frac{x_{(\frac{n}{2})}+x_{(\frac{n}{2}+1)}}{2} \quad \textrm{falls }n \textrm{ gerade}\\[6pt] x_{(\frac{n+1}{2})}\quad \textrm{falls }n \textrm{ ungerade}\end{array}$$
 
 Lösungsweg:
@@ -1271,6 +1303,8 @@ Lösungsweg:
 $$x_{sortiert}= `r paste(x[order(x)], collapse = ";")`$$
 
 $$\textit{Md} = \frac{x_{(\frac{`r n`}{2})}+x_{(\frac{`r n`}{2}+1)}}{2}=`r median(x)`$$
+
+
 ---
 class: top, left
 ### Skalenniveaus und statistische Kennwerte

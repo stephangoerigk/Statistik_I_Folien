@@ -914,9 +914,33 @@ class: top, left
 |X  |10 |11 |9  |10 |12 |10 |10 |11 |8  |9  |
 ]
 
+.pull-left[
+
+&lt;small&gt;
+
+Berechnung händisch:
+
 &gt; Formel: `$$\bar{x}=\frac{\sum\limits _{i=1}^{n}x_{i}}{n}$$`
 
 Lösungsweg: `$$\bar{x}=\frac{10 + 11 + 9 + 10 + 12 + 10 + 10 + 11 + 8 + 9}{10}=\frac{100}{10}=10$$`
+
+]
+
+.pull-right[
+Berechnung in R:
+
+
+``` r
+X = c(10, 11, 9, 10, 12, 10, 10, 11, 8, 9)
+
+mean(X)
+```
+
+```
+## [1] 10
+```
+
+]
 
 ---
 class: top, left
@@ -1147,6 +1171,7 @@ class: top, left
 
 &lt;small&gt;
 
+.pull-left[
 &gt; Formel: `$$\def\arraystretch{1.2} \textit{Md} = \Bigg\{\begin{array}{@{}c@{}}\frac{x_{(\frac{n}{2})}+x_{(\frac{n}{2}+1)}}{2} \quad \textrm{falls }n \textrm{ gerade}\\[6pt] x_{(\frac{n+1}{2})}\quad \textrm{falls }n \textrm{ ungerade}\end{array}$$`
 
 Lösungsweg:
@@ -1154,7 +1179,23 @@ Lösungsweg:
 `$$x_{sortiert}= 8;9;9;10;10;10;10;11;11;12$$`
 
 `$$\textit{Md} = \frac{x_{(\frac{10}{2})}+x_{(\frac{10}{2}+1)}}{2}=10$$`
+]
 
+.pull-right[
+Berechnung in R:
+
+
+``` r
+X = c(10, 11, 9, 10, 12, 10, 10, 11, 8, 9)
+
+median(X)
+```
+
+```
+## [1] 10
+```
+
+]
 ---
 class: top, left
 ### Skalenniveaus und statistische Kennwerte
@@ -1191,6 +1232,7 @@ class: top, left
 
 &lt;small&gt;
 
+
 &gt; Formel: `$$\def\arraystretch{1.2} \textit{Md} = \Bigg\{\begin{array}{@{}c@{}}\frac{x_{(\frac{n}{2})}+x_{(\frac{n}{2}+1)}}{2} \quad \textrm{falls }n \textrm{ gerade}\\[6pt] x_{(\frac{n+1}{2})}\quad \textrm{falls }n \textrm{ ungerade}\end{array}$$`
 
 Lösungsweg:
@@ -1198,6 +1240,8 @@ Lösungsweg:
 `$$x_{sortiert}= 982;1048;2037;2300;3000;4272;5332;8261$$`
 
 `$$\textit{Md} = \frac{x_{(\frac{8}{2})}+x_{(\frac{8}{2}+1)}}{2}=2650$$`
+
+
 ---
 class: top, left
 ### Skalenniveaus und statistische Kennwerte
