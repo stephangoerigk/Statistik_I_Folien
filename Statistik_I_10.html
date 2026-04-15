@@ -129,7 +129,7 @@ class: top, left
 
 * ABER: Alle bislang kennengelernten statistischen Tests beinhalten **intervallskalierte AVs**
 
-* Was können wir tun, wenn wie eine **nominalskalierte AV** haben?
+* Was können wir tun, wenn wir eine **nominalskalierte AV** haben?
 
 Zunächst: nominalskalierte Variablen mit 2 Merkmalsausprägungen (dichotom aka. binär):
 
@@ -614,7 +614,7 @@ class: top, left
 #### `\(\chi^2\)`-Wert
 &lt;small&gt;
 
-* Entscheidung über signifikante Unterschiede zwischen beobachteten und erwarteten Häufigkeiten erfolgt über ** `\(\chi^2\)`-Wert **
+* Entscheidung über signifikante Unterschiede zwischen beobachteten und erwarteten Häufigkeiten erfolgt über **$\chi^2$-Wert**
 
 * Folgt der `\(\chi^2\)`-Verteilung `\(\rightarrow\)` Wahrscheinlichkeit empirischer Werte unter Annahme der `\(H_0\)` bestimmbar
 
@@ -622,7 +622,7 @@ class: top, left
 
 * Was wird benötigt: beobachtete und erwartete absolute Häufigkeiten für alle Merkmalstufen
 
-* `\(\chi^2\)`-Wert gibt Abweichung der beobachteten von den erwarteten Häufigkeit an
+* `\(\chi^2\)`-Wert gibt Abweichung der beobachteten von den erwarteten Häufigkeiten an
 
 `$$\chi^2 = \sum\limits _{i=1}^{k}\frac{(f_{bi} - f_{ei})^2}{f_{ei}}$$`
 mit:
@@ -646,7 +646,7 @@ class: top, left
 
 * `\(\chi^2\)` kann aufgrund der Quadrierung in der Formel nur positive Werte annehmen
 
-  * Informationen über Richtung der Abweichung geht verloren
+  * Informationen über Richtung der Abweichung gehen verloren
   
   * unspezifischer Test `\(\rightarrow\)` es können keine gerichteten Hypothesen getestet werden
   
@@ -719,7 +719,7 @@ class: top, left
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; `\((f_{bi} - f_{ei})^2\)` &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; `\(20^2=400\)` &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; `\(-20^2=400\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; `\((-20)^2=400\)` &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; `\(\frac{(f_{bi} - f_{ei})^2}{f_{ei}}\)` &lt;/td&gt;
@@ -828,7 +828,7 @@ class: top, left
 
 * VORSICHT: Signifikanzniveau `\((\alpha)\)` wird dann verdoppelt (z.B. wenn `\(\alpha=.05\)` wird in der Tabelle `\(\alpha=.10\)` angenommen)
 
-* Folge: `\(\chi^2_{krit}\)` verringert sich, Test wir eher signifkant (Teststärke nimmt zu)
+* Folge: `\(\chi^2_{krit}\)` verringert sich, Test wird eher signifikant (Teststärke nimmt zu)
 
 ---
 class: top, left
@@ -836,7 +836,7 @@ class: top, left
 
 #### Eindimensionaler `\(\chi^2\)`-Test 
 
-**Effekstärke:**
+**Effektgröße:**
 
 .pull-left[
 
@@ -928,7 +928,7 @@ class: top, left
 
   * `\(H_0:\)` Merkmale sind stochastisch unabhängig.
   
-  * `\(H_1:\)` Es besteht irgendeine Art von Zusammenhang zwischen den Steufen des einen Merkmals und den Stufen des anderen Merkmals
+  * `\(H_1:\)` Es besteht irgendeine Art von Zusammenhang zwischen den Stufen des einen Merkmals und den Stufen des anderen Merkmals
 
 ---
 class: top, left
@@ -1071,11 +1071,11 @@ addmargins(table(data$Behandlungserfolg, data$Behandlung), FUN = sum)
 .pull-right[
 **Beispiel - Therapieerfolg in größerer Stichprobe `\((N=100):\)`**
 
-* 45 Patient:innen hatten einen Therapieerfolg: `\(p_{ja}=\frac{49}{100}=0.49\)`
+* 49 Patient:innen hatten einen Therapieerfolg: `\(p_{ja}=\frac{49}{100}=0.49\)`
 
 * Gegenwahrscheinlichkeit: `\(p_{nein}=1-0.49=0.51\)`
 
-* 50 Patient:innen hatten einen Wartelistentherapie: `\(p_{Warteliste}=\frac{50}{100}=0.50\)`
+* 50 Patient:innen erhielten eine Wartelistentherapie: `\(p_{Warteliste}=\frac{50}{100}=0.50\)`
 
 * Gegenwahrscheinlichkeit: `\(p_{Psychotherapie}=1-0.50=0.50\)`
 
@@ -1090,7 +1090,7 @@ class: top, left
 * Was bedeutet Stochastische Unabhängigkeit?
   
   * Merkmale beeinflussen einander nicht
-  * Ranghäufigkeiten müssen sich in jeder einzelnen Stufe des Merkmals widerspiegeln
+  * Randhäufigkeiten müssen sich in jeder einzelnen Stufe des Merkmals widerspiegeln
   * Ändert sich Verhältnis ist `\(H_0\)` verletzt
 
 **Berechnung erwarteter Häufigkeiten unter Annahme der `\(H_0:\)`**
@@ -1318,7 +1318,7 @@ class: top, left
 
 #### Zweidimensionaler `\(\chi^2\)`-Test
 
-**Effekstärke `\(w^2:\)`**
+**Effektgröße `\(w^2:\)`**
 
 * Auch hier lässt sich `\(w^2\)` verwenden
 
@@ -1334,7 +1334,7 @@ class: top, left
 
 #### Zweidimensionaler `\(\chi^2\)`-Test
 
-**Effekstärke Cramers Phi-Koeffizient (Cramers Index, CI)**
+**Effektgröße Cramers Phi-Koeffizient (Cramers Index, CI)**
 
 * Empirisches Effektstärkemaß, baut auf `\(w^2\)` auf
 
@@ -1355,7 +1355,7 @@ class: top, left
 
 .pull-left[
 
-**Effekstärke Cramers Phi-Koeffizient (Cramers Index, CI)**
+**Effektgröße Cramers Phi-Koeffizient (Cramers Index, CI)**
 
 `$$CI = \sqrt\frac{\chi^2}{N \cdot (R - 1)} = \sqrt\frac{21.17}{100 \cdot (2 - 1)}=0.46$$`
 ]
@@ -1403,7 +1403,7 @@ class: top, left
 
 * Beide Merkmale haben genau 2 Merkmalsstufen (2x2 Kontingenztabelle)
 
-Dann kann Formel vereinfach werden (Vierfelder-Tafel):
+Dann kann Formel vereinfacht werden (Vierfelder-Tafel):
 
 &lt;table class=" lightable-classic" style='font-size: 18px; font-family: "Arial Narrow", "Source Sans Pro", sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'&gt;
  &lt;thead&gt;
@@ -1488,7 +1488,7 @@ class: top, left
 
 #### Der Vierfelder `\(\chi^2\)`-Test
 
-**Effekstärke Phi-Koeffizient**
+**Effektgröße Phi-Koeffizient**
 
 * Effektstärke `\(\phi\)` entspricht Korrelation von 2 dichotomen Variablen
 
@@ -1516,7 +1516,7 @@ class: top, left
 
 * Prinzip: Vergleich von **beobachteten vs. theoretisch erwarteten** Häufigkeiten.
 
-* Für `\(\chi^2\)`-Tests existieren theoreitsch **unendlich viele `\(H_0\)` ** Möglichkeiten (häufig: Gleichverteilungsannahme)
+* Für `\(\chi^2\)`-Tests existieren theoretisch **unendlich viele `\(H_0\)` ** Möglichkeiten (häufig: Gleichverteilungsannahme)
 
 * **Eindimensionaler `\(\chi^2\)`-Test** prüft, ob sich Verteilung der Kategorien einer nominalskalierten Variable unterscheiden.
 
