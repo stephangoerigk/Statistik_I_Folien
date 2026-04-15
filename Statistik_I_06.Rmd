@@ -6,7 +6,7 @@ institute: "Charlotte Fresenius Hochschule"
 date: "Sommersemester 2026"
 output:
   xaringan::moon_reader:
-    css: [xaringan-themer.css, "hygge"]
+    css: [xaringan-themer.css, "hygge", style.css]
     lib_dir: libs
     nature:
       slideNumberFormat: "%current%"
