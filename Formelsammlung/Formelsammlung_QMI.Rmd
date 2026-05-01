@@ -1,0 +1,398 @@
+---
+title: "Formelsammlung"
+subtitle: "Quantitative Methoden I (B.Sc. Psychologie)"
+author: "Charlotte Fresenius Hochschule"
+date: "`r Sys.Date()`"
+output:
+  pdf_document:
+    toc: true
+    toc_depth: 2
+  html_document:
+    toc: true
+    toc_float: true
+    toc_depth: 2
+    number_sections: false
+    theme: flatly
+    mathjax: default
+header-includes:
+  - \usepackage{graphicx}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE
+)
+```
+
+
+---
+
+## 1. Arithmetisches Mittel
+
+$$\bar{x} = \frac{\sum_{i=1}^{n} x_i}{n}$$
+
+---
+
+## 2. Median (Md)
+
+**wenn $n$ gerade:**
+
+$$Md = \frac{x_{\frac{n}{2}} + x_{\frac{n+2}{2}}}{2}$$
+
+**wenn $n$ ungerade:**
+
+$$Md = x_{\frac{n+1}{2}}$$
+
+---
+
+## 3. Varianz und Standardabweichung
+
+Als erwartungstreue Schätzung der Populationsvarianz:
+
+$$\hat{\sigma}^2 = \frac{\sum_{i=1}^{n}(x_i - \bar{x})^2}{n-1} = \frac{QS_1}{df_1}$$
+
+Standardabweichung als Wurzel der Varianz:
+
+$$\hat{\sigma} = \sqrt{\hat{\sigma}^2} = \sqrt{\frac{\sum_{i=1}^{n}(x_i - \bar{x})^2}{n-1}}$$
+
+---
+---
+
+## 4. z-Transformation
+
+$$z_i = \frac{x_i - \bar{x}}{s}$$
+
+---
+
+## 5. Graphische Darstellungen (Boxplot)
+
+### Berechnung der $\alpha$-Quantile
+
+$$
+\tilde{x}_\alpha =
+\begin{cases}
+x_{(l)} & \text{falls } n \cdot \alpha \text{ keine ganze Zahl ist;} \\
+& l = \text{die auf } n \cdot \alpha \text{ folgende ganze Zahl} \\[6pt]
+\dfrac{x_{(l)} + x_{(l+1)}}{2} & \text{falls } n \cdot \alpha \text{ eine ganze Zahl ist;} \\
+& l = n \cdot \alpha
+\end{cases}
+$$
+
+### Berechnung des Interquartilabstandes (IQR)
+
+$$q_A = \tilde{x}_{0{,}75} - \tilde{x}_{0{,}25}$$
+
+---
+
+## 6. Wahrscheinlichkeiten
+
+### Additionstheorem
+
+**6.1: A und B sind disjunkt**
+
+$$p(A \cup B) = p(A) + p(B)$$
+
+**6.2: A und B sind nicht disjunkt**
+
+$$p(A \cup B) = p(A) + p(B) - p(A \cap B)$$
+
+### Multiplikationstheorem
+
+**6.3: A und B sind unabhängig voneinander**
+
+$$p(A \cap B) = p(A) \cdot p(B)$$
+
+**6.4: A und B sind voneinander abhängig**
+
+$$p(A \cap B) = p(A|B) \cdot p(B)$$
+
+$$p(A \cap B) = p(B|A) \cdot p(A)$$
+
+### Bedingte Wahrscheinlichkeiten
+
+**6.5:**
+
+$$p(A|B) = \frac{p(A \cap B)}{p(B)}$$
+
+$$p(B|A) = \frac{p(A \cap B)}{p(A)}$$
+
+---
+
+## 7. Binomialverteilung
+
+$$f(X = k \mid N; p) = \binom{N}{k} \cdot p^k \cdot q^{N-k} \quad \text{für } k = 0, 1, \dots, \infty$$
+
+$$E[X] = np \qquad \sigma^2 = np(1-p)$$
+
+### Binomialverteilung mit NV-Approximation
+
+$$z = \frac{K - \mu}{\sigma} = \frac{K - np_0}{\sqrt{np_0(1 - p_0)}}$$
+
+---
+
+## 8. Poisson-Verteilung
+
+$$P(X = k) = \frac{\lambda^k e^{-\lambda}}{k!} \quad \text{für } k = 0, 1, \dots, \infty$$
+
+$$E[X] = \lambda \qquad \sigma^2 = \lambda$$
+
+---
+
+## 9. $\alpha$-Fehler Adjustierung nach Bonferroni
+
+$$\alpha_{adj} = 1 - (1 - \alpha)^{1/k}$$
+
+---
+
+## 10. Normalverteilung
+
+Bestimmt durch den Mittelwert und die Standardabweichung $N(\mu, \sigma^2)$, da die Dichtefunktion bekannt ist:
+
+$$\phi(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x - \mu}{\sigma}\right)^2}$$
+
+---
+
+## 11. $\chi^2$-Verteilung
+
+$$\chi_n^2 = \sum_{i=1}^{n} z_i^2$$
+
+---
+
+## 12. F-Verteilung
+
+$$F(n_1, n_2) = \frac{\left(\dfrac{\chi_{n_1}^2}{n_1}\right)}{\left(\dfrac{\chi_{n_2}^2}{n_2}\right)}$$
+
+---
+
+## 13. Stichprobentests (je nach Bedingung)
+
+$$z = \frac{\bar{x} - \mu}{\frac{\sigma}{\sqrt{n}}} \sim N(0, 1)$$
+
+$$t = \frac{\bar{x} - \mu}{\frac{\hat{\sigma}}{\sqrt{n}}} ; df = n-1$$
+
+---
+
+## 14. Stichprobenkennwerteverteilung, Konfidenzintervall des Mittelwerts
+
+**KI für $\mu$ einer $N(\mu, \sigma^2)$-Variable bei bekannter $\sigma^2$:**
+
+$$\mu_{1,2} = \bar{x} \pm z_{1 - \frac{\alpha}{2}} \cdot \frac{\sigma}{\sqrt{n}}$$
+
+**KI für $\mu$ einer $N(\mu, \sigma^2)$-Variable bei unbekannter $\sigma^2$:**
+
+$$\mu_{1,2} = \bar{x} \pm t_{1 - \frac{\alpha}{2}} \cdot \frac{\hat{\sigma}}{\sqrt{n}}; \quad df = n - 1$$
+
+---
+
+## 15. t-Test
+
+### Ein-Stichproben t-Test
+
+$$t = \frac{\bar{x} - \mu}{\frac{\hat{\sigma}}{\sqrt{n}}} ; df = n-1$$
+
+### t-Test für unabhängige Stichproben
+
+$$t = \frac{\bar{x}_1 - \bar{x}_2}{\sqrt{\dfrac{(n_1 - 1) \cdot \hat{\sigma}_1^2 + (n_2 - 1) \cdot \hat{\sigma}_2^2}{(n_1 - 1) + (n_2 - 1)} \left(\dfrac{1}{n_1} + \dfrac{1}{n_2}\right)}}; \quad df = n_1 + n_2 - 2$$
+
+### t-Test für abhängige Stichproben
+
+$$\bar{x}_d = \frac{\sum_{i=1}^{n} d_i}{n} \qquad \hat{\sigma}_{\bar{x}_d} = \frac{\hat{\sigma}_d}{\sqrt{n}}$$
+
+$$\hat{\sigma}_d = \sqrt{\frac{\sum_{i=1}^{n}(d_i - \bar{x}_d)^2}{n - 1}} \qquad t_{emp} = \frac{\bar{x}_d}{\hat{\sigma}_{\bar{x}_d}}; \quad df = n - 1$$
+
+### t-Test für unabhängige Stichproben (Welch-Korrektur)
+
+Näherungslösung bei Verletzung der Varianzhomogenität:
+
+$$t_{Welch} = \frac{\bar{x}_1 - \bar{x}_2}{\sqrt{\dfrac{\hat{\sigma}_1^2}{n_1} + \dfrac{\hat{\sigma}_2^2}{n_2}}}$$
+
+Korrektur der Freiheitsgrade:
+
+$$df = \frac{\left(\dfrac{\hat{\sigma}_1^2}{n_1} + \dfrac{\hat{\sigma}_2^2}{n_2}\right)^2}{\dfrac{\left(\dfrac{\hat{\sigma}_1^2}{n_1}\right)^2}{n_1 - 1} + \dfrac{\left(\dfrac{\hat{\sigma}_2^2}{n_2}\right)^2}{n_2 - 1}}$$
+
+Korrigierte $df$ werden auf die nächste ganze Zahl abgerundet.
+
+
+---
+
+## 16. Varianzhomogenitätsprüfung
+
+$$F = \frac{\hat{\sigma}_1^2}{\hat{\sigma}_2^2} \quad \text{mit } (n_1 - 1) \text{ und } (n_2 - 1) \text{ Freiheitsgraden}$$
+
+---
+
+## 17. Korrelation
+
+### Kovarianz: cov(x, y)
+
+Erwartungstreue Schätzung der Population:
+
+$$\widehat{cov}(x, y)_{Pop} = \frac{\sum_{i=1}^{n}(x_i - \bar{x}) \cdot (y_i - \bar{y})}{n - 1}$$
+
+---
+
+
+### Pearson-Korrelationskoeffizient
+
+$$r_{xy} = \frac{cov_{emp}}{cov_{max}} = \frac{cov_{x,y}}{\hat{\sigma}_x \cdot \hat{\sigma}_y} = \frac{\sum_{i=1}^{n}(x_i - \bar{x}) \cdot (y_i - \bar{y})}{(n - 1) \cdot \hat{\sigma}_x \cdot \hat{\sigma}_y}$$
+
+---
+
+### Signifikanzprüfung Korrelation
+
+**$\rho = 0$ ?**
+
+$$t = \frac{r \cdot \sqrt{N - 2}}{\sqrt{1 - r^2}}; \quad df = N - 2$$
+
+**$\rho = a$ ?**
+
+$$z_{emp} = \frac{Z_r - \mu_Z}{\sigma_Z} = \frac{Z_r - Z_a}{\sqrt{\dfrac{1}{N - 3}}}$$
+
+---
+
+### Rangkorrelation / Spearman-Korrelationskoeffizient
+
+$$r_s = 1 - \frac{6 \cdot \sum_{i=1}^{n} d_i^2}{N \cdot (N^2 - 1)}$$
+
+**$\rho_s = 0$ ?**
+
+$$t = \frac{r \cdot \sqrt{N - 2}}{\sqrt{1 - r^2}}; \quad df = N - 2$$
+
+---
+
+## 18. $\chi^2$-Verfahren
+
+### Voraussetzungen
+
+**Eindimensional:**
+
+- $df = 1$: $f_{e_i} \geq 10$
+- $df > 1$: $f_{e_i} > 5$
+
+**Zweidimensional:**
+
+- $df = 1$: $f_{e_i} > 5$
+- $1 < df < 5$: $f_{e_i} \geq 2$
+- $5 \leq df$: $f_{e_i} \geq 1$ und in höchstens 20 % aller Zellen $f_{e_i} \leq 5$
+
+### Eindimensionaler $\chi^2$-Test
+
+**Erwartete Häufigkeiten unter Gleichverteilungsannahme** ($k$ Stufen, $N$ Beobachtungen):
+
+$$f_{e_1} = f_{e_2} = \dots = f_{e_k} = \frac{N}{k}$$
+
+**Erwartete Häufigkeiten unter theoretisch begründeter Verteilung** (mit angenommener Auftretenswahrscheinlichkeit $p_i$):
+
+$$f_{e_i} = N \cdot p_i$$
+
+**$\chi^2$-Wert:**
+
+$$\chi^2 = \sum_{i=1}^{k} \frac{(f_{b_i} - f_{e_i})^2}{f_{e_i}} \quad \text{mit } df = k - 1$$
+
+**Effektstärke:**
+
+$$\hat{w}^2 = \frac{\chi^2}{N}$$
+
+### Zweidimensionaler $\chi^2$-Test (Kontingenztafeln, $k \times l$)
+
+**Randhäufigkeiten** (relative Häufigkeit der Merkmalsausprägungen):
+
+$$p_i = \frac{n_i}{N}, \quad p_j = \frac{n_j}{N}$$
+
+**Erwartete Häufigkeiten unter Annahme der $H_0$** (stochastische Unabhängigkeit):
+
+$$f_{e_{ij}} = p_i \cdot n_j \quad \text{bzw.} \quad f_{e_{ij}} = p_j \cdot n_i$$
+
+Beide Formeln führen zum selben Ergebnis und lassen sich überführen in:
+
+$$f_{e_{ij}} = \frac{n_i \cdot n_j}{N} = \frac{\text{Zeilensumme} \cdot \text{Spaltensumme}}{N}$$
+
+**$\chi^2$-Wert:**
+
+$$\chi^2 = \sum_{i=1}^{k} \sum_{j=1}^{l} \frac{(f_{b_{ij}} - f_{e_{ij}})^2}{f_{e_{ij}}} \quad \text{mit } df = (k-1) \cdot (l-1)$$
+
+**Effektstärke (Cramer's Index):**
+
+$$CI = \sqrt{\frac{\chi^2}{N \cdot (R - 1)}} \quad \text{mit } R = \min(k; l)$$
+
+### 4-Felder $\chi^2$-Test
+
+$$\chi^2_{emp} = \frac{n \cdot (a \cdot d - b \cdot c)^2}{(a + b) \cdot (c + d) \cdot (a + c) \cdot (b + d)}$$
+
+|       | $B_1$   | $B_2$   | $\sum$  |
+|-------|---------|---------|---------|
+| $A_1$ | $a$     | $b$     | $(a+b)$ |
+| $A_2$ | $c$     | $d$     | $(c+d)$ |
+| $\sum$| $(a+c)$ | $(b+d)$ | $N$     |
+
+---
+
+## 18. Wilcoxon-Test
+
+- $T_{-}$ = Summe der Ränge mit negativen Vorzeichen
+- $T_{+}$ = Summe der Ränge mit positiven Vorzeichen
+
+$$T_{+} + T_{-} = \frac{n \cdot (n + 1)}{2}$$
+
+Bei großem $n$ ($n > 25$) geht die T-Verteilung in eine Normalverteilung über:
+
+$$\mu(T) = \frac{n \cdot (n + 1)}{4}$$
+
+$$\sigma_T^2 = \frac{n \cdot (n + 1) \cdot (2n + 1)}{24}$$
+
+$$z_T = \frac{T - \mu(T)}{\sigma_T}$$
+
+---
+
+## 19. U-Test
+
+$T_1$ und $T_2$ ergeben sich als Rangplatzsummen der Stichproben $S_1$ und $S_2$.
+
+$$U_1 = n_1 \cdot n_2 + \frac{n_1 \cdot (n_1 + 1)}{2} - T_1$$
+
+$$U_2 = n_1 \cdot n_2 + \frac{n_2 \cdot (n_2 + 1)}{2} - T_2 \quad \text{oder} \quad U_2 = (n_1 \cdot n_2) - U_1$$
+
+Bei großem $n_1$ oder $n_2 > 10$ nähert sich die U-Werte-Verteilung der Normalverteilung an:
+
+$$\mu_U = \frac{n_1 \cdot n_2}{2}$$
+
+$$\sigma_U = \sqrt{\frac{n_1 \cdot n_2 \cdot (n_1 + n_2 + 1)}{12}}$$
+
+$$z_U = \frac{U - \mu_U}{\sigma_U}$$
+
+---
+
+## 21. Fisher's Z-Transformation für $r$
+
+$$Z_r = \frac{1}{2} \cdot \ln\left(\frac{1 + r}{1 - r}\right)$$
+
+---
+
+
+## 22. Effektgrößen
+
+### Cohen's $d$
+
+$$d = \frac{|\mu_1 - \mu_2|}{\sigma}$$
+
+### Cohen's $d$ mit gepoolter Standardabweichung (gleich großes $n$)
+
+$$d = \frac{\bar{x}_1 - \bar{x}_2}{\sqrt{\dfrac{s_1^2 + s_2^2}{2}}}$$
+
+### Cohen's $d$ berechnet aus der t-Statistik
+
+$$d = \frac{2t}{\sqrt{df}}$$
+
+### Umrechnung von Cohen's $d$ in den Korrelationskoeffizienten $r$
+
+$$r = \sqrt{\frac{d^2}{d^2 + \dfrac{(n_1 + n_2)^2 - 2 \cdot (n_1 + n_2)}{n_1 \cdot n_2}}}$$
+
+### Hedge's $g$
+
+$$g = \frac{\bar{x}_1 - \bar{x}_2}{\sqrt{\dfrac{(n_1 - 1) \cdot s_1^2 + (n_2 - 1) \cdot s_2^2}{n_1 + n_2 - 2}}}$$
+
+### Glass' $\Delta$
+
+$$\Delta = \frac{\bar{x}_1 - \bar{x}_2}{\sigma_{control}}$$
