@@ -4,9 +4,6 @@ subtitle: "Quantitative Methoden I (B.Sc. Psychologie)"
 author: "Charlotte Fresenius Hochschule"
 date: "`r Sys.Date()`"
 output:
-  pdf_document:
-    toc: true
-    toc_depth: 2
   html_document:
     toc: true
     toc_float: true
@@ -14,6 +11,9 @@ output:
     number_sections: false
     theme: flatly
     mathjax: default
+  pdf_document:
+    toc: true
+    toc_depth: 2
 header-includes:
   - \usepackage{graphicx}
 ---
@@ -402,6 +402,7 @@ $$g = \frac{\bar{x}_1 - \bar{x}_2}{\sqrt{\dfrac{(n_1 - 1) \cdot s_1^2 + (n_2 - 1
 ### Glass' $\Delta$
 
 $$\Delta = \frac{\bar{x}_1 - \bar{x}_2}{\sigma_{control}}$$
+
 ---
 
 \newpage
@@ -479,12 +480,19 @@ kbl(t_chr,
 
 \newpage
 
-## Tabelle D: F-Verteilung (Zähler-df 1–12)
+## Tabelle D: F-Verteilung
 
-```{r tab-f1, echo=FALSE}
-nenner_df <- c(1:30, 40, 60, 120, 200, Inf)
-flachen   <- c(0.75, 0.90, 0.95, 0.99)
-zahler1   <- 1:12
+```{r tab-f-setup, echo=FALSE, include=FALSE}
+# Nenner-df gemäß Original-Formelsammlung (mit Sprüngen ab 20)
+nenner_df_full <- c(1:20, 22, 24, 26, 28, 30, 40, 60, 120, 200, Inf)
+flachen        <- c(0.75, 0.90, 0.95, 0.99)
+zahler_links   <- 1:12
+zahler_rechts  <- c(15, 20, 25, 30, 40, 50, 60, 100, 120, 200, 500, Inf)
+
+# Aufteilung der Nenner-df auf drei Bereiche (analog zum Original)
+nenner_A <- c(1:11)
+nenner_B <- c(12:20, 22, 24, 26)
+nenner_C <- c(28, 30, 40, 60, 120, 200, Inf)
 
 build_f <- function(zahler, nenner, alphas) {
   out <- list()
@@ -505,49 +513,77 @@ build_f <- function(zahler, nenner, alphas) {
   do.call(rbind, out)
 }
 
-f1 <- build_f(zahler1, nenner_df, flachen)
-colnames(f1) <- c("Nenner-df", "Fläche", as.character(zahler1))
+render_f <- function(zahler, nenner, alphas, caption) {
+  ftab <- build_f(zahler, nenner, alphas)
+  colnames(ftab) <- c("Nenner-df", "Fläche",
+                      ifelse(is.infinite(zahler), "∞", as.character(zahler)))
+  kbl(ftab,
+      align = "c",
+      booktabs = TRUE,
+      longtable = TRUE,
+      caption = caption,
+      escape = FALSE,
+      linesep = "",
+      row.names = FALSE) |>
+    kable_styling(latex_options = c("repeat_header", "scale_down"),
+                  bootstrap_options = c("striped", "condensed"),
+                  full_width = FALSE,
+                  font_size = 8) |>
+    add_header_above(c(" " = 2, "Zähler-df" = length(zahler))) |>
+    landscape()
+}
+```
 
-kbl(f1,
-    align = "c",
-    booktabs = TRUE,
-    longtable = TRUE,
-    caption = "Verteilungsfunktion der F-Verteilungen (Zähler-df 1 bis 12)",
-    linesep = "",
-    row.names = FALSE) |>
-  kable_styling(latex_options = c("repeat_header", "scale_down"),
-                bootstrap_options = c("striped", "condensed"),
-                full_width = FALSE,
-                font_size = 8) |>
-  add_header_above(c(" " = 2, "Zähler-df" = 12)) |>
-  landscape()
+### Nenner-df 1–11, Zähler-df 1–12
+
+```{r tab-f1, echo=FALSE}
+render_f(zahler_links, nenner_A, flachen,
+         "Verteilungsfunktion der F-Verteilungen (Nenner-df 1 bis 11, Zähler-df 1 bis 12)")
 ```
 
 \newpage
 
-## Tabelle E: F-Verteilung (Zähler-df 15–∞)
+### Nenner-df 1–11, Zähler-df 15–∞
 
 ```{r tab-f2, echo=FALSE}
-zahler2 <- c(15, 20, 25, 30, 40, 50, 60, 100, 120, 200, 500, Inf)
+render_f(zahler_rechts, nenner_A, flachen,
+         "Verteilungsfunktion der F-Verteilungen (Nenner-df 1 bis 11, Zähler-df 15 bis $\\infty$)")
+```
 
-f2 <- build_f(zahler2, nenner_df, flachen)
-colnames(f2) <- c("Nenner-df", "Fläche",
-                  ifelse(is.infinite(zahler2), "∞", as.character(zahler2)))
+\newpage
 
-kbl(f2,
-    align = "c",
-    booktabs = TRUE,
-    longtable = TRUE,
-    caption = "Verteilungsfunktion der F-Verteilungen (Zähler-df 15 bis $\\infty$)",
-    escape = FALSE,
-    linesep = "",
-    row.names = FALSE) |>
-  kable_styling(latex_options = c("repeat_header", "scale_down"),
-                bootstrap_options = c("striped", "condensed"),
-                full_width = FALSE,
-                font_size = 8) |>
-  add_header_above(c(" " = 2, "Zähler-df" = 12)) |>
-  landscape()
+### Nenner-df 12–26, Zähler-df 1–12
+
+```{r tab-f3, echo=FALSE}
+render_f(zahler_links, nenner_B, flachen,
+         "Verteilungsfunktion der F-Verteilungen (Nenner-df 12 bis 26, Zähler-df 1 bis 12)")
+```
+
+\newpage
+
+### Nenner-df 12–26, Zähler-df 15–∞
+
+```{r tab-f4, echo=FALSE}
+render_f(zahler_rechts, nenner_B, flachen,
+         "Verteilungsfunktion der F-Verteilungen (Nenner-df 12 bis 26, Zähler-df 15 bis $\\infty$)")
+```
+
+\newpage
+
+### Nenner-df 28–∞, Zähler-df 1–12
+
+```{r tab-f5, echo=FALSE}
+render_f(zahler_links, nenner_C, flachen,
+         "Verteilungsfunktion der F-Verteilungen (Nenner-df 28 bis $\\infty$, Zähler-df 1 bis 12)")
+```
+
+\newpage
+
+### Nenner-df 28–∞, Zähler-df 15–∞
+
+```{r tab-f6, echo=FALSE}
+render_f(zahler_rechts, nenner_C, flachen,
+         "Verteilungsfunktion der F-Verteilungen (Nenner-df 28 bis $\\infty$, Zähler-df 15 bis $\\infty$)")
 ```
 
 \newpage
