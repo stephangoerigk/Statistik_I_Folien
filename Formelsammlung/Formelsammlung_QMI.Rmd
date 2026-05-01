@@ -24,6 +24,15 @@ knitr::opts_chunk$set(
   message = FALSE,
   warning = FALSE
 )
+
+library(knitr)
+library(kableExtra)
+
+# Helper: deutsches Komma + feste Nachkommastellen
+fmt_de <- function(x, digits = 4) {
+  format(round(x, digits), decimal.mark = ",", nsmall = digits, trim = TRUE)
+}
+
 ```
 
 
@@ -57,7 +66,7 @@ Standardabweichung als Wurzel der Varianz:
 
 $$\hat{\sigma} = \sqrt{\hat{\sigma}^2} = \sqrt{\frac{\sum_{i=1}^{n}(x_i - \bar{x})^2}{n-1}}$$
 
----
+
 ---
 
 ## 4. z-Transformation
@@ -231,14 +240,9 @@ Erwartungstreue Schätzung der Population:
 
 $$\widehat{cov}(x, y)_{Pop} = \frac{\sum_{i=1}^{n}(x_i - \bar{x}) \cdot (y_i - \bar{y})}{n - 1}$$
 
----
-
-
 ### Pearson-Korrelationskoeffizient
 
 $$r_{xy} = \frac{cov_{emp}}{cov_{max}} = \frac{cov_{x,y}}{\hat{\sigma}_x \cdot \hat{\sigma}_y} = \frac{\sum_{i=1}^{n}(x_i - \bar{x}) \cdot (y_i - \bar{y})}{(n - 1) \cdot \hat{\sigma}_x \cdot \hat{\sigma}_y}$$
-
----
 
 ### Signifikanzprüfung Korrelation
 
@@ -249,8 +253,6 @@ $$t = \frac{r \cdot \sqrt{N - 2}}{\sqrt{1 - r^2}}; \quad df = N - 2$$
 **$\rho = a$ ?**
 
 $$z_{emp} = \frac{Z_r - \mu_Z}{\sigma_Z} = \frac{Z_r - Z_a}{\sqrt{\dfrac{1}{N - 3}}}$$
-
----
 
 ### Rangkorrelation / Spearman-Korrelationskoeffizient
 
@@ -319,7 +321,7 @@ $$CI = \sqrt{\frac{\chi^2}{N \cdot (R - 1)}} \quad \text{mit } R = \min(k; l)$$
 
 ### 4-Felder $\chi^2$-Test
 
-$$\chi^2_{emp} = \frac{n \cdot (a \cdot d - b \cdot c)^2}{(a + b) \cdot (c + d) \cdot (a + c) \cdot (b + d)}$$
+$$\chi^2_{emp} = \frac{N \cdot (a \cdot d - b \cdot c)^2}{(a + b) \cdot (c + d) \cdot (a + c) \cdot (b + d)}$$
 
 |       | $B_1$   | $B_2$   | $\sum$  |
 |-------|---------|---------|---------|
@@ -327,9 +329,13 @@ $$\chi^2_{emp} = \frac{n \cdot (a \cdot d - b \cdot c)^2}{(a + b) \cdot (c + d) 
 | $A_2$ | $c$     | $d$     | $(c+d)$ |
 | $\sum$| $(a+c)$ | $(b+d)$ | $N$     |
 
+**Effektstärke (Phi-Koeffizient):**
+
+$$\phi = \frac{a \cdot d - b \cdot c}{\sqrt{(a+b) \cdot (c+d) \cdot (a+c) \cdot (b+d)}}$$
+
 ---
 
-## 18. Wilcoxon-Test
+## 19. Wilcoxon-Test
 
 - $T_{-}$ = Summe der Ränge mit negativen Vorzeichen
 - $T_{+}$ = Summe der Ränge mit positiven Vorzeichen
@@ -346,7 +352,7 @@ $$z_T = \frac{T - \mu(T)}{\sigma_T}$$
 
 ---
 
-## 19. U-Test
+## 20. U-Test
 
 $T_1$ und $T_2$ ergeben sich als Rangplatzsummen der Stichproben $S_1$ und $S_2$.
 
@@ -396,3 +402,177 @@ $$g = \frac{\bar{x}_1 - \bar{x}_2}{\sqrt{\dfrac{(n_1 - 1) \cdot s_1^2 + (n_2 - 1
 ### Glass' $\Delta$
 
 $$\Delta = \frac{\bar{x}_1 - \bar{x}_2}{\sigma_{control}}$$
+---
+
+\newpage
+
+
+## Tabelle A: Standardnormalverteilung
+
+```{r tab-z, echo=FALSE}
+z_rows <- seq(0, 3.0, by = 0.1)
+z_cols <- seq(0, 0.09, by = 0.01)
+
+z_tab <- outer(z_rows, z_cols, function(r, c) pnorm(r + c))
+z_tab_chr <- fmt_de(z_tab, 4)
+dim(z_tab_chr) <- dim(z_tab)
+
+rownames(z_tab_chr) <- fmt_de(z_rows, 2)
+colnames(z_tab_chr) <- fmt_de(z_cols, 2)
+
+kbl(z_tab_chr,
+    align = "c",
+    booktabs = TRUE,
+    caption = "Verteilungsfunktion der Standardnormalverteilung",
+    linesep = "") |>
+  kable_styling(latex_options = c("hold_position", "scale_down"),
+                bootstrap_options = c("striped", "condensed"),
+                full_width = FALSE) |>
+  add_header_above(c("z-Wert" = 1, "Zweite Dezimalstelle des z-Wertes" = 10))
+```
+
+*Beispiel:* $P(z \leq 1{,}52) = 0{,}9357$. Die Flächenanteile für negative $z$-Werte ergeben sich nach $P(-z) = 1 - P(z)$.
+
+\newpage
+
+## Tabelle C: t-Verteilung
+
+```{r tab-t, echo=FALSE}
+t_df    <- c(1:30, 40, 60, 120, Inf)
+t_quant <- c(0.55, 0.60, 0.65, 0.70, 0.75, 0.80, 0.85,
+             0.90, 0.95, 0.975, 0.990, 0.995, 0.9995)
+
+# t-Werte (Inf-Zeile = z-Werte)
+t_tab <- sapply(t_quant, function(p) qt(p, t_df))
+t_tab[is.infinite(t_df), ] <- qnorm(t_quant)
+
+# Kritische r-Werte für zweiseitige Korrelations-Tests
+r_crit <- function(alpha, df) {
+  if (is.infinite(df)) return(NA_real_)
+  tc <- qt(1 - alpha / 2, df)
+  tc / sqrt(tc^2 + df)
+}
+r_05 <- sapply(t_df, function(d) r_crit(0.05, d))
+r_01 <- sapply(t_df, function(d) r_crit(0.01, d))
+
+t_full <- cbind(t_tab, r_05, r_01)
+t_chr  <- fmt_de(t_full, 3)
+dim(t_chr) <- dim(t_full)
+t_chr[is.na(t_full)] <- ""
+
+rownames(t_chr) <- ifelse(is.infinite(t_df), "z", as.character(t_df))
+colnames(t_chr) <- c(fmt_de(t_quant, 3), "$r_{0{,}05}$", "$r_{0{,}01}$")
+
+kbl(t_chr,
+    align = "c",
+    booktabs = TRUE,
+    escape = FALSE,
+    caption = "Verteilungsfunktion der t-Verteilungen und zweiseitige Signifikanzgrenzen für Produkt-Moment-Korrelationen",
+    linesep = "") |>
+  kable_styling(latex_options = c("hold_position", "scale_down"),
+                bootstrap_options = c("striped", "condensed"),
+                full_width = FALSE) |>
+  add_header_above(c("df" = 1, "Fläche" = 13, "Korrelation" = 2))
+```
+
+*Hinweis:* Die Flächenanteile für negative $t$-Werte ergeben sich nach $P(-t_{df}) = 1 - P(t_{df})$.
+
+\newpage
+
+## Tabelle D: F-Verteilung (Zähler-df 1–12)
+
+```{r tab-f1, echo=FALSE}
+nenner_df <- c(1:30, 40, 60, 120, 200, Inf)
+flachen   <- c(0.75, 0.90, 0.95, 0.99)
+zahler1   <- 1:12
+
+build_f <- function(zahler, nenner, alphas) {
+  out <- list()
+  for (nd in nenner) {
+    for (a in alphas) {
+      row <- sapply(zahler, function(zd) {
+        zd_use <- if (is.infinite(zd)) 1e6 else zd
+        nd_use <- if (is.infinite(nd)) 1e6 else nd
+        qf(a, zd_use, nd_use)
+      })
+      out[[length(out) + 1]] <- c(
+        Nenner = ifelse(is.infinite(nd), "∞", as.character(nd)),
+        Fläche = fmt_de(a, 2),
+        fmt_de(row, 2)
+      )
+    }
+  }
+  do.call(rbind, out)
+}
+
+f1 <- build_f(zahler1, nenner_df, flachen)
+colnames(f1) <- c("Nenner-df", "Fläche", as.character(zahler1))
+
+kbl(f1,
+    align = "c",
+    booktabs = TRUE,
+    longtable = TRUE,
+    caption = "Verteilungsfunktion der F-Verteilungen (Zähler-df 1 bis 12)",
+    linesep = "",
+    row.names = FALSE) |>
+  kable_styling(latex_options = c("repeat_header", "scale_down"),
+                bootstrap_options = c("striped", "condensed"),
+                full_width = FALSE,
+                font_size = 8) |>
+  add_header_above(c(" " = 2, "Zähler-df" = 12)) |>
+  landscape()
+```
+
+\newpage
+
+## Tabelle E: F-Verteilung (Zähler-df 15–∞)
+
+```{r tab-f2, echo=FALSE}
+zahler2 <- c(15, 20, 25, 30, 40, 50, 60, 100, 120, 200, 500, Inf)
+
+f2 <- build_f(zahler2, nenner_df, flachen)
+colnames(f2) <- c("Nenner-df", "Fläche",
+                  ifelse(is.infinite(zahler2), "∞", as.character(zahler2)))
+
+kbl(f2,
+    align = "c",
+    booktabs = TRUE,
+    longtable = TRUE,
+    caption = "Verteilungsfunktion der F-Verteilungen (Zähler-df 15 bis $\\infty$)",
+    escape = FALSE,
+    linesep = "",
+    row.names = FALSE) |>
+  kable_styling(latex_options = c("repeat_header", "scale_down"),
+                bootstrap_options = c("striped", "condensed"),
+                full_width = FALSE,
+                font_size = 8) |>
+  add_header_above(c(" " = 2, "Zähler-df" = 12)) |>
+  landscape()
+```
+
+\newpage
+
+## Tabelle B: $\chi^2$-Verteilung
+
+```{r tab-chi, echo=FALSE}
+chi_df    <- c(1:30, 40, 50, 60, 70, 80, 90, 100)
+chi_quant <- c(0.90, 0.95, 0.975, 0.99, 0.995, 0.999)
+
+chi_tab <- sapply(chi_quant, function(p) qchisq(p, chi_df))
+chi_chr <- fmt_de(chi_tab, 3)
+dim(chi_chr) <- dim(chi_tab)
+
+rownames(chi_chr) <- as.character(chi_df)
+colnames(chi_chr) <- fmt_de(chi_quant, 3)
+
+kbl(chi_chr,
+    align = "c",
+    booktabs = TRUE,
+    caption = "Verteilungsfunktion der $\\chi^2$-Verteilungen (rechtsseitige Quantile)",
+    escape = FALSE,
+    linesep = "") |>
+  kable_styling(latex_options = c("hold_position"),
+                bootstrap_options = c("striped", "condensed"),
+                full_width = FALSE) |>
+  add_header_above(c("df" = 1, "Fläche (links der Grenze)" = 6))
+```

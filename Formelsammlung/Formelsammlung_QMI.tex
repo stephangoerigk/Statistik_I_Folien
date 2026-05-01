@@ -1,0 +1,1042 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Formelsammlung},
+  pdfauthor={Charlotte Fresenius Hochschule},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Formelsammlung}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{Quantitative Methoden I (B.Sc. Psychologie)}
+\author{Charlotte Fresenius Hochschule}
+\date{2026-05-01}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{1. Arithmetisches Mittel}\label{arithmetisches-mittel}
+
+\[\bar{x} = \frac{\sum_{i=1}^{n} x_i}{n}\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{2. Median (Md)}\label{median-md}
+
+\textbf{wenn \(n\) gerade:}
+
+\[Md = \frac{x_{\frac{n}{2}} + x_{\frac{n+2}{2}}}{2}\]
+
+\textbf{wenn \(n\) ungerade:}
+
+\[Md = x_{\frac{n+1}{2}}\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{3. Varianz und
+Standardabweichung}\label{varianz-und-standardabweichung}
+
+Als erwartungstreue Schätzung der Populationsvarianz:
+
+\[\hat{\sigma}^2 = \frac{\sum_{i=1}^{n}(x_i - \bar{x})^2}{n-1} = \frac{QS_1}{df_1}\]
+
+Standardabweichung als Wurzel der Varianz:
+
+\[\hat{\sigma} = \sqrt{\hat{\sigma}^2} = \sqrt{\frac{\sum_{i=1}^{n}(x_i - \bar{x})^2}{n-1}}\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{4. z-Transformation}\label{z-transformation}
+
+\[z_i = \frac{x_i - \bar{x}}{s}\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{5. Graphische Darstellungen
+(Boxplot)}\label{graphische-darstellungen-boxplot}
+
+\subsubsection{\texorpdfstring{Berechnung der
+\(\alpha\)-Quantile}{Berechnung der \textbackslash alpha-Quantile}}\label{berechnung-der-alpha-quantile}
+
+\[
+\tilde{x}_\alpha =
+\begin{cases}
+x_{(l)} & \text{falls } n \cdot \alpha \text{ keine ganze Zahl ist;} \\
+& l = \text{die auf } n \cdot \alpha \text{ folgende ganze Zahl} \\[6pt]
+\dfrac{x_{(l)} + x_{(l+1)}}{2} & \text{falls } n \cdot \alpha \text{ eine ganze Zahl ist;} \\
+& l = n \cdot \alpha
+\end{cases}
+\]
+
+\subsubsection{Berechnung des Interquartilabstandes
+(IQR)}\label{berechnung-des-interquartilabstandes-iqr}
+
+\[q_A = \tilde{x}_{0{,}75} - \tilde{x}_{0{,}25}\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{6. Wahrscheinlichkeiten}\label{wahrscheinlichkeiten}
+
+\subsubsection{Additionstheorem}\label{additionstheorem}
+
+\textbf{6.1: A und B sind disjunkt}
+
+\[p(A \cup B) = p(A) + p(B)\]
+
+\textbf{6.2: A und B sind nicht disjunkt}
+
+\[p(A \cup B) = p(A) + p(B) - p(A \cap B)\]
+
+\subsubsection{Multiplikationstheorem}\label{multiplikationstheorem}
+
+\textbf{6.3: A und B sind unabhängig voneinander}
+
+\[p(A \cap B) = p(A) \cdot p(B)\]
+
+\textbf{6.4: A und B sind voneinander abhängig}
+
+\[p(A \cap B) = p(A|B) \cdot p(B)\]
+
+\[p(A \cap B) = p(B|A) \cdot p(A)\]
+
+\subsubsection{Bedingte
+Wahrscheinlichkeiten}\label{bedingte-wahrscheinlichkeiten}
+
+\textbf{6.5:}
+
+\[p(A|B) = \frac{p(A \cap B)}{p(B)}\]
+
+\[p(B|A) = \frac{p(A \cap B)}{p(A)}\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{7. Binomialverteilung}\label{binomialverteilung}
+
+\[f(X = k \mid N; p) = \binom{N}{k} \cdot p^k \cdot q^{N-k} \quad \text{für } k = 0, 1, \dots, \infty\]
+
+\[E[X] = np \qquad \sigma^2 = np(1-p)\]
+
+\subsubsection{Binomialverteilung mit
+NV-Approximation}\label{binomialverteilung-mit-nv-approximation}
+
+\[z = \frac{K - \mu}{\sigma} = \frac{K - np_0}{\sqrt{np_0(1 - p_0)}}\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{8. Poisson-Verteilung}\label{poisson-verteilung}
+
+\[P(X = k) = \frac{\lambda^k e^{-\lambda}}{k!} \quad \text{für } k = 0, 1, \dots, \infty\]
+
+\[E[X] = \lambda \qquad \sigma^2 = \lambda\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{\texorpdfstring{9. \(\alpha\)-Fehler Adjustierung nach
+Bonferroni}{9. \textbackslash alpha-Fehler Adjustierung nach Bonferroni}}\label{alpha-fehler-adjustierung-nach-bonferroni}
+
+\[\alpha_{adj} = 1 - (1 - \alpha)^{1/k}\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{10. Normalverteilung}\label{normalverteilung}
+
+Bestimmt durch den Mittelwert und die Standardabweichung
+\(N(\mu, \sigma^2)\), da die Dichtefunktion bekannt ist:
+
+\[\phi(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x - \mu}{\sigma}\right)^2}\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{\texorpdfstring{11.
+\(\chi^2\)-Verteilung}{11. \textbackslash chi\^{}2-Verteilung}}\label{chi2-verteilung}
+
+\[\chi_n^2 = \sum_{i=1}^{n} z_i^2\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{12. F-Verteilung}\label{f-verteilung}
+
+\[F(n_1, n_2) = \frac{\left(\dfrac{\chi_{n_1}^2}{n_1}\right)}{\left(\dfrac{\chi_{n_2}^2}{n_2}\right)}\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{13. Stichprobentests (je nach
+Bedingung)}\label{stichprobentests-je-nach-bedingung}
+
+\[z = \frac{\bar{x} - \mu}{\frac{\sigma}{\sqrt{n}}} \sim N(0, 1)\]
+
+\[t = \frac{\bar{x} - \mu}{\frac{\hat{\sigma}}{\sqrt{n}}} ; df = n-1\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{14. Stichprobenkennwerteverteilung, Konfidenzintervall des
+Mittelwerts}\label{stichprobenkennwerteverteilung-konfidenzintervall-des-mittelwerts}
+
+\textbf{KI für \(\mu\) einer \(N(\mu, \sigma^2)\)-Variable bei bekannter
+\(\sigma^2\):}
+
+\[\mu_{1,2} = \bar{x} \pm z_{1 - \frac{\alpha}{2}} \cdot \frac{\sigma}{\sqrt{n}}\]
+
+\textbf{KI für \(\mu\) einer \(N(\mu, \sigma^2)\)-Variable bei
+unbekannter \(\sigma^2\):}
+
+\[\mu_{1,2} = \bar{x} \pm t_{1 - \frac{\alpha}{2}} \cdot \frac{\hat{\sigma}}{\sqrt{n}}; \quad df = n - 1\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{15. t-Test}\label{t-test}
+
+\subsubsection{Ein-Stichproben t-Test}\label{ein-stichproben-t-test}
+
+\[t = \frac{\bar{x} - \mu}{\frac{\hat{\sigma}}{\sqrt{n}}} ; df = n-1\]
+
+\subsubsection{t-Test für unabhängige
+Stichproben}\label{t-test-fuxfcr-unabhuxe4ngige-stichproben}
+
+\[t = \frac{\bar{x}_1 - \bar{x}_2}{\sqrt{\dfrac{(n_1 - 1) \cdot \hat{\sigma}_1^2 + (n_2 - 1) \cdot \hat{\sigma}_2^2}{(n_1 - 1) + (n_2 - 1)} \left(\dfrac{1}{n_1} + \dfrac{1}{n_2}\right)}}; \quad df = n_1 + n_2 - 2\]
+
+\subsubsection{t-Test für abhängige
+Stichproben}\label{t-test-fuxfcr-abhuxe4ngige-stichproben}
+
+\[\bar{x}_d = \frac{\sum_{i=1}^{n} d_i}{n} \qquad \hat{\sigma}_{\bar{x}_d} = \frac{\hat{\sigma}_d}{\sqrt{n}}\]
+
+\[\hat{\sigma}_d = \sqrt{\frac{\sum_{i=1}^{n}(d_i - \bar{x}_d)^2}{n - 1}} \qquad t_{emp} = \frac{\bar{x}_d}{\hat{\sigma}_{\bar{x}_d}}; \quad df = n - 1\]
+
+\subsubsection{t-Test für unabhängige Stichproben
+(Welch-Korrektur)}\label{t-test-fuxfcr-unabhuxe4ngige-stichproben-welch-korrektur}
+
+Näherungslösung bei Verletzung der Varianzhomogenität:
+
+\[t_{Welch} = \frac{\bar{x}_1 - \bar{x}_2}{\sqrt{\dfrac{\hat{\sigma}_1^2}{n_1} + \dfrac{\hat{\sigma}_2^2}{n_2}}}\]
+
+Korrektur der Freiheitsgrade:
+
+\[df = \frac{\left(\dfrac{\hat{\sigma}_1^2}{n_1} + \dfrac{\hat{\sigma}_2^2}{n_2}\right)^2}{\dfrac{\left(\dfrac{\hat{\sigma}_1^2}{n_1}\right)^2}{n_1 - 1} + \dfrac{\left(\dfrac{\hat{\sigma}_2^2}{n_2}\right)^2}{n_2 - 1}}\]
+
+Korrigierte \(df\) werden auf die nächste ganze Zahl abgerundet.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{16.
+Varianzhomogenitätsprüfung}\label{varianzhomogenituxe4tspruxfcfung}
+
+\[F = \frac{\hat{\sigma}_1^2}{\hat{\sigma}_2^2} \quad \text{mit } (n_1 - 1) \text{ und } (n_2 - 1) \text{ Freiheitsgraden}\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{17. Korrelation}\label{korrelation}
+
+\subsubsection{Kovarianz: cov(x, y)}\label{kovarianz-covx-y}
+
+Erwartungstreue Schätzung der Population:
+
+\[\widehat{cov}(x, y)_{Pop} = \frac{\sum_{i=1}^{n}(x_i - \bar{x}) \cdot (y_i - \bar{y})}{n - 1}\]
+
+\subsubsection{Pearson-Korrelationskoeffizient}\label{pearson-korrelationskoeffizient}
+
+\[r_{xy} = \frac{cov_{emp}}{cov_{max}} = \frac{cov_{x,y}}{\hat{\sigma}_x \cdot \hat{\sigma}_y} = \frac{\sum_{i=1}^{n}(x_i - \bar{x}) \cdot (y_i - \bar{y})}{(n - 1) \cdot \hat{\sigma}_x \cdot \hat{\sigma}_y}\]
+
+\subsubsection{Signifikanzprüfung
+Korrelation}\label{signifikanzpruxfcfung-korrelation}
+
+\textbf{\(\rho = 0\) ?}
+
+\[t = \frac{r \cdot \sqrt{N - 2}}{\sqrt{1 - r^2}}; \quad df = N - 2\]
+
+\textbf{\(\rho = a\) ?}
+
+\[z_{emp} = \frac{Z_r - \mu_Z}{\sigma_Z} = \frac{Z_r - Z_a}{\sqrt{\dfrac{1}{N - 3}}}\]
+
+\subsubsection{Rangkorrelation /
+Spearman-Korrelationskoeffizient}\label{rangkorrelation-spearman-korrelationskoeffizient}
+
+\[r_s = 1 - \frac{6 \cdot \sum_{i=1}^{n} d_i^2}{N \cdot (N^2 - 1)}\]
+
+\textbf{\(\rho_s = 0\) ?}
+
+\[t = \frac{r \cdot \sqrt{N - 2}}{\sqrt{1 - r^2}}; \quad df = N - 2\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{\texorpdfstring{18.
+\(\chi^2\)-Verfahren}{18. \textbackslash chi\^{}2-Verfahren}}\label{chi2-verfahren}
+
+\subsubsection{Voraussetzungen}\label{voraussetzungen}
+
+\textbf{Eindimensional:}
+
+\begin{itemize}
+\tightlist
+\item
+  \(df = 1\): \(f_{e_i} \geq 10\)
+\item
+  \(df > 1\): \(f_{e_i} > 5\)
+\end{itemize}
+
+\textbf{Zweidimensional:}
+
+\begin{itemize}
+\tightlist
+\item
+  \(df = 1\): \(f_{e_i} > 5\)
+\item
+  \(1 < df < 5\): \(f_{e_i} \geq 2\)
+\item
+  \(5 \leq df\): \(f_{e_i} \geq 1\) und in höchstens 20 \% aller Zellen
+  \(f_{e_i} \leq 5\)
+\end{itemize}
+
+\subsubsection{\texorpdfstring{Eindimensionaler
+\(\chi^2\)-Test}{Eindimensionaler \textbackslash chi\^{}2-Test}}\label{eindimensionaler-chi2-test}
+
+\textbf{Erwartete Häufigkeiten unter Gleichverteilungsannahme} (\(k\)
+Stufen, \(N\) Beobachtungen):
+
+\[f_{e_1} = f_{e_2} = \dots = f_{e_k} = \frac{N}{k}\]
+
+\textbf{Erwartete Häufigkeiten unter theoretisch begründeter Verteilung}
+(mit angenommener Auftretenswahrscheinlichkeit \(p_i\)):
+
+\[f_{e_i} = N \cdot p_i\]
+
+\textbf{\(\chi^2\)-Wert:}
+
+\[\chi^2 = \sum_{i=1}^{k} \frac{(f_{b_i} - f_{e_i})^2}{f_{e_i}} \quad \text{mit } df = k - 1\]
+
+\textbf{Effektstärke:}
+
+\[\hat{w}^2 = \frac{\chi^2}{N}\]
+
+\subsubsection{\texorpdfstring{Zweidimensionaler \(\chi^2\)-Test
+(Kontingenztafeln,
+\(k \times l\))}{Zweidimensionaler \textbackslash chi\^{}2-Test (Kontingenztafeln, k \textbackslash times l)}}\label{zweidimensionaler-chi2-test-kontingenztafeln-k-times-l}
+
+\textbf{Randhäufigkeiten} (relative Häufigkeit der
+Merkmalsausprägungen):
+
+\[p_i = \frac{n_i}{N}, \quad p_j = \frac{n_j}{N}\]
+
+\textbf{Erwartete Häufigkeiten unter Annahme der \(H_0\)} (stochastische
+Unabhängigkeit):
+
+\[f_{e_{ij}} = p_i \cdot n_j \quad \text{bzw.} \quad f_{e_{ij}} = p_j \cdot n_i\]
+
+Beide Formeln führen zum selben Ergebnis und lassen sich überführen in:
+
+\[f_{e_{ij}} = \frac{n_i \cdot n_j}{N} = \frac{\text{Zeilensumme} \cdot \text{Spaltensumme}}{N}\]
+
+\textbf{\(\chi^2\)-Wert:}
+
+\[\chi^2 = \sum_{i=1}^{k} \sum_{j=1}^{l} \frac{(f_{b_{ij}} - f_{e_{ij}})^2}{f_{e_{ij}}} \quad \text{mit } df = (k-1) \cdot (l-1)\]
+
+\textbf{Effektstärke (Cramer's Index):}
+
+\[CI = \sqrt{\frac{\chi^2}{N \cdot (R - 1)}} \quad \text{mit } R = \min(k; l)\]
+
+\subsubsection{\texorpdfstring{4-Felder
+\(\chi^2\)-Test}{4-Felder \textbackslash chi\^{}2-Test}}\label{felder-chi2-test}
+
+\[\chi^2_{emp} = \frac{N \cdot (a \cdot d - b \cdot c)^2}{(a + b) \cdot (c + d) \cdot (a + c) \cdot (b + d)}\]
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+& \(B_1\) & \(B_2\) & \(\sum\) \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\(A_1\) & \(a\) & \(b\) & \((a+b)\) \\
+\(A_2\) & \(c\) & \(d\) & \((c+d)\) \\
+\(\sum\) & \((a+c)\) & \((b+d)\) & \(N\) \\
+\end{longtable}
+}
+
+\textbf{Effektstärke (Phi-Koeffizient):}
+
+\[\phi = \frac{a \cdot d - b \cdot c}{\sqrt{(a+b) \cdot (c+d) \cdot (a+c) \cdot (b+d)}}\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{19. Wilcoxon-Test}\label{wilcoxon-test}
+
+\begin{itemize}
+\tightlist
+\item
+  \(T_{-}\) = Summe der Ränge mit negativen Vorzeichen
+\item
+  \(T_{+}\) = Summe der Ränge mit positiven Vorzeichen
+\end{itemize}
+
+\[T_{+} + T_{-} = \frac{n \cdot (n + 1)}{2}\]
+
+Bei großem \(n\) (\(n > 25\)) geht die T-Verteilung in eine
+Normalverteilung über:
+
+\[\mu(T) = \frac{n \cdot (n + 1)}{4}\]
+
+\[\sigma_T^2 = \frac{n \cdot (n + 1) \cdot (2n + 1)}{24}\]
+
+\[z_T = \frac{T - \mu(T)}{\sigma_T}\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{20. U-Test}\label{u-test}
+
+\(T_1\) und \(T_2\) ergeben sich als Rangplatzsummen der Stichproben
+\(S_1\) und \(S_2\).
+
+\[U_1 = n_1 \cdot n_2 + \frac{n_1 \cdot (n_1 + 1)}{2} - T_1\]
+
+\[U_2 = n_1 \cdot n_2 + \frac{n_2 \cdot (n_2 + 1)}{2} - T_2 \quad \text{oder} \quad U_2 = (n_1 \cdot n_2) - U_1\]
+
+Bei großem \(n_1\) oder \(n_2 > 10\) nähert sich die U-Werte-Verteilung
+der Normalverteilung an:
+
+\[\mu_U = \frac{n_1 \cdot n_2}{2}\]
+
+\[\sigma_U = \sqrt{\frac{n_1 \cdot n_2 \cdot (n_1 + n_2 + 1)}{12}}\]
+
+\[z_U = \frac{U - \mu_U}{\sigma_U}\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{\texorpdfstring{21. Fisher's Z-Transformation für
+\(r\)}{21. Fisher's Z-Transformation für r}}\label{fishers-z-transformation-fuxfcr-r}
+
+\[Z_r = \frac{1}{2} \cdot \ln\left(\frac{1 + r}{1 - r}\right)\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{22. Effektgrößen}\label{effektgruxf6uxdfen}
+
+\subsubsection{\texorpdfstring{Cohen's
+\(d\)}{Cohen's d}}\label{cohens-d}
+
+\[d = \frac{|\mu_1 - \mu_2|}{\sigma}\]
+
+\subsubsection{\texorpdfstring{Cohen's \(d\) mit gepoolter
+Standardabweichung (gleich großes
+\(n\))}{Cohen's d mit gepoolter Standardabweichung (gleich großes n)}}\label{cohens-d-mit-gepoolter-standardabweichung-gleich-grouxdfes-n}
+
+\[d = \frac{\bar{x}_1 - \bar{x}_2}{\sqrt{\dfrac{s_1^2 + s_2^2}{2}}}\]
+
+\subsubsection{\texorpdfstring{Cohen's \(d\) berechnet aus der
+t-Statistik}{Cohen's d berechnet aus der t-Statistik}}\label{cohens-d-berechnet-aus-der-t-statistik}
+
+\[d = \frac{2t}{\sqrt{df}}\]
+
+\subsubsection{\texorpdfstring{Umrechnung von Cohen's \(d\) in den
+Korrelationskoeffizienten
+\(r\)}{Umrechnung von Cohen's d in den Korrelationskoeffizienten r}}\label{umrechnung-von-cohens-d-in-den-korrelationskoeffizienten-r}
+
+\[r = \sqrt{\frac{d^2}{d^2 + \dfrac{(n_1 + n_2)^2 - 2 \cdot (n_1 + n_2)}{n_1 \cdot n_2}}}\]
+
+\subsubsection{\texorpdfstring{Hedge's
+\(g\)}{Hedge's g}}\label{hedges-g}
+
+\[g = \frac{\bar{x}_1 - \bar{x}_2}{\sqrt{\dfrac{(n_1 - 1) \cdot s_1^2 + (n_2 - 1) \cdot s_2^2}{n_1 + n_2 - 2}}}\]
+
+\subsubsection{\texorpdfstring{Glass'
+\(\Delta\)}{Glass' \textbackslash Delta}}\label{glass-delta}
+
+\subsection{\texorpdfstring{\[\Delta = \frac{\bar{x}_1 - \bar{x}_2}{\sigma_{control}}\]}{\textbackslash Delta = \textbackslash frac\{\textbackslash bar\{x\}\_1 - \textbackslash bar\{x\}\_2\}\{\textbackslash sigma\_\{control\}\}}}\label{delta-fracbarx_1---barx_2sigma_control}
+
+\newpage
+
+\subsection{Tabelle A:
+Standardnormalverteilung}\label{tabelle-a-standardnormalverteilung}
+
+\begin{table}[!h]
+\centering
+\caption{\label{tab:tab-z}Verteilungsfunktion der Standardnormalverteilung}
+\centering
+\resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{
+\begin{tabular}[t]{lcccccccccc}
+\toprule
+\multicolumn{1}{c}{z-Wert} & \multicolumn{10}{c}{Zweite Dezimalstelle des z-Wertes} \\
+\cmidrule(l{3pt}r{3pt}){1-1} \cmidrule(l{3pt}r{3pt}){2-11}
+  & 0,00 & 0,01 & 0,02 & 0,03 & 0,04 & 0,05 & 0,06 & 0,07 & 0,08 & 0,09\\
+\midrule
+0,00 & 0,5000 & 0,5040 & 0,5080 & 0,5120 & 0,5160 & 0,5199 & 0,5239 & 0,5279 & 0,5319 & 0,5359\\
+0,10 & 0,5398 & 0,5438 & 0,5478 & 0,5517 & 0,5557 & 0,5596 & 0,5636 & 0,5675 & 0,5714 & 0,5753\\
+0,20 & 0,5793 & 0,5832 & 0,5871 & 0,5910 & 0,5948 & 0,5987 & 0,6026 & 0,6064 & 0,6103 & 0,6141\\
+0,30 & 0,6179 & 0,6217 & 0,6255 & 0,6293 & 0,6331 & 0,6368 & 0,6406 & 0,6443 & 0,6480 & 0,6517\\
+0,40 & 0,6554 & 0,6591 & 0,6628 & 0,6664 & 0,6700 & 0,6736 & 0,6772 & 0,6808 & 0,6844 & 0,6879\\
+0,50 & 0,6915 & 0,6950 & 0,6985 & 0,7019 & 0,7054 & 0,7088 & 0,7123 & 0,7157 & 0,7190 & 0,7224\\
+0,60 & 0,7257 & 0,7291 & 0,7324 & 0,7357 & 0,7389 & 0,7422 & 0,7454 & 0,7486 & 0,7517 & 0,7549\\
+0,70 & 0,7580 & 0,7611 & 0,7642 & 0,7673 & 0,7704 & 0,7734 & 0,7764 & 0,7794 & 0,7823 & 0,7852\\
+0,80 & 0,7881 & 0,7910 & 0,7939 & 0,7967 & 0,7995 & 0,8023 & 0,8051 & 0,8078 & 0,8106 & 0,8133\\
+0,90 & 0,8159 & 0,8186 & 0,8212 & 0,8238 & 0,8264 & 0,8289 & 0,8315 & 0,8340 & 0,8365 & 0,8389\\
+1,00 & 0,8413 & 0,8438 & 0,8461 & 0,8485 & 0,8508 & 0,8531 & 0,8554 & 0,8577 & 0,8599 & 0,8621\\
+1,10 & 0,8643 & 0,8665 & 0,8686 & 0,8708 & 0,8729 & 0,8749 & 0,8770 & 0,8790 & 0,8810 & 0,8830\\
+1,20 & 0,8849 & 0,8869 & 0,8888 & 0,8907 & 0,8925 & 0,8944 & 0,8962 & 0,8980 & 0,8997 & 0,9015\\
+1,30 & 0,9032 & 0,9049 & 0,9066 & 0,9082 & 0,9099 & 0,9115 & 0,9131 & 0,9147 & 0,9162 & 0,9177\\
+1,40 & 0,9192 & 0,9207 & 0,9222 & 0,9236 & 0,9251 & 0,9265 & 0,9279 & 0,9292 & 0,9306 & 0,9319\\
+1,50 & 0,9332 & 0,9345 & 0,9357 & 0,9370 & 0,9382 & 0,9394 & 0,9406 & 0,9418 & 0,9429 & 0,9441\\
+1,60 & 0,9452 & 0,9463 & 0,9474 & 0,9484 & 0,9495 & 0,9505 & 0,9515 & 0,9525 & 0,9535 & 0,9545\\
+1,70 & 0,9554 & 0,9564 & 0,9573 & 0,9582 & 0,9591 & 0,9599 & 0,9608 & 0,9616 & 0,9625 & 0,9633\\
+1,80 & 0,9641 & 0,9649 & 0,9656 & 0,9664 & 0,9671 & 0,9678 & 0,9686 & 0,9693 & 0,9699 & 0,9706\\
+1,90 & 0,9713 & 0,9719 & 0,9726 & 0,9732 & 0,9738 & 0,9744 & 0,9750 & 0,9756 & 0,9761 & 0,9767\\
+2,00 & 0,9772 & 0,9778 & 0,9783 & 0,9788 & 0,9793 & 0,9798 & 0,9803 & 0,9808 & 0,9812 & 0,9817\\
+2,10 & 0,9821 & 0,9826 & 0,9830 & 0,9834 & 0,9838 & 0,9842 & 0,9846 & 0,9850 & 0,9854 & 0,9857\\
+2,20 & 0,9861 & 0,9864 & 0,9868 & 0,9871 & 0,9875 & 0,9878 & 0,9881 & 0,9884 & 0,9887 & 0,9890\\
+2,30 & 0,9893 & 0,9896 & 0,9898 & 0,9901 & 0,9904 & 0,9906 & 0,9909 & 0,9911 & 0,9913 & 0,9916\\
+2,40 & 0,9918 & 0,9920 & 0,9922 & 0,9925 & 0,9927 & 0,9929 & 0,9931 & 0,9932 & 0,9934 & 0,9936\\
+2,50 & 0,9938 & 0,9940 & 0,9941 & 0,9943 & 0,9945 & 0,9946 & 0,9948 & 0,9949 & 0,9951 & 0,9952\\
+2,60 & 0,9953 & 0,9955 & 0,9956 & 0,9957 & 0,9959 & 0,9960 & 0,9961 & 0,9962 & 0,9963 & 0,9964\\
+2,70 & 0,9965 & 0,9966 & 0,9967 & 0,9968 & 0,9969 & 0,9970 & 0,9971 & 0,9972 & 0,9973 & 0,9974\\
+2,80 & 0,9974 & 0,9975 & 0,9976 & 0,9977 & 0,9977 & 0,9978 & 0,9979 & 0,9979 & 0,9980 & 0,9981\\
+2,90 & 0,9981 & 0,9982 & 0,9982 & 0,9983 & 0,9984 & 0,9984 & 0,9985 & 0,9985 & 0,9986 & 0,9986\\
+3,00 & 0,9987 & 0,9987 & 0,9987 & 0,9988 & 0,9988 & 0,9989 & 0,9989 & 0,9989 & 0,9990 & 0,9990\\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\emph{Beispiel:} \(P(z \leq 1{,}52) = 0{,}9357\). Die Flächenanteile für
+negative \(z\)-Werte ergeben sich nach \(P(-z) = 1 - P(z)\).
+
+\newpage
+
+\subsection{Tabelle C: t-Verteilung}\label{tabelle-c-t-verteilung}
+
+\begin{table}[!h]
+\centering
+\caption{\label{tab:tab-t}Verteilungsfunktion der t-Verteilungen und zweiseitige Signifikanzgrenzen für Produkt-Moment-Korrelationen}
+\centering
+\resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{
+\begin{tabular}[t]{lccccccccccccccc}
+\toprule
+\multicolumn{1}{c}{df} & \multicolumn{13}{c}{Fläche} & \multicolumn{2}{c}{Korrelation} \\
+\cmidrule(l{3pt}r{3pt}){1-1} \cmidrule(l{3pt}r{3pt}){2-14} \cmidrule(l{3pt}r{3pt}){15-16}
+  & 0,550 & 0,600 & 0,650 & 0,700 & 0,750 & 0,800 & 0,850 & 0,900 & 0,950 & 0,975 & 0,990 & 0,995 & 1,000 & $r_{0{,}05}$ & $r_{0{,}01}$\\
+\midrule
+1 & 0,158 & 0,325 & 0,510 & 0,727 & 1,000 & 1,376 & 1,963 & 3,078 & 6,314 & 12,706 & 31,821 & 63,657 & 636,619 & 0,997 & 1,000\\
+2 & 0,142 & 0,289 & 0,445 & 0,617 & 0,816 & 1,061 & 1,386 & 1,886 & 2,920 & 4,303 & 6,965 & 9,925 & 31,599 & 0,950 & 0,990\\
+3 & 0,137 & 0,277 & 0,424 & 0,584 & 0,765 & 0,978 & 1,250 & 1,638 & 2,353 & 3,182 & 4,541 & 5,841 & 12,924 & 0,878 & 0,959\\
+4 & 0,134 & 0,271 & 0,414 & 0,569 & 0,741 & 0,941 & 1,190 & 1,533 & 2,132 & 2,776 & 3,747 & 4,604 & 8,610 & 0,811 & 0,917\\
+5 & 0,132 & 0,267 & 0,408 & 0,559 & 0,727 & 0,920 & 1,156 & 1,476 & 2,015 & 2,571 & 3,365 & 4,032 & 6,869 & 0,754 & 0,875\\
+6 & 0,131 & 0,265 & 0,404 & 0,553 & 0,718 & 0,906 & 1,134 & 1,440 & 1,943 & 2,447 & 3,143 & 3,707 & 5,959 & 0,707 & 0,834\\
+7 & 0,130 & 0,263 & 0,402 & 0,549 & 0,711 & 0,896 & 1,119 & 1,415 & 1,895 & 2,365 & 2,998 & 3,499 & 5,408 & 0,666 & 0,798\\
+8 & 0,130 & 0,262 & 0,399 & 0,546 & 0,706 & 0,889 & 1,108 & 1,397 & 1,860 & 2,306 & 2,896 & 3,355 & 5,041 & 0,632 & 0,765\\
+9 & 0,129 & 0,261 & 0,398 & 0,543 & 0,703 & 0,883 & 1,100 & 1,383 & 1,833 & 2,262 & 2,821 & 3,250 & 4,781 & 0,602 & 0,735\\
+10 & 0,129 & 0,260 & 0,397 & 0,542 & 0,700 & 0,879 & 1,093 & 1,372 & 1,812 & 2,228 & 2,764 & 3,169 & 4,587 & 0,576 & 0,708\\
+11 & 0,129 & 0,260 & 0,396 & 0,540 & 0,697 & 0,876 & 1,088 & 1,363 & 1,796 & 2,201 & 2,718 & 3,106 & 4,437 & 0,553 & 0,684\\
+12 & 0,128 & 0,259 & 0,395 & 0,539 & 0,695 & 0,873 & 1,083 & 1,356 & 1,782 & 2,179 & 2,681 & 3,055 & 4,318 & 0,532 & 0,661\\
+13 & 0,128 & 0,259 & 0,394 & 0,538 & 0,694 & 0,870 & 1,079 & 1,350 & 1,771 & 2,160 & 2,650 & 3,012 & 4,221 & 0,514 & 0,641\\
+14 & 0,128 & 0,258 & 0,393 & 0,537 & 0,692 & 0,868 & 1,076 & 1,345 & 1,761 & 2,145 & 2,624 & 2,977 & 4,140 & 0,497 & 0,623\\
+15 & 0,128 & 0,258 & 0,393 & 0,536 & 0,691 & 0,866 & 1,074 & 1,341 & 1,753 & 2,131 & 2,602 & 2,947 & 4,073 & 0,482 & 0,606\\
+16 & 0,128 & 0,258 & 0,392 & 0,535 & 0,690 & 0,865 & 1,071 & 1,337 & 1,746 & 2,120 & 2,583 & 2,921 & 4,015 & 0,468 & 0,590\\
+17 & 0,128 & 0,257 & 0,392 & 0,534 & 0,689 & 0,863 & 1,069 & 1,333 & 1,740 & 2,110 & 2,567 & 2,898 & 3,965 & 0,456 & 0,575\\
+18 & 0,127 & 0,257 & 0,392 & 0,534 & 0,688 & 0,862 & 1,067 & 1,330 & 1,734 & 2,101 & 2,552 & 2,878 & 3,922 & 0,444 & 0,561\\
+19 & 0,127 & 0,257 & 0,391 & 0,533 & 0,688 & 0,861 & 1,066 & 1,328 & 1,729 & 2,093 & 2,539 & 2,861 & 3,883 & 0,433 & 0,549\\
+20 & 0,127 & 0,257 & 0,391 & 0,533 & 0,687 & 0,860 & 1,064 & 1,325 & 1,725 & 2,086 & 2,528 & 2,845 & 3,850 & 0,423 & 0,537\\
+21 & 0,127 & 0,257 & 0,391 & 0,532 & 0,686 & 0,859 & 1,063 & 1,323 & 1,721 & 2,080 & 2,518 & 2,831 & 3,819 & 0,413 & 0,526\\
+22 & 0,127 & 0,256 & 0,390 & 0,532 & 0,686 & 0,858 & 1,061 & 1,321 & 1,717 & 2,074 & 2,508 & 2,819 & 3,792 & 0,404 & 0,515\\
+23 & 0,127 & 0,256 & 0,390 & 0,532 & 0,685 & 0,858 & 1,060 & 1,319 & 1,714 & 2,069 & 2,500 & 2,807 & 3,768 & 0,396 & 0,505\\
+24 & 0,127 & 0,256 & 0,390 & 0,531 & 0,685 & 0,857 & 1,059 & 1,318 & 1,711 & 2,064 & 2,492 & 2,797 & 3,745 & 0,388 & 0,496\\
+25 & 0,127 & 0,256 & 0,390 & 0,531 & 0,684 & 0,856 & 1,058 & 1,316 & 1,708 & 2,060 & 2,485 & 2,787 & 3,725 & 0,381 & 0,487\\
+26 & 0,127 & 0,256 & 0,390 & 0,531 & 0,684 & 0,856 & 1,058 & 1,315 & 1,706 & 2,056 & 2,479 & 2,779 & 3,707 & 0,374 & 0,479\\
+27 & 0,127 & 0,256 & 0,389 & 0,531 & 0,684 & 0,855 & 1,057 & 1,314 & 1,703 & 2,052 & 2,473 & 2,771 & 3,690 & 0,367 & 0,471\\
+28 & 0,127 & 0,256 & 0,389 & 0,530 & 0,683 & 0,855 & 1,056 & 1,313 & 1,701 & 2,048 & 2,467 & 2,763 & 3,674 & 0,361 & 0,463\\
+29 & 0,127 & 0,256 & 0,389 & 0,530 & 0,683 & 0,854 & 1,055 & 1,311 & 1,699 & 2,045 & 2,462 & 2,756 & 3,659 & 0,355 & 0,456\\
+30 & 0,127 & 0,256 & 0,389 & 0,530 & 0,683 & 0,854 & 1,055 & 1,310 & 1,697 & 2,042 & 2,457 & 2,750 & 3,646 & 0,349 & 0,449\\
+40 & 0,126 & 0,255 & 0,388 & 0,529 & 0,681 & 0,851 & 1,050 & 1,303 & 1,684 & 2,021 & 2,423 & 2,704 & 3,551 & 0,304 & 0,393\\
+60 & 0,126 & 0,254 & 0,387 & 0,527 & 0,679 & 0,848 & 1,045 & 1,296 & 1,671 & 2,000 & 2,390 & 2,660 & 3,460 & 0,250 & 0,325\\
+120 & 0,126 & 0,254 & 0,386 & 0,526 & 0,677 & 0,845 & 1,041 & 1,289 & 1,658 & 1,980 & 2,358 & 2,617 & 3,373 & 0,178 & 0,232\\
+z & 0,126 & 0,253 & 0,385 & 0,524 & 0,674 & 0,842 & 1,036 & 1,282 & 1,645 & 1,960 & 2,326 & 2,576 & 3,291 &  & \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\emph{Hinweis:} Die Flächenanteile für negative \(t\)-Werte ergeben sich
+nach \(P(-t_{df}) = 1 - P(t_{df})\).
+
+\newpage
+
+\subsection{Tabelle D: F-Verteilung (Zähler-df
+1--12)}\label{tabelle-d-f-verteilung-zuxe4hler-df-112}
+
+\begin{landscape}\begingroup\fontsize{8}{10}\selectfont
+
+\begin{longtable}[t]{cccccccccccccc}
+\caption{\label{tab:tab-f1}Verteilungsfunktion der F-Verteilungen (Zähler-df 1 bis 12)}\\
+\toprule
+\multicolumn{2}{c}{ } & \multicolumn{12}{c}{Zähler-df} \\
+\cmidrule(l{3pt}r{3pt}){3-14}
+Nenner-df & Fläche & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12\\
+\midrule
+\endfirsthead
+\caption[]{Verteilungsfunktion der F-Verteilungen (Zähler-df 1 bis 12) \textit{(continued)}}\\
+\toprule
+Nenner-df & Fläche & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12\\
+\midrule
+\endhead
+
+\endfoot
+\bottomrule
+\endlastfoot
+1 & 0,75 & 5,83 & 7,50 & 8,20 & 8,58 & 8,82 & 8,98 & 9,10 & 9,19 & 9,26 & 9,32 & 9,37 & 9,41\\
+1 & 0,90 & 39,86 & 49,50 & 53,59 & 55,83 & 57,24 & 58,20 & 58,91 & 59,44 & 59,86 & 60,19 & 60,47 & 60,71\\
+1 & 0,95 & 161,45 & 199,50 & 215,71 & 224,58 & 230,16 & 233,99 & 236,77 & 238,88 & 240,54 & 241,88 & 242,98 & 243,91\\
+1 & 0,99 & 4052,18 & 4999,50 & 5403,35 & 5624,58 & 5763,65 & 5858,99 & 5928,36 & 5981,07 & 6022,47 & 6055,85 & 6083,32 & 6106,32\\
+2 & 0,75 & 2,57 & 3,00 & 3,15 & 3,23 & 3,28 & 3,31 & 3,34 & 3,35 & 3,37 & 3,38 & 3,39 & 3,39\\
+2 & 0,90 & 8,53 & 9,00 & 9,16 & 9,24 & 9,29 & 9,33 & 9,35 & 9,37 & 9,38 & 9,39 & 9,40 & 9,41\\
+2 & 0,95 & 18,51 & 19,00 & 19,16 & 19,25 & 19,30 & 19,33 & 19,35 & 19,37 & 19,38 & 19,40 & 19,40 & 19,41\\
+2 & 0,99 & 98,50 & 99,00 & 99,17 & 99,25 & 99,30 & 99,33 & 99,36 & 99,37 & 99,39 & 99,40 & 99,41 & 99,42\\
+3 & 0,75 & 2,02 & 2,28 & 2,36 & 2,39 & 2,41 & 2,42 & 2,43 & 2,44 & 2,44 & 2,44 & 2,45 & 2,45\\
+3 & 0,90 & 5,54 & 5,46 & 5,39 & 5,34 & 5,31 & 5,28 & 5,27 & 5,25 & 5,24 & 5,23 & 5,22 & 5,22\\
+3 & 0,95 & 10,13 & 9,55 & 9,28 & 9,12 & 9,01 & 8,94 & 8,89 & 8,85 & 8,81 & 8,79 & 8,76 & 8,74\\
+3 & 0,99 & 34,12 & 30,82 & 29,46 & 28,71 & 28,24 & 27,91 & 27,67 & 27,49 & 27,35 & 27,23 & 27,13 & 27,05\\
+4 & 0,75 & 1,81 & 2,00 & 2,05 & 2,06 & 2,07 & 2,08 & 2,08 & 2,08 & 2,08 & 2,08 & 2,08 & 2,08\\
+4 & 0,90 & 4,54 & 4,32 & 4,19 & 4,11 & 4,05 & 4,01 & 3,98 & 3,95 & 3,94 & 3,92 & 3,91 & 3,90\\
+4 & 0,95 & 7,71 & 6,94 & 6,59 & 6,39 & 6,26 & 6,16 & 6,09 & 6,04 & 6,00 & 5,96 & 5,94 & 5,91\\
+4 & 0,99 & 21,20 & 18,00 & 16,69 & 15,98 & 15,52 & 15,21 & 14,98 & 14,80 & 14,66 & 14,55 & 14,45 & 14,37\\
+5 & 0,75 & 1,69 & 1,85 & 1,88 & 1,89 & 1,89 & 1,89 & 1,89 & 1,89 & 1,89 & 1,89 & 1,89 & 1,89\\
+5 & 0,90 & 4,06 & 3,78 & 3,62 & 3,52 & 3,45 & 3,40 & 3,37 & 3,34 & 3,32 & 3,30 & 3,28 & 3,27\\
+5 & 0,95 & 6,61 & 5,79 & 5,41 & 5,19 & 5,05 & 4,95 & 4,88 & 4,82 & 4,77 & 4,74 & 4,70 & 4,68\\
+5 & 0,99 & 16,26 & 13,27 & 12,06 & 11,39 & 10,97 & 10,67 & 10,46 & 10,29 & 10,16 & 10,05 & 9,96 & 9,89\\
+6 & 0,75 & 1,62 & 1,76 & 1,78 & 1,79 & 1,79 & 1,78 & 1,78 & 1,78 & 1,77 & 1,77 & 1,77 & 1,77\\
+6 & 0,90 & 3,78 & 3,46 & 3,29 & 3,18 & 3,11 & 3,05 & 3,01 & 2,98 & 2,96 & 2,94 & 2,92 & 2,90\\
+6 & 0,95 & 5,99 & 5,14 & 4,76 & 4,53 & 4,39 & 4,28 & 4,21 & 4,15 & 4,10 & 4,06 & 4,03 & 4,00\\
+6 & 0,99 & 13,75 & 10,92 & 9,78 & 9,15 & 8,75 & 8,47 & 8,26 & 8,10 & 7,98 & 7,87 & 7,79 & 7,72\\
+7 & 0,75 & 1,57 & 1,70 & 1,72 & 1,72 & 1,71 & 1,71 & 1,70 & 1,70 & 1,69 & 1,69 & 1,69 & 1,68\\
+7 & 0,90 & 3,59 & 3,26 & 3,07 & 2,96 & 2,88 & 2,83 & 2,78 & 2,75 & 2,72 & 2,70 & 2,68 & 2,67\\
+7 & 0,95 & 5,59 & 4,74 & 4,35 & 4,12 & 3,97 & 3,87 & 3,79 & 3,73 & 3,68 & 3,64 & 3,60 & 3,57\\
+7 & 0,99 & 12,25 & 9,55 & 8,45 & 7,85 & 7,46 & 7,19 & 6,99 & 6,84 & 6,72 & 6,62 & 6,54 & 6,47\\
+8 & 0,75 & 1,54 & 1,66 & 1,67 & 1,66 & 1,66 & 1,65 & 1,64 & 1,64 & 1,63 & 1,63 & 1,63 & 1,62\\
+8 & 0,90 & 3,46 & 3,11 & 2,92 & 2,81 & 2,73 & 2,67 & 2,62 & 2,59 & 2,56 & 2,54 & 2,52 & 2,50\\
+8 & 0,95 & 5,32 & 4,46 & 4,07 & 3,84 & 3,69 & 3,58 & 3,50 & 3,44 & 3,39 & 3,35 & 3,31 & 3,28\\
+8 & 0,99 & 11,26 & 8,65 & 7,59 & 7,01 & 6,63 & 6,37 & 6,18 & 6,03 & 5,91 & 5,81 & 5,73 & 5,67\\
+9 & 0,75 & 1,51 & 1,62 & 1,63 & 1,63 & 1,62 & 1,61 & 1,60 & 1,60 & 1,59 & 1,59 & 1,58 & 1,58\\
+9 & 0,90 & 3,36 & 3,01 & 2,81 & 2,69 & 2,61 & 2,55 & 2,51 & 2,47 & 2,44 & 2,42 & 2,40 & 2,38\\
+9 & 0,95 & 5,12 & 4,26 & 3,86 & 3,63 & 3,48 & 3,37 & 3,29 & 3,23 & 3,18 & 3,14 & 3,10 & 3,07\\
+9 & 0,99 & 10,56 & 8,02 & 6,99 & 6,42 & 6,06 & 5,80 & 5,61 & 5,47 & 5,35 & 5,26 & 5,18 & 5,11\\
+10 & 0,75 & 1,49 & 1,60 & 1,60 & 1,59 & 1,59 & 1,58 & 1,57 & 1,56 & 1,56 & 1,55 & 1,55 & 1,54\\
+10 & 0,90 & 3,29 & 2,92 & 2,73 & 2,61 & 2,52 & 2,46 & 2,41 & 2,38 & 2,35 & 2,32 & 2,30 & 2,28\\
+10 & 0,95 & 4,96 & 4,10 & 3,71 & 3,48 & 3,33 & 3,22 & 3,14 & 3,07 & 3,02 & 2,98 & 2,94 & 2,91\\
+10 & 0,99 & 10,04 & 7,56 & 6,55 & 5,99 & 5,64 & 5,39 & 5,20 & 5,06 & 4,94 & 4,85 & 4,77 & 4,71\\
+11 & 0,75 & 1,47 & 1,58 & 1,58 & 1,57 & 1,56 & 1,55 & 1,54 & 1,53 & 1,53 & 1,52 & 1,52 & 1,51\\
+11 & 0,90 & 3,23 & 2,86 & 2,66 & 2,54 & 2,45 & 2,39 & 2,34 & 2,30 & 2,27 & 2,25 & 2,23 & 2,21\\
+11 & 0,95 & 4,84 & 3,98 & 3,59 & 3,36 & 3,20 & 3,09 & 3,01 & 2,95 & 2,90 & 2,85 & 2,82 & 2,79\\
+11 & 0,99 & 9,65 & 7,21 & 6,22 & 5,67 & 5,32 & 5,07 & 4,89 & 4,74 & 4,63 & 4,54 & 4,46 & 4,40\\
+12 & 0,75 & 1,46 & 1,56 & 1,56 & 1,55 & 1,54 & 1,53 & 1,52 & 1,51 & 1,51 & 1,50 & 1,49 & 1,49\\
+12 & 0,90 & 3,18 & 2,81 & 2,61 & 2,48 & 2,39 & 2,33 & 2,28 & 2,24 & 2,21 & 2,19 & 2,17 & 2,15\\
+12 & 0,95 & 4,75 & 3,89 & 3,49 & 3,26 & 3,11 & 3,00 & 2,91 & 2,85 & 2,80 & 2,75 & 2,72 & 2,69\\
+12 & 0,99 & 9,33 & 6,93 & 5,95 & 5,41 & 5,06 & 4,82 & 4,64 & 4,50 & 4,39 & 4,30 & 4,22 & 4,16\\
+13 & 0,75 & 1,45 & 1,55 & 1,55 & 1,53 & 1,52 & 1,51 & 1,50 & 1,49 & 1,49 & 1,48 & 1,47 & 1,47\\
+13 & 0,90 & 3,14 & 2,76 & 2,56 & 2,43 & 2,35 & 2,28 & 2,23 & 2,20 & 2,16 & 2,14 & 2,12 & 2,10\\
+13 & 0,95 & 4,67 & 3,81 & 3,41 & 3,18 & 3,03 & 2,92 & 2,83 & 2,77 & 2,71 & 2,67 & 2,63 & 2,60\\
+13 & 0,99 & 9,07 & 6,70 & 5,74 & 5,21 & 4,86 & 4,62 & 4,44 & 4,30 & 4,19 & 4,10 & 4,02 & 3,96\\
+14 & 0,75 & 1,44 & 1,53 & 1,53 & 1,52 & 1,51 & 1,50 & 1,49 & 1,48 & 1,47 & 1,46 & 1,46 & 1,45\\
+14 & 0,90 & 3,10 & 2,73 & 2,52 & 2,39 & 2,31 & 2,24 & 2,19 & 2,15 & 2,12 & 2,10 & 2,07 & 2,05\\
+14 & 0,95 & 4,60 & 3,74 & 3,34 & 3,11 & 2,96 & 2,85 & 2,76 & 2,70 & 2,65 & 2,60 & 2,57 & 2,53\\
+14 & 0,99 & 8,86 & 6,51 & 5,56 & 5,04 & 4,69 & 4,46 & 4,28 & 4,14 & 4,03 & 3,94 & 3,86 & 3,80\\
+15 & 0,75 & 1,43 & 1,52 & 1,52 & 1,51 & 1,49 & 1,48 & 1,47 & 1,46 & 1,46 & 1,45 & 1,44 & 1,44\\
+15 & 0,90 & 3,07 & 2,70 & 2,49 & 2,36 & 2,27 & 2,21 & 2,16 & 2,12 & 2,09 & 2,06 & 2,04 & 2,02\\
+15 & 0,95 & 4,54 & 3,68 & 3,29 & 3,06 & 2,90 & 2,79 & 2,71 & 2,64 & 2,59 & 2,54 & 2,51 & 2,48\\
+15 & 0,99 & 8,68 & 6,36 & 5,42 & 4,89 & 4,56 & 4,32 & 4,14 & 4,00 & 3,89 & 3,80 & 3,73 & 3,67\\
+16 & 0,75 & 1,42 & 1,51 & 1,51 & 1,50 & 1,48 & 1,47 & 1,46 & 1,45 & 1,44 & 1,44 & 1,43 & 1,43\\
+16 & 0,90 & 3,05 & 2,67 & 2,46 & 2,33 & 2,24 & 2,18 & 2,13 & 2,09 & 2,06 & 2,03 & 2,01 & 1,99\\
+16 & 0,95 & 4,49 & 3,63 & 3,24 & 3,01 & 2,85 & 2,74 & 2,66 & 2,59 & 2,54 & 2,49 & 2,46 & 2,42\\
+16 & 0,99 & 8,53 & 6,23 & 5,29 & 4,77 & 4,44 & 4,20 & 4,03 & 3,89 & 3,78 & 3,69 & 3,62 & 3,55\\
+17 & 0,75 & 1,42 & 1,51 & 1,50 & 1,49 & 1,47 & 1,46 & 1,45 & 1,44 & 1,43 & 1,43 & 1,42 & 1,41\\
+17 & 0,90 & 3,03 & 2,64 & 2,44 & 2,31 & 2,22 & 2,15 & 2,10 & 2,06 & 2,03 & 2,00 & 1,98 & 1,96\\
+17 & 0,95 & 4,45 & 3,59 & 3,20 & 2,96 & 2,81 & 2,70 & 2,61 & 2,55 & 2,49 & 2,45 & 2,41 & 2,38\\
+17 & 0,99 & 8,40 & 6,11 & 5,18 & 4,67 & 4,34 & 4,10 & 3,93 & 3,79 & 3,68 & 3,59 & 3,52 & 3,46\\
+18 & 0,75 & 1,41 & 1,50 & 1,49 & 1,48 & 1,46 & 1,45 & 1,44 & 1,43 & 1,42 & 1,42 & 1,41 & 1,40\\
+18 & 0,90 & 3,01 & 2,62 & 2,42 & 2,29 & 2,20 & 2,13 & 2,08 & 2,04 & 2,00 & 1,98 & 1,95 & 1,93\\
+18 & 0,95 & 4,41 & 3,55 & 3,16 & 2,93 & 2,77 & 2,66 & 2,58 & 2,51 & 2,46 & 2,41 & 2,37 & 2,34\\
+18 & 0,99 & 8,29 & 6,01 & 5,09 & 4,58 & 4,25 & 4,01 & 3,84 & 3,71 & 3,60 & 3,51 & 3,43 & 3,37\\
+19 & 0,75 & 1,41 & 1,49 & 1,49 & 1,47 & 1,46 & 1,44 & 1,43 & 1,42 & 1,41 & 1,41 & 1,40 & 1,40\\
+19 & 0,90 & 2,99 & 2,61 & 2,40 & 2,27 & 2,18 & 2,11 & 2,06 & 2,02 & 1,98 & 1,96 & 1,93 & 1,91\\
+19 & 0,95 & 4,38 & 3,52 & 3,13 & 2,90 & 2,74 & 2,63 & 2,54 & 2,48 & 2,42 & 2,38 & 2,34 & 2,31\\
+19 & 0,99 & 8,18 & 5,93 & 5,01 & 4,50 & 4,17 & 3,94 & 3,77 & 3,63 & 3,52 & 3,43 & 3,36 & 3,30\\
+20 & 0,75 & 1,40 & 1,49 & 1,48 & 1,47 & 1,45 & 1,44 & 1,43 & 1,42 & 1,41 & 1,40 & 1,39 & 1,39\\
+20 & 0,90 & 2,97 & 2,59 & 2,38 & 2,25 & 2,16 & 2,09 & 2,04 & 2,00 & 1,96 & 1,94 & 1,91 & 1,89\\
+20 & 0,95 & 4,35 & 3,49 & 3,10 & 2,87 & 2,71 & 2,60 & 2,51 & 2,45 & 2,39 & 2,35 & 2,31 & 2,28\\
+20 & 0,99 & 8,10 & 5,85 & 4,94 & 4,43 & 4,10 & 3,87 & 3,70 & 3,56 & 3,46 & 3,37 & 3,29 & 3,23\\
+21 & 0,75 & 1,40 & 1,48 & 1,48 & 1,46 & 1,44 & 1,43 & 1,42 & 1,41 & 1,40 & 1,39 & 1,39 & 1,38\\
+21 & 0,90 & 2,96 & 2,57 & 2,36 & 2,23 & 2,14 & 2,08 & 2,02 & 1,98 & 1,95 & 1,92 & 1,90 & 1,87\\
+21 & 0,95 & 4,32 & 3,47 & 3,07 & 2,84 & 2,68 & 2,57 & 2,49 & 2,42 & 2,37 & 2,32 & 2,28 & 2,25\\
+21 & 0,99 & 8,02 & 5,78 & 4,87 & 4,37 & 4,04 & 3,81 & 3,64 & 3,51 & 3,40 & 3,31 & 3,24 & 3,17\\
+22 & 0,75 & 1,40 & 1,48 & 1,47 & 1,45 & 1,44 & 1,42 & 1,41 & 1,40 & 1,39 & 1,39 & 1,38 & 1,37\\
+22 & 0,90 & 2,95 & 2,56 & 2,35 & 2,22 & 2,13 & 2,06 & 2,01 & 1,97 & 1,93 & 1,90 & 1,88 & 1,86\\
+22 & 0,95 & 4,30 & 3,44 & 3,05 & 2,82 & 2,66 & 2,55 & 2,46 & 2,40 & 2,34 & 2,30 & 2,26 & 2,23\\
+22 & 0,99 & 7,95 & 5,72 & 4,82 & 4,31 & 3,99 & 3,76 & 3,59 & 3,45 & 3,35 & 3,26 & 3,18 & 3,12\\
+23 & 0,75 & 1,39 & 1,47 & 1,47 & 1,45 & 1,43 & 1,42 & 1,41 & 1,40 & 1,39 & 1,38 & 1,37 & 1,37\\
+23 & 0,90 & 2,94 & 2,55 & 2,34 & 2,21 & 2,11 & 2,05 & 1,99 & 1,95 & 1,92 & 1,89 & 1,87 & 1,84\\
+23 & 0,95 & 4,28 & 3,42 & 3,03 & 2,80 & 2,64 & 2,53 & 2,44 & 2,37 & 2,32 & 2,27 & 2,24 & 2,20\\
+23 & 0,99 & 7,88 & 5,66 & 4,76 & 4,26 & 3,94 & 3,71 & 3,54 & 3,41 & 3,30 & 3,21 & 3,14 & 3,07\\
+24 & 0,75 & 1,39 & 1,47 & 1,46 & 1,44 & 1,43 & 1,41 & 1,40 & 1,39 & 1,38 & 1,38 & 1,37 & 1,36\\
+24 & 0,90 & 2,93 & 2,54 & 2,33 & 2,19 & 2,10 & 2,04 & 1,98 & 1,94 & 1,91 & 1,88 & 1,85 & 1,83\\
+24 & 0,95 & 4,26 & 3,40 & 3,01 & 2,78 & 2,62 & 2,51 & 2,42 & 2,36 & 2,30 & 2,25 & 2,22 & 2,18\\
+24 & 0,99 & 7,82 & 5,61 & 4,72 & 4,22 & 3,90 & 3,67 & 3,50 & 3,36 & 3,26 & 3,17 & 3,09 & 3,03\\
+25 & 0,75 & 1,39 & 1,47 & 1,46 & 1,44 & 1,42 & 1,41 & 1,40 & 1,39 & 1,38 & 1,37 & 1,36 & 1,36\\
+25 & 0,90 & 2,92 & 2,53 & 2,32 & 2,18 & 2,09 & 2,02 & 1,97 & 1,93 & 1,89 & 1,87 & 1,84 & 1,82\\
+25 & 0,95 & 4,24 & 3,39 & 2,99 & 2,76 & 2,60 & 2,49 & 2,40 & 2,34 & 2,28 & 2,24 & 2,20 & 2,16\\
+25 & 0,99 & 7,77 & 5,57 & 4,68 & 4,18 & 3,85 & 3,63 & 3,46 & 3,32 & 3,22 & 3,13 & 3,06 & 2,99\\
+26 & 0,75 & 1,38 & 1,46 & 1,45 & 1,44 & 1,42 & 1,41 & 1,39 & 1,38 & 1,37 & 1,37 & 1,36 & 1,35\\
+26 & 0,90 & 2,91 & 2,52 & 2,31 & 2,17 & 2,08 & 2,01 & 1,96 & 1,92 & 1,88 & 1,86 & 1,83 & 1,81\\
+26 & 0,95 & 4,23 & 3,37 & 2,98 & 2,74 & 2,59 & 2,47 & 2,39 & 2,32 & 2,27 & 2,22 & 2,18 & 2,15\\
+26 & 0,99 & 7,72 & 5,53 & 4,64 & 4,14 & 3,82 & 3,59 & 3,42 & 3,29 & 3,18 & 3,09 & 3,02 & 2,96\\
+27 & 0,75 & 1,38 & 1,46 & 1,45 & 1,43 & 1,42 & 1,40 & 1,39 & 1,38 & 1,37 & 1,36 & 1,35 & 1,35\\
+27 & 0,90 & 2,90 & 2,51 & 2,30 & 2,17 & 2,07 & 2,00 & 1,95 & 1,91 & 1,87 & 1,85 & 1,82 & 1,80\\
+27 & 0,95 & 4,21 & 3,35 & 2,96 & 2,73 & 2,57 & 2,46 & 2,37 & 2,31 & 2,25 & 2,20 & 2,17 & 2,13\\
+27 & 0,99 & 7,68 & 5,49 & 4,60 & 4,11 & 3,78 & 3,56 & 3,39 & 3,26 & 3,15 & 3,06 & 2,99 & 2,93\\
+28 & 0,75 & 1,38 & 1,46 & 1,45 & 1,43 & 1,41 & 1,40 & 1,39 & 1,38 & 1,37 & 1,36 & 1,35 & 1,34\\
+28 & 0,90 & 2,89 & 2,50 & 2,29 & 2,16 & 2,06 & 2,00 & 1,94 & 1,90 & 1,87 & 1,84 & 1,81 & 1,79\\
+28 & 0,95 & 4,20 & 3,34 & 2,95 & 2,71 & 2,56 & 2,45 & 2,36 & 2,29 & 2,24 & 2,19 & 2,15 & 2,12\\
+28 & 0,99 & 7,64 & 5,45 & 4,57 & 4,07 & 3,75 & 3,53 & 3,36 & 3,23 & 3,12 & 3,03 & 2,96 & 2,90\\
+29 & 0,75 & 1,38 & 1,45 & 1,45 & 1,43 & 1,41 & 1,40 & 1,38 & 1,37 & 1,36 & 1,35 & 1,35 & 1,34\\
+29 & 0,90 & 2,89 & 2,50 & 2,28 & 2,15 & 2,06 & 1,99 & 1,93 & 1,89 & 1,86 & 1,83 & 1,80 & 1,78\\
+29 & 0,95 & 4,18 & 3,33 & 2,93 & 2,70 & 2,55 & 2,43 & 2,35 & 2,28 & 2,22 & 2,18 & 2,14 & 2,10\\
+29 & 0,99 & 7,60 & 5,42 & 4,54 & 4,04 & 3,73 & 3,50 & 3,33 & 3,20 & 3,09 & 3,00 & 2,93 & 2,87\\
+30 & 0,75 & 1,38 & 1,45 & 1,44 & 1,42 & 1,41 & 1,39 & 1,38 & 1,37 & 1,36 & 1,35 & 1,34 & 1,34\\
+30 & 0,90 & 2,88 & 2,49 & 2,28 & 2,14 & 2,05 & 1,98 & 1,93 & 1,88 & 1,85 & 1,82 & 1,79 & 1,77\\
+30 & 0,95 & 4,17 & 3,32 & 2,92 & 2,69 & 2,53 & 2,42 & 2,33 & 2,27 & 2,21 & 2,16 & 2,13 & 2,09\\
+30 & 0,99 & 7,56 & 5,39 & 4,51 & 4,02 & 3,70 & 3,47 & 3,30 & 3,17 & 3,07 & 2,98 & 2,91 & 2,84\\
+40 & 0,75 & 1,36 & 1,44 & 1,42 & 1,40 & 1,39 & 1,37 & 1,36 & 1,35 & 1,34 & 1,33 & 1,32 & 1,31\\
+40 & 0,90 & 2,84 & 2,44 & 2,23 & 2,09 & 2,00 & 1,93 & 1,87 & 1,83 & 1,79 & 1,76 & 1,74 & 1,71\\
+40 & 0,95 & 4,08 & 3,23 & 2,84 & 2,61 & 2,45 & 2,34 & 2,25 & 2,18 & 2,12 & 2,08 & 2,04 & 2,00\\
+40 & 0,99 & 7,31 & 5,18 & 4,31 & 3,83 & 3,51 & 3,29 & 3,12 & 2,99 & 2,89 & 2,80 & 2,73 & 2,66\\
+60 & 0,75 & 1,35 & 1,42 & 1,41 & 1,38 & 1,37 & 1,35 & 1,33 & 1,32 & 1,31 & 1,30 & 1,29 & 1,29\\
+60 & 0,90 & 2,79 & 2,39 & 2,18 & 2,04 & 1,95 & 1,87 & 1,82 & 1,77 & 1,74 & 1,71 & 1,68 & 1,66\\
+60 & 0,95 & 4,00 & 3,15 & 2,76 & 2,53 & 2,37 & 2,25 & 2,17 & 2,10 & 2,04 & 1,99 & 1,95 & 1,92\\
+60 & 0,99 & 7,08 & 4,98 & 4,13 & 3,65 & 3,34 & 3,12 & 2,95 & 2,82 & 2,72 & 2,63 & 2,56 & 2,50\\
+120 & 0,75 & 1,34 & 1,40 & 1,39 & 1,37 & 1,35 & 1,33 & 1,31 & 1,30 & 1,29 & 1,28 & 1,27 & 1,26\\
+120 & 0,90 & 2,75 & 2,35 & 2,13 & 1,99 & 1,90 & 1,82 & 1,77 & 1,72 & 1,68 & 1,65 & 1,63 & 1,60\\
+120 & 0,95 & 3,92 & 3,07 & 2,68 & 2,45 & 2,29 & 2,18 & 2,09 & 2,02 & 1,96 & 1,91 & 1,87 & 1,83\\
+120 & 0,99 & 6,85 & 4,79 & 3,95 & 3,48 & 3,17 & 2,96 & 2,79 & 2,66 & 2,56 & 2,47 & 2,40 & 2,34\\
+200 & 0,75 & 1,33 & 1,40 & 1,38 & 1,36 & 1,34 & 1,32 & 1,30 & 1,29 & 1,28 & 1,27 & 1,26 & 1,25\\
+200 & 0,90 & 2,73 & 2,33 & 2,11 & 1,97 & 1,88 & 1,80 & 1,75 & 1,70 & 1,66 & 1,63 & 1,60 & 1,58\\
+200 & 0,95 & 3,89 & 3,04 & 2,65 & 2,42 & 2,26 & 2,14 & 2,06 & 1,98 & 1,93 & 1,88 & 1,84 & 1,80\\
+200 & 0,99 & 6,76 & 4,71 & 3,88 & 3,41 & 3,11 & 2,89 & 2,73 & 2,60 & 2,50 & 2,41 & 2,34 & 2,27\\
+∞ & 0,75 & 1,32 & 1,39 & 1,37 & 1,35 & 1,33 & 1,31 & 1,29 & 1,28 & 1,27 & 1,25 & 1,25 & 1,24\\
+∞ & 0,90 & 2,71 & 2,30 & 2,08 & 1,94 & 1,85 & 1,77 & 1,72 & 1,67 & 1,63 & 1,60 & 1,57 & 1,55\\
+∞ & 0,95 & 3,84 & 3,00 & 2,60 & 2,37 & 2,21 & 2,10 & 2,01 & 1,94 & 1,88 & 1,83 & 1,79 & 1,75\\
+∞ & 0,99 & 6,63 & 4,61 & 3,78 & 3,32 & 3,02 & 2,80 & 2,64 & 2,51 & 2,41 & 2,32 & 2,25 & 2,18\\*
+\end{longtable}
+\endgroup{}
+\end{landscape}
+
+\newpage
+
+\subsection{Tabelle E: F-Verteilung (Zähler-df
+15--∞)}\label{tabelle-e-f-verteilung-zuxe4hler-df-15}
+
+\begin{landscape}\begingroup\fontsize{8}{10}\selectfont
+
+\begin{longtable}[t]{cccccccccccccc}
+\caption{\label{tab:tab-f2}Verteilungsfunktion der F-Verteilungen (Zähler-df 15 bis $\infty$)}\\
+\toprule
+\multicolumn{2}{c}{ } & \multicolumn{12}{c}{Zähler-df} \\
+\cmidrule(l{3pt}r{3pt}){3-14}
+Nenner-df & Fläche & 15 & 20 & 25 & 30 & 40 & 50 & 60 & 100 & 120 & 200 & 500 & ∞\\
+\midrule
+\endfirsthead
+\caption[]{Verteilungsfunktion der F-Verteilungen (Zähler-df 15 bis $\infty$) \textit{(continued)}}\\
+\toprule
+Nenner-df & Fläche & 15 & 20 & 25 & 30 & 40 & 50 & 60 & 100 & 120 & 200 & 500 & ∞\\
+\midrule
+\endhead
+
+\endfoot
+\bottomrule
+\endlastfoot
+1 & 0,75 & 9,49 & 9,58 & 9,63 & 9,67 & 9,71 & 9,74 & 9,76 & 9,80 & 9,80 & 9,82 & 9,84 & 9,85\\
+1 & 0,90 & 61,22 & 61,74 & 62,05 & 62,26 & 62,53 & 62,69 & 62,79 & 63,01 & 63,06 & 63,17 & 63,26 & 63,33\\
+1 & 0,95 & 245,95 & 248,01 & 249,26 & 250,10 & 251,14 & 251,77 & 252,20 & 253,04 & 253,25 & 253,68 & 254,06 & 254,31\\
+1 & 0,99 & 6157,28 & 6208,73 & 6239,83 & 6260,65 & 6286,78 & 6302,52 & 6313,03 & 6334,11 & 6339,39 & 6349,97 & 6359,50 & 6365,86\\
+2 & 0,75 & 3,41 & 3,43 & 3,44 & 3,44 & 3,45 & 3,46 & 3,46 & 3,47 & 3,47 & 3,47 & 3,47 & 3,48\\
+2 & 0,90 & 9,42 & 9,44 & 9,45 & 9,46 & 9,47 & 9,47 & 9,47 & 9,48 & 9,48 & 9,49 & 9,49 & 9,49\\
+2 & 0,95 & 19,43 & 19,45 & 19,46 & 19,46 & 19,47 & 19,48 & 19,48 & 19,49 & 19,49 & 19,49 & 19,49 & 19,50\\
+2 & 0,99 & 99,43 & 99,45 & 99,46 & 99,47 & 99,47 & 99,48 & 99,48 & 99,49 & 99,49 & 99,49 & 99,50 & 99,50\\
+3 & 0,75 & 2,46 & 2,46 & 2,46 & 2,47 & 2,47 & 2,47 & 2,47 & 2,47 & 2,47 & 2,47 & 2,47 & 2,47\\
+3 & 0,90 & 5,20 & 5,18 & 5,17 & 5,17 & 5,16 & 5,15 & 5,15 & 5,14 & 5,14 & 5,14 & 5,14 & 5,13\\
+3 & 0,95 & 8,70 & 8,66 & 8,63 & 8,62 & 8,59 & 8,58 & 8,57 & 8,55 & 8,55 & 8,54 & 8,53 & 8,53\\
+3 & 0,99 & 26,87 & 26,69 & 26,58 & 26,50 & 26,41 & 26,35 & 26,32 & 26,24 & 26,22 & 26,18 & 26,15 & 26,13\\
+4 & 0,75 & 2,08 & 2,08 & 2,08 & 2,08 & 2,08 & 2,08 & 2,08 & 2,08 & 2,08 & 2,08 & 2,08 & 2,08\\
+4 & 0,90 & 3,87 & 3,84 & 3,83 & 3,82 & 3,80 & 3,80 & 3,79 & 3,78 & 3,78 & 3,77 & 3,76 & 3,76\\
+4 & 0,95 & 5,86 & 5,80 & 5,77 & 5,75 & 5,72 & 5,70 & 5,69 & 5,66 & 5,66 & 5,65 & 5,64 & 5,63\\
+4 & 0,99 & 14,20 & 14,02 & 13,91 & 13,84 & 13,75 & 13,69 & 13,65 & 13,58 & 13,56 & 13,52 & 13,49 & 13,46\\
+5 & 0,75 & 1,89 & 1,88 & 1,88 & 1,88 & 1,88 & 1,88 & 1,87 & 1,87 & 1,87 & 1,87 & 1,87 & 1,87\\
+5 & 0,90 & 3,24 & 3,21 & 3,19 & 3,17 & 3,16 & 3,15 & 3,14 & 3,13 & 3,12 & 3,12 & 3,11 & 3,10\\
+5 & 0,95 & 4,62 & 4,56 & 4,52 & 4,50 & 4,46 & 4,44 & 4,43 & 4,41 & 4,40 & 4,39 & 4,37 & 4,36\\
+5 & 0,99 & 9,72 & 9,55 & 9,45 & 9,38 & 9,29 & 9,24 & 9,20 & 9,13 & 9,11 & 9,08 & 9,04 & 9,02\\
+6 & 0,75 & 1,76 & 1,76 & 1,75 & 1,75 & 1,75 & 1,75 & 1,74 & 1,74 & 1,74 & 1,74 & 1,74 & 1,74\\
+6 & 0,90 & 2,87 & 2,84 & 2,81 & 2,80 & 2,78 & 2,77 & 2,76 & 2,75 & 2,74 & 2,73 & 2,73 & 2,72\\
+6 & 0,95 & 3,94 & 3,87 & 3,83 & 3,81 & 3,77 & 3,75 & 3,74 & 3,71 & 3,70 & 3,69 & 3,68 & 3,67\\
+6 & 0,99 & 7,56 & 7,40 & 7,30 & 7,23 & 7,14 & 7,09 & 7,06 & 6,99 & 6,97 & 6,93 & 6,90 & 6,88\\
+7 & 0,75 & 1,68 & 1,67 & 1,67 & 1,66 & 1,66 & 1,66 & 1,65 & 1,65 & 1,65 & 1,65 & 1,65 & 1,65\\
+7 & 0,90 & 2,63 & 2,59 & 2,57 & 2,56 & 2,54 & 2,52 & 2,51 & 2,50 & 2,49 & 2,48 & 2,48 & 2,47\\
+7 & 0,95 & 3,51 & 3,44 & 3,40 & 3,38 & 3,34 & 3,32 & 3,30 & 3,27 & 3,27 & 3,25 & 3,24 & 3,23\\
+7 & 0,99 & 6,31 & 6,16 & 6,06 & 5,99 & 5,91 & 5,86 & 5,82 & 5,75 & 5,74 & 5,70 & 5,67 & 5,65\\
+8 & 0,75 & 1,62 & 1,61 & 1,60 & 1,60 & 1,59 & 1,59 & 1,59 & 1,58 & 1,58 & 1,58 & 1,58 & 1,58\\
+8 & 0,90 & 2,46 & 2,42 & 2,40 & 2,38 & 2,36 & 2,35 & 2,34 & 2,32 & 2,32 & 2,31 & 2,30 & 2,29\\
+8 & 0,95 & 3,22 & 3,15 & 3,11 & 3,08 & 3,04 & 3,02 & 3,01 & 2,97 & 2,97 & 2,95 & 2,94 & 2,93\\
+8 & 0,99 & 5,52 & 5,36 & 5,26 & 5,20 & 5,12 & 5,07 & 5,03 & 4,96 & 4,95 & 4,91 & 4,88 & 4,86\\
+9 & 0,75 & 1,57 & 1,56 & 1,55 & 1,55 & 1,54 & 1,54 & 1,54 & 1,53 & 1,53 & 1,53 & 1,53 & 1,53\\
+9 & 0,90 & 2,34 & 2,30 & 2,27 & 2,25 & 2,23 & 2,22 & 2,21 & 2,19 & 2,18 & 2,17 & 2,17 & 2,16\\
+9 & 0,95 & 3,01 & 2,94 & 2,89 & 2,86 & 2,83 & 2,80 & 2,79 & 2,76 & 2,75 & 2,73 & 2,72 & 2,71\\
+9 & 0,99 & 4,96 & 4,81 & 4,71 & 4,65 & 4,57 & 4,52 & 4,48 & 4,41 & 4,40 & 4,36 & 4,33 & 4,31\\
+10 & 0,75 & 1,53 & 1,52 & 1,52 & 1,51 & 1,51 & 1,50 & 1,50 & 1,49 & 1,49 & 1,49 & 1,49 & 1,48\\
+10 & 0,90 & 2,24 & 2,20 & 2,17 & 2,16 & 2,13 & 2,12 & 2,11 & 2,09 & 2,08 & 2,07 & 2,06 & 2,06\\
+10 & 0,95 & 2,85 & 2,77 & 2,73 & 2,70 & 2,66 & 2,64 & 2,62 & 2,59 & 2,58 & 2,56 & 2,55 & 2,54\\
+10 & 0,99 & 4,56 & 4,41 & 4,31 & 4,25 & 4,17 & 4,12 & 4,08 & 4,01 & 4,00 & 3,96 & 3,93 & 3,91\\
+11 & 0,75 & 1,50 & 1,49 & 1,49 & 1,48 & 1,47 & 1,47 & 1,47 & 1,46 & 1,46 & 1,46 & 1,45 & 1,45\\
+11 & 0,90 & 2,17 & 2,12 & 2,10 & 2,08 & 2,05 & 2,04 & 2,03 & 2,01 & 2,00 & 1,99 & 1,98 & 1,97\\
+11 & 0,95 & 2,72 & 2,65 & 2,60 & 2,57 & 2,53 & 2,51 & 2,49 & 2,46 & 2,45 & 2,43 & 2,42 & 2,40\\
+11 & 0,99 & 4,25 & 4,10 & 4,01 & 3,94 & 3,86 & 3,81 & 3,78 & 3,71 & 3,69 & 3,66 & 3,62 & 3,60\\
+12 & 0,75 & 1,48 & 1,47 & 1,46 & 1,45 & 1,45 & 1,44 & 1,44 & 1,43 & 1,43 & 1,43 & 1,42 & 1,42\\
+12 & 0,90 & 2,10 & 2,06 & 2,03 & 2,01 & 1,99 & 1,97 & 1,96 & 1,94 & 1,93 & 1,92 & 1,91 & 1,90\\
+12 & 0,95 & 2,62 & 2,54 & 2,50 & 2,47 & 2,43 & 2,40 & 2,38 & 2,35 & 2,34 & 2,32 & 2,31 & 2,30\\
+12 & 0,99 & 4,01 & 3,86 & 3,76 & 3,70 & 3,62 & 3,57 & 3,54 & 3,47 & 3,45 & 3,41 & 3,38 & 3,36\\
+13 & 0,75 & 1,46 & 1,45 & 1,44 & 1,43 & 1,42 & 1,42 & 1,42 & 1,41 & 1,41 & 1,40 & 1,40 & 1,40\\
+13 & 0,90 & 2,05 & 2,01 & 1,98 & 1,96 & 1,93 & 1,92 & 1,90 & 1,88 & 1,88 & 1,86 & 1,85 & 1,85\\
+13 & 0,95 & 2,53 & 2,46 & 2,41 & 2,38 & 2,34 & 2,31 & 2,30 & 2,26 & 2,25 & 2,23 & 2,22 & 2,21\\
+13 & 0,99 & 3,82 & 3,66 & 3,57 & 3,51 & 3,43 & 3,38 & 3,34 & 3,27 & 3,25 & 3,22 & 3,19 & 3,17\\
+14 & 0,75 & 1,44 & 1,43 & 1,42 & 1,41 & 1,41 & 1,40 & 1,40 & 1,39 & 1,39 & 1,38 & 1,38 & 1,38\\
+14 & 0,90 & 2,01 & 1,96 & 1,93 & 1,91 & 1,89 & 1,87 & 1,86 & 1,83 & 1,83 & 1,82 & 1,80 & 1,80\\
+14 & 0,95 & 2,46 & 2,39 & 2,34 & 2,31 & 2,27 & 2,24 & 2,22 & 2,19 & 2,18 & 2,16 & 2,14 & 2,13\\
+14 & 0,99 & 3,66 & 3,51 & 3,41 & 3,35 & 3,27 & 3,22 & 3,18 & 3,11 & 3,09 & 3,06 & 3,03 & 3,00\\
+15 & 0,75 & 1,43 & 1,41 & 1,40 & 1,40 & 1,39 & 1,38 & 1,38 & 1,37 & 1,37 & 1,37 & 1,36 & 1,36\\
+15 & 0,90 & 1,97 & 1,92 & 1,89 & 1,87 & 1,85 & 1,83 & 1,82 & 1,79 & 1,79 & 1,77 & 1,76 & 1,76\\
+15 & 0,95 & 2,40 & 2,33 & 2,28 & 2,25 & 2,20 & 2,18 & 2,16 & 2,12 & 2,11 & 2,10 & 2,08 & 2,07\\
+15 & 0,99 & 3,52 & 3,37 & 3,28 & 3,21 & 3,13 & 3,08 & 3,05 & 2,98 & 2,96 & 2,92 & 2,89 & 2,87\\
+16 & 0,75 & 1,41 & 1,40 & 1,39 & 1,38 & 1,37 & 1,37 & 1,36 & 1,36 & 1,35 & 1,35 & 1,35 & 1,34\\
+16 & 0,90 & 1,94 & 1,89 & 1,86 & 1,84 & 1,81 & 1,79 & 1,78 & 1,76 & 1,75 & 1,74 & 1,73 & 1,72\\
+16 & 0,95 & 2,35 & 2,28 & 2,23 & 2,19 & 2,15 & 2,12 & 2,11 & 2,07 & 2,06 & 2,04 & 2,02 & 2,01\\
+16 & 0,99 & 3,41 & 3,26 & 3,16 & 3,10 & 3,02 & 2,97 & 2,93 & 2,86 & 2,84 & 2,81 & 2,78 & 2,75\\
+17 & 0,75 & 1,40 & 1,39 & 1,38 & 1,37 & 1,36 & 1,36 & 1,35 & 1,34 & 1,34 & 1,34 & 1,33 & 1,33\\
+17 & 0,90 & 1,91 & 1,86 & 1,83 & 1,81 & 1,78 & 1,76 & 1,75 & 1,73 & 1,72 & 1,71 & 1,69 & 1,69\\
+17 & 0,95 & 2,31 & 2,23 & 2,18 & 2,15 & 2,10 & 2,08 & 2,06 & 2,02 & 2,01 & 1,99 & 1,97 & 1,96\\
+17 & 0,99 & 3,31 & 3,16 & 3,07 & 3,00 & 2,92 & 2,87 & 2,83 & 2,76 & 2,75 & 2,71 & 2,68 & 2,65\\
+18 & 0,75 & 1,39 & 1,38 & 1,37 & 1,36 & 1,35 & 1,34 & 1,34 & 1,33 & 1,33 & 1,32 & 1,32 & 1,32\\
+18 & 0,90 & 1,89 & 1,84 & 1,80 & 1,78 & 1,75 & 1,74 & 1,72 & 1,70 & 1,69 & 1,68 & 1,67 & 1,66\\
+18 & 0,95 & 2,27 & 2,19 & 2,14 & 2,11 & 2,06 & 2,04 & 2,02 & 1,98 & 1,97 & 1,95 & 1,93 & 1,92\\
+18 & 0,99 & 3,23 & 3,08 & 2,98 & 2,92 & 2,84 & 2,78 & 2,75 & 2,68 & 2,66 & 2,62 & 2,59 & 2,57\\
+19 & 0,75 & 1,38 & 1,37 & 1,36 & 1,35 & 1,34 & 1,33 & 1,33 & 1,32 & 1,32 & 1,31 & 1,31 & 1,30\\
+19 & 0,90 & 1,86 & 1,81 & 1,78 & 1,76 & 1,73 & 1,71 & 1,70 & 1,67 & 1,67 & 1,65 & 1,64 & 1,63\\
+19 & 0,95 & 2,23 & 2,16 & 2,11 & 2,07 & 2,03 & 2,00 & 1,98 & 1,94 & 1,93 & 1,91 & 1,89 & 1,88\\
+19 & 0,99 & 3,15 & 3,00 & 2,91 & 2,84 & 2,76 & 2,71 & 2,67 & 2,60 & 2,58 & 2,55 & 2,51 & 2,49\\
+20 & 0,75 & 1,37 & 1,36 & 1,35 & 1,34 & 1,33 & 1,32 & 1,32 & 1,31 & 1,31 & 1,30 & 1,30 & 1,29\\
+20 & 0,90 & 1,84 & 1,79 & 1,76 & 1,74 & 1,71 & 1,69 & 1,68 & 1,65 & 1,64 & 1,63 & 1,62 & 1,61\\
+20 & 0,95 & 2,20 & 2,12 & 2,07 & 2,04 & 1,99 & 1,97 & 1,95 & 1,91 & 1,90 & 1,88 & 1,86 & 1,84\\
+20 & 0,99 & 3,09 & 2,94 & 2,84 & 2,78 & 2,69 & 2,64 & 2,61 & 2,54 & 2,52 & 2,48 & 2,44 & 2,42\\
+21 & 0,75 & 1,37 & 1,35 & 1,34 & 1,33 & 1,32 & 1,32 & 1,31 & 1,30 & 1,30 & 1,29 & 1,29 & 1,28\\
+21 & 0,90 & 1,83 & 1,78 & 1,74 & 1,72 & 1,69 & 1,67 & 1,66 & 1,63 & 1,62 & 1,61 & 1,60 & 1,59\\
+21 & 0,95 & 2,18 & 2,10 & 2,05 & 2,01 & 1,96 & 1,94 & 1,92 & 1,88 & 1,87 & 1,84 & 1,83 & 1,81\\
+21 & 0,99 & 3,03 & 2,88 & 2,79 & 2,72 & 2,64 & 2,58 & 2,55 & 2,48 & 2,46 & 2,42 & 2,38 & 2,36\\
+22 & 0,75 & 1,36 & 1,34 & 1,33 & 1,32 & 1,31 & 1,31 & 1,30 & 1,29 & 1,29 & 1,28 & 1,28 & 1,28\\
+22 & 0,90 & 1,81 & 1,76 & 1,73 & 1,70 & 1,67 & 1,65 & 1,64 & 1,61 & 1,60 & 1,59 & 1,58 & 1,57\\
+22 & 0,95 & 2,15 & 2,07 & 2,02 & 1,98 & 1,94 & 1,91 & 1,89 & 1,85 & 1,84 & 1,82 & 1,80 & 1,78\\
+22 & 0,99 & 2,98 & 2,83 & 2,73 & 2,67 & 2,58 & 2,53 & 2,50 & 2,42 & 2,40 & 2,36 & 2,33 & 2,31\\
+23 & 0,75 & 1,35 & 1,34 & 1,33 & 1,32 & 1,31 & 1,30 & 1,30 & 1,29 & 1,28 & 1,28 & 1,27 & 1,27\\
+23 & 0,90 & 1,80 & 1,74 & 1,71 & 1,69 & 1,66 & 1,64 & 1,62 & 1,59 & 1,59 & 1,57 & 1,56 & 1,55\\
+23 & 0,95 & 2,13 & 2,05 & 2,00 & 1,96 & 1,91 & 1,88 & 1,86 & 1,82 & 1,81 & 1,79 & 1,77 & 1,76\\
+23 & 0,99 & 2,93 & 2,78 & 2,69 & 2,62 & 2,54 & 2,48 & 2,45 & 2,37 & 2,35 & 2,32 & 2,28 & 2,26\\
+24 & 0,75 & 1,35 & 1,33 & 1,32 & 1,31 & 1,30 & 1,29 & 1,29 & 1,28 & 1,28 & 1,27 & 1,26 & 1,26\\
+24 & 0,90 & 1,78 & 1,73 & 1,70 & 1,67 & 1,64 & 1,62 & 1,61 & 1,58 & 1,57 & 1,56 & 1,54 & 1,53\\
+24 & 0,95 & 2,11 & 2,03 & 1,97 & 1,94 & 1,89 & 1,86 & 1,84 & 1,80 & 1,79 & 1,77 & 1,75 & 1,73\\
+24 & 0,99 & 2,89 & 2,74 & 2,64 & 2,58 & 2,49 & 2,44 & 2,40 & 2,33 & 2,31 & 2,27 & 2,24 & 2,21\\
+25 & 0,75 & 1,34 & 1,33 & 1,31 & 1,31 & 1,29 & 1,29 & 1,28 & 1,27 & 1,27 & 1,26 & 1,26 & 1,25\\
+25 & 0,90 & 1,77 & 1,72 & 1,68 & 1,66 & 1,63 & 1,61 & 1,59 & 1,56 & 1,56 & 1,54 & 1,53 & 1,52\\
+25 & 0,95 & 2,09 & 2,01 & 1,96 & 1,92 & 1,87 & 1,84 & 1,82 & 1,78 & 1,77 & 1,75 & 1,73 & 1,71\\
+25 & 0,99 & 2,85 & 2,70 & 2,60 & 2,54 & 2,45 & 2,40 & 2,36 & 2,29 & 2,27 & 2,23 & 2,19 & 2,17\\
+26 & 0,75 & 1,34 & 1,32 & 1,31 & 1,30 & 1,29 & 1,28 & 1,28 & 1,27 & 1,26 & 1,26 & 1,25 & 1,25\\
+26 & 0,90 & 1,76 & 1,71 & 1,67 & 1,65 & 1,61 & 1,59 & 1,58 & 1,55 & 1,54 & 1,53 & 1,51 & 1,50\\
+26 & 0,95 & 2,07 & 1,99 & 1,94 & 1,90 & 1,85 & 1,82 & 1,80 & 1,76 & 1,75 & 1,73 & 1,71 & 1,69\\
+26 & 0,99 & 2,81 & 2,66 & 2,57 & 2,50 & 2,42 & 2,36 & 2,33 & 2,25 & 2,23 & 2,19 & 2,16 & 2,13\\
+27 & 0,75 & 1,33 & 1,32 & 1,30 & 1,30 & 1,28 & 1,28 & 1,27 & 1,26 & 1,26 & 1,25 & 1,25 & 1,24\\
+27 & 0,90 & 1,75 & 1,70 & 1,66 & 1,64 & 1,60 & 1,58 & 1,57 & 1,54 & 1,53 & 1,52 & 1,50 & 1,49\\
+27 & 0,95 & 2,06 & 1,97 & 1,92 & 1,88 & 1,84 & 1,81 & 1,79 & 1,74 & 1,73 & 1,71 & 1,69 & 1,67\\
+27 & 0,99 & 2,78 & 2,63 & 2,54 & 2,47 & 2,38 & 2,33 & 2,29 & 2,22 & 2,20 & 2,16 & 2,12 & 2,10\\
+28 & 0,75 & 1,33 & 1,31 & 1,30 & 1,29 & 1,28 & 1,27 & 1,27 & 1,25 & 1,25 & 1,25 & 1,24 & 1,24\\
+28 & 0,90 & 1,74 & 1,69 & 1,65 & 1,63 & 1,59 & 1,57 & 1,56 & 1,53 & 1,52 & 1,50 & 1,49 & 1,48\\
+28 & 0,95 & 2,04 & 1,96 & 1,91 & 1,87 & 1,82 & 1,79 & 1,77 & 1,73 & 1,71 & 1,69 & 1,67 & 1,65\\
+28 & 0,99 & 2,75 & 2,60 & 2,51 & 2,44 & 2,35 & 2,30 & 2,26 & 2,19 & 2,17 & 2,13 & 2,09 & 2,06\\
+29 & 0,75 & 1,32 & 1,31 & 1,30 & 1,29 & 1,27 & 1,27 & 1,26 & 1,25 & 1,25 & 1,24 & 1,23 & 1,23\\
+29 & 0,90 & 1,73 & 1,68 & 1,64 & 1,62 & 1,58 & 1,56 & 1,55 & 1,52 & 1,51 & 1,49 & 1,48 & 1,47\\
+29 & 0,95 & 2,03 & 1,94 & 1,89 & 1,85 & 1,81 & 1,77 & 1,75 & 1,71 & 1,70 & 1,67 & 1,65 & 1,64\\
+29 & 0,99 & 2,73 & 2,57 & 2,48 & 2,41 & 2,33 & 2,27 & 2,23 & 2,16 & 2,14 & 2,10 & 2,06 & 2,03\\
+30 & 0,75 & 1,32 & 1,30 & 1,29 & 1,28 & 1,27 & 1,26 & 1,26 & 1,25 & 1,24 & 1,24 & 1,23 & 1,23\\
+30 & 0,90 & 1,72 & 1,67 & 1,63 & 1,61 & 1,57 & 1,55 & 1,54 & 1,51 & 1,50 & 1,48 & 1,47 & 1,46\\
+30 & 0,95 & 2,01 & 1,93 & 1,88 & 1,84 & 1,79 & 1,76 & 1,74 & 1,70 & 1,68 & 1,66 & 1,64 & 1,62\\
+30 & 0,99 & 2,70 & 2,55 & 2,45 & 2,39 & 2,30 & 2,25 & 2,21 & 2,13 & 2,11 & 2,07 & 2,03 & 2,01\\
+40 & 0,75 & 1,30 & 1,28 & 1,26 & 1,25 & 1,24 & 1,23 & 1,22 & 1,21 & 1,21 & 1,20 & 1,19 & 1,19\\
+40 & 0,90 & 1,66 & 1,61 & 1,57 & 1,54 & 1,51 & 1,48 & 1,47 & 1,43 & 1,42 & 1,41 & 1,39 & 1,38\\
+40 & 0,95 & 1,92 & 1,84 & 1,78 & 1,74 & 1,69 & 1,66 & 1,64 & 1,59 & 1,58 & 1,55 & 1,53 & 1,51\\
+40 & 0,99 & 2,52 & 2,37 & 2,27 & 2,20 & 2,11 & 2,06 & 2,02 & 1,94 & 1,92 & 1,87 & 1,83 & 1,80\\
+60 & 0,75 & 1,27 & 1,25 & 1,23 & 1,22 & 1,21 & 1,20 & 1,19 & 1,18 & 1,17 & 1,16 & 1,15 & 1,15\\
+60 & 0,90 & 1,60 & 1,54 & 1,50 & 1,48 & 1,44 & 1,41 & 1,40 & 1,36 & 1,35 & 1,33 & 1,31 & 1,29\\
+60 & 0,95 & 1,84 & 1,75 & 1,69 & 1,65 & 1,59 & 1,56 & 1,53 & 1,48 & 1,47 & 1,44 & 1,41 & 1,39\\
+60 & 0,99 & 2,35 & 2,20 & 2,10 & 2,03 & 1,94 & 1,88 & 1,84 & 1,75 & 1,73 & 1,68 & 1,63 & 1,60\\
+120 & 0,75 & 1,24 & 1,22 & 1,20 & 1,19 & 1,18 & 1,16 & 1,16 & 1,14 & 1,13 & 1,12 & 1,11 & 1,10\\
+120 & 0,90 & 1,55 & 1,48 & 1,44 & 1,41 & 1,37 & 1,34 & 1,32 & 1,28 & 1,26 & 1,24 & 1,21 & 1,19\\
+120 & 0,95 & 1,75 & 1,66 & 1,60 & 1,55 & 1,50 & 1,46 & 1,43 & 1,37 & 1,35 & 1,32 & 1,28 & 1,25\\
+120 & 0,99 & 2,19 & 2,03 & 1,93 & 1,86 & 1,76 & 1,70 & 1,66 & 1,56 & 1,53 & 1,48 & 1,42 & 1,38\\
+200 & 0,75 & 1,23 & 1,21 & 1,19 & 1,18 & 1,16 & 1,15 & 1,14 & 1,12 & 1,11 & 1,10 & 1,09 & 1,07\\
+200 & 0,90 & 1,52 & 1,46 & 1,41 & 1,38 & 1,34 & 1,31 & 1,29 & 1,24 & 1,23 & 1,20 & 1,17 & 1,14\\
+200 & 0,95 & 1,72 & 1,62 & 1,56 & 1,52 & 1,46 & 1,41 & 1,39 & 1,32 & 1,30 & 1,26 & 1,22 & 1,19\\
+200 & 0,99 & 2,13 & 1,97 & 1,87 & 1,79 & 1,69 & 1,63 & 1,58 & 1,48 & 1,45 & 1,39 & 1,33 & 1,28\\
+∞ & 0,75 & 1,22 & 1,19 & 1,17 & 1,16 & 1,14 & 1,13 & 1,12 & 1,09 & 1,08 & 1,07 & 1,04 & 1,00\\
+∞ & 0,90 & 1,49 & 1,42 & 1,38 & 1,34 & 1,30 & 1,26 & 1,24 & 1,18 & 1,17 & 1,13 & 1,08 & 1,00\\
+∞ & 0,95 & 1,67 & 1,57 & 1,51 & 1,46 & 1,39 & 1,35 & 1,32 & 1,24 & 1,22 & 1,17 & 1,11 & 1,00\\
+∞ & 0,99 & 2,04 & 1,88 & 1,77 & 1,70 & 1,59 & 1,52 & 1,47 & 1,36 & 1,32 & 1,25 & 1,15 & 1,00\\*
+\end{longtable}
+\endgroup{}
+\end{landscape}
+
+\newpage
+
+\subsection{\texorpdfstring{Tabelle B:
+\(\chi^2\)-Verteilung}{Tabelle B: \textbackslash chi\^{}2-Verteilung}}\label{tabelle-b-chi2-verteilung}
+
+\begin{table}[!h]
+\centering
+\caption{\label{tab:tab-chi}Verteilungsfunktion der $\chi^2$-Verteilungen (rechtsseitige Quantile)}
+\centering
+\begin{tabular}[t]{lcccccc}
+\toprule
+\multicolumn{1}{c}{df} & \multicolumn{6}{c}{Fläche (links der Grenze)} \\
+\cmidrule(l{3pt}r{3pt}){1-1} \cmidrule(l{3pt}r{3pt}){2-7}
+  & 0,900 & 0,950 & 0,975 & 0,990 & 0,995 & 0,999\\
+\midrule
+1 & 2,706 & 3,841 & 5,024 & 6,635 & 7,879 & 10,828\\
+2 & 4,605 & 5,991 & 7,378 & 9,210 & 10,597 & 13,816\\
+3 & 6,251 & 7,815 & 9,348 & 11,345 & 12,838 & 16,266\\
+4 & 7,779 & 9,488 & 11,143 & 13,277 & 14,860 & 18,467\\
+5 & 9,236 & 11,070 & 12,833 & 15,086 & 16,750 & 20,515\\
+6 & 10,645 & 12,592 & 14,449 & 16,812 & 18,548 & 22,458\\
+7 & 12,017 & 14,067 & 16,013 & 18,475 & 20,278 & 24,322\\
+8 & 13,362 & 15,507 & 17,535 & 20,090 & 21,955 & 26,124\\
+9 & 14,684 & 16,919 & 19,023 & 21,666 & 23,589 & 27,877\\
+10 & 15,987 & 18,307 & 20,483 & 23,209 & 25,188 & 29,588\\
+11 & 17,275 & 19,675 & 21,920 & 24,725 & 26,757 & 31,264\\
+12 & 18,549 & 21,026 & 23,337 & 26,217 & 28,300 & 32,909\\
+13 & 19,812 & 22,362 & 24,736 & 27,688 & 29,819 & 34,528\\
+14 & 21,064 & 23,685 & 26,119 & 29,141 & 31,319 & 36,123\\
+15 & 22,307 & 24,996 & 27,488 & 30,578 & 32,801 & 37,697\\
+16 & 23,542 & 26,296 & 28,845 & 32,000 & 34,267 & 39,252\\
+17 & 24,769 & 27,587 & 30,191 & 33,409 & 35,718 & 40,790\\
+18 & 25,989 & 28,869 & 31,526 & 34,805 & 37,156 & 42,312\\
+19 & 27,204 & 30,144 & 32,852 & 36,191 & 38,582 & 43,820\\
+20 & 28,412 & 31,410 & 34,170 & 37,566 & 39,997 & 45,315\\
+21 & 29,615 & 32,671 & 35,479 & 38,932 & 41,401 & 46,797\\
+22 & 30,813 & 33,924 & 36,781 & 40,289 & 42,796 & 48,268\\
+23 & 32,007 & 35,172 & 38,076 & 41,638 & 44,181 & 49,728\\
+24 & 33,196 & 36,415 & 39,364 & 42,980 & 45,559 & 51,179\\
+25 & 34,382 & 37,652 & 40,646 & 44,314 & 46,928 & 52,620\\
+26 & 35,563 & 38,885 & 41,923 & 45,642 & 48,290 & 54,052\\
+27 & 36,741 & 40,113 & 43,195 & 46,963 & 49,645 & 55,476\\
+28 & 37,916 & 41,337 & 44,461 & 48,278 & 50,993 & 56,892\\
+29 & 39,087 & 42,557 & 45,722 & 49,588 & 52,336 & 58,301\\
+30 & 40,256 & 43,773 & 46,979 & 50,892 & 53,672 & 59,703\\
+40 & 51,805 & 55,758 & 59,342 & 63,691 & 66,766 & 73,402\\
+50 & 63,167 & 67,505 & 71,420 & 76,154 & 79,490 & 86,661\\
+60 & 74,397 & 79,082 & 83,298 & 88,379 & 91,952 & 99,607\\
+70 & 85,527 & 90,531 & 95,023 & 100,425 & 104,215 & 112,317\\
+80 & 96,578 & 101,879 & 106,629 & 112,329 & 116,321 & 124,839\\
+90 & 107,565 & 113,145 & 118,136 & 124,116 & 128,299 & 137,208\\
+100 & 118,498 & 124,342 & 129,561 & 135,807 & 140,169 & 149,449\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\end{document}
