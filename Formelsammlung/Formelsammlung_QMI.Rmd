@@ -1,9 +1,15 @@
 ---
 title: "Formelsammlung"
-subtitle: "Quantitative Methoden I (B.Sc. Psychologie)"
 author: "Charlotte Fresenius Hochschule"
 date: "`r Sys.Date()`"
 output:
+  pdf_document:
+    toc: true
+    toc_depth: 2
+    latex_engine: xelatex
+  word_document:
+    toc: true
+    toc_depth: '2'
   html_document:
     toc: true
     toc_float: true
@@ -11,11 +17,11 @@ output:
     number_sections: false
     theme: flatly
     mathjax: default
-  pdf_document:
-    toc: true
-    toc_depth: 2
-header-includes:
-  - \usepackage{graphicx}
+geometry:
+  - a4paper
+  - margin=1in
+subtitle: Quantitative Methoden I (B.Sc. Psychologie)
+header-includes: \usepackage{graphicx}
 ---
 
 ```{r setup, include=FALSE}
@@ -131,7 +137,7 @@ $$p(B|A) = \frac{p(A \cap B)}{p(A)}$$
 
 ## 7. Binomialverteilung
 
-$$f(X = k \mid N; p) = \binom{N}{k} \cdot p^k \cdot q^{N-k} \quad \text{für } k = 0, 1, \dots, \infty$$
+$$f(X = k \mid n; p) = \binom{n}{k} \cdot p^k \cdot q^{n-k} \quad \text{für } k = 0, 1, \dots ,n$$
 
 $$E[X] = np \qquad \sigma^2 = np(1-p)$$
 
@@ -248,19 +254,19 @@ $$r_{xy} = \frac{cov_{emp}}{cov_{max}} = \frac{cov_{x,y}}{\hat{\sigma}_x \cdot \
 
 **$\rho = 0$ ?**
 
-$$t = \frac{r \cdot \sqrt{N - 2}}{\sqrt{1 - r^2}}; \quad df = N - 2$$
+$$t = \frac{r \cdot \sqrt{n - 2}}{\sqrt{1 - r^2}}; \quad df = n - 2$$
 
 **$\rho = a$ ?**
 
-$$z_{emp} = \frac{Z_r - \mu_Z}{\sigma_Z} = \frac{Z_r - Z_a}{\sqrt{\dfrac{1}{N - 3}}}$$
+$$z_{emp} = \frac{Z_r - \mu_Z}{\sigma_Z} = \frac{Z_r - Z_a}{\sqrt{\dfrac{1}{n - 3}}}$$
 
 ### Rangkorrelation / Spearman-Korrelationskoeffizient
 
-$$r_s = 1 - \frac{6 \cdot \sum_{i=1}^{n} d_i^2}{N \cdot (N^2 - 1)}$$
+$$r_s = 1 - \frac{6 \cdot \sum_{i=1}^{n} d_i^2}{n \cdot (n^2 - 1)}$$
 
-**$\rho_s = 0$ ?**
+**$r_s = 0$ ?**
 
-$$t = \frac{r \cdot \sqrt{N - 2}}{\sqrt{1 - r^2}}; \quad df = N - 2$$
+$$t = \frac{r_s \cdot \sqrt{n - 2}}{\sqrt{1 - r^2}}; \quad df = n - 2$$
 
 ---
 
@@ -387,7 +393,7 @@ $$d = \frac{|\mu_1 - \mu_2|}{\sigma}$$
 
 $$d = \frac{\bar{x}_1 - \bar{x}_2}{\sqrt{\dfrac{s_1^2 + s_2^2}{2}}}$$
 
-### Cohen's $d$ berechnet aus der t-Statistik
+### Cohen's $d$ berechnet aus der t-Statistik (Näherung für gleich große Gruppen)
 
 $$d = \frac{2t}{\sqrt{df}}$$
 
@@ -480,19 +486,19 @@ kbl(t_chr,
 
 \newpage
 
+
 ## Tabelle D: F-Verteilung
 
-```{r tab-f-setup, echo=FALSE, include=FALSE}
+```{r tab-f-setup, include=FALSE}
 # Nenner-df gemäß Original-Formelsammlung (mit Sprüngen ab 20)
 nenner_df_full <- c(1:20, 22, 24, 26, 28, 30, 40, 60, 120, 200, Inf)
-flachen        <- c(0.75, 0.90, 0.95, 0.99)
+flachen        <- c(0.90, 0.95, 0.99)
 zahler_links   <- 1:12
 zahler_rechts  <- c(15, 20, 25, 30, 40, 50, 60, 100, 120, 200, 500, Inf)
 
 # Aufteilung der Nenner-df auf drei Bereiche (analog zum Original)
-nenner_A <- c(1:11)
-nenner_B <- c(12:20, 22, 24, 26)
-nenner_C <- c(28, 30, 40, 60, 120, 200, Inf)
+nenner_A <- c(1:20)
+nenner_B <- c(21:30, 40, 60, 120, 200, Inf)
 
 build_f <- function(zahler, nenner, alphas) {
   out <- list()
@@ -520,72 +526,43 @@ render_f <- function(zahler, nenner, alphas, caption) {
   kbl(ftab,
       align = "c",
       booktabs = TRUE,
-      longtable = TRUE,
       caption = caption,
       escape = FALSE,
       linesep = "",
       row.names = FALSE) |>
-    kable_styling(latex_options = c("repeat_header", "scale_down"),
+    kable_styling(latex_options = c("HOLD_position", "scale_down"),
                   bootstrap_options = c("striped", "condensed"),
                   full_width = FALSE,
                   font_size = 8) |>
-    add_header_above(c(" " = 2, "Zähler-df" = length(zahler))) |>
-    landscape()
+    add_header_above(c(" " = 2, "Zähler-df" = length(zahler)))
 }
 ```
 
-### Nenner-df 1–11, Zähler-df 1–12
-
 ```{r tab-f1, echo=FALSE}
 render_f(zahler_links, nenner_A, flachen,
-         "Verteilungsfunktion der F-Verteilungen (Nenner-df 1 bis 11, Zähler-df 1 bis 12)")
+         "Verteilungsfunktion der F-Verteilungen (Nenner-df 1 bis 20, Zähler-df 1 bis 12)")
 ```
 
 \newpage
-
-### Nenner-df 1–11, Zähler-df 15–∞
 
 ```{r tab-f2, echo=FALSE}
 render_f(zahler_rechts, nenner_A, flachen,
-         "Verteilungsfunktion der F-Verteilungen (Nenner-df 1 bis 11, Zähler-df 15 bis $\\infty$)")
+         "Verteilungsfunktion der F-Verteilungen (Nenner-df 1 bis 20, Zähler-df 15 bis $\\infty$)")
 ```
 
 \newpage
-
-### Nenner-df 12–26, Zähler-df 1–12
 
 ```{r tab-f3, echo=FALSE}
 render_f(zahler_links, nenner_B, flachen,
-         "Verteilungsfunktion der F-Verteilungen (Nenner-df 12 bis 26, Zähler-df 1 bis 12)")
+         "Verteilungsfunktion der F-Verteilungen (Nenner-df 21 bis $\\infty$, Zähler-df 1 bis 12)")
 ```
 
 \newpage
-
-### Nenner-df 12–26, Zähler-df 15–∞
 
 ```{r tab-f4, echo=FALSE}
 render_f(zahler_rechts, nenner_B, flachen,
-         "Verteilungsfunktion der F-Verteilungen (Nenner-df 12 bis 26, Zähler-df 15 bis $\\infty$)")
+         "Verteilungsfunktion der F-Verteilungen (Nenner-df 21 bis $\\infty$, Zähler-df 15 bis $\\infty$)")
 ```
-
-\newpage
-
-### Nenner-df 28–∞, Zähler-df 1–12
-
-```{r tab-f5, echo=FALSE}
-render_f(zahler_links, nenner_C, flachen,
-         "Verteilungsfunktion der F-Verteilungen (Nenner-df 28 bis $\\infty$, Zähler-df 1 bis 12)")
-```
-
-\newpage
-
-### Nenner-df 28–∞, Zähler-df 15–∞
-
-```{r tab-f6, echo=FALSE}
-render_f(zahler_rechts, nenner_C, flachen,
-         "Verteilungsfunktion der F-Verteilungen (Nenner-df 28 bis $\\infty$, Zähler-df 15 bis $\\infty$)")
-```
-
 \newpage
 
 ## Tabelle B: $\chi^2$-Verteilung
