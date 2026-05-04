@@ -442,7 +442,7 @@ kbl(z_tab_chr,
 
 \newpage
 
-## Tabelle C: t-Verteilung
+## Tabelle B: t-Verteilung
 
 ```{r tab-t, echo=FALSE}
 t_df    <- c(1:30, 40, 60, 120, Inf)
@@ -487,7 +487,7 @@ kbl(t_chr,
 \newpage
 
 
-## Tabelle D: F-Verteilung
+## Tabelle C: F-Verteilung
 
 ```{r tab-f-setup, include=FALSE}
 # Nenner-df gemäß Original-Formelsammlung (mit Sprüngen ab 20)
@@ -565,7 +565,7 @@ render_f(zahler_rechts, nenner_B, flachen,
 ```
 \newpage
 
-## Tabelle B: $\chi^2$-Verteilung
+## Tabelle D: $\chi^2$-Verteilung
 
 ```{r tab-chi, echo=FALSE}
 chi_df    <- c(1:30, 40, 50, 60, 70, 80, 90, 100)
