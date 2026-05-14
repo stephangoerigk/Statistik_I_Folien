@@ -11,7 +11,7 @@
 
 <meta name="author" content="Charlotte Fresenius Hochschule" />
 
-<meta name="date" content="2026-05-04" />
+<meta name="date" content="2026-05-14" />
 
 <title>Formelsammlung</title>
 
@@ -1724,12 +1724,13 @@ border-radius: 0px;
 <h1 class="title toc-ignore">Formelsammlung</h1>
 <h3 class="subtitle">Quantitative Methoden I (B.Sc. Psychologie)</h3>
 <h4 class="author">Charlotte Fresenius Hochschule</h4>
-<h4 class="date">2026-05-04</h4>
+<h4 class="date">2026-05-14</h4>
 
 </div>
 
 
 <hr />
+<div style="page-break-after: always;"></div>
 <div id="arithmetisches-mittel" class="section level2">
 <h2>1. Arithmetisches Mittel</h2>
 <p><span class="math display">\[\bar{x} = \frac{\sum_{i=1}^{n}
@@ -1788,39 +1789,8 @@ eine ganze Zahl ist;} \\
 <hr />
 </div>
 </div>
-<div id="wahrscheinlichkeiten" class="section level2">
-<h2>6. Wahrscheinlichkeiten</h2>
-<div id="additionstheorem" class="section level3">
-<h3>Additionstheorem</h3>
-<p><strong>6.1: A und B sind disjunkt</strong></p>
-<p><span class="math display">\[p(A \cup B) = p(A) + p(B)\]</span></p>
-<p><strong>6.2: A und B sind nicht disjunkt</strong></p>
-<p><span class="math display">\[p(A \cup B) = p(A) + p(B) - p(A \cap
-B)\]</span></p>
-</div>
-<div id="multiplikationstheorem" class="section level3">
-<h3>Multiplikationstheorem</h3>
-<p><strong>6.3: A und B sind unabhängig voneinander</strong></p>
-<p><span class="math display">\[p(A \cap B) = p(A) \cdot
-p(B)\]</span></p>
-<p><strong>6.4: A und B sind voneinander abhängig</strong></p>
-<p><span class="math display">\[p(A \cap B) = p(A|B) \cdot
-p(B)\]</span></p>
-<p><span class="math display">\[p(A \cap B) = p(B|A) \cdot
-p(A)\]</span></p>
-</div>
-<div id="bedingte-wahrscheinlichkeiten" class="section level3">
-<h3>Bedingte Wahrscheinlichkeiten</h3>
-<p><strong>6.5:</strong></p>
-<p><span class="math display">\[p(A|B) = \frac{p(A \cap
-B)}{p(B)}\]</span></p>
-<p><span class="math display">\[p(B|A) = \frac{p(A \cap
-B)}{p(A)}\]</span></p>
-<hr />
-</div>
-</div>
 <div id="binomialverteilung" class="section level2">
-<h2>7. Binomialverteilung</h2>
+<h2>6. Binomialverteilung</h2>
 <p><span class="math display">\[f(X = k \mid n; p) = \binom{n}{k} \cdot
 p^k \cdot q^{n-k} \quad \text{für } k = 0, 1, \dots ,n\]</span></p>
 <p><span class="math display">\[E[X] = np \qquad \sigma^2 =
@@ -1832,23 +1802,14 @@ np_0}{\sqrt{np_0(1 - p_0)}}\]</span></p>
 <hr />
 </div>
 </div>
-<div id="poisson-verteilung" class="section level2">
-<h2>8. Poisson-Verteilung</h2>
-<p><span class="math display">\[P(X = k) = \frac{\lambda^k
-e^{-\lambda}}{k!} \quad \text{für } k = 0, 1, \dots, \infty\]</span></p>
-<p><span class="math display">\[E[X] = \lambda \qquad \sigma^2 =
-\lambda\]</span></p>
-<hr />
-</div>
-<div id="alpha-fehler-adjustierung-nach-bonferroni" class="section level2">
-<h2>9. <span class="math inline">\(\alpha\)</span>-Fehler Adjustierung
-nach Bonferroni</h2>
+<div id="formel-für-die-kumulierung-des-alpha-fehlers" class="section level2">
+<h2>7. Formel für die Kumulierung des Alpha-Fehlers</h2>
 <p><span class="math display">\[\alpha_{adj} = 1 - (1 -
 \alpha)^{1/k}\]</span></p>
 <hr />
 </div>
 <div id="normalverteilung" class="section level2">
-<h2>10. Normalverteilung</h2>
+<h2>8. Normalverteilung</h2>
 <p>Bestimmt durch den Mittelwert und die Standardabweichung <span class="math inline">\(N(\mu, \sigma^2)\)</span>, da die Dichtefunktion
 bekannt ist:</p>
 <p><span class="math display">\[\phi(x) = \frac{1}{\sigma \sqrt{2\pi}}
@@ -1856,19 +1817,19 @@ e^{-\frac{1}{2}\left(\frac{x - \mu}{\sigma}\right)^2}\]</span></p>
 <hr />
 </div>
 <div id="chi2-verteilung" class="section level2">
-<h2>11. <span class="math inline">\(\chi^2\)</span>-Verteilung</h2>
+<h2>9. <span class="math inline">\(\chi^2\)</span>-Verteilung</h2>
 <p><span class="math display">\[\chi_n^2 = \sum_{i=1}^{n}
 z_i^2\]</span></p>
 <hr />
 </div>
 <div id="f-verteilung" class="section level2">
-<h2>12. F-Verteilung</h2>
+<h2>10. F-Verteilung</h2>
 <p><span class="math display">\[F(n_1, n_2) =
 \frac{\left(\dfrac{\chi_{n_1}^2}{n_1}\right)}{\left(\dfrac{\chi_{n_2}^2}{n_2}\right)}\]</span></p>
 <hr />
 </div>
 <div id="stichprobentests-je-nach-bedingung" class="section level2">
-<h2>13. Stichprobentests (je nach Bedingung)</h2>
+<h2>11. Stichprobentests (je nach Bedingung)</h2>
 <p><span class="math display">\[z = \frac{\bar{x} -
 \mu}{\frac{\sigma}{\sqrt{n}}} \sim N(0, 1)\]</span></p>
 <p><span class="math display">\[t = \frac{\bar{x} -
@@ -1876,7 +1837,7 @@ z_i^2\]</span></p>
 <hr />
 </div>
 <div id="stichprobenkennwerteverteilung-konfidenzintervall-des-mittelwerts" class="section level2">
-<h2>14. Stichprobenkennwerteverteilung, Konfidenzintervall des
+<h2>12. Stichprobenkennwerteverteilung, Konfidenzintervall des
 Mittelwerts</h2>
 <p><strong>KI für <span class="math inline">\(\mu\)</span> einer <span class="math inline">\(N(\mu, \sigma^2)\)</span>-Variable bei bekannter
 <span class="math inline">\(\sigma^2\)</span>:</strong></p>
@@ -1890,7 +1851,7 @@ Mittelwerts</h2>
 <hr />
 </div>
 <div id="t-test" class="section level2">
-<h2>15. t-Test</h2>
+<h2>13. t-Test</h2>
 <div id="ein-stichproben-t-test" class="section level3">
 <h3>Ein-Stichproben t-Test</h3>
 <p><span class="math display">\[t = \frac{\bar{x} -
@@ -1931,14 +1892,14 @@ nächste ganze Zahl abgerundet.</p>
 </div>
 </div>
 <div id="varianzhomogenitätsprüfung" class="section level2">
-<h2>16. Varianzhomogenitätsprüfung</h2>
+<h2>14. Varianzhomogenitätsprüfung</h2>
 <p><span class="math display">\[F =
 \frac{\hat{\sigma}_1^2}{\hat{\sigma}_2^2} \quad \text{mit } (n_1 - 1)
 \text{ und } (n_2 - 1) \text{ Freiheitsgraden}\]</span></p>
 <hr />
 </div>
 <div id="korrelation" class="section level2">
-<h2>17. Korrelation</h2>
+<h2>15. Korrelation</h2>
 <div id="kovarianz-covx-y" class="section level3">
 <h3>Kovarianz: cov(x, y)</h3>
 <p>Erwartungstreue Schätzung der Population:</p>
@@ -1973,7 +1934,7 @@ d_i^2}{n \cdot (n^2 - 1)}\]</span></p>
 </div>
 </div>
 <div id="chi2-verfahren" class="section level2">
-<h2>18. <span class="math inline">\(\chi^2\)</span>-Verfahren</h2>
+<h2>16. <span class="math inline">\(\chi^2\)</span>-Verfahren</h2>
 <div id="voraussetzungen" class="section level3">
 <h3>Voraussetzungen</h3>
 <p><strong>Eindimensional:</strong></p>
@@ -2069,53 +2030,8 @@ c}{\sqrt{(a+b) \cdot (c+d) \cdot (a+c) \cdot (b+d)}}\]</span></p>
 <hr />
 </div>
 </div>
-<div id="wilcoxon-test" class="section level2">
-<h2>19. Wilcoxon-Test</h2>
-<ul>
-<li><span class="math inline">\(T_{-}\)</span> = Summe der Ränge mit
-negativen Vorzeichen</li>
-<li><span class="math inline">\(T_{+}\)</span> = Summe der Ränge mit
-positiven Vorzeichen</li>
-</ul>
-<p><span class="math display">\[T_{+} + T_{-} = \frac{n \cdot (n +
-1)}{2}\]</span></p>
-<p>Bei großem <span class="math inline">\(n\)</span> (<span class="math inline">\(n &gt; 25\)</span>) geht die T-Verteilung in eine
-Normalverteilung über:</p>
-<p><span class="math display">\[\mu(T) = \frac{n \cdot (n +
-1)}{4}\]</span></p>
-<p><span class="math display">\[\sigma_T^2 = \frac{n \cdot (n + 1) \cdot
-(2n + 1)}{24}\]</span></p>
-<p><span class="math display">\[z_T = \frac{T -
-\mu(T)}{\sigma_T}\]</span></p>
-<hr />
-</div>
-<div id="u-test" class="section level2">
-<h2>20. U-Test</h2>
-<p><span class="math inline">\(T_1\)</span> und <span class="math inline">\(T_2\)</span> ergeben sich als Rangplatzsummen der
-Stichproben <span class="math inline">\(S_1\)</span> und <span class="math inline">\(S_2\)</span>.</p>
-<p><span class="math display">\[U_1 = n_1 \cdot n_2 + \frac{n_1 \cdot
-(n_1 + 1)}{2} - T_1\]</span></p>
-<p><span class="math display">\[U_2 = n_1 \cdot n_2 + \frac{n_2 \cdot
-(n_2 + 1)}{2} - T_2 \quad \text{oder} \quad U_2 = (n_1 \cdot n_2) -
-U_1\]</span></p>
-<p>Bei großem <span class="math inline">\(n_1\)</span> oder <span class="math inline">\(n_2 &gt; 10\)</span> nähert sich die
-U-Werte-Verteilung der Normalverteilung an:</p>
-<p><span class="math display">\[\mu_U = \frac{n_1 \cdot
-n_2}{2}\]</span></p>
-<p><span class="math display">\[\sigma_U = \sqrt{\frac{n_1 \cdot n_2
-\cdot (n_1 + n_2 + 1)}{12}}\]</span></p>
-<p><span class="math display">\[z_U = \frac{U -
-\mu_U}{\sigma_U}\]</span></p>
-<hr />
-</div>
-<div id="fishers-z-transformation-für-r" class="section level2">
-<h2>21. Fisher’s Z-Transformation für <span class="math inline">\(r\)</span></h2>
-<p><span class="math display">\[Z_r = \frac{1}{2} \cdot \ln\left(\frac{1
-+ r}{1 - r}\right)\]</span></p>
-<hr />
-</div>
 <div id="effektgrößen" class="section level2">
-<h2>22. Effektgrößen</h2>
+<h2>17. Effektgrößen</h2>
 <div id="cohens-d" class="section level3">
 <h3>Cohen’s <span class="math inline">\(d\)</span></h3>
 <p><span class="math display">\[d = \frac{|\mu_1 -

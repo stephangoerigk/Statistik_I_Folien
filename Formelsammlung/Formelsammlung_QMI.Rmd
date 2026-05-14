@@ -3,13 +3,6 @@ title: "Formelsammlung"
 author: "Charlotte Fresenius Hochschule"
 date: "`r Sys.Date()`"
 output:
-  pdf_document:
-    toc: true
-    toc_depth: 2
-    latex_engine: xelatex
-  word_document:
-    toc: true
-    toc_depth: '2'
   html_document:
     toc: true
     toc_float: true
@@ -17,6 +10,13 @@ output:
     number_sections: false
     theme: flatly
     mathjax: default
+  word_document:
+    toc: true
+    toc_depth: '2'
+  pdf_document:
+    toc: true
+    toc_depth: 2
+    latex_engine: xelatex
 geometry:
   - a4paper
   - margin=1in
@@ -43,6 +43,8 @@ fmt_de <- function(x, digits = 4) {
 
 
 ---
+
+\newpage
 
 ## 1. Arithmetisches Mittel
 
@@ -101,41 +103,7 @@ $$q_A = \tilde{x}_{0{,}75} - \tilde{x}_{0{,}25}$$
 
 ---
 
-## 6. Wahrscheinlichkeiten
-
-### Additionstheorem
-
-**6.1: A und B sind disjunkt**
-
-$$p(A \cup B) = p(A) + p(B)$$
-
-**6.2: A und B sind nicht disjunkt**
-
-$$p(A \cup B) = p(A) + p(B) - p(A \cap B)$$
-
-### Multiplikationstheorem
-
-**6.3: A und B sind unabhängig voneinander**
-
-$$p(A \cap B) = p(A) \cdot p(B)$$
-
-**6.4: A und B sind voneinander abhängig**
-
-$$p(A \cap B) = p(A|B) \cdot p(B)$$
-
-$$p(A \cap B) = p(B|A) \cdot p(A)$$
-
-### Bedingte Wahrscheinlichkeiten
-
-**6.5:**
-
-$$p(A|B) = \frac{p(A \cap B)}{p(B)}$$
-
-$$p(B|A) = \frac{p(A \cap B)}{p(A)}$$
-
----
-
-## 7. Binomialverteilung
+## 6. Binomialverteilung
 
 $$f(X = k \mid n; p) = \binom{n}{k} \cdot p^k \cdot q^{n-k} \quad \text{für } k = 0, 1, \dots ,n$$
 
@@ -147,21 +115,13 @@ $$z = \frac{K - \mu}{\sigma} = \frac{K - np_0}{\sqrt{np_0(1 - p_0)}}$$
 
 ---
 
-## 8. Poisson-Verteilung
-
-$$P(X = k) = \frac{\lambda^k e^{-\lambda}}{k!} \quad \text{für } k = 0, 1, \dots, \infty$$
-
-$$E[X] = \lambda \qquad \sigma^2 = \lambda$$
-
----
-
-## 9. $\alpha$-Fehler Adjustierung nach Bonferroni
+## 7. Formel für die Kumulierung des Alpha-Fehlers
 
 $$\alpha_{adj} = 1 - (1 - \alpha)^{1/k}$$
 
 ---
 
-## 10. Normalverteilung
+## 8. Normalverteilung
 
 Bestimmt durch den Mittelwert und die Standardabweichung $N(\mu, \sigma^2)$, da die Dichtefunktion bekannt ist:
 
@@ -169,19 +129,19 @@ $$\phi(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x - \mu}{\si
 
 ---
 
-## 11. $\chi^2$-Verteilung
+## 9. $\chi^2$-Verteilung
 
 $$\chi_n^2 = \sum_{i=1}^{n} z_i^2$$
 
 ---
 
-## 12. F-Verteilung
+## 10. F-Verteilung
 
 $$F(n_1, n_2) = \frac{\left(\dfrac{\chi_{n_1}^2}{n_1}\right)}{\left(\dfrac{\chi_{n_2}^2}{n_2}\right)}$$
 
 ---
 
-## 13. Stichprobentests (je nach Bedingung)
+## 11. Stichprobentests (je nach Bedingung)
 
 $$z = \frac{\bar{x} - \mu}{\frac{\sigma}{\sqrt{n}}} \sim N(0, 1)$$
 
@@ -189,7 +149,7 @@ $$t = \frac{\bar{x} - \mu}{\frac{\hat{\sigma}}{\sqrt{n}}} ; df = n-1$$
 
 ---
 
-## 14. Stichprobenkennwerteverteilung, Konfidenzintervall des Mittelwerts
+## 12. Stichprobenkennwerteverteilung, Konfidenzintervall des Mittelwerts
 
 **KI für $\mu$ einer $N(\mu, \sigma^2)$-Variable bei bekannter $\sigma^2$:**
 
@@ -201,7 +161,7 @@ $$\mu_{1,2} = \bar{x} \pm t_{1 - \frac{\alpha}{2}} \cdot \frac{\hat{\sigma}}{\sq
 
 ---
 
-## 15. t-Test
+## 13. t-Test
 
 ### Ein-Stichproben t-Test
 
@@ -232,13 +192,13 @@ Korrigierte $df$ werden auf die nächste ganze Zahl abgerundet.
 
 ---
 
-## 16. Varianzhomogenitätsprüfung
+## 14. Varianzhomogenitätsprüfung
 
 $$F = \frac{\hat{\sigma}_1^2}{\hat{\sigma}_2^2} \quad \text{mit } (n_1 - 1) \text{ und } (n_2 - 1) \text{ Freiheitsgraden}$$
 
 ---
 
-## 17. Korrelation
+## 15. Korrelation
 
 ### Kovarianz: cov(x, y)
 
@@ -270,7 +230,7 @@ $$t = \frac{r_s \cdot \sqrt{n - 2}}{\sqrt{1 - r^2}}; \quad df = n - 2$$
 
 ---
 
-## 18. $\chi^2$-Verfahren
+## 16. $\chi^2$-Verfahren
 
 ### Voraussetzungen
 
@@ -341,49 +301,7 @@ $$\phi = \frac{a \cdot d - b \cdot c}{\sqrt{(a+b) \cdot (c+d) \cdot (a+c) \cdot 
 
 ---
 
-## 19. Wilcoxon-Test
-
-- $T_{-}$ = Summe der Ränge mit negativen Vorzeichen
-- $T_{+}$ = Summe der Ränge mit positiven Vorzeichen
-
-$$T_{+} + T_{-} = \frac{n \cdot (n + 1)}{2}$$
-
-Bei großem $n$ ($n > 25$) geht die T-Verteilung in eine Normalverteilung über:
-
-$$\mu(T) = \frac{n \cdot (n + 1)}{4}$$
-
-$$\sigma_T^2 = \frac{n \cdot (n + 1) \cdot (2n + 1)}{24}$$
-
-$$z_T = \frac{T - \mu(T)}{\sigma_T}$$
-
----
-
-## 20. U-Test
-
-$T_1$ und $T_2$ ergeben sich als Rangplatzsummen der Stichproben $S_1$ und $S_2$.
-
-$$U_1 = n_1 \cdot n_2 + \frac{n_1 \cdot (n_1 + 1)}{2} - T_1$$
-
-$$U_2 = n_1 \cdot n_2 + \frac{n_2 \cdot (n_2 + 1)}{2} - T_2 \quad \text{oder} \quad U_2 = (n_1 \cdot n_2) - U_1$$
-
-Bei großem $n_1$ oder $n_2 > 10$ nähert sich die U-Werte-Verteilung der Normalverteilung an:
-
-$$\mu_U = \frac{n_1 \cdot n_2}{2}$$
-
-$$\sigma_U = \sqrt{\frac{n_1 \cdot n_2 \cdot (n_1 + n_2 + 1)}{12}}$$
-
-$$z_U = \frac{U - \mu_U}{\sigma_U}$$
-
----
-
-## 21. Fisher's Z-Transformation für $r$
-
-$$Z_r = \frac{1}{2} \cdot \ln\left(\frac{1 + r}{1 - r}\right)$$
-
----
-
-
-## 22. Effektgrößen
+## 17. Effektgrößen
 
 ### Cohen's $d$
 
