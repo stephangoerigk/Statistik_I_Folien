@@ -638,16 +638,16 @@ F-Test - Beispiel 1
 
 Gegeben: 
 
-* $s_{VG}^2 =8.5$
-* $s_{KG}^2 =4.7$
-* $n_{VG} =n_{KG} =50$
+* $s_{VG}^2 =8.10$
+* $s_{KG}^2 =7.90$
+* $n_{VG} = n_{KG} = 11$
 * NV der Daten in VG und KG kann angenommen werden.
 
-$$F=\frac{8.5}{4.7}=1.81; df_1 = 49, df_2 = 49$$
+$$F=\frac{8.1}{7.9}=1.03; df_{Zähler} = 10, df_{Nenner} = 10$$
 
-* Nachprüfen in F-Tabelle: $F_{50,50;0.975} = 1.75 < 1.81 \rightarrow$ $H_0$ wird verworfen
+* Nachprüfen in F-Tabelle: $1.03 < F_{10,10;0.975} = 3.72 \rightarrow$ $H_0$ wird beibehalten. 
 
-* Levene-Test ist signifikant $\rightarrow$ Die Varianzen sind unterschiedlich (nicht homogen).
+* F-Test ist nicht signifikant $\rightarrow$ Die Varianzen sind nicht signifikant unterschiedlich (Homogenität kann angenommen werden). 
 
 ---
 class: top, left
@@ -731,9 +731,9 @@ Beispiel 1:
 
 Gegeben:
 
-* Autogenes Training: $\bar{x}_{VG} =7.22,s^2_{VG} =6.12;n_{VG}=53$ 
+* Autogenes Training: $\bar{x}_{VG} =7.22,s^2_{VG} =6.12;n_{VG}=61$ 
 
-* Konventionelle Therapie: $\bar{x}_{KG} =4.91,s^2_{KG} =6.54;n_{KG}=51$ 
+* Konventionelle Therapie: $\bar{x}_{KG} =4.91,s^2_{KG} =6.54;n_{KG}=41$ 
 
 * NV darf angenommen werden, $α=.05$
 
@@ -753,12 +753,12 @@ Gegeben:
 * Autogenes Training: 
   * $\bar{x}_{VG} =7.22$
   * $s^2_{VG} =6.12$
-  * $n_{VG}=53$ 
+  * $n_{VG}=61$ 
 
 * Konventionelle Therapie:
   * $\bar{x}_{KG} = 4.91$
   * $s^2_{KG} =6.54$
-  * $n_{KG}=51$
+  * $n_{KG}=41$
 
 ]
 
@@ -775,7 +775,7 @@ Gegeben:
 df = data.frame(Gruppe = c("VG", "KG"),
                 mean = c(7.22, 4.91),
                 sd = c(sqrt(6.12), sqrt(6.54)),
-                se = c(sqrt(6.12)/sqrt(53), sqrt(6.54)/sqrt(51)))
+                se = c(sqrt(6.12)/sqrt(61), sqrt(6.54)/sqrt(41)))
 
 ggplot(df, aes(x = Gruppe, y = mean, fill = Gruppe)) +
 stat_summary(geom = "bar", colour = "#621C37") +
@@ -816,13 +816,13 @@ Beispiel 1:
 
 Homogenität der Varianzen: $H_0$: $σ_1^2 = σ^2,$ $H_1:$ $σ_1^2 \neq  σ^2$
 
-$$F=\frac{6.54}{6.12}=1.07; df_1=50, df_2=52$$
+$$F=\frac{6.54}{6.12}=1.07; df_{Zähler}=40, df_{Nenner}=60$$
 
-* Prüfung in F-Tabelle: $F_{50,50;0.975} = 1.75 > 1.07 \rightarrow$ $H_0$ wird beibehalten, Varianzen sind homogen.
+* Prüfung in F-Tabelle: $F_{40,60;0.975} = 1.74 > 1.07 \rightarrow$ $H_0$ wird beibehalten, Varianzen sind homogen.
 
-$$t = \frac{7.22- 4.91}{\sqrt{\frac{52 \cdot 6.12 + 50 \cdot 6.54}{52+50} (\frac{1}{53}+\frac{1}{51})}}=4.64; df=53+51 - 2=102$$
+$$t = \frac{7.22- 4.91}{\sqrt{\frac{60 \cdot 6.12 + 40 \cdot 6.54}{60+40} (\frac{1}{61}+\frac{1}{41})}}=4.56; df=61+41 - 2=100$$
 
-* Prüfung in t-Tabelle: $t_{60;0.95} = 1.671 < 4.64 \rightarrow$ $H_0$ verwerfen
+* Prüfung in t-Tabelle: $t_{60;0.95} = 1.671 < 4.56 \rightarrow$ $H_0$ verwerfen
 
 * Interpretation: Ergebnis spricht dafür, dass autogenes Training zusätzlichen Effekt hat.
 

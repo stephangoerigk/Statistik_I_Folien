@@ -3,6 +3,13 @@ title: "Formelsammlung"
 author: "Charlotte Fresenius Hochschule"
 date: "`r Sys.Date()`"
 output:
+  pdf_document:
+    toc: true
+    toc_depth: 2
+    latex_engine: xelatex
+  word_document:
+    toc: true
+    toc_depth: '2'
   html_document:
     toc: true
     toc_float: true
@@ -10,13 +17,6 @@ output:
     number_sections: false
     theme: flatly
     mathjax: default
-  word_document:
-    toc: true
-    toc_depth: '2'
-  pdf_document:
-    toc: true
-    toc_depth: 2
-    latex_engine: xelatex
 geometry:
   - a4paper
   - margin=1in
@@ -410,7 +410,7 @@ kbl(t_chr,
 ```{r tab-f-setup, include=FALSE}
 # Nenner-df gemäß Original-Formelsammlung (mit Sprüngen ab 20)
 nenner_df_full <- c(1:20, 22, 24, 26, 28, 30, 40, 60, 120, 200, Inf)
-flachen        <- c(0.90, 0.95, 0.99)
+flachen        <- c(0.95, 0.975, 0.99)
 zahler_links   <- 1:12
 zahler_rechts  <- c(15, 20, 25, 30, 40, 50, 60, 100, 120, 200, 500, Inf)
 
@@ -429,7 +429,7 @@ build_f <- function(zahler, nenner, alphas) {
       })
       out[[length(out) + 1]] <- c(
         Nenner = ifelse(is.infinite(nd), "∞", as.character(nd)),
-        Fläche = fmt_de(a, 2),
+        Fläche = fmt_de(a, 3),
         fmt_de(row, 2)
       )
     }
