@@ -3,13 +3,6 @@ title: "Formelsammlung"
 author: "Charlotte Fresenius Hochschule"
 date: "`r Sys.Date()`"
 output:
-  pdf_document:
-    toc: true
-    toc_depth: 2
-    latex_engine: xelatex
-  word_document:
-    toc: true
-    toc_depth: '2'
   html_document:
     toc: true
     toc_float: true
@@ -17,6 +10,13 @@ output:
     number_sections: false
     theme: flatly
     mathjax: default
+  word_document:
+    toc: true
+    toc_depth: '2'
+  pdf_document:
+    toc: true
+    toc_depth: 2
+    latex_engine: xelatex
 geometry:
   - a4paper
   - margin=1in
@@ -506,4 +506,105 @@ kbl(chi_chr,
                 bootstrap_options = c("striped", "condensed"),
                 full_width = FALSE) |>
   add_header_above(c("df" = 1, "Fläche (links der Grenze)" = 6))
+```
+
+\newpage
+
+## Tabelle E: Binomialverteilung
+
+```{r bin-setup, include=FALSE}
+# ---- Binomialverteilung: Helper ----------------------------------------
+# p-Skalen (oben: p <= 0,5 mit Index k links; unten: 1-p mit Index rechts)
+bin_p_num <- c(0.02, 0.03, 0.05, 0.10, 1/6, 0.20, 0.25, 0.30, 1/3, 0.40, 0.50)
+bin_p_top <- c("0,02","0,03","0,05","0,10","1/6","0,20","0,25","0,30","1/3","0,40","0,50")
+bin_p_bot <- c("0,98","0,97","0,95","0,90","5/6","0,80","0,75","0,70","2/3","0,60","0,50")
+
+# Wert als 4-stellige Ganzzahl (x 10^4); leere Zellen = 0 (Punkt) bzw. 1 (kumuliert)
+fmt_bin_cell <- function(v, type) {
+  iv  <- as.integer(round(v * 10000))
+  out <- sprintf("%04d", iv)
+  if (type == "point") out[iv == 0] <- "" else out[iv == 10000] <- ""
+  out
+}
+
+# Datenblock fuer eine Menge von n-Werten aufbauen
+build_bin <- function(n_vec, type) {
+  blocks <- list(); idx <- integer(0)
+  for (n in n_vec) {
+    k    <- 0:n
+    vals <- sapply(bin_p_num, function(p)
+              if (type == "point") dbinom(k, n, p) else pbinom(k, n, p))
+    cells <- apply(vals, 2, fmt_bin_cell, type = type)
+    if (is.null(dim(cells))) cells <- matrix(cells, nrow = length(k))
+    # rechter Index: Punkt -> n-k, kumuliert -> n-k-1 (fuer die 1 - Wert-Regel)
+    ridx     <- if (type == "point") n - k else n - k - 1
+    ridx_lab <- ifelse(ridx < 0, "", as.character(ridx))
+    df_n <- data.frame(k = as.character(k), cells, nk = ridx_lab,
+                       stringsAsFactors = FALSE)
+    keep <- apply(cells, 1, function(z) any(z != ""))   # komplett leere Zeilen raus
+    df_n <- df_n[keep, , drop = FALSE]
+    blocks[[length(blocks) + 1]] <- df_n
+    idx <- c(idx, setNames(nrow(df_n), paste0("n = ", n)))
+  }
+  df <- do.call(rbind, blocks)
+  colnames(df) <- c("k", bin_p_top, "nk")
+  list(df = df, index = idx)
+}
+
+# Rendern (longtable -> bricht ueber Seiten um; kompakte kleine Schrift)
+render_bin <- function(obj, caption, font = 7) {
+  hdr <- c("$k$",
+           linebreak(paste0(bin_p_top, "\n", bin_p_bot), align = "c"),
+           "$n\\!-\\!k$")
+  kbl(obj$df,
+      col.names = hdr,
+      align     = c("c", rep("r", 11), "c"),
+      booktabs  = TRUE,
+      longtable = TRUE,
+      escape    = FALSE,
+      linesep   = "",
+      row.names = FALSE,
+      caption   = caption) |>
+    kable_styling(latex_options = c("repeat_header"),
+                  font_size = font, full_width = FALSE) |>
+    pack_rows(index = obj$index, bold = TRUE, latex_gap_space = "0.35em")
+}
+```
+
+**Ablesen (Spiegel-Prinzip).** Werte sind $\times 10^{4}$ angegeben (führende „0,'' weggelassen).
+Obere $p$-Skala mit Index $k$ (links); für $p \ge 0{,}5$ untere $p$-Skala mit Index $n-k$ (rechts).
+
+### Einzelwahrscheinlichkeiten $f(X = k \mid n; p)$
+
+```{r tab-bin-point, echo=FALSE}
+render_bin(build_bin(2:10, "point"),
+           "Binomialverteilung -- Einzelwahrscheinlichkeiten $f(X=k \\mid n; p)$")
+```
+
+*Leere Zellen $= 0{,}0000$. Für $p \ge 0{,}5$: Wert direkt in der unteren Skala über Index $n-k$ ablesen (kein Umrechnen nötig), da $f(k \mid p) = f(n-k \mid 1-p)$.*
+
+\newpage
+
+## Tabelle F: Binomialverteilung (kumuliert)
+
+Kumulierte Wahrscheinlichkeiten $F(k) = P(X \le k \mid n; p)$.
+*Leere Zellen $= 1{,}0000$. Obere Skala mit Index $k$ für $p \le 0{,}5$. Für $p \ge 0{,}5$ (untere Skala) über Index $n-k$ (rechts): $P(X \le k) = 1 - \text{abgelesener Wert}$.*
+
+```{r tab-bin-cum1, echo=FALSE}
+render_bin(build_bin(2:10, "cumulative"),
+           "Kumulierte Wahrscheinlichkeiten $P(X \\le k)$ (n = 2 bis 10)")
+```
+
+\newpage
+
+```{r tab-bin-cum2, echo=FALSE}
+render_bin(build_bin(11:20, "cumulative"),
+           "Kumulierte Wahrscheinlichkeiten $P(X \\le k)$ (n = 11 bis 20)")
+```
+
+\newpage
+
+```{r tab-bin-cum3, echo=FALSE}
+render_bin(build_bin(c(25, 50, 100), "cumulative"),
+           "Kumulierte Wahrscheinlichkeiten $P(X \\le k)$ (n = 25, 50, 100)", font = 6)
 ```
