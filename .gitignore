@@ -4,3 +4,8 @@
 .httr-oauth
 .DS_Store
 .positai
+
+# Manim
+manim/.venv
+manim/media
+manim/__pycache__

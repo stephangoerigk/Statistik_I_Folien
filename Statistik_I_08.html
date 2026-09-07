@@ -977,13 +977,13 @@ Beispiel: Vergleich der Reduktion von Symptomatik zwischen 2 Gruppen `\((N=16)\)
 &lt;tbody&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; G1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 10.88 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2.70 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.75 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.58 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; G2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 7.75 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2.82 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7.88 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.96 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -1004,13 +1004,13 @@ t.test(Reduktion ~ Gruppe, data = df, var.equal = T)
 ## 	Two Sample t-test
 ## 
 ## data:  Reduktion by Gruppe
-## t = 2.2674, df = 14, p-value = 0.03973
+## t = 2.1063, df = 14, p-value = 0.0537
 ## alternative hypothesis: true difference in means between group G1 and group G2 is not equal to 0
 ## 95 percent confidence interval:
-##  0.1689629 6.0810371
+##  -0.03423451  3.78423451
 ## sample estimates:
 ## mean in group G1 mean in group G2 
-##           10.875            7.750
+##            9.750            7.875
 ```
 ]
 ]
@@ -1039,13 +1039,13 @@ Beispiel: Prüfung, ob Symptomreduktion zwischen 2 Zeitpunkten signifikant ist `
 &lt;tbody&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; T1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 9.62 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2.20 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10.62 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.07 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; T2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 7.00 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2.98 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.75 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.04 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -1066,13 +1066,13 @@ t.test(df$Reduktion[df$Messung == "T1"], df$Reduktion[df$Messung == "T2"], paire
 ## 	Paired t-test
 ## 
 ## data:  df$Reduktion[df$Messung == "T1"] and df$Reduktion[df$Messung == "T2"]
-## t = 3.1108, df = 7, p-value = 0.01706
+## t = 5.0575, df = 7, p-value = 0.001468
 ## alternative hypothesis: true mean difference is not equal to 0
 ## 95 percent confidence interval:
-##  0.6296528 4.6203472
+##  2.063239 5.686761
 ## sample estimates:
 ## mean difference 
-##           2.625
+##           3.875
 ```
 ]
 ]
