@@ -59,7 +59,7 @@ class: middle, left
 # Statistik I
 ***
 ### Einheit 1: Grundlagen der Datenanalyse
-##### Sommersemester 2026 | Prof. Dr. Stephan Goerigk
+##### Wintersemester 2026 | Prof. Dr. Stephan Goerigk
 
 ---
 class: top, left
