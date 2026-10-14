@@ -140,7 +140,7 @@ class: top, left
 
 .center[
 ```{r eval = TRUE, echo = F, out.width = "1000px"}
-knitr::include_graphics("bilder/team.png")
+knitr::include_graphics("bilder/team.png.jpg")
 ```
 ]
 
