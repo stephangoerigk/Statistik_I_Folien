@@ -58,7 +58,7 @@ class: middle, left
 # Statistik I
 ***
 ### Einheit 2: Skalenniveaus und statistische Kennwerte
-##### Sommersemester 2026 | Prof. Dr. Stephan Goerigk
+##### Wintersemester 2026 | Prof. Dr. Stephan Goerigk
 
 ---
 class: top, left

@@ -59,7 +59,7 @@ class: middle, left
 # Statistik I
 ***
 ### Einheit 8: $t$-Test
-##### Sommersemester 2026 | Prof. Dr. Stephan Goerigk
+##### Wintersemester 2026 | Prof. Dr. Stephan Goerigk
 
 ---
 class: top, left

@@ -58,7 +58,7 @@ class: middle, left
 # Statistik I
 ***
 ### Einheit 5: Stichprobe, Grundgesamtheit - Wahrscheinlichkeitstheorie und Verteilungen
-##### Sommersemester 2026 | Prof. Dr. Stephan Goerigk
+##### Wintersemester 2026 | Prof. Dr. Stephan Goerigk
 
 ---
 class: top, left
